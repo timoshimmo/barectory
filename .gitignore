@@ -41,3 +41,4 @@ sw.js
 
 # IDE
 .idea/
+.vercel
