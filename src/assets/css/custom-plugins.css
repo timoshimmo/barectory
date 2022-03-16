@@ -693,3 +693,11 @@ body[dir='rtl'] .react-tel-input .country-list .flag {
   border-color: rgb(var(--color-gray-900));
   box-shadow: 0px 0px 0px 3px #ffffff inset, 0 0 0 5px #d1d5db;
 }
+
+.header-modern-secondary {
+  background-color: rgb(var(--color-secondary));
+}
+
+.header-modern-primary {
+  background-color: rgb(var(--color-accent));
+}

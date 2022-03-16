@@ -1,10 +1,13 @@
 import Banner from '@/components/banners/banner';
 import Categories from '@/components/categories/categories';
+import cn from 'classnames';
 import { Element } from 'react-scroll';
 import ProductGridHome from '@/components/products/grids/home';
 import FilterBar from './filter-bar';
 import type { HomePageProps } from '@/types';
 import PopularProductsGrid from '@/components/products/popular-products';
+import Link from '@/components/ui/link';
+import Footer from './footer';
 
 export default function Modern({ variables }: HomePageProps) {
   return (
@@ -17,15 +20,16 @@ export default function Modern({ variables }: HomePageProps) {
           <Banner layout="modern" variables={variables.types} />
         </div>
         {/* <FilterBar variables={variables.categories} />  */}
-        <div className="mt-5" style={{marginTop: 6 + 'em'}}>
+        <Categories layout="modern" variables={variables.categories} />
+        <div className="mt-5" style={{marginTop: 2 + 'em'}}>
           <PopularProductsGrid variables={variables.popularProducts} />
         </div>
-        <Categories layout="modern" variables={variables.categories} />
         {/*
           <Element name="slider" className="px-4 xl:px-0">
           <ProductGridHome className="py-6" variables={variables.products} />
         </Element>
           */}
+          <Footer />
       </main>
     </div>
   );

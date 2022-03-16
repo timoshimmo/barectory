@@ -14,9 +14,9 @@ const CartCounterIconButton = () => {
       className="hidden product-cart lg:flex relative"
       onClick={handleCartSidebar}
     >
-      <CartOutlinedIcon className="w-5 h-5" />
+      <CartOutlinedIcon className="w-5 h-5 text-light" />
       {totalUniqueItems > 0 && (
-        <span className="min-w-[20px] h-5 flex items-center justify-center rounded-full bg-accent text-light text-[10px] absolute ltr:-right-1/2 rtl:-left-1/2 -top-1/2">
+        <span className="min-w-[20px] h-5 flex items-center justify-center rounded-full bg-light text-primary text-[10px] absolute ltr:-right-1/2 rtl:-left-1/2 -top-1/2">
           {totalUniqueItems}
         </span>
       )}

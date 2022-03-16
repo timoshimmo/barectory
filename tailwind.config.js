@@ -34,6 +34,7 @@ module.exports = {
         light: withOpacity('--color-light'),
         dark: withOpacity('--color-dark'),
         accent: withOpacity('--color-accent'),
+        secondary: withOpacity('--color-secondary'),
         'accent-hover': withOpacity('--color-accent-hover'),
         'accent-200': withOpacity('--color-accent-200'),
         'accent-300': withOpacity('--color-accent-300'),

@@ -1,16 +1,16 @@
 import { ROUTES } from '@/lib/routes';
 export const siteSettings = {
-  name: 'PickBazar',
+  name: 'Barectory',
   description: '',
   logo: {
     url: '/logo.svg',
-    alt: 'PickBazar',
+    alt: 'Barectory',
     href: '/grocery',
     width: 128,
     height: 40,
   },
   defaultLanguage: 'en',
-  currencyCode: 'USD',
+  currencyCode: 'NGN',
   product: {
     placeholderImage: '/product-placeholder.svg',
     cardMaps: {
@@ -79,7 +79,7 @@ export const siteSettings = {
   },
   footer: {
     copyright: {
-      name: 'RedQ, Inc',
+      name: 'Barectory, Inc',
       href: 'https://redq.io/',
     },
     address: '2429 River Drive, Suite 35 Cottonhall, CA 2296 United Kingdom',
@@ -98,11 +98,11 @@ export const siteSettings = {
             href: '/',
           },
           {
-            name: 'text-bookmarks',
+            name: 'Register',
             href: '/',
           },
           {
-            name: 'text-sign-join',
+            name: 'Sign in',
             href: '/',
           },
         ],
@@ -116,10 +116,6 @@ export const siteSettings = {
           },
           {
             name: 'text-returns',
-            href: '/',
-          },
-          {
-            name: 'text-accessibility',
             href: '/',
           },
           {
@@ -146,11 +142,7 @@ export const siteSettings = {
           {
             name: 'text-return-policy',
             href: '/',
-          },
-          {
-            name: 'text-sitemap',
-            href: '/',
-          },
+          }
         ],
       },
     ],

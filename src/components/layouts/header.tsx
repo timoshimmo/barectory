@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 import Link from '@/components/ui/link';
 import GroupsDropdownMenu from './menu/groups-menu';
 const Search = dynamic(() => import('@/components/ui/search/search'));
+import SearchWithSuggestion from '@/components/ui/search/search-with-suggestion';
 const AuthorizedMenu = dynamic(() => import('./menu/authorized-menu'), {
   ssr: false,
 });
@@ -44,7 +45,7 @@ const Header = ({ layout }: { layout: string }) => {
     >
       <div
         className={cn(
-          'fixed flex justify-between items-center w-full h-14 md:h-16 lg:h-22 px-4 lg:px-8 py-5 z-50 bg-light border-b border-border-200 shadow-sm transition-transform duration-300 transform-gpu',
+          'fixed flex justify-between items-center w-full h-14 md:h-16 lg:h-22 px-4 lg:px-8 py-5 z-50 header-modern-primary border-b border-border-200 shadow-sm transition-transform duration-300 transform-gpu',
           {
             'lg:absolute lg:bg-transparent lg:shadow-none lg:border-0':
               isFlattenHeader,
@@ -58,13 +59,13 @@ const Header = ({ layout }: { layout: string }) => {
           <>
             {(displayHeaderSearch || layout === 'modern') && (
               <div className="hidden w-full px-10 mx-auto overflow-hidden lg:block xl:w-11/12 2xl:w-10/12">
-                <Search label={t('text-search-label')} variant="minimal" />
+                <SearchWithSuggestion label={t('text-search-label')} variant="minimal" />
               </div>
             )}
 
             {displayMobileHeaderSearch && (
               <div className="block lg:hidden w-full absolute top-0 ltr:left-0 rtl:right-0 h-full bg-light pt-1.5 md:pt-2 px-5">
-                <Search label={t('text-search-label')} variant="minimal" />
+                <SearchWithSuggestion label={t('text-search-label')} variant="minimal" />
               </div>
             )}
           </>
