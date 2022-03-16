@@ -49,20 +49,20 @@ export default function PopularProductsGrid({
     },
 
     1200: {
-      slidesPerView: 6,
+      slidesPerView: 5,
       spaceBetween: 20,
     },
 
     1280: {
-      slidesPerView: 7,
+      slidesPerView: 5,
       spaceBetween: 24,
     },
     1800: {
-      slidesPerView: 8,
+      slidesPerView: 5,
       spaceBetween: 30,
     },
     2600: {
-      slidesPerView: 9,
+      slidesPerView: 6,
       spaceBetween: 40,
     },
   };
@@ -89,7 +89,7 @@ export default function PopularProductsGrid({
           hiddenClass: 'swiper-button-hidden',
         }}
         breakpoints={breakpoints}
-        slidesPerView={4}
+        slidesPerView={5}
       >
         <div className="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-6 gap-y-10 lg:grid-cols-[repeat(auto-fill,minmax(200px,1fr))] xl:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] xl:gap-8 xl:gap-y-12 2xl:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] 3xl:grid-cols-[repeat(auto-fill,minmax(360px,1fr))]">
           {isLoading && !products.length

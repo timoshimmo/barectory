@@ -22,7 +22,6 @@ export default class CustomDocument extends Document {
     return (
       <Html>
         <Head>
-          <title>Barectory</title>
           <link
             href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=optional"
             rel="stylesheet"
