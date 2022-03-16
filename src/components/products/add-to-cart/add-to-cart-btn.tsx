@@ -18,10 +18,10 @@ const AddToCartBtn: React.FC<Props> = ({ variant, onClick, disabled }) => {
         <button
           onClick={onClick}
           disabled={disabled}
-          className="flex items-center justify-between w-full text-xs transition-colors bg-gray-100 rounded group h-7 md:h-9 md:text-sm text-body-dark hover:bg-accent hover:border-accent hover:text-light focus:outline-none focus:bg-accent focus:border-accent focus:text-light"
+          className="flex items-center justify-between w-full text-xs transition-colors bg-gray-100 rounded group h-7 md:h-9 md:text-sm text-body-dark hover:bg-gray-200 hover:bg-gray-200 hover:text-body-dark focus:outline-none focus:bg-gray-200 focus:border-gray-200 focus:text-body-dark"
         >
           <span className="flex-1">{t('text-add')}</span>
-          <span className="grid transition-colors duration-200 bg-gray-200 w-7 h-7 md:w-9 md:h-9 place-items-center ltr:rounded-tr rtl:rounded-tl ltr:rounded-br rtl:rounded-bl group-hover:bg-accent-600 group-focus:bg-accent-600">
+          <span className="grid transition-colors duration-200 bg-gray-200 w-7 h-7 md:w-9 md:h-9 place-items-center ltr:rounded-tr rtl:rounded-tl ltr:rounded-br rtl:rounded-bl group-hover:bg-gray-300 group-focus:bg-gray-300">
             <PlusIcon className="w-4 h-4 stroke-2" />
           </span>
         </button>
