@@ -17,7 +17,7 @@ const RelatedProducts = ({
   return (
     <>
       <h2 className="text-lg text-heading tracking-tight font-semibold mb-6">
-        {t('text-related-products')}
+      You would also like
       </h2>
       <div
         className={cn(

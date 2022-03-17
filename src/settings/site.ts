@@ -152,19 +152,15 @@ export const siteSettings = {
         url: '/',
       },
       {
-        img: '/payment/skrill.png',
-        url: '/',
-      },
-      {
-        img: '/payment/paypal.png',
-        url: '/',
-      },
-      {
         img: '/payment/visa.png',
         url: '/',
       },
       {
-        img: '/payment/discover.png',
+        img: '/payment/paystack.png',
+        url: '/',
+      },
+      {
+        img: '/payment/flutterwave.png',
         url: '/',
       },
     ],

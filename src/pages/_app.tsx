@@ -14,6 +14,7 @@ import { CartProvider } from '@/store/quick-cart/cart.context';
 import SocialLogin from '@/components/auth/social-login';
 import { NextPageWithLayout } from '@/types';
 import QueryProvider from '@/framework/client/query-provider';
+import Head from 'next/head';
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
