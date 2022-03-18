@@ -93,33 +93,43 @@ const SidebarFilter: React.FC<{
       </div>
 
       <div className="flex-1 px-5">
+      {/*
         <FieldWrapper title="text-search">
-          <Search variant="minimal" label="search" />
-        </FieldWrapper>
+        <Search variant="minimal" label="search" />
+       </FieldWrapper>
+         */}
 
-        {router.route !== '/[searchType]/search' && (
-          <FieldWrapper title="text-sort">
-            <Sorting />
-          </FieldWrapper>
-        )}
+    {/*
+      {router.route !== '/[searchType]/search' && (
+         <FieldWrapper title="text-sort">
+           <Sorting />
+         </FieldWrapper>
+       )}
+      */}
 
+      {/*
         <FieldWrapper title="text-categories">
-          <CategoryFilter type={type} />
+         <CategoryFilter type={type} />
         </FieldWrapper>
+         */}
 
         <FieldWrapper title="text-sort-by-price">
           <PriceFilter />
         </FieldWrapper>
 
+      {/*
         <FieldWrapper title="text-tags">
           <TagFilter />
         </FieldWrapper>
+        */}
 
+      { /*
         {showManufacturers && (
-          <FieldWrapper title="text-manufacturers">
-            <ManufacturerFilter />
-          </FieldWrapper>
-        )}
+        <FieldWrapper title="text-manufacturers">
+          <ManufacturerFilter />
+        </FieldWrapper>
+       )}
+         */}
       </div>
       <div className="p-5 bg-white sticky bottom-0 z-10 border-t border-gray-200 mt-auto lg:hidden">
         <Button

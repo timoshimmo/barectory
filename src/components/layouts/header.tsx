@@ -37,6 +37,26 @@ const Header = ({ layout }: { layout: string }) => {
   }, [isHomePage, setDisplayHeaderSearch]);
   const isFlattenHeader =
     !displayHeaderSearch && isHomePage && layout !== 'modern';
+{/*
+
+  {isHomePage ? (
+    <>
+      {(displayHeaderSearch || layout === 'modern') && (
+        <div className="hidden w-full px-10 mx-auto overflow-hidden lg:block xl:w-11/12 2xl:w-10/12">
+          <SearchWithSuggestion label={t('text-search-label')} variant="minimal" />
+        </div>
+      )}
+
+      {displayMobileHeaderSearch && (
+        <div className="block lg:hidden w-full absolute top-0 ltr:left-0 rtl:right-0 h-full bg-light pt-1.5 md:pt-2 px-5">
+          <SearchWithSuggestion label={t('text-search-label')} variant="minimal" />
+        </div>
+      )}
+    </>
+  ) : null}
+*/}
+
+
   return (
     <header
       className={cn('site-header-with-search h-14 md:h-16 lg:h-22', {
@@ -55,21 +75,9 @@ const Header = ({ layout }: { layout: string }) => {
         <div className="flex items-center w-full lg:w-auto">
           <Logo className="mx-auto lg:mx-0" />
         </div>
-        {isHomePage ? (
-          <>
-            {(displayHeaderSearch || layout === 'modern') && (
-              <div className="hidden w-full px-10 mx-auto overflow-hidden lg:block xl:w-11/12 2xl:w-10/12">
-                <SearchWithSuggestion label={t('text-search-label')} variant="minimal" />
-              </div>
-            )}
-
-            {displayMobileHeaderSearch && (
-              <div className="block lg:hidden w-full absolute top-0 ltr:left-0 rtl:right-0 h-full bg-light pt-1.5 md:pt-2 px-5">
-                <SearchWithSuggestion label={t('text-search-label')} variant="minimal" />
-              </div>
-            )}
-          </>
-        ) : null}
+          <div className="hidden w-full px-10 mx-auto overflow-hidden lg:block xl:w-11/12 2xl:w-10/12">
+            <SearchWithSuggestion label={t('text-search-label')} variant="minimal" />
+          </div>
         <ul className="items-center shrink-0 hidden lg:flex space-x-10 rtl:space-x-reverse">
         <CartCounterIconButton />
         <div className="flex items-center space-x-4 rtl:space-x-reverse">
