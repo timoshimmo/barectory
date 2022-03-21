@@ -6,11 +6,17 @@ import Scrollbar from '@/components/ui/scrollbar';
 import { ArrowDownIcon } from '@/components/icons/arrow-down';
 import Link from '@/components/ui/link';
 import { Menu, Transition } from '@headlessui/react';
+import { useMediaQuery } from 'react-responsive';
 
 export default function GeneralLayout({
   children,
   layout,
 }: React.PropsWithChildren<{ layout: string }>) {
+
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-width: 1224px)'
+  })
+  
   return (
     <div className="flex min-h-screen flex-col bg-gray-100 transition-colors duration-150">
       <Header layout={layout} />
