@@ -31,7 +31,7 @@ interface Props {
 
 export const AddToCartAlt = ({
   data,
-  variant = 'helium',
+  variant = 'neon',
   counterVariant,
   counterClass,
   variation,
@@ -94,7 +94,7 @@ export const AddToCartAlt = ({
       <Button
         className="h-14 w-full flex-shrink max-w-sm text-sm"
         onClick={handleAddClick}
-        size="small"
+        size="medium"
         disabled={disabled || outOfStock}
       >
         {t('text-add-to-cart')}

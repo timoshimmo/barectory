@@ -1,5 +1,5 @@
 import BackButton from '@/components/ui/back-button';
-import { AddToCart } from '@/components/products/add-to-cart/add-to-cart';
+import { AddToCartAlt } from '@/components/products/add-to-cart/add-to-cart-alt';
 import usePrice from '@/lib/use-price';
 import { ThumbsCarousel } from '@/components/ui/thumb-carousel';
 import { useTranslation } from 'next-i18next';
@@ -187,7 +187,7 @@ const Details: React.FC<Props> = ({
 
               <div className="flex flex-col items-center mt-4 md:mt-6 lg:flex-row">
                 <div className="mb-3 lg:mb-0 w-full lg:max-w-[400px]">
-                  <AddToCart
+                  <AddToCartAlt
                     data={product}
                     variant="big"
                     variation={selectedVariation}
@@ -228,23 +228,6 @@ const Details: React.FC<Props> = ({
               basePath={`/${type?.slug}`}
               onClose={closeModal}
             />
-          )}
-
-          {shop?.name && (
-            <div className="flex items-center mt-2">
-              <span className="py-1 text-sm font-semibold capitalize text-heading ltr:mr-6 rtl:ml-6">
-                {t('common:text-sellers')}
-              </span>
-
-              <button
-                onClick={() =>
-                  navigate(`${ROUTES.SHOPS}/${encodeURIComponent(shop?.slug)}`)
-                }
-                className="text-sm tracking-wider underline transition text-accent hover:text-accent-hover hover:no-underline"
-              >
-                {shop?.name}
-              </button>
-            </div>
           )}
         </div>
       </div>
