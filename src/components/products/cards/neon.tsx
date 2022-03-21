@@ -2,7 +2,7 @@ import { Image } from '@/components/ui/image';
 import Link from '@/components/ui/link';
 import cn from 'classnames';
 import usePrice from '@/lib/use-price';
-import { AddToCart } from '@/components/products/add-to-cart/add-to-cart';
+import { AddToCartAlt } from '@/components/products/add-to-cart/add-to-cart-alt';
 import { useTranslation } from 'next-i18next';
 import { ROUTES } from '@/lib/routes';
 import { Product } from '@/framework/types';
@@ -49,30 +49,31 @@ const Neon: React.FC<NeonProps> = ({ product, className }) => {
 
   */}
   return (
-    <Link href={`${ROUTES.PRODUCT}/${slug}`}>
       <article
         className={cn(
           'product-card cart-type-neon border border-border-200 rounded h-full bg-light overflow-hidden shadow-sm transition-all duration-200 hover:shadow transform hover:-translate-y-0.5',
           className
         )}
       >
-        <div
-          className="relative flex items-center justify-center cursor-pointer w-auto h-48 sm:h-64"
-        >
-          <span className="sr-only">{t('text-product-image')}</span>
-          <Image
-            src={image?.original ?? productPlaceholder}
-            alt={name}
-            layout="fill"
-            objectFit="contain"
-            className="product-image"
-          />
-          {discount && (
-            <div className="absolute top-3 ltr:right-3 rtl:left-3 md:top-4 ltr:md:right-4 rtl:md:left-4 rounded text-xs leading-6 font-semibold px-1.5 sm:px-2 md:px-2.5 bg-accent text-light">
-              {discount}
-            </div>
-          )}
-        </div>
+        <Link href={`${ROUTES.PRODUCT}/${slug}`}>
+          <div
+            className="relative flex items-center justify-center w-auto h-48 sm:h-64"
+          >
+            <span className="sr-only">{t('text-product-image')}</span>
+            <Image
+              src={image?.original ?? productPlaceholder}
+              alt={name}
+              layout="fill"
+              objectFit="contain"
+              className="product-image"
+            />
+            {discount && (
+              <div className="absolute top-3 ltr:right-3 rtl:left-3 md:top-4 ltr:md:right-4 rtl:md:left-4 rounded text-xs leading-6 font-semibold px-1.5 sm:px-2 md:px-2.5 bg-accent text-light">
+                {discount}
+              </div>
+            )}
+          </div>
+        </Link>
         {/* End of product image */}
 
         <header className="p-3 md:p-6">
@@ -123,7 +124,7 @@ const Neon: React.FC<NeonProps> = ({ product, className }) => {
           ) : (
             <>
               {Number(quantity) > 0 && (
-                <AddToCart variant="neon" data={product} />
+                <AddToCartAlt variant="neon" data={product} />
               )}
             </>
           )}
@@ -136,7 +137,7 @@ const Neon: React.FC<NeonProps> = ({ product, className }) => {
           {/* End of add to cart */}
         </header>
       </article>
-    </Link>
+
   );
 };
 

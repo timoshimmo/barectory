@@ -14,19 +14,19 @@ export default function GeneralLayout({
   return (
     <div className="flex min-h-screen flex-col bg-gray-100 transition-colors duration-150">
       <Header layout={layout} />
-      <div className="px-5 mt-4 mb-4" style={{ display: 'flex'}}>
+      <div className="px-5 mt-4" style={{ display: 'flex'}}>
           <Menu
             as="div"
             className="relative inline-block ltr:text-left rtl:text-right"
           >
             <Menu.Button
               className={cn(
-                'flex items-center shrink-0 text-sm md:text-base font-semibold h-11 focus:outline-none text-heading xl:px-4'
+                'flex items-center shrink-0 text-sm md:text-base font-semibold h-11 focus:outline-none text-heading xl:px-4 mr-4'
               )}
             >
               {({ open }) => (
                 <>
-                  <span className="whitespace-nowrap">Spirit & Mixers</span>
+                  <span className="whitespace-nowrap text-sm">Spirit & Mixers</span>
                   <span className="flex ltr:pl-2.5 rtl:pr-2.5 pt-1 ltr:ml-auto rtl:mr-auto">
                       <ArrowDownIcon
                         className={cn('h-3 w-3', {
@@ -47,10 +47,11 @@ export default function GeneralLayout({
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
             >
+
               <Menu.Items
                 as="ul"
                 className={cn(
-                  'absolute zindex-100 py-2 w-48 h-56 lg:h-72 2xl:h-auto min-h-40 max-h-56 sm:max-h-72 2xl:max-h-screen bg-light rounded shadow-700 focus:outline-none overflow-hidden'
+                  'absolute zindex-100 py-2 w-40 xs:w-32 h-56 lg:h-72 2xl:h-auto min-h-40 max-h-56 sm:max-h-72 2xl:max-h-screen bg-light rounded shadow-700 focus:outline-none overflow-hidden'
                 )}
                 style={{zIndex: '100'}}
               >
@@ -65,7 +66,7 @@ export default function GeneralLayout({
                     <Menu.Item key={1}>
                       {({ active }) => (
                         <Link
-                          href='grocery/search?category=vermouth'
+                          href='/grocery/search?category=vermouth'
                           className={cn(
                             'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                             active ? 'text-accent' : 'text-body-dark'
@@ -78,7 +79,7 @@ export default function GeneralLayout({
                     <Menu.Item key={2}>
                       {({ active }) => (
                         <Link
-                          href='/whisky'
+                          href='/grocery/search?category=whisky'
                           className={cn(
                             'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                             active ? 'text-accent' : 'text-body-dark'
@@ -91,7 +92,7 @@ export default function GeneralLayout({
                     <Menu.Item key={3}>
                       {({ active }) => (
                         <Link
-                          href='grocery/search?category=vodka'
+                          href='/grocery/search?category=vodka'
                           className={cn(
                             'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                             active ? 'text-accent' : 'text-body-dark'
@@ -144,7 +145,6 @@ export default function GeneralLayout({
               </Menu.Items>
             </Transition>
           </Menu>
-
           <Menu
             as="div"
             className="relative inline-block ltr:text-left rtl:text-right"
@@ -180,7 +180,7 @@ export default function GeneralLayout({
               <Menu.Items
                 as="ul"
                 className={cn(
-                  'absolute zindex-100 py-2 w-48 h-56 lg:h-72 2xl:h-auto min-h-40 max-h-56 sm:max-h-72 2xl:max-h-screen bg-light rounded shadow-700 focus:outline-none overflow-hidden'
+                  'absolute zindex-100 py-2 w-38 h-56 lg:h-72 2xl:h-auto min-h-40 max-h-56 sm:max-h-72 2xl:max-h-screen bg-light rounded shadow-700 focus:outline-none overflow-hidden'
                 )}
                 style={{zIndex: '100'}}
               >
@@ -222,26 +222,30 @@ export default function GeneralLayout({
               </Menu.Items>
             </Transition>
           </Menu>
-          <Link
-            href='/offers'
-            className='flex items-center px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
-          >
-            <span>Offers</span>
-          </Link>
-
-          <Link
-            href='/'
-            className='flex space-x-4 rtl:space-x-reverse items-center px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
-          >
-            <span>About Us</span>
-          </Link>
-
-          <Link
-            href='/contact'
-            className='flex space-x-4 rtl:space-x-reverse items-center px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
-          >
-            <span>Contact Us</span>
-          </Link>
+          {isDesktopOrLaptop &&
+            <Link
+              href='/offers'
+              className='flex items-center px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
+            >
+              <span>Offers</span>
+            </Link>
+          }
+          {isDesktopOrLaptop &&
+            <Link
+              href='/'
+              className='flex space-x-4 rtl:space-x-reverse items-center px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
+            >
+              <span>About Us</span>
+            </Link>
+          }
+          {isDesktopOrLaptop &&
+            <Link
+              href='/contact'
+              className='flex space-x-4 rtl:space-x-reverse items-center px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
+            >
+              <span>Contact Us</span>
+            </Link>
+          }
       </div>
       {children}
       <MobileNavigation />

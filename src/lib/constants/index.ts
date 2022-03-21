@@ -9,3 +9,4 @@ export const CHECKOUT = 'pickbazar-checkout';
 export const SHOPS_LIMIT = 20;
 export const RTL_LANGUAGES: ReadonlyArray<string> = ['ar', 'he'];
 export const PRODUCT_INITIAL_FETCH_LIMIT = 30;
+export const LEGAL_AGE = 'legal-age';

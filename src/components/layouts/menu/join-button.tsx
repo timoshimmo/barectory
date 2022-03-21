@@ -6,11 +6,11 @@ export default function JoinButton() {
   const { t } = useTranslation('common');
   const { openModal } = useModalAction();
   function handleJoin() {
-    return openModal('LOGIN_VIEW');
+    return openModal('REGISTER');
   }
   return (
     <Button className="font-semibold" size="small" onClick={handleJoin}>
-      {t('Sign Up')}
+      Sign Up
     </Button>
   );
 }

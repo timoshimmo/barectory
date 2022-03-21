@@ -10,6 +10,7 @@ import { authorizationAtom } from '@/store/authorization-atom';
 import { useIsHomePage } from '@/lib/use-is-homepage';
 import { useEffect } from 'react';
 import Link from '@/components/ui/link';
+import Button from '@/components/ui/button';
 import GroupsDropdownMenu from './menu/groups-menu';
 const Search = dynamic(() => import('@/components/ui/search/search'));
 import SearchWithSuggestion from '@/components/ui/search/search-with-suggestion';
@@ -21,6 +22,7 @@ const CartCounterIconButton = dynamic(
   { ssr: false }
 );
 const JoinButton = dynamic(() => import('./menu/join-button'), { ssr: false });
+import { useModalAction } from '@/components/ui/modal/modal.context';
 
 const Header = ({ layout }: { layout: string }) => {
   const { t } = useTranslation('common');
@@ -28,6 +30,7 @@ const Header = ({ layout }: { layout: string }) => {
     displayHeaderSearchAtom
   );
   const [displayMobileHeaderSearch] = useAtom(displayMobileHeaderSearchAtom);
+  const { openModal } = useModalAction();
   const [isAuthorize] = useAtom(authorizationAtom);
   const isHomePage = useIsHomePage();
   useEffect(() => {
@@ -37,6 +40,10 @@ const Header = ({ layout }: { layout: string }) => {
   }, [isHomePage, setDisplayHeaderSearch]);
   const isFlattenHeader =
     !displayHeaderSearch && isHomePage && layout !== 'modern';
+
+    function handleJoin() {
+      return openModal('LOGIN_VIEW');
+    }
 {/*
 
   {isHomePage ? (
@@ -54,6 +61,17 @@ const Header = ({ layout }: { layout: string }) => {
       )}
     </>
   ) : null}
+
+  <Link
+    onClick={handleJoin}
+    href={`${process.env.NEXT_PUBLIC_ADMIN_URL}/register`}
+    variant="button"
+    target="_blank"
+  >
+    {t('Login')}
+  </Link>
+
+  <SearchWithSuggestion label={t('text-search-label')} variant="minimal" />
 */}
 
 
@@ -75,22 +93,30 @@ const Header = ({ layout }: { layout: string }) => {
         <div className="flex items-center w-full lg:w-auto">
           <Logo className="mx-auto lg:mx-0" />
         </div>
-          <div className="hidden w-full px-10 mx-auto overflow-hidden lg:block xl:w-11/12 2xl:w-10/12">
-            <SearchWithSuggestion label={t('text-search-label')} variant="minimal" />
+          <div className="w-full px-10 mx-auto overflow-hidden lg:block xl:w-11/12 2xl:w-10/12">
+            <>
+              {(displayHeaderSearch || layout === 'modern' || layout === 'compact') && (
+                <div className="w-full px-10 mx-auto overflow-hidden lg:block xl:w-11/12 2xl:w-10/12">
+                  <SearchWithSuggestion label={t('text-search-label')} variant="minimal" />
+                </div>
+              )}
+
+              {displayMobileHeaderSearch && (
+                <div className="block lg:hidden w-full absolute top-0 ltr:left-0 rtl:right-0 h-full bg-light pt-1.5 md:pt-2 px-5">
+                  <SearchWithSuggestion label={t('text-search-label')} variant="minimal" />
+                </div>
+              )}
+            </>
           </div>
-        <ul className="items-center shrink-0 hidden lg:flex space-x-10 rtl:space-x-reverse">
-        <CartCounterIconButton />
-        <div className="flex items-center space-x-4 rtl:space-x-reverse">
-          <Link
-            href={`${process.env.NEXT_PUBLIC_ADMIN_URL}/register`}
-            variant="button"
-            target="_blank"
-          >
-            {t('Login')}
-          </Link>
-          {isAuthorize ? <AuthorizedMenu minimal={true} /> : <JoinButton />}
-        </div>
-        </ul>
+          <ul className="items-center shrink-0 hidden lg:flex space-x-10 rtl:space-x-reverse">
+            <CartCounterIconButton />
+            <div className="flex items-center space-x-4 rtl:space-x-reverse">
+              <Button className="font-semibold" size="small" onClick={handleJoin}>
+                Login
+              </Button>
+              {isAuthorize ? <AuthorizedMenu minimal={true} /> : <JoinButton />}
+            </div>
+          </ul>
       </div>
     </header>
   );

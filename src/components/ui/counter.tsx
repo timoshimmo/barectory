@@ -28,7 +28,7 @@ type CounterProps = {
 const variantClasses = {
   helium:
     'w-7 h-18 sm:w-20 sm:h-7 md:h-9 md:w-24 bg-accent flex-col-reverse sm:flex-row absolute sm:static bottom-3 ltr:right-3 rtl:left-3 sm:bottom-0 ltr:sm:right-0 ltr:sm:left-0 text-light rounded',
-  neon: 'w-full h-7 md:h-9 bg-accent text-light rounded',
+  neon: 'w-full h-7 md:h-9 bg-gray-100 text-body-dark rounded',
   argon:
     'w-7 h-18 sm:w-20 sm:h-7 md:h-9 md:w-24 bg-accent flex-col-reverse sm:flex-row text-light rounded',
   oganesson:
@@ -61,7 +61,7 @@ const Counter: React.FC<CounterProps> = ({
       <button
         onClick={onDecrement}
         className={cn(
-          'cursor-pointer p-2 transition-colors duration-200 hover:bg-accent-hover focus:outline-none',
+          'cursor-pointer p-2 transition-colors duration-200 hover:bg-gray-200 focus:outline-none',
           {
             'px-3 py-3 sm:px-2': variant === 'single',
             'px-5': variant === 'big',
@@ -88,7 +88,7 @@ const Counter: React.FC<CounterProps> = ({
         onClick={onIncrement}
         disabled={disabled}
         className={cn(
-          'cursor-pointer p-2 transition-colors duration-200 hover:bg-accent-hover focus:outline-none',
+          'cursor-pointer p-2 transition-colors duration-200 hover:bg-gray-200 focus:outline-none',
           {
             'px-3 py-3 sm:px-2': variant === 'single',
             'px-5': variant === 'big',

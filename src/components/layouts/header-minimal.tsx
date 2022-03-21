@@ -75,7 +75,7 @@ const HeaderMinimal = ({ layout }: { layout: string }) => {
               </div>
             )}
 
-            {layout === 'compact' && (
+            {layout === 'modern' && (
               <div className="hidden w-full px-8 mx-auto xl:flex xl:w-6/12 xl:rtl:w-4/12 2xl:rtl:w-5/12 xl:px-10">
                 <SearchWithSuggestion
                   label={t('text-search-label')}

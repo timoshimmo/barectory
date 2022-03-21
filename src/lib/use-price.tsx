@@ -11,9 +11,9 @@ export function formatPrice({
   currencyCode: string;
   locale: string;
 }) {
-  const formatCurrency = new Intl.NumberFormat(locale, {
+  const formatCurrency = new Intl.NumberFormat('en-NG', {
     style: 'currency',
-    currency: currencyCode,
+    currency: 'NGN',
   });
 
   return formatCurrency.format(amount);
@@ -54,11 +54,11 @@ export default function usePrice(
   const {
     settings: { currency },
   } = useSettings();
-  const { amount, baseAmount, currencyCode = currency ?? 'USD' } = data ?? {};
+  const { amount, baseAmount, currencyCode = 'NGN' ?? 'NGN' } = data ?? {};
   const { locale } = useRouter();
   const value = useMemo(() => {
     if (typeof amount !== 'number' || !currencyCode) return '';
-    const currentLocale = locale ? locale : 'en';
+    const currentLocale = 'en-NG' ? locale : 'en';
     return baseAmount
       ? formatVariantPrice({
           amount,

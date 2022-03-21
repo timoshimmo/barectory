@@ -15,16 +15,17 @@ const CategoryItem: React.FC<CategoryItemProps> = ({ item }) => {
   return (
     <div className="relative overflow-hidden text-center cursor-pointer group">
       <Link href={`${item?.type?.slug}/search/?category=${item.slug}`}>
-        <Image
+        <img
           src={item?.image?.original! ?? productPlaceholder}
           alt={item?.name!}
-          width={200}
-          height={240}
+          width={80}
+          height={80}
           layout="responsive"
           className="rounded-md"
+          style={{ margin: '0 auto' }}
         />
       </Link>
-      <span className="block mt-2 text-base font-semibold transition-colors text-heading group-hover:text-orange-500 ltr:text-left rtl:text-right">
+      <span className="block mt-2 text-base font-semibold transition-colors text-heading group-hover:text-orange-500 ltr:text-center rtl:text-center">
         {item.name}
       </span>
     </div>

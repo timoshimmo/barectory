@@ -81,7 +81,7 @@ export const AddToCartAlt = ({
   };
   const outOfStock = isInCart(item?.id) && !isInStock(item.id);
   return (
-    <div className=" flex items-center space-x-3 rtl:space-x-reverse">
+    <div className="items-center space-y-2 rtl:space-x-reverse">
       <Counter
         value={quantity}
         onDecrement={decrement}
@@ -90,9 +90,11 @@ export const AddToCartAlt = ({
         className={counterClass}
         disabled={outOfStock}
       />
+
       <Button
-        className="h-14 w-full flex-shrink max-w-sm"
+        className="h-14 w-full flex-shrink max-w-sm text-sm"
         onClick={handleAddClick}
+        size="small"
         disabled={disabled || outOfStock}
       >
         {t('text-add-to-cart')}

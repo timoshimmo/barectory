@@ -24,7 +24,13 @@ const nextConfig = {
       'www.seekpng.com',
       'pikpng.com',
       'www.pikpng.com',
-      'foremostng.com'
+      'foremostng.com',
+      'www.nicepng.com',
+      'www.pngkit.com',
+      'www.vhv.rs',
+      's.wine.style',
+      'chupapap.com',
+      'res.cloudinary.com'
     ],
   },
   ...(process.env.FRAMEWORK_PROVIDER === 'graphql' && {
