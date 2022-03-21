@@ -13,7 +13,7 @@ interface CategoryItemProps {
 }
 const CategoryItem: React.FC<CategoryItemProps> = ({ item }) => {
   return (
-    <div className="relative overflow-hidden text-center cursor-pointer group">
+    <div className="relative overflow-hidden text-center cursor-pointer group ">
       <Link href={`${item?.type?.slug}/search/?category=${item.slug}`}>
         <img
           src={item?.image?.original! ?? productPlaceholder}
@@ -21,7 +21,7 @@ const CategoryItem: React.FC<CategoryItemProps> = ({ item }) => {
           width={80}
           height={80}
           layout="responsive"
-          className="rounded-md"
+          className="rounded-md transition duration-200 transform hover:scale-125 "
           style={{ margin: '0 auto' }}
         />
       </Link>
@@ -41,7 +41,7 @@ function SolidCardCategory({ items }: any) {
 
   const breakpoints = {
     320: {
-      slidesPerView: 2,
+      slidesPerView: 1,
       spaceBetween: 20,
     },
 
@@ -69,7 +69,7 @@ function SolidCardCategory({ items }: any) {
       spaceBetween: 30,
     },
     2600: {
-      slidesPerView: 9,
+      slidesPerView: 8,
       spaceBetween: 40,
     },
   };

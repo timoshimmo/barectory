@@ -8,6 +8,7 @@ import ProductGridHome from '@/components/products/grids/home';
 import FilterBar from './filter-bar';
 import type { HomePageProps } from '@/types';
 import PopularProductsGrid from '@/components/products/popular-products';
+import SellingProductsGrid from '@/components/products/selling-products';
 import Link from '@/components/ui/link';
 import Button from '@/components/ui/button';
 import Footer from './footer';
@@ -31,7 +32,7 @@ export default function Modern({ variables }: HomePageProps) {
   const { t } = useTranslation('common');
 
   useEffect(() => {
-  //  localStorage.setItem("legalAge", 'DEFAULT');
+    localStorage.setItem("legalAge", 'DEFAULT');
     setlAge(window.localStorage.getItem("legalAge"));
     console.log(lAge);
 
@@ -64,9 +65,6 @@ export default function Modern({ variables }: HomePageProps) {
 
   return (
     <div className="flex flex-1 bg-gray-100">
-      <Head>
-       <title>Barectory</title>
-     </Head>
       {/*<div className="sticky top-22 hidden h-full bg-gray-100 lg:w-[380px] xl:block">
         <Categories layout="modern" variables={variables.categories} />
       </div> */}
@@ -80,7 +78,7 @@ export default function Modern({ variables }: HomePageProps) {
             open={open}
             onClose={() => {}}
           >
-            <div className="min-h-full md:p-5 text-center">
+            <div className="max-h-90 w-90 md:p-5 text-center">
               <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"
@@ -90,7 +88,7 @@ export default function Modern({ variables }: HomePageProps) {
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
               >
-                <Dialog.Overlay className="fixed inset-0 bg-gray-900 bg-opacity-50 w-full h-full" />
+                <Dialog.Overlay className="fixed inset-0 bg-gray-900 bg-opacity-50 w-90 h-90" />
               </Transition.Child>
 
               {/* This element is to trick the browser into centering the modal contents. */}
@@ -109,7 +107,7 @@ export default function Modern({ variables }: HomePageProps) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <div className="product-card cart-type-krypton py-6 px-8 rounded border border-border-200 bg-light inline-block min-w-content max-w-full sm:p-8 align-middle transition-all relative">
+                <div className="product-card cart-type-krypton py-6 px-8 rounded border border-border-200 bg-light inline-block min-w-content max-w-80 sm:p-8 align-middle transition-all relative">
                   <div className=" modal-header flex justify-center">
                     <span className="relative h-10 w-32 overflow-hidden md:w-40">
                       <Image
@@ -146,8 +144,8 @@ export default function Modern({ variables }: HomePageProps) {
                            >
                              {({ open }) => (
                                <>
-                                 <span className="whitespace-nowrap text-sm">{selectedCity}</span>
-                                 <span className="flex ltr:pl-2.5 rtl:pr-2.5 ltr:ml-auto rtl:mr-auto">
+                                 <span className="whitespace-nowrap text-sm pl-2">{selectedCity}</span>
+                                 <span className="flex ltr:pr-2.5 rtl:pr-2.5 ltr:ml-auto rtl:mr-auto">
                                      <ArrowDownIcon
                                        className={cn('h-2 w-2', {
                                          'transform rotate-180': open,
@@ -241,29 +239,33 @@ export default function Modern({ variables }: HomePageProps) {
                        </div>
                      </div>
                      <div className=" modal-body flex justify-center">
-                        <div className=" pb-3 text-center">
-                          <h2 className=" heading mt-4 text-body-dark font-bold text-lg">Are you legal to drink?</h2>
-                          <div className="flex justify-center">
-                            <Button
-                              className={cn(
-                                'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 mr-1 text-sm font-semibold capitalize transition duration-200 hover:text-light focus:outline-none'
-                              )}
-                              onClick={handleLegal}
-                            >
-                              <span>Yes</span>
-                            </Button>
-                            <Button
-                              className={cn(
-                                'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 ml-1 text-sm font-semibold capitalize transition duration-200 hover:text-light focus:outline-none'
-                              )}
-                              onClick={handleNotLegal}
-                            >
-                              <span>No</span>
-                            </Button>
-                          </div>
+                        <div className=" pb-1 text-center">
+                          <h2 className=" heading mt-4 text-body-dark font-bold text-lg">Are you of legal drinking age?</h2>
                         </div>
+                    </div>
+                    <div className=" modal-body flex justify-center">
+                      <div className="flex justify-center px-2">
+                        <Button
+                          className={cn(
+                            'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-1 mr-1 text-sm font-semibold capitalize transition duration-200 hover:text-light focus:outline-none'
+                          )}
+                          onClick={handleLegal}
+                          size="small"
+                        >
+                          <span>Yes</span>
+                        </Button>
+                        <Button
+                          className={cn(
+                            'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-1 ml-1 text-sm font-semibold capitalize transition duration-200 hover:text-light focus:outline-none'
+                          )}
+                          onClick={handleNotLegal}
+                          size="small"
+                        >
+                          <span>No</span>
+                        </Button>
                       </div>
-                    <div className=" modal-footer">
+                    </div>
+                    <div className=" modal-footer mt-5">
                       <button className=" btn-white text-accent text-sm">
                         Continue Browsing
                       </button>
@@ -280,9 +282,13 @@ export default function Modern({ variables }: HomePageProps) {
         </div>
         {/* <FilterBar variables={variables.categories} />  */}
         <Categories layout="modern" variables={variables.categories} />
-        <div className="mt-5" style={{marginTop: 2 + 'em'}}>
+        <div className="mt-5" style={{marginTop: 2.2 + 'em'}}>
           <PopularProductsGrid variables={variables.popularProducts} />
         </div>
+        <div className="mt-5" style={{marginTop: 2.2 + 'em'}}>
+          <SellingProductsGrid variables={variables.popularProducts} />
+        </div>
+
         {/*
           <Element name="slider" className="px-4 xl:px-0">
           <ProductGridHome className="py-6" variables={variables.products} />

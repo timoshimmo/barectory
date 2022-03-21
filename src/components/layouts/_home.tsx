@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'next-i18next';
 import { useAtom } from 'jotai';
@@ -14,6 +15,7 @@ import Scrollbar from '@/components/ui/scrollbar';
 import { ArrowDownIcon } from '@/components/icons/arrow-down';
 import Link from '@/components/ui/link';
 import { useMediaQuery } from 'react-responsive';
+
 
 export default function HomeLayout({
   children,
@@ -37,6 +39,9 @@ export default function HomeLayout({
      */}
   return (
     <div className="flex flex-col min-h-screen transition-colors duration-150 bg-gray-100">
+      <Head>
+       <title>Barectory</title>
+     </Head>
       <Header layout={layout} />
       <div className="px-5 mt-4" style={{ display: 'flex'}}>
           <Menu
@@ -203,7 +208,7 @@ export default function HomeLayout({
               <Menu.Items
                 as="ul"
                 className={cn(
-                  'absolute zindex-100 py-2 w-48 h-56 lg:h-72 2xl:h-auto min-h-40 max-h-56 sm:max-h-72 2xl:max-h-screen bg-light rounded shadow-700 focus:outline-none overflow-hidden'
+                  'absolute zindex-100 py-2 w-38 h-56 lg:h-72 2xl:h-auto min-h-40 max-h-56 sm:max-h-72 2xl:max-h-screen bg-light rounded shadow-700 focus:outline-none overflow-hidden'
                 )}
                 style={{zIndex: '100'}}
               >

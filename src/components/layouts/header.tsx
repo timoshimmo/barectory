@@ -23,6 +23,7 @@ const CartCounterIconButton = dynamic(
 );
 const JoinButton = dynamic(() => import('./menu/join-button'), { ssr: false });
 import { useModalAction } from '@/components/ui/modal/modal.context';
+import { useMediaQuery } from 'react-responsive';
 
 const Header = ({ layout }: { layout: string }) => {
   const { t } = useTranslation('common');
@@ -34,9 +35,9 @@ const Header = ({ layout }: { layout: string }) => {
   const [isAuthorize] = useAtom(authorizationAtom);
   const isHomePage = useIsHomePage();
   useEffect(() => {
-    if (!isHomePage) {
-      setDisplayHeaderSearch(false);
-    }
+    //if (!isHomePage) {
+      setDisplayHeaderSearch(true);
+  //  }
   }, [isHomePage, setDisplayHeaderSearch]);
   const isFlattenHeader =
     !displayHeaderSearch && isHomePage && layout !== 'modern';
@@ -44,6 +45,10 @@ const Header = ({ layout }: { layout: string }) => {
     function handleJoin() {
       return openModal('LOGIN_VIEW');
     }
+
+    const isDesktopOrLaptop = useMediaQuery({
+      query: '(min-width: 1224px)'
+    })
 {/*
 
   {isHomePage ? (
@@ -90,12 +95,15 @@ const Header = ({ layout }: { layout: string }) => {
           }
         )}
       >
-        <div className="flex items-center w-full lg:w-auto">
-          <Logo className="mx-auto lg:mx-0" />
-        </div>
+          {isDesktopOrLaptop &&
+            <div className="flex items-center w-40 lg:w-auto">
+              <Logo className="mx-auto lg:mx-0" />
+            </div>
+          }
+
           <div className="w-full px-10 mx-auto overflow-hidden lg:block xl:w-11/12 2xl:w-10/12">
             <>
-              {(displayHeaderSearch || layout === 'modern' || layout === 'compact') && (
+              {(displayHeaderSearch || layout === 'modern' || layout === 'compact' || layout === 'classic' || layout === 'standard' || layout === 'default' || layout === 'minimal') && (
                 <div className="w-full px-10 mx-auto overflow-hidden lg:block xl:w-11/12 2xl:w-10/12">
                   <SearchWithSuggestion label={t('text-search-label')} variant="minimal" />
                 </div>

@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Header from './header';
 import cn from 'classnames';
 import MobileNavigation from './mobile-navigation';
@@ -8,6 +9,7 @@ import Link from '@/components/ui/link';
 import { Menu, Transition } from '@headlessui/react';
 import { useMediaQuery } from 'react-responsive';
 
+
 export default function GeneralLayout({
   children,
   layout,
@@ -16,9 +18,12 @@ export default function GeneralLayout({
   const isDesktopOrLaptop = useMediaQuery({
     query: '(min-width: 1224px)'
   })
-  
+
   return (
     <div className="flex min-h-screen flex-col bg-gray-100 transition-colors duration-150">
+      <Head>
+       <title>Barectory</title>
+     </Head>
       <Header layout={layout} />
       <div className="px-5 mt-4" style={{ display: 'flex'}}>
           <Menu

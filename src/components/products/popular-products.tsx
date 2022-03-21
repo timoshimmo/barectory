@@ -79,46 +79,46 @@ export default function PopularProductsGrid({
   return (
     <SectionBlock title={t('text-popular-products')}>
       <div className={classNames(className, 'w-full relative')}>
-      <Swiper
-        id="category-card-menu"
-        modules={[Navigation]}
-        navigation={{
-          prevEl,
-          nextEl,
-          disabledClass: 'swiper-button-disabled',
-          hiddenClass: 'swiper-button-hidden',
-        }}
-        breakpoints={breakpoints}
-        slidesPerView={5}
-      >
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-6 gap-y-10 lg:grid-cols-[repeat(auto-fill,minmax(200px,1fr))] xl:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] xl:gap-8 xl:gap-y-12 2xl:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] 3xl:grid-cols-[repeat(auto-fill,minmax(360px,1fr))]">
-          {isLoading && !products.length
-            ? rangeMap(limit, (i) => (
-                <SwiperSlide key={i}>
-                  <ProductLoader key={i} uniqueKey={`product-${i}`} />
-                </SwiperSlide>
-              ))
-            : products.map((product, idx: number) => (
-                <SwiperSlide key={idx}>
-                  <ProductCard product={product} key={product?.id} />
-                </SwiperSlide>
-              ))}
+        <Swiper
+          id="category-card-menu"
+          modules={[Navigation]}
+          navigation={{
+            prevEl,
+            nextEl,
+            disabledClass: 'swiper-button-disabled',
+            hiddenClass: 'swiper-button-hidden',
+          }}
+          breakpoints={breakpoints}
+          slidesPerView={5}
+        >
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-6 gap-y-10 lg:grid-cols-[repeat(auto-fill,minmax(200px,1fr))] xl:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] xl:gap-8 xl:gap-y-12 2xl:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] 3xl:grid-cols-[repeat(auto-fill,minmax(360px,1fr))]">
+            {isLoading && !products.length
+              ? rangeMap(limit, (i) => (
+                  <SwiperSlide key={i}>
+                    <ProductLoader key={i} uniqueKey={`product-${i}`} />
+                  </SwiperSlide>
+                ))
+              : products.map((product, idx: number) => (
+                  <SwiperSlide key={idx}>
+                    <ProductCard product={product} key={product?.id} />
+                  </SwiperSlide>
+                ))}
+          </div>
+        </Swiper>
+        <div
+          ref={(node) => setPrevEl(node)}
+          className="absolute z-10 flex items-center justify-center w-8 h-8 -mt-4 rounded-full outline-none cursor-pointer banner-slider-prev text-heading bg-light shadow-300 top-1/2 ltr:-left-4 rtl:-right-4 focus:outline-none transition-colors hover:text-orange-500"
+        >
+          <span className="sr-only">{t('text-previous')}</span>
+          {isRTL ? <ArrowNextIcon /> : <ArrowPrevIcon />}
         </div>
-      </Swiper>
-      <div
-        ref={(node) => setPrevEl(node)}
-        className="absolute z-10 flex items-center justify-center w-8 h-8 -mt-4 rounded-full outline-none cursor-pointer banner-slider-prev text-heading bg-light shadow-300 top-1/2 ltr:-left-4 rtl:-right-4 focus:outline-none transition-colors hover:text-orange-500"
-      >
-        <span className="sr-only">{t('text-previous')}</span>
-        {isRTL ? <ArrowNextIcon /> : <ArrowPrevIcon />}
-      </div>
-      <div
-        ref={(node) => setNextEl(node)}
-        className="absolute z-10 flex items-center justify-center w-8 h-8 -mt-4 rounded-full outline-none cursor-pointer banner-slider-next text-heading bg-light shadow-300 top-1/2 ltr:-right-4 rtl:-left-4 focus:outline-none transition-colors hover:text-orange-500"
-      >
-        <span className="sr-only">{t('text-next')}</span>
-        {isRTL ? <ArrowPrevIcon /> : <ArrowNextIcon />}
-      </div>
+        <div
+          ref={(node) => setNextEl(node)}
+          className="absolute z-10 flex items-center justify-center w-8 h-8 -mt-4 rounded-full outline-none cursor-pointer banner-slider-next text-heading bg-light shadow-300 top-1/2 ltr:-right-4 rtl:-left-4 focus:outline-none transition-colors hover:text-orange-500"
+        >
+          <span className="sr-only">{t('text-next')}</span>
+          {isRTL ? <ArrowPrevIcon /> : <ArrowNextIcon />}
+        </div>
       </div>
     </SectionBlock>
   );
