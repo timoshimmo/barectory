@@ -57,7 +57,7 @@ const SearchWithSuggestion: React.FC<Props> = ({
     );
   };
   return (
-    <div className={cn('w-full relative', className)}>
+    <div className={cn('w-full', className)}>
       <SearchBox
         label={label}
         onSubmit={onSearch}
@@ -65,14 +65,14 @@ const SearchWithSuggestion: React.FC<Props> = ({
         onChange={handleOnChange}
         value={searchTerm}
         name="search"
-        placeholder={t('common:text-search-placeholder-minimal')}
+        placeholder="Search"
         variant={variant}
         {...props}
       />
 
       <AutoSuggestionBox
         searchQuery={searchTerm}
-        visible={Boolean(searchTerm.length > 2)}
+        visible={Boolean(searchTerm.length > 0)}
         seeMoreLink={onSearchMore}
         seeMore={seeMore}
       />

@@ -1,4 +1,4 @@
-import { Swiper, SwiperSlide, Navigation } from '@/components/ui/slider';
+import { Swiper, SwiperSlide, Navigation, Autoplay } from '@/components/ui/slider';
 import { Image } from '@/components/ui/image';
 import { Banner } from '@/framework/types';
 import { productPlaceholder } from '@/lib/placeholders';
@@ -22,13 +22,17 @@ const BannerShort: React.FC<BannerProps> = ({ banners }) => {
           <Swiper
             id="banner"
             loop={true}
-            modules={[Navigation]}
+            modules={[Navigation, Autoplay]}
             resizeObserver={true}
             allowTouchMove={false}
             slidesPerView={1}
             navigation={{
               nextEl: '.next',
               prevEl: '.prev',
+            }}
+            autoplay={{
+              delay: 4500,
+              disableOnInteraction: true,
             }}
           >
             {banners?.map((banner, idx) => (

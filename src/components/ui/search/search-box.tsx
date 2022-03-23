@@ -37,7 +37,7 @@ const SearchBox: React.FC<Props> = ({
       <div
         className={cn('relative flex rounded md:rounded-lg', {
           'h-14 shadow-900': variant === 'normal',
-          'h-11 md:h-12': variant === 'minimal',
+          'h-9 lg:h-10': variant === 'minimal',
           'h-16 shadow-downfall': variant === 'with-shadow',
         })}
       >

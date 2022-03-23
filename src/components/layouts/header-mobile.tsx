@@ -7,10 +7,10 @@ import { displayMobileHeaderSearchAtom } from '@/store/display-mobile-header-sea
 import { useTranslation } from 'next-i18next';
 import dynamic from 'next/dynamic';
 import { authorizationAtom } from '@/store/authorization-atom';
-import { useIsHomePage } from '@/lib/use-is-homepage';
 import { useEffect } from 'react';
 import Link from '@/components/ui/link';
 import Button from '@/components/ui/button';
+import { CartOutlinedIcon } from '@/components/icons/cart-outlined';
 import GroupsDropdownMenu from './menu/groups-menu';
 const Search = dynamic(() => import('@/components/ui/search/search'));
 import SearchWithSuggestion from '@/components/ui/search/search-with-suggestion';
@@ -23,31 +23,32 @@ const CartCounterIconButton = dynamic(
 );
 const JoinButton = dynamic(() => import('./menu/join-button'), { ssr: false });
 import { useModalAction } from '@/components/ui/modal/modal.context';
-import { useMediaQuery } from 'react-responsive';
+import { drawerAtom } from '@/store/drawer-atom';
+import { useIsRTL } from '@/lib/locals';
+import { NavbarIcon } from '@/components/icons/navbar-icon';
+import { useCart } from '@/store/quick-cart/cart.context';
 
-const Header = ({ layout }: { layout: string }) => {
+
+const HeaderMobile = () => {
   const { t } = useTranslation('common');
-  const isDesktopOrLaptop = useMediaQuery({
-    query: '(min-width: 1224px)'
-  })
-  const [displayHeaderSearch, setDisplayHeaderSearch] = useAtom(
-    displayHeaderSearchAtom
-  );
-  const [displayMobileHeaderSearch] = useAtom(displayMobileHeaderSearchAtom);
   const { openModal } = useModalAction();
   const [isAuthorize] = useAtom(authorizationAtom);
-  const isHomePage = useIsHomePage();
-  useEffect(() => {
-    //if (!isHomePage) {
-      setDisplayHeaderSearch(true);
-  //  }
-  }, [isHomePage, setDisplayHeaderSearch]);
-  const isFlattenHeader =
-    !displayHeaderSearch && isHomePage && layout !== 'modern';
+  const [_, setDrawerView] = useAtom(drawerAtom);
+  const { isRTL } = useIsRTL();
+  const { totalUniqueItems } = useCart();
+  const [showCart, setDisplayCart] = useAtom(drawerAtom);
 
-    function handleJoin() {
-      return openModal('LOGIN_VIEW');
-    }
+  function handleCartSidebar() {
+    setDisplayCart({ display: true, view: 'cart' });
+  }
+
+  function handleSidebar(view: string) {
+    setDrawerView({ display: true, view });
+  }
+
+  function handleJoin() {
+    return openModal('LOGIN_VIEW');
+  }
 
 {/*
 
@@ -82,40 +83,42 @@ const Header = ({ layout }: { layout: string }) => {
 
   return (
     <header
-      className={cn('site-header-with-search h-14 md:h-16 lg:h-22', {
-        'lg:!h-auto': isFlattenHeader,
-      })}
+      className={cn('site-header-with-search h-14 md:h-16 lg:h-22')}
     >
       <div
         className={cn(
-          'fixed flex justify-between items-center w-full h-14 md:h-16 lg:h-22 px-4 lg:px-8 py-5 z-50 header-modern-primary border-b border-border-200 shadow-sm transition-transform duration-300 transform-gpu',
-          {
-            'lg:absolute lg:bg-transparent lg:shadow-none lg:border-0':
-              isFlattenHeader,
-          }
+          'fixed flex justify-between bg-accent w-full h-14 md:h-16 lg:h-22 px-4 lg:px-8 py-2 z-50 header-modern-primary border-b border-border-200 shadow-sm transition-transform duration-300 transform-gpu'
         )}
       >
 
-          <div className="flex items-center w-full lg:w-auto">
-            <Logo className="mx-0" />
+          <div className="flex items-center w-100 h-full">
+            <button
+              className="product-cart lg:flex relative"
+              onClick={() => handleSidebar('MAIN_MENU_VIEW')}
+            >
+              <NavbarIcon className={`${isRTL && 'transform rotate-180 '} text-light`} />
+            </button>
           </div>
-
-          <div className="w-full px-10 mx-auto overflow-hidden lg:block xl:w-11/12 2xl:w-10/12">
+          <div className="block lg:hidden top-0 ltr:left-0 rtl:right-0 h-5 w-full px-5">
             <SearchWithSuggestion label={t('text-search-label')} variant="minimal" />
           </div>
+          <div className="flex items-center w-100 h-full">
+            <button
+              className="product-cart lg:flex relative"
+              onClick={handleCartSidebar}
+            >
+              <CartOutlinedIcon className="w-5 h-5 text-light" />
+              {totalUniqueItems > 0 && (
+                <span className="min-w-[20px] h-5 flex items-center justify-center rounded-full bg-light text-primary text-[10px] absolute ltr:-right-1/2 rtl:-left-1/2 -top-1/2">
+                  {totalUniqueItems}
+                </span>
+              )}
+            </button>
+          </div>
 
-          <ul className="items-center shrink-0 hidden lg:flex space-x-10 rtl:space-x-reverse">
-            <CartCounterIconButton />
-            <div className="flex items-center space-x-4 rtl:space-x-reverse">
-              <Button className="font-semibold" size="small" onClick={handleJoin}>
-                Login
-              </Button>
-              {isAuthorize ? <AuthorizedMenu minimal={true} /> : <JoinButton />}
-            </div>
-          </ul>
       </div>
     </header>
   );
 };
 
-export default Header;
+export default HeaderMobile;

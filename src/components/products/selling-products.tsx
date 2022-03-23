@@ -38,7 +38,7 @@ export default function SellingProductsGrid({ className, limit = 6 }: Props) {
 
   const breakpoints = {
     320: {
-      slidesPerView: 2,
+      slidesPerView: 1,
       spaceBetween: 20,
     },
 
@@ -103,7 +103,7 @@ export default function SellingProductsGrid({ className, limit = 6 }: Props) {
                   <ProductLoader key={i} uniqueKey={`product-${i}`} />
                 </SwiperSlide>
               ))
-            : products.map((product, idx: number) => (
+            : products.slice(6, 13).map((product, idx: number) => (
                 <SwiperSlide key={idx}>
                   <ProductCard product={product} key={product.id} />
                 </SwiperSlide>
@@ -125,27 +125,6 @@ export default function SellingProductsGrid({ className, limit = 6 }: Props) {
           <span className="sr-only">{t('text-next')}</span>
           {isRTL ? <ArrowPrevIcon /> : <ArrowNextIcon />}
         </div>
-      {/*
-
-        <Link
-         href={`${router.query.pages && router.query.pages[0]}${
-           ROUTES.SEARCH
-         }`}
-         className="relative w-full h-full"
-        >
-         <Image
-           src={
-             siteSettings?.sellingAdvertisement?.image?.src ??
-             productPlaceholder
-           }
-           alt={siteSettings?.sellingAdvertisement?.image?.alt}
-           layout="responsive"
-           width={426}
-           height={990}
-         />
-        </Link>
-         */}
-
       </div>
     </SectionBlock>
   );

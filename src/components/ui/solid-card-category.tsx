@@ -3,7 +3,7 @@ import { useTranslation } from 'next-i18next';
 import { useIsRTL } from '@/lib/locals';
 import { ArrowPrevIcon } from '@/components/icons/arrow-prev';
 import { ArrowNextIcon } from '@/components/icons/arrow-next';
-import { Swiper, SwiperSlide, Navigation } from '@/components/ui/slider';
+import { Swiper, SwiperSlide, Navigation, Autoplay } from '@/components/ui/slider';
 import { productPlaceholder } from '@/lib/placeholders';
 import { Image } from '@/components/ui/image';
 import Link from './link';
@@ -41,13 +41,13 @@ function SolidCardCategory({ items }: any) {
 
   const breakpoints = {
     320: {
-      slidesPerView: 1,
-      spaceBetween: 20,
+      slidesPerView: 2,
+      spaceBetween: 15,
     },
 
     540: {
-      slidesPerView: 3,
-      spaceBetween: 20,
+      slidesPerView: 4,
+      spaceBetween: 15,
     },
 
     820: {
@@ -78,7 +78,7 @@ function SolidCardCategory({ items }: any) {
     <div className="relative">
       <Swiper
         id="category-card-menu"
-        modules={[Navigation]}
+        modules={[Navigation, Autoplay]}
         navigation={{
           prevEl,
           nextEl,
@@ -87,6 +87,10 @@ function SolidCardCategory({ items }: any) {
         }}
         breakpoints={breakpoints}
         slidesPerView={7}
+        autoplay={{
+          delay: 3500,
+          disableOnInteraction: true,
+        }}
       >
         {items?.map((category: any, idx: number) => (
           <SwiperSlide key={idx}>

@@ -4,6 +4,7 @@ import { useTranslation } from 'next-i18next';
 import { useAtom } from 'jotai';
 import cn from 'classnames';
 import Header from './header';
+import HeaderMobile from './header-mobile';
 import { Menu, Transition } from '@headlessui/react';
 import HeaderMinimal from './header-minimal';
 import MobileNavigation from './mobile-navigation';
@@ -42,7 +43,7 @@ export default function HomeLayout({
       <Head>
        <title>Barectory</title>
      </Head>
-      <Header layout={layout} />
+      {isDesktopOrLaptop ? <Header layout={layout} /> : <HeaderMobile />}
       <div className="px-5 mt-4" style={{ display: 'flex'}}>
           <Menu
             as="div"
@@ -277,16 +278,19 @@ export default function HomeLayout({
       </div>
       <div className="min-h-screen">{children}</div>
       {['compact'].includes(layout) && <Footer />}
+    {/*
+
       <MobileNavigation>
-        <motion.button
-          whileTap={{ scale: 0.88 }}
-          onClick={() => setDisplayMobileHeaderSearch((prev) => !prev)}
-          className="flex items-center justify-center h-full p-2 focus:outline-none focus:text-accent"
-        >
-          <span className="sr-only">{t('text-search')}</span>
-          <SearchIcon width="17.05" height="18" />
-        </motion.button>
-      </MobileNavigation>
+          <motion.button
+            whileTap={{ scale: 0.88 }}
+            onClick={() => setDisplayMobileHeaderSearch((prev) => !prev)}
+            className="flex items-center justify-center h-full p-2 focus:outline-none focus:text-accent"
+          >
+            <span className="sr-only">{t('text-search')}</span>
+            <SearchIcon width="17.05" height="18" />
+          </motion.button>
+        </MobileNavigation>
+    */}
     </div>
   );
 }

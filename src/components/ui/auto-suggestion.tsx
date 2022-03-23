@@ -39,15 +39,17 @@ const AutoSuggestion: React.FC<Props> = ({
     <Transition
       show={visible}
       enter="transition-opacity duration-75"
-      enterFrom="opacity-0"
+      enterFrom="opacity-100"
       enterTo="opacity-100"
       leave="transition-opacity duration-150"
       leaveFrom="opacity-100"
       leaveTo="opacity-0"
+      className="lg:top-16 mt-2 lg:mt-1 w-full absolute top-11 lg:top-16"
+      style={{ width: 62 + '%' }}
     >
       <div
         className={cn(
-          'w-full absolute top-11 lg:top-16 mt-2 lg:mt-1 left-0',
+          'left-0 w-full lg:w-100',
           className
         )}
       >
