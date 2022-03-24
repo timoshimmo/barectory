@@ -82,42 +82,47 @@ const HeaderMobile = () => {
 
 
   return (
-    <header
-      className={cn('site-header-with-search h-14 md:h-16 lg:h-22')}
-    >
-      <div
-        className={cn(
-          'fixed flex justify-between bg-accent w-full h-14 md:h-16 lg:h-22 px-4 lg:px-8 py-2 z-50 header-modern-primary border-b border-border-200 shadow-sm transition-transform duration-300 transform-gpu'
-        )}
+    <div className="w-full">
+      <header
+        className={cn('site-header-with-search h-14 md:h-16 lg:h-22')}
       >
+        <div
+          className={cn(
+            'fixed flex justify-between bg-accent w-full h-14 md:h-16 lg:h-22 px-4 lg:px-8 py-2 z-50 header-modern-primary border-b border-border-200 shadow-sm transition-transform duration-300 transform-gpu'
+          )}
+        >
 
-          <div className="flex items-center w-100 h-full">
-            <button
-              className="product-cart lg:flex relative"
-              onClick={() => handleSidebar('MAIN_MENU_VIEW')}
-            >
-              <NavbarIcon className={`${isRTL && 'transform rotate-180 '} text-light`} />
-            </button>
-          </div>
-          <div className="block h-5 w-full px-5">
-            <SearchWithSuggestion label={t('text-search-label')} variant="minimal" />
-          </div>
-          <div className="flex items-center w-100 h-full">
-            <button
-              className="product-cart lg:flex relative"
-              onClick={handleCartSidebar}
-            >
-              <CartOutlinedIcon className="w-5 h-5 text-light" />
-              {totalUniqueItems > 0 && (
-                <span className="min-w-[20px] h-5 flex items-center justify-center rounded-full bg-light text-primary text-[10px] absolute ltr:-right-1/2 rtl:-left-1/2 -top-1/2">
-                  {totalUniqueItems}
-                </span>
-              )}
-            </button>
-          </div>
+            <div className="flex items-center w-100 h-full mr-1">
+              <button
+                className="product-cart lg:flex relative"
+                onClick={() => handleSidebar('MAIN_MENU_VIEW')}
+              >
+                <NavbarIcon className={`${isRTL && 'transform rotate-180 '} text-light`} />
+              </button>
+            </div>
+            <div className="flex items-center w-full lg:w-auto">
+              <Logo className="mx-0" />
+            </div>
+            <div className="flex items-center w-100 h-full">
+              <button
+                className="product-cart lg:flex relative"
+                onClick={handleCartSidebar}
+              >
+                <CartOutlinedIcon className="w-5 h-5 text-light" />
+                {totalUniqueItems > 0 && (
+                  <span className="min-w-[20px] h-5 flex items-center justify-center rounded-full bg-light text-primary text-[10px] absolute ltr:-right-1/2 rtl:-left-1/2 -top-1/2">
+                    {totalUniqueItems}
+                  </span>
+                )}
+              </button>
+            </div>
 
+        </div>
+        </header>
+        <div className="block h-5 w-full px-5 py-2 mb-3">
+          <SearchWithSuggestion label={t('text-search-label')} variant="minimal" />
+        </div>
       </div>
-    </header>
   );
 };
 

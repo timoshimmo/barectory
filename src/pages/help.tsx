@@ -5,6 +5,7 @@ import { useTranslation } from 'next-i18next';
 import { GetStaticProps } from 'next';
 import { getLayout } from '@/components/layouts/layout';
 import Seo from '@/components/seo/seo';
+import Footer from '@/components/layouts/footer';
 
 export default function HelpPage() {
   const { t } = useTranslation();
@@ -20,6 +21,7 @@ export default function HelpPage() {
         <div className="mx-auto w-full max-w-screen-lg">
           <Accordion items={faq} translatorNS="faq" />
         </div>
+        <Footer />
       </section>
     </>
   );

@@ -3,15 +3,19 @@ import Header from './header';
 import HeaderMinimal from './header-minimal';
 import MobileNavigation from './mobile-navigation';
 import Footer from './footer';
+import { useMediaQuery } from 'react-responsive';
+import HeaderMobile from './header-mobile';
 
 export default function SiteLayout({ children }: React.PropsWithChildren<{}>) {
   const { layout } = useLayout();
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-width: 768px)'
+  })
   return (
     <div className="flex min-h-screen flex-col bg-gray-100 transition-colors duration-150">
-      <Header />
+      {isDesktopOrLaptop ? <Header layout={layout} /> : <HeaderMobile />}
       {children}
-      {['compact'].includes(layout) && <Footer />}
-      <MobileNavigation />
+      <Footer />
     </div>
   );
 }

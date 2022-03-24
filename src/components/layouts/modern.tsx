@@ -12,7 +12,6 @@ import PopularProductsGrid from '@/components/products/popular-products';
 import SellingProductsGrid from '@/components/products/selling-products';
 import Link from '@/components/ui/link';
 import Button from '@/components/ui/button';
-import Footer from './footer';
 import MixersDropdownMenu from './menu/spirit-mixers-menu';
 import Scrollbar from '@/components/ui/scrollbar';
 import { ArrowDownIcon } from '@/components/icons/arrow-down';
@@ -507,7 +506,6 @@ export default function Modern({ variables }: HomePageProps) {
           <ProductGridHome className="py-6" variables={variables.products} />
         </Element>
           */}
-          <Footer />
       </main>
     </div>
   );

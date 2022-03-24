@@ -11,6 +11,7 @@ import { useCoupons } from '@/framework/coupon';
 import ErrorMessage from '@/components/ui/error-message';
 import CouponCard from '@/components/ui/cards/coupon';
 export { getStaticProps } from '@/framework/coupon.ssr';
+import Footer from '@/components/layouts/footer';
 
 const OffersPage: NextPageWithLayout = () => {
   const limit = 20;
@@ -44,6 +45,7 @@ const OffersPage: NextPageWithLayout = () => {
             </Button>
           </div>
         )}
+        <Footer />
       </div>
       <CartCounterButton />
     </>

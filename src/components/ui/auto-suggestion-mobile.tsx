@@ -8,7 +8,6 @@ import { productPlaceholder } from '@/lib/placeholders';
 import { ROUTES } from '@/lib/routes';
 import { Transition } from '@headlessui/react';
 import Spinner from '@/components/ui/loaders/spinner/spinner';
-import { useMediaQuery } from 'react-responsive';
 
 type Props = {
   className?: string;
@@ -31,9 +30,6 @@ const AutoSuggestion: React.FC<Props> = ({
 }) => {
   const { t } = useTranslation('common');
   const router = useRouter();
-  const isDesktopOrLaptop = useMediaQuery({
-    query: '(min-width: 768px)'
-  })
 
   const handleClick = (path: string) => {
     router.push(path);
@@ -48,12 +44,10 @@ const AutoSuggestion: React.FC<Props> = ({
       leave="transition-opacity duration-150"
       leaveFrom="opacity-100"
       leaveTo="opacity-0"
-      className="mt-2 lg:mt-1 w-full absolute top-11 lg:top-16"
-      style={{ width: 62 + '%', zIndex: 10 }}
     >
       <div
         className={cn(
-          'left-0 w-full lg:w-100',
+          'left-0 w-full lg:w-100 mt-2 lg:mt-1 w-full absolute top-1',
           className
         )}
       >

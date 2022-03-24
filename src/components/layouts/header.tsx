@@ -100,9 +100,12 @@ const Header = ({ layout }: { layout: string }) => {
             <Logo className="mx-0" />
           </div>
 
-          <div className="w-full px-10 py-3 mx-auto overflow-hidden lg:block xl:w-11/12 2xl:w-10/12">
-            <SearchWithSuggestion label={t('text-search-label')} variant="minimal" />
-          </div>
+          {(displayHeaderSearch) && (
+            <div className="w-full px-10 py-3 mx-auto overflow-hidden lg:block xl:w-11/12 2xl:w-10/12">
+              <SearchWithSuggestion label={t('text-search-label')} variant="minimal" />
+            </div>
+          )}
+
 
           <ul className="items-center shrink-0 hidden lg:flex space-x-10 rtl:space-x-reverse">
             <CartCounterIconButton />

@@ -291,6 +291,7 @@ export default function HomeLayout({
           </motion.button>
         </MobileNavigation>
     */}
+      <Footer />
     </div>
   );
 }

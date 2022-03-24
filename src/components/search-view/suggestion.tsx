@@ -28,6 +28,7 @@ const AutoSuggestionBox: React.FC<AutoSuggestionProps> = ({
   if (error) return <ErrorMessage message={error.message} />;
 
   return (
+
     <AutoSuggestion
       suggestions={products}
       notFound={!isLoading && !products.length}
@@ -37,6 +38,7 @@ const AutoSuggestionBox: React.FC<AutoSuggestionProps> = ({
       className={className}
       showLoaders={isLoading && !products.length}
     />
+
   );
 };
 

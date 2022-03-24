@@ -10,6 +10,7 @@ import * as socialIcons from '@/components/icons/social';
 import Seo from '@/components/seo/seo';
 import { useSettings } from '@/framework/settings';
 export { getStaticProps } from '@/framework/general.ssr';
+import Footer from '@/components/layouts/footer';
 
 export const ContactPage = () => {
   const { t } = useTranslation('common');
@@ -105,6 +106,7 @@ export const ContactPage = () => {
             <ContactForm />
           </div>
         </div>
+        <Footer />
       </div>
     </>
   );

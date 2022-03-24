@@ -8,7 +8,8 @@ import { ArrowDownIcon } from '@/components/icons/arrow-down';
 import Link from '@/components/ui/link';
 import { Menu, Transition } from '@headlessui/react';
 import { useMediaQuery } from 'react-responsive';
-
+import HeaderMobile from './header-mobile';
+import Footer from './footer';
 
 export default function GeneralLayout({
   children,
@@ -24,7 +25,7 @@ export default function GeneralLayout({
       <Head>
        <title>Barectory</title>
      </Head>
-      <Header layout={layout} />
+      {isDesktopOrLaptop ? <Header layout={layout} /> : <HeaderMobile />}
       <div className="px-5 mt-4" style={{ display: 'flex'}}>
           <Menu
             as="div"
@@ -259,7 +260,7 @@ export default function GeneralLayout({
           }
       </div>
       {children}
-      <MobileNavigation />
+      <Footer />
     </div>
   );
 }
