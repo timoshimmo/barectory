@@ -16,7 +16,7 @@ export default function GeneralLayout({
 }: React.PropsWithChildren<{ layout: string }>) {
 
   const isDesktopOrLaptop = useMediaQuery({
-    query: '(min-width: 1224px)'
+    query: '(min-width: 768px)'
   })
 
   return (

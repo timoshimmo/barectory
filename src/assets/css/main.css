@@ -23,6 +23,11 @@
     --color-accent: 0, 51, 152;
 
     /*
+    * blue gray scale
+    */
+    --color-blue-gray: 179, 194, 224;
+
+    /*
     * Hover state color of primary color
     */
     --color-accent-hover: 0, 27, 82;

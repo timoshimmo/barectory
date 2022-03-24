@@ -99,7 +99,7 @@ const HeaderMobile = () => {
               <NavbarIcon className={`${isRTL && 'transform rotate-180 '} text-light`} />
             </button>
           </div>
-          <div className="block lg:hidden top-0 ltr:left-0 rtl:right-0 h-5 w-full px-5">
+          <div className="block h-5 w-full px-5">
             <SearchWithSuggestion label={t('text-search-label')} variant="minimal" />
           </div>
           <div className="flex items-center w-100 h-full">

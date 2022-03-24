@@ -23,13 +23,13 @@ export default function HomeLayout({
   layout,
 }: React.PropsWithChildren<{ layout: string }>) {
   const { t } = useTranslation('common');
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-width: 768px)'
+  })
   const [, setDisplayMobileHeaderSearch] = useAtom(
     displayMobileHeaderSearchAtom
   );
 
-  const isDesktopOrLaptop = useMediaQuery({
-    query: '(min-width: 1224px)'
-  })
 
   {/*
     {['minimal', 'compact'].includes(layout) ? (

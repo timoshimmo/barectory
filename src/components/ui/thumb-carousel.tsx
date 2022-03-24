@@ -67,8 +67,8 @@ export const ThumbsCarousel: React.FC<Props> = ({
               <Image
                 src={item?.original ?? productPlaceholder}
                 alt={`Product gallery ${item.id}`}
-                width={aspectRatio === 'square' ? 450 : 420}
-                height={aspectRatio === 'square' ? 450 : 560}
+                width={aspectRatio === 'square' ? 300 : 270}
+                height={aspectRatio === 'square' ? 300 : 450}
                 // layout="responsive"
                 className="ltr:ml-auto rtl:mr-auto"
               />

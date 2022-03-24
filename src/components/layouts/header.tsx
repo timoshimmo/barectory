@@ -100,7 +100,7 @@ const Header = ({ layout }: { layout: string }) => {
             <Logo className="mx-0" />
           </div>
 
-          <div className="w-full px-10 mx-auto overflow-hidden lg:block xl:w-11/12 2xl:w-10/12">
+          <div className="w-full px-10 py-3 mx-auto overflow-hidden lg:block xl:w-11/12 2xl:w-10/12">
             <SearchWithSuggestion label={t('text-search-label')} variant="minimal" />
           </div>
 
