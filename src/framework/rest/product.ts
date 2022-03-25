@@ -3,6 +3,7 @@ import type {
   Product,
   ProductPaginator,
   ProductQueryOptions,
+  SalesProductQueryOptions,
 } from '@/types';
 import { useInfiniteQuery, useQuery } from 'react-query';
 import client from './client';
@@ -56,6 +57,22 @@ export const usePopularProducts = (
     [API_ENDPOINTS.PRODUCTS_POPULAR, options],
     ({ queryKey }) =>
       client.products.popular(queryKey[1] as PopularProductQueryOptions)
+  );
+
+  return {
+    products: data ?? [],
+    isLoading,
+    error,
+  };
+};
+
+export const useSalesProducts = (
+  options?: Partial<SalesProductQueryOptions>
+) => {
+  const { data, isLoading, error } = useQuery<Product[], Error>(
+    [API_ENDPOINTS.PRODUCTS_SALES, options],
+    ({ queryKey }) =>
+      client.products.sales(queryKey[1] as SalesProductQueryOptions)
   );
 
   return {

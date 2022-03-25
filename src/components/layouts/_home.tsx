@@ -44,10 +44,10 @@ export default function HomeLayout({
        <title>Barectory</title>
      </Head>
       {isDesktopOrLaptop ? <Header layout={layout} /> : <HeaderMobile />}
-      <div className="px-5 mt-4 z-1" style={{ display: 'flex', zIndex: 1 }}>
+      <div className="px-5 mt-4 flex">
           <Menu
             as="div"
-            className="relative inline-block ltr:text-left rtl:text-right"
+            className="relative inline-block ltr:text-left rtl:text-right z-10"
           >
             <Menu.Button
               className={cn(
@@ -80,9 +80,8 @@ export default function HomeLayout({
               <Menu.Items
                 as="ul"
                 className={cn(
-                  'absolute zindex-100 py-2 w-38 h-56 lg:h-72 2xl:h-auto min-h-40 max-h-56 sm:max-h-72 2xl:max-h-screen bg-light rounded shadow-700 focus:outline-none overflow-hidden'
+                  'absolute py-2 z-100 w-38 h-56 lg:h-72 2xl:h-auto min-h-40 max-h-56 sm:max-h-72 2xl:max-h-screen bg-light rounded shadow-700 focus:outline-none overflow-hidden'
                 )}
-                style={{zIndex: '100'}}
               >
                 <Scrollbar
                   className="w-full h-full"
@@ -176,7 +175,7 @@ export default function HomeLayout({
           </Menu>
           <Menu
             as="div"
-            className="relative inline-block ltr:text-left rtl:text-right"
+            className="relative inline-block ltr:text-left rtl:text-right z-10"
           >
             <Menu.Button
               className={cn(
@@ -209,9 +208,8 @@ export default function HomeLayout({
               <Menu.Items
                 as="ul"
                 className={cn(
-                  'absolute zindex-100 py-2 w-38 h-56 lg:h-72 2xl:h-auto min-h-40 max-h-56 sm:max-h-72 2xl:max-h-screen bg-light rounded shadow-700 focus:outline-none overflow-hidden'
+                  'absolute py-2 z-100 w-38 h-56 lg:h-72 2xl:h-auto min-h-40 max-h-56 sm:max-h-72 2xl:max-h-screen bg-light rounded shadow-700 focus:outline-none overflow-hidden'
                 )}
-                style={{zIndex: '100'}}
               >
                 <Scrollbar
                   className="w-full h-full"

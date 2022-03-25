@@ -1,6 +1,7 @@
 export const API_ENDPOINTS = {
   PRODUCTS: '/products',
   PRODUCTS_POPULAR: '/popular-products',
+  PRODUCTS_SALES: '/sales-products',
   CATEGORIES: '/categories',
   TYPES: '/types',
   TAGS: '/tags',

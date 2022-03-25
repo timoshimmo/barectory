@@ -27,6 +27,7 @@ import type {
   OTPResponse,
   PasswordChangeResponse,
   PopularProductQueryOptions,
+  SalesProductQueryOptions,
   Product,
   ProductPaginator,
   ProductQueryOptions,
@@ -89,6 +90,8 @@ class Client {
       }),
     popular: (params: Partial<PopularProductQueryOptions>) =>
       HttpClient.get<Product[]>(API_ENDPOINTS.PRODUCTS_POPULAR, params),
+    sales: (params: Partial<SalesProductQueryOptions>) =>
+        HttpClient.get<Product[]>(API_ENDPOINTS.PRODUCTS_SALES, params),
     get: (slug: string) =>
       HttpClient.get<Product>(`${API_ENDPOINTS.PRODUCTS}/${slug}`),
   };

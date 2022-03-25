@@ -87,6 +87,12 @@ export interface PopularProductQueryOptions extends QueryOptions {
   range: number;
 }
 
+export interface SalesProductQueryOptions extends QueryOptions {
+  type_slug: string;
+  with: string;
+  range: number;
+}
+
 export interface CategoryQueryOptions extends QueryOptions {
   parent: string | null;
   type: string;
