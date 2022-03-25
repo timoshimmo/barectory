@@ -100,7 +100,7 @@ const HeaderMobile = () => {
                 <NavbarIcon className={`${isRTL && 'transform rotate-180 '} text-light`} />
               </button>
             </div>
-            <div className="flex items-center w-full lg:w-auto">
+            <div className="flex items-center justify-center w-full">
               <Logo className="mx-0" />
             </div>
             <div className="flex items-center w-100 h-full">

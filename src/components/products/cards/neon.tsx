@@ -8,6 +8,7 @@ import { ROUTES } from '@/lib/routes';
 import { Product } from '@/framework/types';
 import { productPlaceholder } from '@/lib/placeholders';
 import { PlusIcon } from '@/components/icons/plus-icon';
+import { hotPlaceholder } from '@/lib/placeholders';
 
 type NeonProps = {
   product: any;
@@ -68,8 +69,20 @@ const Neon: React.FC<NeonProps> = ({ product, className }) => {
               className="product-image"
             />
             {discount && (
-              <div className="absolute top-3 ltr:right-3 rtl:left-3 md:top-4 ltr:md:right-4 rtl:md:left-4 rounded text-xs leading-6 font-semibold px-1.5 sm:px-2 md:px-2.5 bg-accent text-light">
-                {discount}
+              <div className="absolute flex w-full justify-between items-start top-3 md:top-1 py-1 font-semibold px-1.5">
+                <div className="rounded text-xs leading-6 font-semibold ml-2 mt-2 px-1.5 sm:px-2 md:px-2.5 bg-accent text-light">
+                  {discount}
+                </div>
+                <div className="px-1">
+                  <Image
+                    src={hotPlaceholder}
+                    alt={name}
+                    width={45}
+                    height={45}
+                    layout="fixed"
+                    objectFit="contain"
+                  />
+                </div>
               </div>
             )}
           </div>

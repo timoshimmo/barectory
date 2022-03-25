@@ -281,6 +281,19 @@ export default function Modern({ variables }: HomePageProps) {
                                      <Menu.Item key={3}>
                                        {({ active }) => (
                                          <button
+                                           onClick={() => handleSelectCity('Ikeja')}
+                                           className={cn(
+                                             'inline-flex items-center w-full text-accent text-sm font-semibold transition-colors hover:text-accent-hover focus:text-accent-hover focus:outline-none px-5 py-2 hover:bg-gray-200',
+                                             active ? 'text-accent' : 'text-body-dark'
+                                           )}
+                                         >
+                                           <span>Ikeja</span>
+                                         </button>
+                                       )}
+                                     </Menu.Item>
+                                     <Menu.Item key={4}>
+                                       {({ active }) => (
+                                         <button
                                            onClick={() => handleSelectCity('Lekki')}
                                            className={cn(
                                              'inline-flex items-center w-full text-accent text-sm font-semibold transition-colors hover:text-accent-hover focus:text-accent-hover focus:outline-none px-5 py-2 hover:bg-gray-200',
@@ -291,7 +304,7 @@ export default function Modern({ variables }: HomePageProps) {
                                          </button>
                                        )}
                                      </Menu.Item>
-                                     <Menu.Item key={4}>
+                                     <Menu.Item key={5}>
                                        {({ active }) => (
                                          <button
                                            onClick={() => handleSelectCity('Surulere')}
@@ -304,7 +317,7 @@ export default function Modern({ variables }: HomePageProps) {
                                          </button>
                                        )}
                                      </Menu.Item>
-                                     <Menu.Item key={5}>
+                                     <Menu.Item key={6}>
                                        {({ active }) => (
                                          <button
                                            onClick={() => handleSelectCity('Victoria Island')}
@@ -488,7 +501,7 @@ export default function Modern({ variables }: HomePageProps) {
           </div>
         </Dialog>
       </Transition>
-        <div className="border border-border-200 mb-5">
+        <div className="border border-border-200 mb-5 z-0">
           <Banner layout="modern" variables={variables.types} />
         </div>
 

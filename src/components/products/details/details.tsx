@@ -29,7 +29,9 @@ import { Fragment } from 'react';
 import Scrollbar from '@/components/ui/scrollbar';
 import { ArrowDownIcon } from '@/components/icons/arrow-down';
 import Link from '@/components/ui/link';
+import { Image } from '@/components/ui/image';
 import { useMediaQuery } from 'react-responsive';
+import { hotPlaceholder } from '@/lib/placeholders';
 
 type Props = {
   product: Product;
@@ -344,11 +346,21 @@ const Details: React.FC<Props> = ({
       <article className="rounded-lg bg-light">
         <div className="flex flex-col border-b md:flex-row border-border-200 border-opacity-70">
           <div className="p-6 pt-10 md:w-1/2 lg:p-14 xl:p-16">
-            <div className="flex items-center justify-between mb-8 lg:mb-10">
-              {backBtn && <BackButton />}
+          <div className="flex items-start">
+            {backBtn && <BackButton />}
+          </div>
+            <div className="flex items-right justify-end mb-8 lg:mb-10">
+
               {discount && (
-                <div className="px-3 text-xs font-semibold leading-6 bg-yellow-500 rounded-full text-light ltr:ml-auto rtl:mr-auto">
-                  {discount}
+                <div className="mt-1">
+                  <Image
+                    src={hotPlaceholder}
+                    alt={name}
+                    width={70}
+                    height={70}
+                    layout="fixed"
+                    objectFit="contain"
+                  />
                 </div>
               )}
             </div>

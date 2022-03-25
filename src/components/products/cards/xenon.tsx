@@ -35,96 +35,103 @@ const Xenon: React.FC<XenonProps> = ({ product, className }) => {
   return (
     <article
       className={cn(
-        'product-card cart-type-xenon rounded h-full bg-light overflow-hidden border border-border-200 border-opacity-70 transform transition-all duration-200 hover:shadow hover:border-transparent hover:-translate-y-0.5',
+        'product-card cart-type-neon border border-border-200 rounded h-full bg-light overflow-hidden shadow-sm transition-all duration-200 hover:shadow transform hover:-translate-y-0.5',
         className
       )}
     >
-      <div
-        className="relative flex items-center justify-center cursor-pointer w-auto h-48 sm:h-64"
-        onClick={handleProductQuickView}
-      >
-        <span className="sr-only">{t('text-product-image')}</span>
-        <Image
-          src={image?.original ?? productPlaceholder}
-          alt={name}
-          layout="fill"
-          objectFit="contain"
-          className="product-image"
-        />
-        {discount && (
-          <div className="absolute top-3 ltr:left-3 rtl:right-3 md:top-4 ltr:md:left-4 rtl:md:right-4 rounded text-xs leading-6 font-semibold px-1.5 md:px-2 lg:px-2.5 bg-accent text-light">
-            {discount}
-          </div>
-        )}
-      </div>
+
+      <Link href={`${ROUTES.PRODUCT}/${slug}`}>
+        <div
+          className="relative flex items-center justify-center w-auto h-48 sm:h-64"
+        >
+          <span className="sr-only">{t('text-product-image')}</span>
+          <Image
+            src={image?.original ?? productPlaceholder}
+            alt={name}
+            layout="fill"
+            objectFit="contain"
+            className="product-image"
+          />
+
+          {discount && (
+            <div className="absolute ltr:right-3 rtl:left-3 md:top-3">
+              <Image
+                src={hotPlaceholder}
+                alt={name}
+                width={45}
+                height={45}
+                layout="fixed"
+                objectFit="contain"
+              />
+            </div>
+          )}
+        </div>
+      </Link>
+
       {/* End of product image */}
 
       <header className="p-3 md:p-6">
+        {product_type.toLowerCase() === 'variable' ? (
+          <div className="mb-2">
+            <span className="text-sm md:text-base text-heading font-semibold">
+              {minPrice}
+            </span>
+            <span> - </span>
+            <span className="text-sm md:text-base text-heading font-semibold">
+              {maxPrice}
+            </span>
+          </div>
+        ) : (
+          <div className="flex items-center mb-2">
+            <span className="text-sm md:text-base text-heading font-semibold">
+              {price}
+            </span>
+            {basePrice && (
+              <del className="text-xs md:text-sm text-muted ltr:ml-2 rtl:mr-2">
+                {basePrice}
+              </del>
+            )}
+          </div>
+        )}
+        {/* End of product price */}
+
         <h3
-          className="text-xs md:text-sm text-body truncate cursor-pointer"
-          onClick={handleProductQuickView}
+          className="text-xs md:text-sm text-body truncate mb-4 cursor-pointer"
         >
           {name}
         </h3>
-        {/* End of product name */}
+        {/* End of product title */}
 
-        {/* End of price */}
-        <div className="flex items-center justify-between mt-2">
-          {product_type.toLowerCase() === 'variable' ? (
-            <>
-              <div>
-                <span className="text-sm md:text-base text-heading font-semibold">
-                  {minPrice}
+        {product_type.toLowerCase() === 'variable' ? (
+          <>
+            {Number(quantity) > 0 && (
+              <button
+                className="group w-full h-7 md:h-9 flex items-center justify-between w-full text-xs transition-colors bg-gray-100 rounded group h-7 md:h-9 md:text-sm text-body-dark hover:bg-gray-200 hover:bg-gray-200 hover:text-body-dark focus:outline-none focus:bg-gray-200 focus:border-gray-200 focus:text-body-dark"
+              >
+                <span className="flex-1">{t('text-add')}</span>
+                <span className="w-7 h-7 md:w-9 md:h-9 bg-gray-200 grid place-items-center ltr:rounded-tr rtl:rounded-tl ltr:rounded-br rtl:rounded-bl transition-colors duration-200 group-hover:bg-gray-300 group-focus:bg-gray-300">
+                  <PlusIcon className="w-4 h-4 stroke-2" />
                 </span>
-                <span> - </span>
-                <span className="text-sm md:text-base text-heading font-semibold">
-                  {maxPrice}
-                </span>
-              </div>
+              </button>
+            )}
+          </>
+        ) : (
+          <>
+            {Number(quantity) > 0 && (
+              <AddToCartAlt variant="neon" data={product} />
+            )}
+          </>
+        )}
 
-              {Number(quantity) > 0 && (
-                <button
-                  onClick={handleProductQuickView}
-                  className="w-7 h-7 md:w-9 md:h-9 flex items-center justify-center text-sm text-accent bg-light rounded border border-border-200 transition-colors hover:bg-accent hover:border-accent hover:text-light focus:outline-none focus:bg-accent focus:border-accent focus:text-light"
-                >
-                  <span className="sr-only">plus</span>
-                  <PlusIcon className="w-5 h-5 stroke-2" />
-                </button>
-              )}
-            </>
-          ) : (
-            <>
-              <div className="flex md:items-center flex-col md:flex-row">
-                <span className="text-sm md:text-base text-heading font-semibold">
-                  {price}
-                </span>
-                {basePrice && (
-                  <del className="text-xs text-muted mt-1 md:mt-0 ltr:md:ml-2 rtl:md:mr-2">
-                    {basePrice}
-                  </del>
-                )}
-              </div>
-
-              {Number(quantity) > 0 && (
-                <AddToCart
-                  variant="argon"
-                  data={product}
-                  counterClass="absolute sm:static bottom-3 ltr:right-3 rtl:left-3 sm:bottom-0 ltr:sm:right-0 rtl:sm:left-0"
-                />
-              )}
-            </>
-          )}
-
-          {Number(quantity) <= 0 && (
-            <div className="bg-red-500 rounded text-xs text-light px-1 py-1 truncate">
-              {t('text-out-stock')}
-            </div>
-          )}
-
-          {/* End of cart */}
-        </div>
+        {Number(quantity) <= 0 && (
+          <div className="bg-red-500 rounded text-xs text-center text-light px-2 py-1.5 sm:py-2.5">
+            {t('text-out-stock')}
+          </div>
+        )}
+        {/* End of add to cart */}
       </header>
     </article>
+
   );
 };
 

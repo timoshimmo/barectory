@@ -57,7 +57,7 @@ const SearchWithSuggestion: React.FC<Props> = ({
     );
   };
   return (
-    <div className={cn('w-full', className)}>
+    <div className={cn('w-full relative', className)}>
       <SearchBox
         label={label}
         onSubmit={onSearchMore}

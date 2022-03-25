@@ -48,12 +48,10 @@ const AutoSuggestion: React.FC<Props> = ({
       leave="transition-opacity duration-150"
       leaveFrom="opacity-100"
       leaveTo="opacity-0"
-      className="mt-2 lg:mt-1 w-full absolute top-11 lg:top-16"
-      style={{ width: 62 + '%', zIndex: 10 }}
     >
       <div
         className={cn(
-          'left-0 w-full lg:w-100',
+          'left-0 w-full lg:w-full mt-2 lg:mt-1 absolute lg:top-10 sm:top-45',
           className
         )}
       >

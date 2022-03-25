@@ -44,7 +44,7 @@ export default function HomeLayout({
        <title>Barectory</title>
      </Head>
       {isDesktopOrLaptop ? <Header layout={layout} /> : <HeaderMobile />}
-      <div className="px-5 mt-4" style={{ display: 'flex'}}>
+      <div className="px-5 mt-4 z-1" style={{ display: 'flex', zIndex: 1 }}>
           <Menu
             as="div"
             className="relative inline-block ltr:text-left rtl:text-right"
