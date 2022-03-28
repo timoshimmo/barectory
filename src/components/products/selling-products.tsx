@@ -4,7 +4,7 @@ import NotFound from '@/components/ui/not-found';
 import rangeMap from '@/lib/range-map';
 import ProductSalesCard from '@/components/products/cards/sales-card';
 import ErrorMessage from '@/components/ui/error-message';
-import { useProducts } from '@/framework/product';
+import { useSalesProducts } from '@/framework/product';
 import SectionBlock from '@/components/ui/section-block';
 import { useTranslation } from 'next-i18next';
 import { Image } from '@/components/ui/image';
@@ -26,7 +26,7 @@ interface Props {
 
 export default function SellingProductsGrid({ className, limit = 6 }: Props) {
   const { t } = useTranslation('common');
-  const { products, isLoading, error } = useProducts({ range: 8 });
+  const { products, isLoading, error } = useSalesProducts({ range: 8 });
   const router = useRouter();
 
   if (error) return <ErrorMessage message={error.message} />;
@@ -103,7 +103,7 @@ export default function SellingProductsGrid({ className, limit = 6 }: Props) {
                   <ProductLoader key={i} uniqueKey={`product-${i}`} />
                 </SwiperSlide>
               ))
-            : products.slice(6, 13).map((product, idx: number) => (
+            : products.slice(0, 6).map((product, idx: number) => (
                 <SwiperSlide key={idx}>
                   <ProductSalesCard product={product} key={product.id} />
                 </SwiperSlide>

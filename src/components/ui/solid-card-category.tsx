@@ -92,7 +92,7 @@ function SolidCardCategory({ items }: any) {
           disableOnInteraction: true,
         }}
       >
-        {items?.map((category: any, idx: number) => (
+        {items?.slice(0, 5).map((category: any, idx: number) => (
           <SwiperSlide key={idx}>
             <CategoryItem item={category} />
           </SwiperSlide>

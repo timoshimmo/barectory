@@ -22,6 +22,7 @@ import { Image } from '@/components/ui/image';
 import { logoPlaceholder } from '@/lib/placeholders';
 import { useLocalStorage } from '@/lib/use-local-storage';
 import Head from 'next/head';
+import { useMediaQuery } from 'react-responsive';
 
 export default function Modern({ variables }: HomePageProps) {
 
@@ -36,6 +37,9 @@ export default function Modern({ variables }: HomePageProps) {
   const router = useRouter();
 //  const cancelButtonRef = useRef(null);
   const { t } = useTranslation('common');
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-width: 768px)'
+  })
 
   useEffect(() => {
     //localStorage.setItem("legalAge", 'DEFAULT');
@@ -43,6 +47,14 @@ export default function Modern({ variables }: HomePageProps) {
     console.log(lAge);
 
   },[lAge]);
+
+  const styleMain = {
+
+      marginTop: 25,
+      '@media (min-width: 768px)': {
+        marginTop: 120,
+      },
+  };
 
   const onClose =()=> {
     setOpen(false);
@@ -61,12 +73,22 @@ export default function Modern({ variables }: HomePageProps) {
   }
 
   const handleOpenInput = () => {
+    setSelectedCity('Enter your city');
     setEnterCity(true);
   }
 
   const handleOpenEmail = () => {
     setOpenEmail(true);
   }
+
+  const handleCloseEmail = () => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("legalAge", "LEGAL");
+      localStorage.setItem("cityStatus", 'NOTFOUND');
+    }
+    setOpenEmail(false);
+  }
+
 
   const handleSubmitEmail = () => {
     if (typeof window !== "undefined") {
@@ -138,7 +160,7 @@ export default function Modern({ variables }: HomePageProps) {
       {/*<div className="sticky top-22 hidden h-full bg-gray-100 lg:w-[380px] xl:block">
         <Categories layout="modern" variables={variables.categories} />
       </div> */}
-      <main className="block w-full lg:mt-6 xl:overflow-hidden ltr:xl:pl-0 ltr:xl:pr-0 rtl:xl:pr-0 rtl:xl:pl-0">
+      <main className="block w-full xl:overflow-hidden ltr:xl:pl-0 ltr:xl:pr-0 rtl:xl:pr-0 rtl:xl:pl-0" style={styleMain}>
       {lAge !== "LEGAL" &&
         <Transition show={open} as={Fragment}>
           <Dialog
@@ -261,7 +283,7 @@ export default function Modern({ variables }: HomePageProps) {
                                              active ? 'text-body-dark' : 'text-body-dark'
                                            )}
                                          >
-                                           <span><i>Enter your address</i></span>
+                                           <span><i>Enter your city</i></span>
                                          </button>
                                        )}
                                      </Menu.Item>
@@ -467,35 +489,36 @@ export default function Modern({ variables }: HomePageProps) {
                      Enter your email below so we update you when we start serving your city
                    </p>
                 </div>
+                   <div>
+                     <div className=" modal-body flex justify-center row w-full py-3">
+                          <input
+                            id="newEmail"
+                            type="text"
+                            value={newEmail}
+                            onChange={handleOnChangeEmail}
+                            autoComplete="off"
+                            placeholder="Enter your email"
+                            className='search item-center flex h-full w-full appearance-none overflow-hidden truncate rounded-lg text-sm text-heading placeholder-gray-500 transition duration-300 ease-in-out focus:outline-none focus:ring-0'
+                          />
+                      </div>
+                      <div className="flex justify-center px-2">
+                        <button
+                          className={cn(
+                            'inline-flex items-center bg-light justify-center px-6 py-2 ml-1 shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-none hover:bg-gray-200'
+                          )}
+                          onClick={handleSubmitEmail}
+                          size="small"
+                        >
+                          <span className="text-sm">Submit</span>
+                        </button>
 
-                       <div>
-                         <div className=" modal-body flex justify-center row w-full py-3">
-                              <input
-                                id="newEmail"
-                                type="text"
-                                value={newEmail}
-                                onChange={handleOnChangeEmail}
-                                autoComplete="off"
-                                placeholder="Enter your email"
-                                className='search item-center flex h-full w-full appearance-none overflow-hidden truncate rounded-lg text-sm text-heading placeholder-gray-500 transition duration-300 ease-in-out focus:outline-none focus:ring-0'
-                              />
-                          </div>
-                          <div className="flex justify-center px-2">
-                            <button
-                              className={cn(
-                                'inline-flex items-center bg-light justify-center px-6 py-2 ml-1 shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-none hover:bg-gray-200'
-                              )}
-                              onClick={handleSubmitEmail}
-                              size="small"
-                            >
-                              <span className="text-sm">Submit</span>
-                            </button>
-
-                          </div>
-                        </div>
-
-
-
+                      </div>
+                    </div>
+                    <div className=" modal-footer mt-5">
+                      <button onClick={handleCloseEmail} className="text-light bg-accent hover:bg-accent text-sm" style={{ fontWeight:400, fontSize: "0.8rem" }}>
+                        Skip
+                      </button>
+                    </div>
               </div>
             </Transition.Child>
           </div>
