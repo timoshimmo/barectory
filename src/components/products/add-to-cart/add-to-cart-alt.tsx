@@ -88,7 +88,7 @@ export const AddToCartAlt = ({
         onIncrement={increment}
         variant={counterVariant || variant}
         className={counterClass}
-        disabled={outOfStock}
+        disabled={disabled || outOfStock}
       />
 
       <Button

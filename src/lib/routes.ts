@@ -1,5 +1,6 @@
 export const ROUTES = {
   HOME: '/grocery',
+  CART: '/cart',
   CHECKOUT: '/checkout',
   CHECKOUT_DIGITAL: '/checkout/digital',
   GUEST_CHECKOUT: '/checkout/guest',

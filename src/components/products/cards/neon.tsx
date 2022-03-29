@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Image } from '@/components/ui/image';
 import Link from '@/components/ui/link';
 import cn from 'classnames';
@@ -22,6 +23,13 @@ const Neon: React.FC<NeonProps> = ({ product, className }) => {
   //   amount: product.sale_price ? product.sale_price : product.price!,
   //   baseAmount: product.price,
   // });
+
+  const [cityStatus, setCityStatus] = useState('');
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setCityStatus(window.localStorage.getItem("cityStatus"));
+    }
+  },[cityStatus]);
 
   const { name, image, slug, quantity, min_price, max_price, product_type } =
     product ?? {};
@@ -126,6 +134,7 @@ const Neon: React.FC<NeonProps> = ({ product, className }) => {
               {Number(quantity) > 0 && (
                 <button
                   className="group w-full h-7 md:h-9 flex items-center justify-between w-full text-xs transition-colors bg-gray-100 rounded group h-7 md:h-9 md:text-sm text-body-dark hover:bg-gray-200 hover:bg-gray-200 hover:text-body-dark focus:outline-none focus:bg-gray-200 focus:border-gray-200 focus:text-body-dark"
+                  disabled={cityStatus !== "FOUND"}
                 >
                   <span className="flex-1">{t('text-add')}</span>
                   <span className="w-7 h-7 md:w-9 md:h-9 bg-gray-200 grid place-items-center ltr:rounded-tr rtl:rounded-tl ltr:rounded-br rtl:rounded-bl transition-colors duration-200 group-hover:bg-gray-300 group-focus:bg-gray-300">
@@ -137,7 +146,7 @@ const Neon: React.FC<NeonProps> = ({ product, className }) => {
           ) : (
             <>
               {Number(quantity) > 0 && (
-                <AddToCartAlt variant="neon" data={product} />
+                <AddToCartAlt variant="neon" data={product} disabled={cityStatus !== "FOUND"}/>
               )}
             </>
           )}

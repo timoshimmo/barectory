@@ -24,7 +24,7 @@ const SlidingCardCategories: React.FC<SlidingCardCategoriesProps> = ({
     );
   }
   return (
-    <SectionBlock title="Categories"  className="mt-20">
+    <SectionBlock title="Shop By Categories"  className="mt-20">
       {!notFound ? (
         <SolidCardCategory items={categories} />
       ) : (

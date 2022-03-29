@@ -18,7 +18,7 @@ export const ContactPage = () => {
   return (
     <>
       <Seo title={'Contact'} url={'contact'} />
-      <div className="w-full bg-gray-100">
+      <div className="main-container w-full bg-gray-100 pt-6">
         <div className="mx-auto flex w-full max-w-7xl flex-col py-10 px-5 md:flex-row xl:py-14 xl:px-8 2xl:px-14">
           {/* sidebar */}
           <div className="order-2 w-full shrink-0 bg-light p-5 md:order-1 md:w-72 lg:w-96">
@@ -97,7 +97,6 @@ export const ContactPage = () => {
               </div>
             </div>
           </div>
-
           {/* Contact form */}
           <div className="order-1 mb-8 w-full bg-light p-5 md:order-2 md:mb-0 md:p-8 ltr:md:ml-7 rtl:md:mr-7 ltr:lg:ml-9 rtl:lg:mr-9">
             <h1 className="mb-7 font-body text-xl font-bold text-heading md:text-2xl">

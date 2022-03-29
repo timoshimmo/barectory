@@ -3,7 +3,7 @@ import { useTranslation } from 'next-i18next';
 import { useIsRTL } from '@/lib/locals';
 import { ArrowPrevIcon } from '@/components/icons/arrow-prev';
 import { ArrowNextIcon } from '@/components/icons/arrow-next';
-import { Swiper, SwiperSlide, Navigation, Autoplay } from '@/components/ui/slider';
+import { Swiper, SwiperSlide, Navigation, Autoplay, SwiperWrapper } from '@/components/ui/slider';
 import { productPlaceholder } from '@/lib/placeholders';
 import { Image } from '@/components/ui/image';
 import Link from './link';
@@ -18,14 +18,14 @@ const CategoryItem: React.FC<CategoryItemProps> = ({ item }) => {
         <img
           src={item?.image?.original! ?? productPlaceholder}
           alt={item?.name!}
-          width={80}
-          height={80}
+          width={150}
+          height={150}
           layout="responsive"
           className="rounded-md transition duration-200 transform hover:scale-125 "
           style={{ margin: '0 auto' }}
         />
       </Link>
-      <span className="block mt-2 text-base font-semibold transition-colors text-heading group-hover:text-orange-500 ltr:text-center rtl:text-center">
+      <span className="block mt-5 text-base font-semibold transition-colors text-heading group-hover:text-orange-500 ltr:text-center rtl:text-center">
         {item.name}
       </span>
     </div>
@@ -39,6 +39,10 @@ function SolidCardCategory({ items }: any) {
   const [prevEl, setPrevEl] = useState<HTMLElement | null>(null);
   const [nextEl, setNextEl] = useState<HTMLElement | null>(null);
 
+  const styleSlider = {
+      justifyContent: 'center !important',
+  };
+
   const breakpoints = {
     320: {
       slidesPerView: 2,
@@ -46,36 +50,36 @@ function SolidCardCategory({ items }: any) {
     },
 
     540: {
-      slidesPerView: 4,
-      spaceBetween: 15,
+      slidesPerView: 3,
+      spaceBetween: 25,
     },
 
     820: {
       slidesPerView: 5,
-      spaceBetween: 20,
+      spaceBetween: 40,
     },
 
     1200: {
-      slidesPerView: 6,
-      spaceBetween: 20,
+      slidesPerView: 5,
+      spaceBetween: 50,
     },
 
     1280: {
-      slidesPerView: 7,
-      spaceBetween: 24,
+      slidesPerView: 5,
+      spaceBetween: 70,
     },
     1800: {
-      slidesPerView: 8,
-      spaceBetween: 30,
+      slidesPerView: 5,
+      spaceBetween: 70,
     },
     2600: {
-      slidesPerView: 8,
-      spaceBetween: 40,
+      slidesPerView: 5,
+      spaceBetween: 70,
     },
   };
 
   return (
-    <div className="relative">
+    <div className="relative swiper-category">
       <Swiper
         id="category-card-menu"
         modules={[Navigation, Autoplay]}
@@ -86,17 +90,19 @@ function SolidCardCategory({ items }: any) {
           hiddenClass: 'swiper-button-hidden',
         }}
         breakpoints={breakpoints}
-        slidesPerView={7}
         autoplay={{
           delay: 3500,
           disableOnInteraction: true,
         }}
+        cssMode={true}
       >
-        {items?.slice(0, 5).map((category: any, idx: number) => (
-          <SwiperSlide key={idx}>
-            <CategoryItem item={category} />
-          </SwiperSlide>
-        ))}
+        <SwiperWrapper style={{ justifyContent: 'center' }}>
+          {items?.slice(0, 5).map((category: any, idx: number) => (
+            <SwiperSlide key={idx}>
+              <CategoryItem item={category} />
+            </SwiperSlide>
+          ))}
+        </SwiperWrapper>
       </Swiper>
       <div
         ref={(node) => setPrevEl(node)}

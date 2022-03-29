@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ProductLoader from '@/components/ui/loaders/product-loader';
 import NotFound from '@/components/ui/not-found';
 import rangeMap from '@/lib/range-map';
