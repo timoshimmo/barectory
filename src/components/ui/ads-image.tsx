@@ -2,6 +2,7 @@ import { Image } from '@/components/ui/image';
 import cn from 'classnames';
 import Link from '@/components/ui/link';
 import { adsPlaceholder } from '@/lib/placeholders';
+import { advPlaceholder } from '@/lib/placeholders';
 import { useSettings } from '@/framework/settings';
 
 const Ads: React.FC<React.AnchorHTMLAttributes<{}>> = ({
@@ -12,15 +13,26 @@ const Ads: React.FC<React.AnchorHTMLAttributes<{}>> = ({
     settings: { logo, siteTitle },
   } = useSettings();
   return (
-      <span className="relative block h-full w-full">
+    <div className="flex w-full h-full relative">
+      <span className="h-full w-full">
         <Image
           src={adsPlaceholder}
           alt={'Ads Banner'}
           objectFit="cover"
-          width={1503}
+          width={751}
           height={480}
         />
       </span>
+      <span className="h-full w-full">
+        <Image
+          src={advPlaceholder}
+          alt={'Ads Banner'}
+          objectFit="cover"
+          width={750}
+          height={480}
+        />
+      </span>
+    </div>
   );
 };
 

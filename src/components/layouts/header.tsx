@@ -246,7 +246,7 @@ const Header = ({ layout }: { layout: string }) => {
       <div className="px-5 flex w-full justify-center">
           <Menu
             as="div"
-            className="relative inline-block ltr:text-left rtl:text-right z-10"
+            className="relative inline-block ltr:text-left rtl:text-right z-10 mr-2"
           >
             <>
               <Menu.Button
@@ -331,7 +331,7 @@ const Header = ({ layout }: { layout: string }) => {
           </Menu>
           <Menu
             as="div"
-            className="relative inline-block ltr:text-left rtl:text-right z-10"
+            className="relative inline-block ltr:text-left rtl:text-right z-10 mr-2"
           >
             <>
               <Menu.Button
@@ -454,7 +454,7 @@ const Header = ({ layout }: { layout: string }) => {
           </Menu>
           <Menu
             as="div"
-            className="relative inline-block ltr:text-left rtl:text-right z-10"
+            className="relative inline-block ltr:text-left rtl:text-right z-10 mr-2"
           >
             <>
               <Menu.Button
@@ -525,7 +525,7 @@ const Header = ({ layout }: { layout: string }) => {
           </Menu>
           <Menu
             as="div"
-            className="relative inline-block ltr:text-left rtl:text-right z-10"
+            className="relative inline-block ltr:text-left rtl:text-right z-10 mr-2"
           >
             <>
               <Menu.Button
