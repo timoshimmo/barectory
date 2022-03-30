@@ -27,7 +27,17 @@ const CartPage = () => {
   const router = useRouter();
   const { openModal } = useModalAction();
 
-  function handleCheckout() {
+  function handleCheckoutGuest() {
+    //const isRegularCheckout = items.find((item) => !Boolean(item.is_digital));
+  //  if (isRegularCheckout) {
+      router.push(`${ROUTES.CHECKOUT}/guest`);
+    //} else {
+    //  router.push(ROUTES.CHECKOUT_DIGITAL);
+  //  }
+
+  }
+
+  function handleCheckoutUser() {
     const isRegularCheckout = items.find((item) => !Boolean(item.is_digital));
     if (isRegularCheckout) {
       router.push(ROUTES.CHECKOUT);
@@ -164,7 +174,7 @@ const CartPage = () => {
               </div>
               <button
                 className="flex justify-center mt-5 items-center w-full h-12 md:h-14 p-1 text-sm font-bold bg-accent rounded shadow-700 transition-colors focus:outline-none hover:bg-accent-hover focus:bg-accent-hover"
-                onClick={handleCheckout}
+                onClick={handleCheckoutGuest}
               >
                 <span className="flex flex-1 justify-center items-center h-full px-5 text-light">
                   Checkout as guest
@@ -173,7 +183,7 @@ const CartPage = () => {
 
               <button
                 className="flex justify-center mt-2 items-center w-full h-12 md:h-14 p-1 text-sm font-bold bg-accent rounded shadow-700 transition-colors focus:outline-none hover:bg-accent-hover focus:bg-accent-hover"
-                onClick={handleCheckout}
+                onClick={handleCheckoutUser}
               >
                 <span className="flex flex-1 justify-center items-center h-full px-5 text-light">
                   Sign In & Chekcout

@@ -40,7 +40,7 @@ export default function GuestCheckoutPage() {
   return (
     <>
       <Seo noindex={true} nofollow={true} />
-      <div className="bg-gray-100 px-4 py-8 lg:py-10 lg:px-8 xl:py-14 xl:px-16 2xl:px-20">
+      <div className="main-container bg-gray-100 px-4 py-8 lg:py-10 lg:px-8 xl:py-14 xl:px-16 2xl:px-20">
         <div className="m-auto flex w-full max-w-5xl flex-col items-center rtl:space-x-reverse lg:flex-row lg:items-start lg:space-x-8">
           <div className="w-full space-y-6 lg:max-w-2xl">
             <ContactGrid

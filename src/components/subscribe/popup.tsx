@@ -26,7 +26,7 @@ export default function SubscribePopup() {
   const { t } = useTranslation('common');
 
   useEffect(() => {
-    //localStorage.setItem("legalAge", 'DEFAULT');
+  //  localStorage.setItem("legalAge", 'DEFAULT');
     setlAge(window.localStorage.getItem("legalAge"));
     console.log(lAge);
 

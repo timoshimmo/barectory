@@ -9,6 +9,9 @@ import type { HomePageProps } from '@/types';
 import PopularProductsGrid from '@/components/products/popular-products';
 import SellingProductsGrid from '@/components/products/selling-products';
 import SubscribePopup from '@/components/subscribe/popup';
+import { Image } from '@/components/ui/image';
+import { adsPlaceholder } from '@/lib/placeholders';
+import Ads from '@/components/ui/ads-image';
 
 
 export default function Modern({ variables }: HomePageProps) {
@@ -27,6 +30,9 @@ export default function Modern({ variables }: HomePageProps) {
         <Categories layout="modern" variables={variables.categories} />
         <div className="mt-5" style={{marginTop: 2.2 + 'em'}}>
           <PopularProductsGrid variables={variables.popularProducts} />
+        </div>
+        <div className="mt-5 mb-20 w-full">
+            <Ads />
         </div>
         <div className="mt-5" style={{marginTop: 2.2 + 'em'}}>
           <SellingProductsGrid variables={variables.products} />

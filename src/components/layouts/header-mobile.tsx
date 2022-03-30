@@ -82,7 +82,7 @@ const HeaderMobile = () => {
 
 
   return (
-    <div className="fixed w-full">
+    <div className="fixed w-full h-30 pb-6 z-50 header-modern-primary bg-gray-100 border-b border-border-200 shadow-sm">
       <header
         className={cn('site-header-with-search h-14 md:h-16 lg:h-22')}
       >

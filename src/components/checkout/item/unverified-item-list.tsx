@@ -48,8 +48,11 @@ const UnverifiedItemList = ({ hideTitle = false }: { hideTitle?: boolean }) => {
         />
       </div>
       <CheckAvailabilityAction>
-        {t('text-check-availability')}
+          Make Payment 
       </CheckAvailabilityAction>
+    {/*  <CheckAvailabilityAction>
+        {t('text-check-availability')}
+      </CheckAvailabilityAction> */}
     </div>
   );
 };

@@ -26,7 +26,7 @@ const AuthorizedMenu: React.FC<{ minimal?: boolean }> = ({ minimal }) => {
     >
       <Menu.Button className="flex items-center focus:outline-none">
         {minimal ? (
-          <UserOutlinedIcon className="h-5 w-5" />
+          <UserOutlinedIcon className="h-5 w-5 text-light" />
         ) : (
           <Avatar
             src={me?.profile?.avatar?.thumbnail ?? avatarPlaceholder}
