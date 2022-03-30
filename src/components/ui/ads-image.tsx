@@ -14,7 +14,7 @@ const Ads: React.FC<React.AnchorHTMLAttributes<{}>> = ({
   } = useSettings();
   return (
     <div className="flex w-full h-full relative">
-      <span className="h-full w-full">
+      <span className="h-full w-full ml-3 mr-1">
         <Image
           src={adsPlaceholder}
           alt={'Ads Banner'}
@@ -23,7 +23,7 @@ const Ads: React.FC<React.AnchorHTMLAttributes<{}>> = ({
           height={480}
         />
       </span>
-      <span className="h-full w-full">
+      <span className="h-full w-full ml-1 mr-3">
         <Image
           src={advPlaceholder}
           alt={'Ads Banner'}
