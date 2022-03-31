@@ -20,6 +20,7 @@ interface CheckoutState {
   payment_gateway: PaymentMethodName;
   delivery_time: DeliveryTime | null;
   customer_contact: string;
+  customer_email: string;
   verified_response: VerifiedResponse | null;
   coupon: Coupon | null;
   payable_amount: number;
@@ -32,6 +33,7 @@ export const defaultCheckout: CheckoutState = {
   delivery_time: null,
   payment_gateway: 'STRIPE',
   customer_contact: '',
+  customer_email: '',
   verified_response: null,
   coupon: null,
   payable_amount: 0,
@@ -84,6 +86,13 @@ export const customerContactAtom = atom(
   (get, set, data: string) => {
     const prev = get(checkoutAtom);
     return set(checkoutAtom, { ...prev, customer_contact: data });
+  }
+);
+export const customerEmailAtom = atom(
+  (get) => get(checkoutAtom).customer_email,
+  (get, set, data: string) => {
+    const prev = get(checkoutAtom);
+    return set(checkoutAtom, { ...prev, customer_email: data });
   }
 );
 export const verifiedResponseAtom = atom(

@@ -15,7 +15,7 @@ export default function HelpPage() {
   return (
     <>
       <Seo title="Underage" url="underage" />
-      <div className="grid min-h-screen p-4 place-items-center sm:p-8">
+      <div className="main-container grid min-h-screen p-4 place-items-center sm:p-8">
         <div className="text-center">
           <p className="mb-4 text-sm tracking-widest uppercase text-body-dark 2xl: sm:mb-5">
             No underage drinking

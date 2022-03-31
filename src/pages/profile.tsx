@@ -16,7 +16,7 @@ const ProfilePage = () => {
   return (
     <>
       <Seo noindex={true} nofollow={true} />
-      <div className="w-full px-1 pb-1 overflow-hidden">
+      <div className="main-container w-full px-1 pb-1 overflow-hidden">
         <div className="mb-8">
           <ProfileForm user={me} />
           <ProfileContact

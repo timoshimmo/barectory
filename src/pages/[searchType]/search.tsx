@@ -36,7 +36,7 @@ export default function SearchPage() {
   });
   if (error) return <ErrorMessage message={error.message} />;
   return (
-    <div className="w-full">
+    <div className="w-full main-container ">
       <div className="mb-7 flex flex-col items-center justify-between md:flex-row">
         {/* //FIXME: */}
         <SearchCount

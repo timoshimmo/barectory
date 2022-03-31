@@ -22,6 +22,10 @@ const GuestAddressGrid = dynamic(
 const ContactGrid = dynamic(
   () => import('@/components/checkout/contact/contact-grid')
 );
+
+const EmailGrid = dynamic(
+  () => import('@/components/checkout/email/email-grid')
+);
 const RightSideView = dynamic(
   () => import('@/components/checkout/right-side-view'),
   { ssr: false }
@@ -50,10 +54,17 @@ export default function GuestCheckoutPage() {
               count={1}
             />
 
+            <EmailGrid
+              className="bg-light p-5 shadow-700 md:p-8"
+              email={null}
+              label='Email'
+              count={2}
+            />
+
             <GuestAddressGrid
               className="bg-light p-5 shadow-700 md:p-8"
               label={t('text-billing-address')}
-              count={2}
+              count={3}
               addresses={billingAddress ? [billingAddress] : []}
               atom={billingAddressAtom}
               type={AddressType.Billing}
@@ -61,7 +72,7 @@ export default function GuestCheckoutPage() {
             <GuestAddressGrid
               className="bg-light p-5 shadow-700 md:p-8"
               label={t('text-shipping-address')}
-              count={3}
+              count={4}
               addresses={shippingAddress ? [shippingAddress] : []}
               atom={shippingAddressAtom}
               type={AddressType.Shipping}
@@ -69,7 +80,7 @@ export default function GuestCheckoutPage() {
             <ScheduleGrid
               className="bg-light p-5 shadow-700 md:p-8"
               label={t('text-delivery-schedule')}
-              count={4}
+              count={5}
             />
           </div>
           <div className="mt-10 mb-10 w-full sm:mb-12 lg:mb-0 lg:w-96">

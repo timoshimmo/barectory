@@ -200,34 +200,6 @@ const Header = ({ layout }: { layout: string }) => {
           </div>
 
           <ul className="items-center shrink-0 hidden lg:flex space-x-12 rtl:space-x-reverse">
-            <button
-              className="hidden product-cart lg:flex relative"
-              onClick={handleCart}
-            >
-              <CartOutlinedIcon className="w-5 h-5 text-light" />
-              {totalUniqueItems > 0 && (
-                <span className="min-w-[20px] h-5 flex items-center justify-center rounded-full bg-light text-primary text-[10px] absolute ltr:-right-1/2 rtl:-left-1/2 -top-1/2">
-                  {totalUniqueItems}
-                </span>
-              )}
-            </button>
-
-            <button
-              className="hidden product-cart lg:flex relative"
-              onClick={onOpen}
-            >
-              <MapPin className="w-5 h-5 text-light" />
-            </button>
-
-            {/*
-              <CartCounterIconButton />
-
-              <Button className="font-semibold" size="small" onClick={handleJoin}>
-                Login
-              </Button>
-
-              <JoinButton />
-            */}
             <div className="flex items-center space-x-4 rtl:space-x-reverse">
               {isAuthorize ?
                 <AuthorizedMenu minimal={true} />
@@ -240,18 +212,45 @@ const Header = ({ layout }: { layout: string }) => {
                 </button>
                 }
             </div>
+            <button
+              className="hidden product-cart lg:flex relative"
+              onClick={onOpen}
+            >
+              <MapPin className="w-5 h-5 text-light" />
+            </button>
+            <button
+              className="hidden product-cart lg:flex relative"
+              onClick={handleCart}
+            >
+              <CartOutlinedIcon className="w-5 h-5 text-light" />
+              {totalUniqueItems > 0 && (
+                <span className="min-w-[20px] h-5 flex items-center justify-center rounded-full bg-light text-primary text-[10px] absolute ltr:-right-1/2 rtl:-left-1/2 -top-1/2">
+                  {totalUniqueItems}
+                </span>
+              )}
+            </button>
+
+            {/*
+              <CartCounterIconButton />
+
+              <Button className="font-semibold" size="small" onClick={handleJoin}>
+                Login
+              </Button>
+
+              <JoinButton />
+            */}
           </ul>
         </div>
       </header>
-      <div className="px-5 flex w-full justify-center">
+      <div className="px-5 md:px-2 flex w-full justify-center">
           <Menu
             as="div"
-            className="relative inline-block ltr:text-left rtl:text-right z-10 mr-2"
+            className="relative inline-block ltr:text-left rtl:text-right z-10 px-5"
           >
             <>
               <Menu.Button
                 className={cn(
-                  'flex items-center shrink-0 text-sm md:text-base font-semibold h-11 focus:outline-none text-heading xl:px-4 hover:text-accent'
+                  'flex items-center shrink-0 text-sm md:text-base font-semibold h-11 focus:outline-none text-heading hover:text-accent'
                 )}
                 onMouseEnter={onMouseEnterBeerButton}
                 onMouseLeave={onMouseLeaveBeerButton}
@@ -331,12 +330,12 @@ const Header = ({ layout }: { layout: string }) => {
           </Menu>
           <Menu
             as="div"
-            className="relative inline-block ltr:text-left rtl:text-right z-10 mr-2"
+            className="relative inline-block ltr:text-left rtl:text-right z-10 px-5"
           >
             <>
               <Menu.Button
                 className={cn(
-                  'flex items-center shrink-0 text-sm md:text-base font-semibold h-11 focus:outline-none text-heading xl:px-4 mr-1 hover:text-accent'
+                  'flex items-center shrink-0 text-sm md:text-base font-semibold h-11 focus:outline-none text-heading hover:text-accent'
                 )}
                 onMouseEnter={onMouseEnterSpiritsButton}
                 onMouseLeave={onMouseLeaveSpiritsButton}
@@ -454,12 +453,12 @@ const Header = ({ layout }: { layout: string }) => {
           </Menu>
           <Menu
             as="div"
-            className="relative inline-block ltr:text-left rtl:text-right z-10 mr-2"
+            className="relative inline-block ltr:text-left rtl:text-right z-10 px-5"
           >
             <>
               <Menu.Button
                 className={cn(
-                  'flex items-center shrink-0 text-sm md:text-base font-semibold h-11 focus:outline-none text-heading xl:px-4 hover:text-accent'
+                  'flex items-center shrink-0 text-sm md:text-base font-semibold h-11 focus:outline-none text-heading hover:text-accent'
                 )}
                 onMouseEnter={onMouseEnterWinesButton}
                 onMouseLeave={onMouseLeaveWinesButton}
@@ -501,7 +500,7 @@ const Header = ({ layout }: { layout: string }) => {
                               active ? 'text-accent' : 'text-body-dark'
                             )}
                           >
-                            <span className="whitespace-nowrap text-xs">Sparkling wine</span>
+                            <span className="whitespace-nowrap text-xs">Sparkling Wine</span>
                           </Link>
                         )}
                       </Menu.Item>
@@ -514,7 +513,7 @@ const Header = ({ layout }: { layout: string }) => {
                               active ? 'text-accent' : 'text-body-dark'
                             )}
                           >
-                            <span className="whitespace-nowrap text-xs">Red wine</span>
+                            <span className="whitespace-nowrap text-xs">Red Wine</span>
                           </Link>
                         )}
                       </Menu.Item>
@@ -525,12 +524,12 @@ const Header = ({ layout }: { layout: string }) => {
           </Menu>
           <Menu
             as="div"
-            className="relative inline-block ltr:text-left rtl:text-right z-10 mr-2"
+            className="relative inline-block ltr:text-left rtl:text-right z-10 px-5"
           >
             <>
               <Menu.Button
                 className={cn(
-                  'flex items-center shrink-0 text-sm md:text-base font-semibold h-11 focus:outline-none text-heading xl:px-4 hover:text-accent'
+                  'flex items-center shrink-0 text-sm md:text-base font-semibold h-11 focus:outline-none text-heading hover:text-accent'
                 )}
                 onMouseEnter={onMouseEnterRdyDrinkButton}
                 onMouseLeave={onMouseLeaveRdyDrinkButton}
@@ -596,12 +595,12 @@ const Header = ({ layout }: { layout: string }) => {
           </Menu>
           <Menu
             as="div"
-            className="relative inline-block ltr:text-left rtl:text-right z-10"
+            className="relative inline-block ltr:text-left rtl:text-right z-10 px-5"
           >
             <>
               <Menu.Button
                 className={cn(
-                  'flex items-center shrink-0 text-sm md:text-base font-semibold h-11 focus:outline-none text-heading xl:px-4 hover:text-accent'
+                  'flex items-center shrink-0 text-sm md:text-base font-semibold h-11 focus:outline-none text-heading hover:text-accent'
                 )}
                 onMouseEnter={onMouseEnterNonAlcoholicButton}
                 onMouseLeave={onMouseLeaveNonAlcoholicButton}
@@ -643,7 +642,7 @@ const Header = ({ layout }: { layout: string }) => {
                               active ? 'text-accent' : 'text-body-dark'
                             )}
                           >
-                            <span className="whitespace-nowrap text-xs">Soft drinks</span>
+                            <span className="whitespace-nowrap text-xs">Soft Drinks</span>
                           </Link>
                         )}
                       </Menu.Item>
@@ -673,19 +672,19 @@ const Header = ({ layout }: { layout: string }) => {
           </Link>
           <Link
             href='/'
-            className='flex space-x-4 text-gray-700 items-center px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
+            className='flex text-gray-700 items-center px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
           >
             <span className="text-xs">EVENTS</span>
           </Link>
           <Menu
             as="div"
-            className="relative inline-block ltr:text-left rtl:text-right z-10"
+            className="relative inline-block ltr:text-left rtl:text-right z-10 px-5"
           >
             {({open}) => (
               <>
                 <Menu.Button
                   className={cn(
-                    'flex items-center shrink-0 text-sm md:text-base font-semibold h-11 focus:outline-none text-heading xl:px-4 hover:text-accent'
+                    'flex items-center shrink-0 text-sm md:text-base font-semibold h-11 focus:outline-none text-heading hover:text-accent'
                   )}
                 >
                   <span className="whitespace-nowrap text-xs">MORE</span>
@@ -730,7 +729,7 @@ const Header = ({ layout }: { layout: string }) => {
                                 active ? 'text-accent' : 'text-body-dark'
                               )}
                             >
-                              <span className="whitespace-nowrap text-xs">ABOUT US</span>
+                              <span className="whitespace-nowrap text-xs">About Us</span>
                             </Link>
                           )}
                         </Menu.Item>
@@ -743,7 +742,7 @@ const Header = ({ layout }: { layout: string }) => {
                                 active ? 'text-accent' : 'text-body-dark'
                               )}
                             >
-                              <span className="whitespace-nowrap text-xs">BLOG</span>
+                              <span className="whitespace-nowrap text-xs">Blog</span>
                             </Link>
                           )}
                         </Menu.Item>
@@ -756,7 +755,7 @@ const Header = ({ layout }: { layout: string }) => {
                                 active ? 'text-accent' : 'text-body-dark'
                               )}
                             >
-                              <span className="whitespace-nowrap text-xs">CONTACT US</span>
+                              <span className="whitespace-nowrap text-xs">Contact Us</span>
                             </Link>
                           )}
                         </Menu.Item>
