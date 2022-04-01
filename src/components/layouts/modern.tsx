@@ -31,13 +31,12 @@ export default function Modern({ variables }: HomePageProps) {
         <div className="mt-5" style={{marginTop: 2.2 + 'em'}}>
           <PopularProductsGrid variables={variables.popularProducts} />
         </div>
-        <div className="mt-5 mb-20 w-full">
-            <Ads />
-        </div>
         <div className="mt-5" style={{marginTop: 2.2 + 'em'}}>
           <SellingProductsGrid variables={variables.products} />
         </div>
-
+        <div className="mt-5 mb-20 w-full">
+            <Ads />
+        </div>
         {/*
           <Element name="slider" className="px-4 xl:px-0">
           <ProductGridHome className="py-6" variables={variables.products} />

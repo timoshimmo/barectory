@@ -21,6 +21,7 @@ const CartCounterIconButton = dynamic(
   () => import('@/components/cart/cart-counter-icon-button'),
   { ssr: false }
 );
+import { UserOutlinedIcon } from '@/components/icons/user-outlined';
 const JoinButton = dynamic(() => import('./menu/join-button'), { ssr: false });
 import { useModalAction } from '@/components/ui/modal/modal.context';
 import { drawerAtom } from '@/store/drawer-atom';
@@ -104,6 +105,18 @@ const HeaderMobile = () => {
               <Logo className="mx-0" />
             </div>
             <div className="flex items-center w-100 h-full">
+              <div className="flex items-center h-full w-[20px] space-x-4 mr-5">
+                {isAuthorize ?
+                  <AuthorizedMenu minimal={true} />
+                  :
+                  <button
+                    className="product-cart lg:flex relative"
+                    onClick={handleJoin}
+                  >
+                    <UserOutlinedIcon className="w-5 h-5 text-light" />
+                  </button>
+                  }
+              </div>
               <button
                 className="product-cart lg:flex relative"
                 onClick={handleCartSidebar}

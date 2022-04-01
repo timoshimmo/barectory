@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 import { motion, AnimateSharedLayout } from 'framer-motion';
 import BackButton from '@/components/ui/back-button';
 import CartItem from '@/components/cart/cart-item';
@@ -67,7 +68,10 @@ const CartPage = () => {
   return (
     <>
       <Seo title={'Cart'} url={'cart'} />
-      <div className="px-4 py-8 bg-light lg:py-10 lg:px-8 xl:py-14 xl:px-16 2xl:px-20" style={{ marginTop: 120 }}>
+      <div className="main-container px-4 py-8 bg-light lg:py-10 lg:px-8 xl:py-14 xl:px-16 2xl:px-20">
+        <Head>
+         <title>Barectory</title>
+       </Head>
         <div className="flex flex-col items-center w-full max-w-5xl m-auto rtl:space-x-reverse lg:flex-row lg:items-start lg:space-x-8">
           <div className="w-full space-y-6">
             <section className="flex flex-col h-full relative">
@@ -177,7 +181,7 @@ const CartPage = () => {
                 onClick={handleCheckoutGuest}
               >
                 <span className="flex flex-1 justify-center items-center h-full px-5 text-light">
-                  Checkout as guest
+                  CHECKOUT AS GUEST
                 </span>
               </button>
 
@@ -186,7 +190,7 @@ const CartPage = () => {
                 onClick={handleCheckoutUser}
               >
                 <span className="flex flex-1 justify-center items-center h-full px-5 text-light">
-                  Sign In & Chekcout
+                  SIGNIN & CHECKOUT
                 </span>
               </button>
             </div>

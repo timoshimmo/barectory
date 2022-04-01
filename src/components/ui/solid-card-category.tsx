@@ -13,7 +13,7 @@ interface CategoryItemProps {
 }
 const CategoryItem: React.FC<CategoryItemProps> = ({ item }) => {
   return (
-    <div className="relative overflow-hidden text-center cursor-pointer group ">
+    <div className="relative overflow-hidden text-center cursor-pointer group">
       <Link href={`${item?.type?.slug}/search/?category=${item.slug}`}>
         <img
           src={item?.image?.original! ?? productPlaceholder}
@@ -25,8 +25,8 @@ const CategoryItem: React.FC<CategoryItemProps> = ({ item }) => {
           style={{ margin: '0 auto' }}
         />
       </Link>
-      <span className="block mt-5 text-base font-semibold transition-colors text-heading group-hover:text-orange-500 ltr:text-center rtl:text-center">
-        {item.name}
+      <span className="block mt-5 text-base font-bold font-md transition-colors text-heading group-hover:text-orange-500 ltr:text-center rtl:text-center text-uppercase">
+        {item.name.toUpperCase()}
       </span>
     </div>
   );

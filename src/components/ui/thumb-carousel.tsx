@@ -12,6 +12,8 @@ import { useRef, useState } from 'react';
 import { productPlaceholder } from '@/lib/placeholders';
 import { useIsRTL } from '@/lib/locals';
 import classNames from 'classnames';
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 
 interface Props {
   gallery: any[];
@@ -64,14 +66,16 @@ export const ThumbsCarousel: React.FC<Props> = ({
               key={`product-gallery-${item.id}`}
               className="selection:bg-transparent flex justify-center items-center"
             >
-              <Image
-                src={item?.original ?? productPlaceholder}
-                alt={`Product gallery ${item.id}`}
-                width={aspectRatio === 'square' ? 300 : 270}
-                height={aspectRatio === 'square' ? 300 : 450}
-                // layout="responsive"
-                className="ltr:ml-auto rtl:mr-auto"
-              />
+              <Zoom>
+                <Image
+                  src={item?.original ?? productPlaceholder}
+                  alt={`Product gallery ${item.id}`}
+                  width={aspectRatio === 'square' ? 300 : 270}
+                  height={aspectRatio === 'square' ? 300 : 450}
+                  // layout="responsive"
+                  className="ltr:ml-auto rtl:mr-auto"
+                />
+              </Zoom>
             </SwiperSlide>
           ))}
         </Swiper>

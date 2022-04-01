@@ -26,7 +26,7 @@ export default function SubscribePopup() {
   const { t } = useTranslation('common');
 
   useEffect(() => {
-  //  localStorage.setItem("legalAge", 'DEFAULT');
+    //localStorage.setItem("legalAge", 'DEFAULT');
     setlAge(window.localStorage.getItem("legalAge"));
     console.log(lAge);
 
@@ -101,6 +101,7 @@ export default function SubscribePopup() {
         if (typeof window !== "undefined") {
           localStorage.setItem("legalAge", "LEGAL");
           localStorage.setItem("cityStatus", 'FOUND');
+          localStorage.setItem("cityName", selectedCity);
         }
         onClose();
         window.location.reload(true);

@@ -56,14 +56,12 @@ const Header = ({ layout }: { layout: string }) => {
   const [isShowingRDrink, setIsShowingRDrink] = useState(false);
   const [isShowingNonAlcohol, setIsShowingNonAlcohol] = useState(false);
   const [open, setOpen] = useState(false);
-  const [selectedCity, setSelectedCity] = useState('Select City');
-  const [newCity, setNewCity] = useState('');
+  const [selectedCity, setSelectedCity] = useState('');
 
-/*  useEffect(() => {
-    //if (!isHomePage) {
-      setDisplayHeaderSearch(true);
-  //  }
-}, [isHomePage, setDisplayHeaderSearch]);*/
+  useEffect(() => {
+    //localStorage.setItem("cityName", "Ikoyi");
+    setSelectedCity(window.localStorage.getItem("cityName"));
+}, [selectedCity]);
   const isFlattenHeader =
     !displayHeaderSearch && isHomePage && layout !== 'modern';
 
@@ -127,10 +125,6 @@ const Header = ({ layout }: { layout: string }) => {
          setSelectedCity(cityName);
        }
 
-       const handleOpenInput = () => {
-         setSelectedCity('Enter your city');
-         setEnterCity(true);
-       }
 
        const handleLegal =()=> {
          if(selectedCity !== "") {
@@ -141,12 +135,21 @@ const Header = ({ layout }: { layout: string }) => {
              console.log("City found! " + selectedCity);
              if (typeof window !== "undefined") {
                localStorage.setItem("cityStatus", 'FOUND');
+               localStorage.setItem("cityName", selectedCity);
              }
              onClose();
              window.location.reload(true);
 
            }
          }
+       }
+
+       function handleBeer() {
+         router.push('grocery/search?category=beer');
+       }
+
+       function handleSpirits() {
+         router.push('grocery/search?category=spirits');
        }
 
 {/*
@@ -200,6 +203,15 @@ const Header = ({ layout }: { layout: string }) => {
           </div>
 
           <ul className="items-center shrink-0 hidden lg:flex space-x-12 rtl:space-x-reverse">
+          <button
+            className="hidden product-cart lg:flex relative hover:text-underline"
+            onClick={onOpen}
+          >
+            <MapPin className="w-5 h-5 text-light" />
+            <span className="text-xs h-5 flex max-w-[100px] items-center justify-center text-light ml-1">
+              Update Delivery Location
+            </span>
+          </button>
             <div className="flex items-center space-x-4 rtl:space-x-reverse">
               {isAuthorize ?
                 <AuthorizedMenu minimal={true} />
@@ -212,12 +224,6 @@ const Header = ({ layout }: { layout: string }) => {
                 </button>
                 }
             </div>
-            <button
-              className="hidden product-cart lg:flex relative"
-              onClick={onOpen}
-            >
-              <MapPin className="w-5 h-5 text-light" />
-            </button>
             <button
               className="hidden product-cart lg:flex relative"
               onClick={handleCart}
@@ -245,7 +251,8 @@ const Header = ({ layout }: { layout: string }) => {
       <div className="px-5 md:px-2 flex w-full justify-center">
           <Menu
             as="div"
-            className="relative inline-block ltr:text-left rtl:text-right z-10 px-5"
+            className="relative inline-block ltr:text-left rtl:text-right z-10 px-8"
+            onClick={handleBeer}
           >
             <>
               <Menu.Button
@@ -255,7 +262,7 @@ const Header = ({ layout }: { layout: string }) => {
                 onMouseEnter={onMouseEnterBeerButton}
                 onMouseLeave={onMouseLeaveBeerButton}
               >
-                <span className="whitespace-nowrap text-xs">BEER</span>
+                <span className="whitespace-nowrap text-sm text-body-dark font-bold text-heading hover:text-accent">BEER</span>
               </Menu.Button>
               <Transition
                 as={Fragment}
@@ -289,11 +296,11 @@ const Header = ({ layout }: { layout: string }) => {
                           <Link
                             href='grocery/search?category=sparkling-wine'
                             className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold text-body-dark capitalize transition duration-200 hover:text-accent focus:outline-none',
                               active ? 'text-accent' : 'text-body-dark'
                             )}
                           >
-                            <span className="whitespace-nowrap text-xs">Ale</span>
+                            <span className="whitespace-nowrap text-sm">Ale</span>
                           </Link>
                         )}
                       </Menu.Item>
@@ -302,11 +309,11 @@ const Header = ({ layout }: { layout: string }) => {
                           <Link
                             href='grocery/search?category=sparkling-wine'
                             className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                               active ? 'text-accent' : 'text-body-dark'
                             )}
                           >
-                            <span className="whitespace-nowrap text-xs">Lager</span>
+                            <span className="whitespace-nowrap text-sm">Lager</span>
                           </Link>
                         )}
                       </Menu.Item>
@@ -315,11 +322,11 @@ const Header = ({ layout }: { layout: string }) => {
                           <Link
                             href='grocery/search?category=sparkling-wine'
                             className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                               active ? 'text-accent' : 'text-body-dark'
                             )}
                           >
-                            <span className="whitespace-nowrap text-xs">Stout</span>
+                            <span className="whitespace-nowrap text-sm">Stout</span>
                           </Link>
                         )}
                       </Menu.Item>
@@ -330,7 +337,8 @@ const Header = ({ layout }: { layout: string }) => {
           </Menu>
           <Menu
             as="div"
-            className="relative inline-block ltr:text-left rtl:text-right z-10 px-5"
+            className="relative inline-block ltr:text-left rtl:text-right z-10 px-8"
+            onClick={handleSpirits}
           >
             <>
               <Menu.Button
@@ -340,7 +348,7 @@ const Header = ({ layout }: { layout: string }) => {
                 onMouseEnter={onMouseEnterSpiritsButton}
                 onMouseLeave={onMouseLeaveSpiritsButton}
               >
-                <span className="whitespace-nowrap text-xs">SPIRITS</span>
+                <span className="whitespace-nowrap text-sm text-body-dark font-bold text-heading hover:text-accent">SPIRITS</span>
               </Menu.Button>
               <Transition
                 as={Fragment}
@@ -373,11 +381,11 @@ const Header = ({ layout }: { layout: string }) => {
                           <Link
                             href='/grocery/search?category=vermouth'
                             className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                               active ? 'text-accent' : 'text-body-dark'
                             )}
                           >
-                            <span className="whitespace-nowrap text-xs">Vermouth</span>
+                            <span className="whitespace-nowrap text-sm">Vermouth</span>
                           </Link>
                         )}
                       </Menu.Item>
@@ -386,11 +394,11 @@ const Header = ({ layout }: { layout: string }) => {
                           <Link
                             href='/grocery/search?category=whisky'
                             className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                               active ? 'text-accent' : 'text-body-dark'
                             )}
                           >
-                            <span className="whitespace-nowrap text-xs">Whisky</span>
+                            <span className="whitespace-nowrap text-sm">Whisky</span>
                           </Link>
                         )}
                       </Menu.Item>
@@ -399,11 +407,11 @@ const Header = ({ layout }: { layout: string }) => {
                           <Link
                             href='/grocery/search?category=vodka'
                             className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                               active ? 'text-accent' : 'text-body-dark'
                             )}
                           >
-                            <span className="whitespace-nowrap text-xs">Vodka</span>
+                            <span className="whitespace-nowrap text-sm">Vodka</span>
                           </Link>
                         )}
                       </Menu.Item>
@@ -412,11 +420,11 @@ const Header = ({ layout }: { layout: string }) => {
                           <Link
                             href='grocery/search?category=gin'
                             className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                               active ? 'text-accent' : 'text-body-dark'
                             )}
                           >
-                            <span className="whitespace-nowrap text-xs">Gin</span>
+                            <span className="whitespace-nowrap text-sm">Gin</span>
                           </Link>
                         )}
                       </Menu.Item>
@@ -425,11 +433,11 @@ const Header = ({ layout }: { layout: string }) => {
                           <Link
                             href='grocery/search?category=rum'
                             className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold text-body-dark capitalize transition duration-200 hover:text-accent focus:outline-none',
                               active ? 'text-accent' : 'text-body-dark'
                             )}
                           >
-                            <span className="whitespace-nowrap text-xs">Rum</span>
+                            <span className="whitespace-nowrap text-sm">Rum</span>
                           </Link>
                         )}
                       </Menu.Item>
@@ -438,11 +446,11 @@ const Header = ({ layout }: { layout: string }) => {
                           <Link
                             href='grocery/search?category=tequila'
                             className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold text-body-dark capitalize transition duration-200 hover:text-accent focus:outline-none',
                               active ? 'text-accent' : 'text-body-dark'
                             )}
                           >
-                            <span className="whitespace-nowrap text-xs">Tequila</span>
+                            <span className="whitespace-nowrap text-sm">Tequila</span>
                           </Link>
                         )}
                       </Menu.Item>
@@ -453,7 +461,7 @@ const Header = ({ layout }: { layout: string }) => {
           </Menu>
           <Menu
             as="div"
-            className="relative inline-block ltr:text-left rtl:text-right z-10 px-5"
+            className="relative inline-block ltr:text-left rtl:text-right z-10 px-8"
           >
             <>
               <Menu.Button
@@ -463,7 +471,7 @@ const Header = ({ layout }: { layout: string }) => {
                 onMouseEnter={onMouseEnterWinesButton}
                 onMouseLeave={onMouseLeaveWinesButton}
               >
-                <span className="whitespace-nowrap text-xs">WINES</span>
+                <span className="whitespace-nowrap text-sm text-body-dark font-bold text-heading hover:text-accent">WINES</span>
               </Menu.Button>
               <Transition
                 as={Fragment}
@@ -496,11 +504,11 @@ const Header = ({ layout }: { layout: string }) => {
                           <Link
                             href='grocery/search?category=sparkling-wine'
                             className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                               active ? 'text-accent' : 'text-body-dark'
                             )}
                           >
-                            <span className="whitespace-nowrap text-xs">Sparkling Wine</span>
+                            <span className="whitespace-nowrap text-sm">Sparkling Wine</span>
                           </Link>
                         )}
                       </Menu.Item>
@@ -509,11 +517,11 @@ const Header = ({ layout }: { layout: string }) => {
                           <Link
                             href='grocery/search?category=sparkling-wine'
                             className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                               active ? 'text-accent' : 'text-body-dark'
                             )}
                           >
-                            <span className="whitespace-nowrap text-xs">Red Wine</span>
+                            <span className="whitespace-nowrap text-sm">Red Wine</span>
                           </Link>
                         )}
                       </Menu.Item>
@@ -524,7 +532,7 @@ const Header = ({ layout }: { layout: string }) => {
           </Menu>
           <Menu
             as="div"
-            className="relative inline-block ltr:text-left rtl:text-right z-10 px-5"
+            className="relative inline-block ltr:text-left rtl:text-right z-10 px-8"
           >
             <>
               <Menu.Button
@@ -534,7 +542,7 @@ const Header = ({ layout }: { layout: string }) => {
                 onMouseEnter={onMouseEnterRdyDrinkButton}
                 onMouseLeave={onMouseLeaveRdyDrinkButton}
               >
-                <span className="whitespace-nowrap text-xs">READY TO DRINK</span>
+                <span className="whitespace-nowrap text-sm text-body-dark font-bold text-heading hover:text-accent">READY TO DRINK</span>
               </Menu.Button>
               <Transition
                 as={Fragment}
@@ -567,11 +575,11 @@ const Header = ({ layout }: { layout: string }) => {
                           <Link
                             href='grocery/search?category=vermouth'
                             className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                               active ? 'text-accent' : 'text-body-dark'
                             )}
                           >
-                            <span className="whitespace-nowrap text-xs">Smirnoff Ice</span>
+                            <span className="whitespace-nowrap text-sm">Smirnoff Ice</span>
                           </Link>
                         )}
                       </Menu.Item>
@@ -580,11 +588,11 @@ const Header = ({ layout }: { layout: string }) => {
                           <Link
                             href='grocery/search?category=vermouth'
                             className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                               active ? 'text-accent' : 'text-body-dark'
                             )}
                           >
-                            <span className="whitespace-nowrap text-xs">Origin</span>
+                            <span className="whitespace-nowrap text-sm">Origin</span>
                           </Link>
                         )}
                       </Menu.Item>
@@ -595,7 +603,7 @@ const Header = ({ layout }: { layout: string }) => {
           </Menu>
           <Menu
             as="div"
-            className="relative inline-block ltr:text-left rtl:text-right z-10 px-5"
+            className="relative inline-block ltr:text-left rtl:text-right z-10 px-8"
           >
             <>
               <Menu.Button
@@ -605,7 +613,7 @@ const Header = ({ layout }: { layout: string }) => {
                 onMouseEnter={onMouseEnterNonAlcoholicButton}
                 onMouseLeave={onMouseLeaveNonAlcoholicButton}
               >
-                <span className="whitespace-nowrap text-xs">NON-ALCOHOLIC</span>
+                <span className="whitespace-nowrap text-sm text-body-dark font-bold text-heading hover:text-accent">NON-ALCOHOLIC</span>
               </Menu.Button>
               <Transition
                 as={Fragment}
@@ -638,11 +646,11 @@ const Header = ({ layout }: { layout: string }) => {
                           <Link
                             href='grocery/search?category=sparkling-wine'
                             className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                               active ? 'text-accent' : 'text-body-dark'
                             )}
                           >
-                            <span className="whitespace-nowrap text-xs">Soft Drinks</span>
+                            <span className="whitespace-nowrap text-sm">Soft Drinks</span>
                           </Link>
                         )}
                       </Menu.Item>
@@ -651,11 +659,11 @@ const Header = ({ layout }: { layout: string }) => {
                           <Link
                             href='grocery/search?category=sparkling-wine'
                             className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                               active ? 'text-accent' : 'text-body-dark'
                             )}
                           >
-                            <span className="whitespace-nowrap text-xs">Fruit Juice</span>
+                            <span className="whitespace-nowrap text-sm">Fruit Juice</span>
                           </Link>
                         )}
                       </Menu.Item>
@@ -666,31 +674,31 @@ const Header = ({ layout }: { layout: string }) => {
           </Menu>
           <Link
             href='/offers'
-            className='flex items-center px-5 py-2.5 text-gray-700 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
+            className='flex items-center px-8 py-2.5 text-gray-700 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
           >
-            <span className="text-xs">OFFERS</span>
+            <span className="text-sm text-body-dark font-bold text-heading hover:text-accent">OFFERS</span>
           </Link>
           <Link
             href='/'
-            className='flex text-gray-700 items-center px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
+            className='flex text-gray-700 items-center px-8 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
           >
-            <span className="text-xs">EVENTS</span>
+            <span className="text-sm text-body-dark font-bold text-heading hover:text-accent">EVENTS</span>
           </Link>
           <Menu
             as="div"
-            className="relative inline-block ltr:text-left rtl:text-right z-10 px-5"
+            className="relative inline-block ltr:text-left rtl:text-right z-10 px-8"
           >
             {({open}) => (
               <>
                 <Menu.Button
                   className={cn(
-                    'flex items-center shrink-0 text-sm md:text-base font-semibold h-11 focus:outline-none text-heading hover:text-accent'
+                    'flex items-center shrink-0 text-sm md:text-base font-bold text-body-dark h-11 focus:outline-none text-heading hover:text-accent'
                   )}
                 >
-                  <span className="whitespace-nowrap text-xs">MORE</span>
+                  <span className="whitespace-nowrap text-sm font-bold text-heading hover:text-accent">MORE</span>
                   <span className="flex ltr:pl-2.5 rtl:pr-2.5 ltr:ml-auto rtl:mr-auto">
                       <ArrowDownIcon
-                        className={cn('h-2 w-2', {
+                        className={cn('h-3 w-3', {
                           'transform rotate-180': open,
                         })}
                       />
@@ -729,7 +737,7 @@ const Header = ({ layout }: { layout: string }) => {
                                 active ? 'text-accent' : 'text-body-dark'
                               )}
                             >
-                              <span className="whitespace-nowrap text-xs">About Us</span>
+                              <span className="whitespace-nowrap text-sm text-body-dark">About Us</span>
                             </Link>
                           )}
                         </Menu.Item>
@@ -742,7 +750,7 @@ const Header = ({ layout }: { layout: string }) => {
                                 active ? 'text-accent' : 'text-body-dark'
                               )}
                             >
-                              <span className="whitespace-nowrap text-xs">Blog</span>
+                              <span className="whitespace-nowrap text-sm text-body-dark">Blog</span>
                             </Link>
                           )}
                         </Menu.Item>
@@ -755,7 +763,7 @@ const Header = ({ layout }: { layout: string }) => {
                                 active ? 'text-accent' : 'text-body-dark'
                               )}
                             >
-                              <span className="whitespace-nowrap text-xs">Contact Us</span>
+                              <span className="whitespace-nowrap text-sm text-body-dark">Contact Us</span>
                             </Link>
                           )}
                         </Menu.Item>

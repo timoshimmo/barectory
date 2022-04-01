@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Head from 'next/head';
 import BackButton from '@/components/ui/back-button';
 import { AddToCartAlt } from '@/components/products/add-to-cart/add-to-cart-alt';
 import usePrice from '@/lib/use-price';
@@ -114,6 +115,9 @@ const Details: React.FC<Props> = ({
 
   return (
     <div className="main-container flex flex-col min-h-screen transition-colors duration-150 bg-gray-100">
+      <Head>
+       <title>Barectory</title>
+     </Head>
       <article className="rounded-lg bg-light">
         <div className="flex flex-col border-b md:flex-row border-border-200 border-opacity-70">
           <div className="p-6 pt-10 md:w-1/2 lg:p-14 xl:p-16">
@@ -162,13 +166,13 @@ const Details: React.FC<Props> = ({
                   :
                   (
                     <>
-                    unit && !hasVariations && (
+                    {unit && !hasVariations && (
                       <span className="block mt-2 text-sm font-normal text-body md:mt-3">
                         {unit}
                       </span>
-                    )
+                    )}
 
-                    description && (
+                    {description && (
                       <div className="mt-3 text-sm leading-7 md:mt-4 text-body">
                         <Truncate
                           character={150}
@@ -180,7 +184,7 @@ const Details: React.FC<Props> = ({
                           {description}
                         </Truncate>
                       </div>
-                    )
+                    )}
                     </>
                   )
                 }
