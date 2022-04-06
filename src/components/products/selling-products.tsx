@@ -95,6 +95,10 @@ export default function SellingProductsGrid({ className, limit = 6 }: Props) {
           }}
           breakpoints={breakpoints}
           slidesPerView={5}
+          autoplay={{
+            delay: 4500,
+            disableOnInteraction: true,
+          }}
         >
         <div className="col-span-3 grid gap-6 xl:gap-8 grid-cols-[repeat(auto-fill,minmax(260px,1fr))] xl:grid-cols-[repeat(auto-fill,minmax(250px,1fr))] 2xl:grid-cols-3 3xl:grid-cols-[repeat(auto-fill,minmax(360px,1fr))]">
           {isLoading && !products.length

@@ -55,6 +55,7 @@ const Header = ({ layout }: { layout: string }) => {
   const [isShowingWines, setIsShowingWines] = useState(false);
   const [isShowingRDrink, setIsShowingRDrink] = useState(false);
   const [isShowingNonAlcohol, setIsShowingNonAlcohol] = useState(false);
+  const [isShowingMore, setIsShowingMore] = useState(false);
   const [open, setOpen] = useState(false);
   const [selectedCity, setSelectedCity] = useState('');
 
@@ -72,6 +73,14 @@ const Header = ({ layout }: { layout: string }) => {
     function handleCart() {
       router.push(ROUTES.CART);
     }
+
+    const onMouseEnterMore = () => {
+       setIsShowingMore(true);
+    }
+
+    const onMouseLeaveMore = () => {
+      setIsShowingMore(false);
+     }
 
     const onMouseEnterBeerButton = () => {
        setIsShowingBeer(true);
@@ -204,12 +213,12 @@ const Header = ({ layout }: { layout: string }) => {
 
           <ul className="items-center shrink-0 hidden lg:flex space-x-12 rtl:space-x-reverse">
           <button
-            className="hidden product-cart lg:flex relative hover:text-underline"
+            className="hidden product-cart lg:flex relative hover:text-underline flex items-center justify-start border border-light rounded px-2 py-2"
             onClick={onOpen}
           >
             <MapPin className="w-5 h-5 text-light" />
-            <span className="text-xs h-5 flex max-w-[100px] items-center justify-center text-light ml-1">
-              Update Delivery Location
+            <span className="text-xs h-5 flex max-w-[150px] item-center py-1 text-light ml-1">
+              CHANGE LOCATION
             </span>
           </button>
             <div className="flex items-center space-x-4 rtl:space-x-reverse">
@@ -687,8 +696,9 @@ const Header = ({ layout }: { layout: string }) => {
           <Menu
             as="div"
             className="relative inline-block ltr:text-left rtl:text-right z-10 px-8"
+            onMouseEnter={onMouseEnterMore}
+            onMouseLeave={onMouseLeaveMore}
           >
-            {({open}) => (
               <>
                 <Menu.Button
                   className={cn(
@@ -696,16 +706,10 @@ const Header = ({ layout }: { layout: string }) => {
                   )}
                 >
                   <span className="whitespace-nowrap text-sm font-bold text-heading hover:text-accent">MORE</span>
-                  <span className="flex ltr:pl-2.5 rtl:pr-2.5 ltr:ml-auto rtl:mr-auto">
-                      <ArrowDownIcon
-                        className={cn('h-3 w-3', {
-                          'transform rotate-180': open,
-                        })}
-                      />
-                  </span>
                 </Menu.Button>
                 <Transition
                   as={Fragment}
+                  show={isShowingMore}
                   enter="transition ease-out duration-100"
                   enterFrom="transform opacity-0 scale-95"
                   enterTo="transform opacity-100 scale-100"
@@ -719,6 +723,8 @@ const Header = ({ layout }: { layout: string }) => {
                     className={cn(
                       'absolute py-2 z-100 w-40 h-auto bg-light rounded shadow-700 focus:outline-none overflow-hidden'
                     )}
+                    onMouseEnter={onMouseEnterMore}
+                    onMouseLeave={onMouseLeaveMore}
                   >
                     <Scrollbar
                       className="w-full h-full"
@@ -737,7 +743,7 @@ const Header = ({ layout }: { layout: string }) => {
                                 active ? 'text-accent' : 'text-body-dark'
                               )}
                             >
-                              <span className="whitespace-nowrap text-sm text-body-dark">About Us</span>
+                              <span className="whitespace-nowrap text-sm">About Us</span>
                             </Link>
                           )}
                         </Menu.Item>
@@ -750,7 +756,7 @@ const Header = ({ layout }: { layout: string }) => {
                                 active ? 'text-accent' : 'text-body-dark'
                               )}
                             >
-                              <span className="whitespace-nowrap text-sm text-body-dark">Blog</span>
+                              <span className="whitespace-nowrap text-sm">Blog</span>
                             </Link>
                           )}
                         </Menu.Item>
@@ -763,7 +769,7 @@ const Header = ({ layout }: { layout: string }) => {
                                 active ? 'text-accent' : 'text-body-dark'
                               )}
                             >
-                              <span className="whitespace-nowrap text-sm text-body-dark">Contact Us</span>
+                              <span className="whitespace-nowrap text-sm">Contact Us</span>
                             </Link>
                           )}
                         </Menu.Item>
@@ -771,7 +777,6 @@ const Header = ({ layout }: { layout: string }) => {
                   </Menu.Items>
                 </Transition>
               </>
-            )}
           </Menu>
       </div>
       <Transition show={open} as={Fragment}>
@@ -849,6 +854,7 @@ const Header = ({ layout }: { layout: string }) => {
                              className={cn(
                                'flex items-center shrink-0 text-sm md:text-base bg-light h-10 w-100 focus:outline-none text-body xl:px-4 border border-border-200 rounded-lg'
                              )}
+
                            >
                              {({ open }) => (
                                <>

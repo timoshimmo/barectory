@@ -155,17 +155,14 @@ const Details: React.FC<Props> = ({
               onPositionChange={onWaypointPositionChange}
             >
               <div className="w-full">
+              {cityStatus !== "FOUND" &&
+                <h2 className="block mt-2 text-md font-normal text-body md:mt-3 font-bold text-heading" style={{ color: 'red', fontWeight: 800 }}>Delivery is currently not available in your city</h2>}
                 <h1
                   className="font-semibold text-lg md:text-xl xl:text-2xl tracking-tight text-heading"
                 >
                   {name}
                 </h1>
 
-                {cityStatus !== "FOUND" ?
-                  (<h4 className="block mt-2 text-md font-normal text-body md:mt-3 font-bold text-heading" style={{ color: 'red' }}>Delivery is currently not available in your city</h4>)
-                  :
-                  (
-                    <>
                     {unit && !hasVariations && (
                       <span className="block mt-2 text-sm font-normal text-body md:mt-3">
                         {unit}
@@ -185,9 +182,6 @@ const Details: React.FC<Props> = ({
                         </Truncate>
                       </div>
                     )}
-                    </>
-                  )
-                }
 
                 {hasVariations ? (
                   <>

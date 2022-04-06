@@ -8,6 +8,7 @@ import FilterBar from './filter-bar';
 import type { HomePageProps } from '@/types';
 import PopularProductsGrid from '@/components/products/popular-products';
 import SellingProductsGrid from '@/components/products/selling-products';
+import BeerProductsGrid from '@/components/products/beer-products';
 import SubscribePopup from '@/components/subscribe/popup';
 import { Image } from '@/components/ui/image';
 import { adsPlaceholder } from '@/lib/placeholders';
@@ -33,6 +34,12 @@ export default function Modern({ variables }: HomePageProps) {
         </div>
         <div className="mt-5" style={{marginTop: 2.2 + 'em'}}>
           <SellingProductsGrid variables={variables.products} />
+        </div>
+        <div className="mt-5 mb-20 w-full">
+            <Ads />
+        </div>
+        <div className="mt-5" style={{marginTop: 2.2 + 'em'}}>
+          <BeerProductsGrid />
         </div>
         <div className="mt-5 mb-20 w-full">
             <Ads />
