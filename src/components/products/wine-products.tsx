@@ -19,9 +19,9 @@ interface Props {
   variables: any;
 }
 
-export default function BeerProductsGrid({
+export default function WineProductsGrid({
   className,
-  limit = 30,
+  limit = 50,
   variables,
 }: Props) {
   const { t } = useTranslation('common');
@@ -70,14 +70,14 @@ export default function BeerProductsGrid({
   if (error) return <ErrorMessage message={error.message} />;
   if (!isLoading && !products.length) {
     return (
-      <SectionBlock title={t('Beer')}>
+      <SectionBlock title={t('Wine')}>
         <NotFound text="text-not-found" className="mx-auto w-7/12" />
       </SectionBlock>
     );
   }
 
   return (
-    <SectionBlock title={t('Beer')}>
+    <SectionBlock title={t('Wine')}>
       <div className={classNames(className, 'w-full relative')}>
         <Swiper
           id="category-card-menu"
@@ -102,7 +102,7 @@ export default function BeerProductsGrid({
                     <ProductLoader key={i} uniqueKey={`product-${i}`} />
                   </SwiperSlide>
                 ))
-              : products.slice(19, 25).map((product, idx: number) => (
+              : products.slice(26, 35).map((product, idx: number) => (
                   <SwiperSlide key={idx}>
                     <ProductCard product={product} key={product?.id} />
                   </SwiperSlide>

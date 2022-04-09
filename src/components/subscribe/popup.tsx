@@ -503,6 +503,4 @@ export default function SubscribePopup() {
       </Transition>
     </>
   );
-
-
 }

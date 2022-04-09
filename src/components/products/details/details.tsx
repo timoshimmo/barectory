@@ -156,7 +156,7 @@ const Details: React.FC<Props> = ({
             >
               <div className="w-full">
               {cityStatus !== "FOUND" &&
-                <h2 className="block mt-2 text-md font-normal text-body md:mt-3 font-bold text-heading" style={{ color: 'red', fontWeight: 800 }}>Delivery is currently not available in your city</h2>}
+                <h1 className="block mt-2 text-md font-normal text-body md:mt-3 font-bold text-heading" style={{ color: 'red', fontWeight: 800, textTransform: 'uppercase' }}>Delivery is currently not available in your city. Click on the change location button in the top menu to update your city.</h1>}
                 <h1
                   className="font-semibold text-lg md:text-xl xl:text-2xl tracking-tight text-heading"
                 >
@@ -264,7 +264,7 @@ const Details: React.FC<Props> = ({
             {t('text-details')}
           </h2>
           {cityStatus !== "FOUND" ?
-            (<h6 style={{ color: 'red' }}>Delivery is currently not available in your city</h6>)
+            (<h6 style={{ color: 'red' }}>Delivery is currently not available in your city. Click on the change location button in the top menu to update your city.</h6>)
             :
             (<p className="text-sm text-body">{description}</p>)
           }

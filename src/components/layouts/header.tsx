@@ -62,7 +62,7 @@ const Header = ({ layout }: { layout: string }) => {
   useEffect(() => {
     //localStorage.setItem("cityName", "Ikoyi");
     setSelectedCity(window.localStorage.getItem("cityName"));
-}, [selectedCity]);
+}, []);
   const isFlattenHeader =
     !displayHeaderSearch && isHomePage && layout !== 'modern';
 
@@ -257,7 +257,7 @@ const Header = ({ layout }: { layout: string }) => {
           </ul>
         </div>
       </header>
-      <div className="px-5 md:px-2 flex w-full justify-center">
+      <div className="px-5 flex w-full justify-center">
           <Menu
             as="div"
             className="relative inline-block ltr:text-left rtl:text-right z-10 px-8"
