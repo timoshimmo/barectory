@@ -45,7 +45,7 @@ function SolidCardCategory({ items }: any) {
 
   const breakpoints = {
     320: {
-      slidesPerView: 2,
+      slidesPerView: 3.5,
       spaceBetween: 15,
     },
 
@@ -92,7 +92,8 @@ function SolidCardCategory({ items }: any) {
         breakpoints={breakpoints}
         autoplay={{
           delay: 3500,
-          disableOnInteraction: true,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true
         }}
         cssMode={true}
       >

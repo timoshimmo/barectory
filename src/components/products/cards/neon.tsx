@@ -10,6 +10,8 @@ import { Product } from '@/framework/types';
 import { productPlaceholder } from '@/lib/placeholders';
 import { PlusIcon } from '@/components/icons/plus-icon';
 import { hotPlaceholder } from '@/lib/placeholders';
+import { useModalAction } from '@/components/ui/modal/modal.context';
+import Button from '@/components/ui/button';
 
 type NeonProps = {
   product: any;
@@ -44,19 +46,12 @@ const Neon: React.FC<NeonProps> = ({ product, className }) => {
     amount: max_price,
   });
 
-
-
-{/*
-
-  import { useModalAction } from '@/components/ui/modal/modal.context';
-
   const { openModal } = useModalAction();
 
   function handleProductQuickView() {
     return openModal('PRODUCT_DETAILS', product.slug);
   }
 
-  */}
   return (
       <article
         className={cn(
@@ -74,7 +69,7 @@ const Neon: React.FC<NeonProps> = ({ product, className }) => {
               alt={name}
               layout="fill"
               objectFit="contain"
-              className="product-image"
+              className="product-image p-3"
             />
             {discount && (
               <div className="absolute flex w-full justify-between items-start top-3 md:top-1 py-1 font-semibold px-1.5">
@@ -129,27 +124,41 @@ const Neon: React.FC<NeonProps> = ({ product, className }) => {
           </h3>
           {/* End of product title */}
 
-          {product_type.toLowerCase() === 'variable' ? (
-            <>
-              {Number(quantity) > 0 && (
-                <button
-                  className="group w-full h-7 md:h-9 flex items-center justify-between w-full text-xs transition-colors bg-gray-100 rounded group h-7 md:h-9 md:text-sm text-body-dark hover:bg-gray-200 hover:bg-gray-200 hover:text-body-dark focus:outline-none focus:bg-gray-200 focus:border-gray-200 focus:text-body-dark"
-                  disabled={cityStatus !== "FOUND"}
-                >
-                  <span className="flex-1">{t('text-add')}</span>
-                  <span className="w-7 h-7 md:w-9 md:h-9 bg-gray-200 grid place-items-center ltr:rounded-tr rtl:rounded-tl ltr:rounded-br rtl:rounded-bl transition-colors duration-200 group-hover:bg-gray-300 group-focus:bg-gray-300">
-                    <PlusIcon className="w-4 h-4 stroke-2" />
-                  </span>
-                </button>
-              )}
-            </>
-          ) : (
-            <>
-              {Number(quantity) > 0 && (
-                <AddToCartAlt variant="neon" data={product} disabled={cityStatus !== "FOUND"}/>
-              )}
-            </>
-          )}
+          <Button
+            className="h-14 w-full flex-shrink max-w-sm text-sm"
+            onClick={handleProductQuickView}
+            size="small"
+            disabled={cityStatus !== "FOUND" || Number(quantity) <= 0}
+          >
+            {t('text-add-to-cart')}
+          </Button>
+
+          {/*
+
+                      {product_type.toLowerCase() === 'variable' ? (
+                        <>
+                          {Number(quantity) > 0 && (
+                            <button
+                              className="group w-full h-7 md:h-9 flex items-center justify-between w-full text-xs transition-colors bg-gray-100 rounded group h-7 md:h-9 md:text-sm text-body-dark hover:bg-gray-200 hover:bg-gray-200 hover:text-body-dark focus:outline-none focus:bg-gray-200 focus:border-gray-200 focus:text-body-dark"
+                              disabled={cityStatus !== "FOUND"}
+                            >
+                              <span className="flex-1">{t('text-add')}</span>
+                              <span className="w-7 h-7 md:w-9 md:h-9 bg-gray-200 grid place-items-center ltr:rounded-tr rtl:rounded-tl ltr:rounded-br rtl:rounded-bl transition-colors duration-200 group-hover:bg-gray-300 group-focus:bg-gray-300">
+                                <PlusIcon className="w-4 h-4 stroke-2" />
+                              </span>
+                            </button>
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          {Number(quantity) > 0 && (
+                            <AddToCartAlt variant="neon" data={product} disabled={cityStatus !== "FOUND"}/>
+                          )}
+                        </>
+                      )}
+
+          */}
+
 
           {Number(quantity) <= 0 && (
             <div className="bg-red-500 rounded text-xs text-center text-light px-2 py-1.5 sm:py-2.5">

@@ -11,6 +11,8 @@ import SellingProductsGrid from '@/components/products/selling-products';
 import BeerProductsGrid from '@/components/products/beer-products';
 import SpiritProductsGrid from '@/components/products/spirit-products';
 import WineProductsGrid from '@/components/products/wine-products';
+import ReadyToDrinkProductsGrid from '@/components/products/ready-products';
+import NonAlcoholicProductsGrid from '@/components/products/non-alcoholic-products';
 import SubscribePopup from '@/components/subscribe/popup';
 import { Image } from '@/components/ui/image';
 import { adsPlaceholder } from '@/lib/placeholders';
@@ -52,6 +54,16 @@ export default function Modern({ variables }: HomePageProps) {
         <div className="mt-5 mb-20 w-full">
           <Ads />
         </div>
+        <div className="mt-5" style={{marginTop: 2.2 + 'em'}}>
+          <ReadyToDrinkProductsGrid />
+        </div>
+        <div className="mt-5" style={{marginTop: 2.2 + 'em'}}>
+          <NonAlcoholicProductsGrid />
+        </div>
+        <div className="mt-5 mb-20 w-full">
+          <Ads />
+        </div>
+        
         {/*
           <Element name="slider" className="px-4 xl:px-0">
           <ProductGridHome className="py-6" variables={variables.products} />

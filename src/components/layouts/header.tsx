@@ -835,7 +835,7 @@ const Header = ({ layout }: { layout: string }) => {
                   </div>
                   <div className=" modal-body flex flex-col justify-center">
                     <p className=" heading mt-4 text-sm text-light text-light">
-                      Barectory is currently not available in your area.
+                      Barectory is currently not available in selected areas.
                     </p>
                     <p className=" heading mb-5 text-sm text-light text-light">
                       Update to our one of service areas to purchase any of our products.

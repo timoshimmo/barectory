@@ -17,7 +17,7 @@ import classNames from 'classnames';
 import { useIsRTL } from '@/lib/locals';
 import { ArrowPrevIcon } from '@/components/icons/arrow-prev';
 import { ArrowNextIcon } from '@/components/icons/arrow-next';
-import { Swiper, SwiperSlide, Navigation } from '@/components/ui/slider';
+import { Swiper, SwiperSlide, Navigation, Autoplay } from '@/components/ui/slider';
 
 interface Props {
   className?: string;
@@ -38,8 +38,8 @@ export default function SellingProductsGrid({ className, limit = 6 }: Props) {
 
   const breakpoints = {
     320: {
-      slidesPerView: 1,
-      spaceBetween: 20,
+      slidesPerView: 2.5,
+      spaceBetween: 13,
     },
 
     540: {
@@ -86,7 +86,7 @@ export default function SellingProductsGrid({ className, limit = 6 }: Props) {
 
         <Swiper
           id="category-card-menu"
-          modules={[Navigation]}
+          modules={[Navigation, Autoplay]}
           navigation={{
             prevEl,
             nextEl,
@@ -96,8 +96,9 @@ export default function SellingProductsGrid({ className, limit = 6 }: Props) {
           breakpoints={breakpoints}
           slidesPerView={5}
           autoplay={{
-            delay: 4500,
-            disableOnInteraction: true,
+            delay: 3400,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true
           }}
         >
         <div className="col-span-3 grid gap-6 xl:gap-8 grid-cols-[repeat(auto-fill,minmax(260px,1fr))] xl:grid-cols-[repeat(auto-fill,minmax(250px,1fr))] 2xl:grid-cols-3 3xl:grid-cols-[repeat(auto-fill,minmax(360px,1fr))]">

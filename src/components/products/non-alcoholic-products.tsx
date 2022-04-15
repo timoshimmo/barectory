@@ -19,9 +19,9 @@ interface Props {
   variables: any;
 }
 
-export default function PopularProductsGrid({
+export default function NonAlcoholicProductsGrid({
   className,
-  limit = 10,
+  limit = 50,
   variables,
 }: Props) {
   const { t } = useTranslation('common');
@@ -70,14 +70,14 @@ export default function PopularProductsGrid({
   if (error) return <ErrorMessage message={error.message} />;
   if (!isLoading && !products.length) {
     return (
-      <SectionBlock title={t('text-popular-products')}>
+      <SectionBlock title={t('Non-Alcoholic')}>
         <NotFound text="text-not-found" className="mx-auto w-7/12" />
       </SectionBlock>
     );
   }
 
   return (
-    <SectionBlock title={t('text-popular-products')}>
+    <SectionBlock title={t('Non-Alcoholic')}>
       <div className={classNames(className, 'w-full relative')}>
         <Swiper
           id="category-card-menu"
@@ -91,7 +91,7 @@ export default function PopularProductsGrid({
           breakpoints={breakpoints}
           slidesPerView={5}
           autoplay={{
-            delay: 4000,
+            delay: 5000,
             disableOnInteraction: false,
             pauseOnMouseEnter: true
           }}
@@ -103,7 +103,7 @@ export default function PopularProductsGrid({
                     <ProductLoader key={i} uniqueKey={`product-${i}`} />
                   </SwiperSlide>
                 ))
-              : products.map((product, idx: number) => (
+              : products.slice(34, 41).map((product, idx: number) => (
                   <SwiperSlide key={idx}>
                     <ProductCard product={product} key={product?.id} />
                   </SwiperSlide>

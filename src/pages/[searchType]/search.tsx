@@ -69,7 +69,7 @@ const GetLayout = (page: React.ReactElement) => {
       <>
         <div className="w-full bg-light">
           <div className="mx-auto flex min-h-screen w-full max-w-1920 px-5 py-10 rtl:space-x-reverse lg:space-x-10 xl:py-14 xl:px-16">
-            <div className="hidden w-80 shrink-0 lg:block">
+            <div className="hidden shrink-0 lg:block" style={{ width: '20%' }}>
               <StickyBox offsetTop={140} offsetBottom={30}>
                 <SidebarFilter />
               </StickyBox>

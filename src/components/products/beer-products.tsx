@@ -11,7 +11,7 @@ import classNames from 'classnames';
 import { useIsRTL } from '@/lib/locals';
 import { ArrowPrevIcon } from '@/components/icons/arrow-prev';
 import { ArrowNextIcon } from '@/components/icons/arrow-next';
-import { Swiper, SwiperSlide, Navigation } from '@/components/ui/slider';
+import { Swiper, SwiperSlide, Navigation, Autoplay } from '@/components/ui/slider';
 
 interface Props {
   className?: string;
@@ -34,8 +34,8 @@ export default function BeerProductsGrid({
 
   const breakpoints = {
     320: {
-      slidesPerView: 1,
-      spaceBetween: 20,
+      slidesPerView: 2.5,
+      spaceBetween: 13,
     },
 
     540: {
@@ -81,7 +81,7 @@ export default function BeerProductsGrid({
       <div className={classNames(className, 'w-full relative')}>
         <Swiper
           id="category-card-menu"
-          modules={[Navigation]}
+          modules={[Navigation, Autoplay]}
           navigation={{
             prevEl,
             nextEl,
@@ -91,8 +91,9 @@ export default function BeerProductsGrid({
           breakpoints={breakpoints}
           slidesPerView={5}
           autoplay={{
-            delay: 4000,
-            disableOnInteraction: true,
+            delay: 5000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true
           }}
         >
           <div className="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-6 gap-y-10 lg:grid-cols-[repeat(auto-fill,minmax(200px,1fr))] xl:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] xl:gap-8 xl:gap-y-12 2xl:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] 3xl:grid-cols-[repeat(auto-fill,minmax(360px,1fr))]">

@@ -33,6 +33,8 @@ import { ArrowDownIcon } from '@/components/icons/arrow-down';
 import Link from '@/components/ui/link';
 import { Image } from '@/components/ui/image';
 import { hotPlaceholder } from '@/lib/placeholders';
+import { Can } from '@/components/icons/can';
+import { Bottle } from '@/components/icons/bottle';
 
 type Props = {
   product: Product;
@@ -158,10 +160,39 @@ const Details: React.FC<Props> = ({
               {cityStatus !== "FOUND" &&
                 <h1 className="block mt-2 text-md font-normal text-body md:mt-3 font-bold text-heading" style={{ color: 'red', fontWeight: 800, textTransform: 'uppercase' }}>Delivery is currently not available in your city. Click on the change location button in the top menu to update your city.</h1>}
                 <h1
-                  className="font-semibold text-lg md:text-xl xl:text-2xl tracking-tight text-heading"
+                  className="font-semibold text-lg md:text-xl xl:text-2xl tracking-tight text-heading my-4"
                 >
                   {name}
                 </h1>
+                <div className="flex">
+                <div className="flex items-center justify-center flex-col mr-5 ">
+                  <div
+                      role="button"
+                      className={cn(
+                        'h-17 w-17 p-2 flex items-center justify-center border-2 rounded-full border-accent bg-accent cursor-pointer'
+                      )}
+                    >
+                      <Can className="w-10 h-10 text-light" />
+                    </div>
+                    <span className="flex items-center my-2 text-sm font-semibold">
+                      Can
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-center flex-col">
+                    <div
+                      role="button"
+                      className={cn(
+                        'h-17 w-17 p-2 flex items-center justify-center border-2 rounded-full border-accent bg-accent cursor-pointer'
+                      )}
+                      >
+                      <Bottle className="w-10 h-10 text-light" />
+                    </div>
+                    <span className="flex items-center my-2 text-sm font-semibold">
+                      Bottle
+                    </span>
+                  </div>
+                </div>
+
 
                     {unit && !hasVariations && (
                       <span className="block mt-2 text-sm font-normal text-body md:mt-3">
