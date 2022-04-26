@@ -12,6 +12,8 @@ import { useIsRTL } from '@/lib/locals';
 import { ArrowPrevIcon } from '@/components/icons/arrow-prev';
 import { ArrowNextIcon } from '@/components/icons/arrow-next';
 import { Swiper, SwiperSlide, Navigation, Autoplay } from '@/components/ui/slider';
+import Link from '@/components/ui/link';
+import cn from 'classnames';
 
 interface Props {
   className?: string;
@@ -77,8 +79,16 @@ export default function SpiritProductsGrid({
   }
 
   return (
-    <SectionBlock title={t('Spirits')}>
+    <SectionBlock>
       <div className={classNames(className, 'w-full relative')}>
+        <Link
+          href='grocery/search?category=spirits'
+          className={cn(
+            'flex space-x-4 items-center py-2.5 w-20 font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
+          )}
+        >
+          <span className="whitespace-nowrap text-3xl">Spirits</span>
+        </Link>
         <Swiper
           id="category-card-menu"
           modules={[Navigation, Autoplay]}

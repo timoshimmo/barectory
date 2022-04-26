@@ -3,9 +3,13 @@ import { siteSettings } from '@/settings/site';
 import Link from '@/components/ui/link';
 import Logo from '@/components/ui/logo';
 import SubscriptionWidget from '@/components/settings/subscribe-to-newsletter';
+import { getIcon } from '@/lib/get-icon';
+import { useSettings } from '@/framework/settings';
+import * as socialIcons from '@/components/icons/social';
 
 const Footer = () => {
   const { t } = useTranslation('common');
+  const { settings } = useSettings();
   return (
     <div className="flex w-full flex-col border-gray-800 bg-white px-5 md:px-10 lg:border-b-8 lg:px-[50px] xl:px-16">
       {/* Top */}
@@ -47,7 +51,6 @@ const Footer = () => {
           </div>
         ))}
 
-      {/*
         <div className="col-span-full md:col-span-2 lg:col-auto">
             <SubscriptionWidget
               title="text-subscribe-now"
@@ -55,12 +58,12 @@ const Footer = () => {
             />
           </div>
 
-      */}
+
       </div>
 
       {/* Bottom */}
-      <div className="mt-8 flex w-full flex-col items-center border-t border-gray-200 pt-8 pb-12 lg:mt-0 lg:flex-row lg:justify-between lg:border-t-0">
-        <span className="order-2 text-sm text-heading lg:order-1">
+      <div className="mt-8 flex w-full flex-col items-end border-t border-gray-200 pt-8 pb-12 lg:mt-0 lg:flex-row lg:justify-between lg:border-t-0">
+        <span className="order-3 text-sm text-heading lg:order-1">
           &copy; {t('text-copyright')} {new Date().getFullYear()}{' '}
           <Link
             className="font-bold text-heading transition-colors hover:text-accent"
@@ -71,8 +74,33 @@ const Footer = () => {
           {t('text-rights-reserved')}
         </span>
 
+        <div className="flex flex-col order-1 lg:order-2">
+          <span className="mb-2 font-semibold text-heading text-center">
+            {t('text-follow-us')}
+          </span>
+          <div className="flex items-center justify-center">
+            {settings?.contactDetails?.socials?.map(
+              (item: any, index: number) => (
+                <a
+                  key={index}
+                  href={item?.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`text-muted transition-colors duration-300 focus:outline-none ltr:mr-8 ltr:last:mr-0 rtl:ml-8 rtl:last:ml-0 hover:${item.hoverClass}`}
+                >
+                  {getIcon({
+                    iconList: socialIcons,
+                    iconName: item?.icon,
+                    className: 'w-4 h-4',
+                  })}
+                </a>
+              )
+            )}
+          </div>
+        </div>
+
         {siteSettings.footer.payment_methods && (
-          <div className="order-1 mb-5 flex items-center space-x-5 rtl:space-x-reverse lg:order-2 lg:mb-0">
+          <div className="order-2 mb-5 flex items-center space-x-5 rtl:space-x-reverse lg:order-3 lg:mb-0">
             {siteSettings.footer.payment_methods.map((method, idx) => (
               <Link
                 className="relative flex h-5 w-auto items-center overflow-hidden"

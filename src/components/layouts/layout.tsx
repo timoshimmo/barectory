@@ -1,5 +1,6 @@
 import useLayout from '@/lib/hooks/use-layout';
 import Head from 'next/head';
+import dynamic from 'next/dynamic';
 import Header from './header';
 import HeaderMinimal from './header-minimal';
 import MobileNavigation from './mobile-navigation';
@@ -8,17 +9,20 @@ import { useMediaQuery } from 'react-responsive';
 import HeaderMobile from './header-mobile';
 
 
+
 export default function SiteLayout({ children }: React.PropsWithChildren<{}>) {
   const { layout } = useLayout();
-  const isDesktopOrLaptop = useMediaQuery({
-    query: '(min-width: 768px)'
-  })
   return (
     <div className="flex min-h-screen flex-col bg-gray-100 transition-colors duration-150">
       <Head>
        <title>Barectory</title>
       </Head>
-      {isDesktopOrLaptop ? <Header layout={layout} /> : <HeaderMobile />}
+      <div className="w-full desktop-layout">
+        <Header layout="modern" />
+      </div>
+      <div className="w-full mobile-layout">
+        <HeaderMobile />
+      </div>
       {children}
       <Footer />
     </div>

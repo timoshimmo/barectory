@@ -25,7 +25,12 @@ export default function GeneralLayout({
       <Head>
        <title>Barectory</title>
      </Head>
-      {isDesktopOrLaptop ? <Header layout={layout} /> : <HeaderMobile />}
+     <div className="w-full desktop-layout">
+       <Header layout="modern" />
+     </div>
+     <div className="w-full mobile-layout">
+       <HeaderMobile />
+     </div>
       {children}
       <Footer />
     </div>

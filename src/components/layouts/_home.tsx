@@ -1,10 +1,13 @@
 import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
 import { useTranslation } from 'next-i18next';
 import { useAtom } from 'jotai';
 import cn from 'classnames';
-import Header from './header';
+const Header = dynamic(() => import('./header'), {
+  ssr: false,
+});
 import HeaderMobile from './header-mobile';
 import HeaderMinimal from './header-minimal';
 import MobileNavigation from './mobile-navigation';
@@ -48,7 +51,12 @@ export default function HomeLayout({
       <Head>
        <title>Barectory</title>
      </Head>
-      {mediaQuery ? <Header layout={layout} /> : <HeaderMobile />}
+     <div className="w-full desktop-layout">
+       <Header layout="modern" />
+     </div>
+     <div className="w-full mobile-layout">
+       <HeaderMobile />
+     </div>
       <div className="min-h-screen">{children}</div>
     {/*
 

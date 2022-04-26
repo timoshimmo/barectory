@@ -105,7 +105,6 @@ export const ContactPage = () => {
             <ContactForm />
           </div>
         </div>
-        <Footer />
       </div>
     </>
   );

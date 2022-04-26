@@ -6,7 +6,6 @@ import { useAtom } from 'jotai';
 import { drawerAtom } from '@/store/drawer-atom';
 
 const headerLinks = [
-  { href: ROUTES.HOME, label: 'Home' },
   { href: ROUTES.OFFERS, label: 'nav-menu-offer' },
   { href: ROUTES.HELP, label: 'About' },
   { href: ROUTES.CONTACT, label: 'nav-menu-contact' },
@@ -25,6 +24,63 @@ export default function MobileMainMenu() {
   return (
     <DrawerWrapper>
       <ul className="flex-grow">
+        <li>
+          <button
+            onClick={() => handleClick(ROUTES.HOME)}
+            className="flex items-center py-3 px-5 md:px-8 text-sm font-semibold capitalize text-heading transition duration-200 hover:text-accent cursor-pointer"
+          >
+            Home
+          </button>
+        </li>
+        <hr />
+        <ul className="py-2">
+          <li>
+            <span className="py-3 px-5 md:px-8 text-sm font-bold capitalize text-heading text-accent">
+              Categories
+            </span>
+          </li>
+          <li>
+            <button
+              onClick={() => handleClick('grocery/search?category=beer')}
+              className="flex items-center py-3 px-5 md:px-8 text-sm font-semibold capitalize text-heading transition duration-200 hover:text-accent cursor-pointer"
+            >
+              Beer
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => handleClick('grocery/search?category=spirits')}
+              className="flex items-center py-3 px-5 md:px-8 text-sm font-semibold capitalize text-heading transition duration-200 hover:text-accent cursor-pointer"
+            >
+              Spirits
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => handleClick('grocery/search?category=wines')}
+              className="flex items-center py-3 px-5 md:px-8 text-sm font-semibold capitalize text-heading transition duration-200 hover:text-accent cursor-pointer"
+            >
+              Wines
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => handleClick('grocery/search?category=ready-todrink')}
+              className="flex items-center py-3 px-5 md:px-8 text-sm font-semibold capitalize text-heading transition duration-200 hover:text-accent cursor-pointer"
+            >
+              Ready to Drink
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => handleClick('grocery/search?category=non-alcoholic')}
+              className="flex items-center py-3 px-5 md:px-8 text-sm font-semibold capitalize text-heading transition duration-200 hover:text-accent cursor-pointer"
+            >
+              Non-Alcoholic
+            </button>
+          </li>
+        </ul>
+        <hr />
         {headerLinks.map(({ href, label }) => (
           <li key={`${href}${label}`}>
             <button
@@ -35,6 +91,7 @@ export default function MobileMainMenu() {
             </button>
           </li>
         ))}
+
       </ul>
     </DrawerWrapper>
   );

@@ -161,6 +161,18 @@ const Header = ({ layout }: { layout: string }) => {
          router.push('grocery/search?category=spirits');
        }
 
+       function handleWines() {
+         router.push('grocery/search?category=wines');
+       }
+
+       function handleReadyToDrink() {
+         router.push('grocery/search?category=ready-todrink');
+       }
+
+       function handleNonAlcoholic() {
+         router.push('grocery/search?category=non-alcoholic');
+       }
+
 {/*
 
   {isHomePage ? (
@@ -193,7 +205,7 @@ const Header = ({ layout }: { layout: string }) => {
 
 
   return (
-    <div className="fixed w-full z-50 header-modern-primary bg-gray-100 border-b border-border-200 shadow-sm">
+    <div className="fixed w-full z-50 bg-gray-100 border-b border-border-200 shadow-sm">
       <header
         className={cn('site-header-with-search h-14 md:h-16 bg-accent lg:h-22')}
       >
@@ -207,21 +219,21 @@ const Header = ({ layout }: { layout: string }) => {
             <Logo className="mx-0" />
           </div>
 
-          <div className="w-full px-10 py-3 mx-auto lg:block xl:w-11/12 2xl:w-10/12">
+          <div className="w-full px-10 py-3 mx-auto lg:block">
             <SearchWithSuggestion label={t('text-search-label')} variant="minimal" />
           </div>
 
-          <ul className="items-center shrink-0 hidden lg:flex space-x-12 rtl:space-x-reverse">
-          <button
-            className="hidden product-cart lg:flex relative hover:text-underline flex items-center justify-start border border-light rounded px-2 py-2"
-            onClick={onOpen}
-          >
-            <MapPin className="w-5 h-5 text-light" />
-            <span className="text-xs h-5 flex max-w-[150px] item-center py-1 text-light ml-1">
-              CHANGE LOCATION
-            </span>
-          </button>
-            <div className="flex items-center space-x-4 rtl:space-x-reverse">
+          <ul className="items-center shrink-0 hidden lg:flex space-x-12">
+            <button
+              className="hidden product-cart lg:flex relative hover:text-underline flex items-center justify-start border border-light rounded px-2 py-2"
+              onClick={onOpen}
+            >
+              <MapPin className="w-5 h-5 text-light" />
+              <span className="text-xs h-5 flex max-w-[150px] item-center py-1 text-light ml-1">
+                CHANGE LOCATION
+                </span>
+            </button>
+            <div className="flex items-center space-x-4">
               {isAuthorize ?
                 <AuthorizedMenu minimal={true} />
                 :
@@ -257,10 +269,10 @@ const Header = ({ layout }: { layout: string }) => {
           </ul>
         </div>
       </header>
-      <div className="px-5 flex w-full justify-center">
+      <div className="px-5 flex w-full h-full justify-center items-center relative">
           <Menu
             as="div"
-            className="relative inline-block ltr:text-left rtl:text-right z-10 px-8"
+            className="relative inline-block z-10 px-8"
             onClick={handleBeer}
           >
             <>
@@ -346,7 +358,7 @@ const Header = ({ layout }: { layout: string }) => {
           </Menu>
           <Menu
             as="div"
-            className="relative inline-block ltr:text-left rtl:text-right z-10 px-8"
+            className="relative  inline-block ltr:text-left rtl:text-right z-10 px-8"
             onClick={handleSpirits}
           >
             <>
@@ -470,7 +482,8 @@ const Header = ({ layout }: { layout: string }) => {
           </Menu>
           <Menu
             as="div"
-            className="relative inline-block ltr:text-left rtl:text-right z-10 px-8"
+            className="relative  inline-block ltr:text-left rtl:text-right z-10 px-8"
+            onClick={handleWines}
           >
             <>
               <Menu.Button
@@ -541,7 +554,8 @@ const Header = ({ layout }: { layout: string }) => {
           </Menu>
           <Menu
             as="div"
-            className="relative inline-block ltr:text-left rtl:text-right z-10 px-8"
+            className="relative  inline-block ltr:text-left rtl:text-right z-10 px-8"
+            onClick={handleReadyToDrink}
           >
             <>
               <Menu.Button
@@ -612,7 +626,8 @@ const Header = ({ layout }: { layout: string }) => {
           </Menu>
           <Menu
             as="div"
-            className="relative inline-block ltr:text-left rtl:text-right z-10 px-8"
+            className="relative  inline-block ltr:text-left rtl:text-right z-10 px-8"
+            onClick={handleNonAlcoholic}
           >
             <>
               <Menu.Button
@@ -683,19 +698,19 @@ const Header = ({ layout }: { layout: string }) => {
           </Menu>
           <Link
             href='/offers'
-            className='flex items-center px-8 py-2.5 text-gray-700 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
+            className='flex items-center  px-8 mr-0 py-2.5 text-gray-700 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
           >
             <span className="text-sm text-body-dark font-bold text-heading hover:text-accent">OFFERS</span>
           </Link>
           <Link
             href='/'
-            className='flex text-gray-700 items-center px-8 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
+            className='flex text-gray-700  items-center px-8 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
           >
             <span className="text-sm text-body-dark font-bold text-heading hover:text-accent">EVENTS</span>
           </Link>
           <Menu
             as="div"
-            className="relative inline-block ltr:text-left rtl:text-right z-10 px-8"
+            className="relative  inline-block ltr:text-left rtl:text-right z-10 px-8"
             onMouseEnter={onMouseEnterMore}
             onMouseLeave={onMouseLeaveMore}
           >
@@ -752,7 +767,7 @@ const Header = ({ layout }: { layout: string }) => {
                             <Link
                               href='grocery/search?category=sparkling-wine'
                               className={cn(
-                                'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                                'flex space-x-4 items-center w-full px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                 active ? 'text-accent' : 'text-body-dark'
                               )}
                             >
@@ -763,9 +778,9 @@ const Header = ({ layout }: { layout: string }) => {
                         <Menu.Item key={3}>
                           {({ active }) => (
                             <Link
-                              href='grocery/search?category=sparkling-wine'
+                              href='/contact'
                               className={cn(
-                                'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                                'flex space-x-4 items-center w-full px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                 active ? 'text-accent' : 'text-body-dark'
                               )}
                             >

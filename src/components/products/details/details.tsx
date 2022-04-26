@@ -165,82 +165,84 @@ const Details: React.FC<Props> = ({
                   {name}
                 </h1>
                 <div className="flex">
-                <div className="flex items-center justify-center flex-col mr-5 ">
-                  <div
-                      role="button"
-                      className={cn(
-                        'h-17 w-17 p-2 flex items-center justify-center border-2 rounded-full border-accent bg-accent cursor-pointer'
-                      )}
-                    >
-                      <Can className="w-10 h-10 text-light" />
-                    </div>
-                    <span className="flex items-center my-2 text-sm font-semibold">
-                      Can
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-center flex-col">
+                  <div className="flex items-center justify-center flex-col mr-5 ">
                     <div
-                      role="button"
-                      className={cn(
-                        'h-17 w-17 p-2 flex items-center justify-center border-2 rounded-full border-accent bg-accent cursor-pointer'
-                      )}
+                        role="button"
+                        className={cn(
+                          'h-17 w-17 p-2 flex items-center justify-center border-2 rounded-full border-accent bg-accent cursor-pointer'
+                        )}
                       >
-                      <Bottle className="w-10 h-10 text-light" />
-                    </div>
-                    <span className="flex items-center my-2 text-sm font-semibold">
-                      Bottle
-                    </span>
-                  </div>
-                </div>
-
-
-                    {unit && !hasVariations && (
-                      <span className="block mt-2 text-sm font-normal text-body md:mt-3">
-                        {unit}
-                      </span>
-                    )}
-
-                    {description && (
-                      <div className="mt-3 text-sm leading-7 md:mt-4 text-body">
-                        <Truncate
-                          character={150}
-                          {...(!isModal && {
-                            onClick: () => scrollDetails(),
-                            compressText: 'common:text-see-more',
-                          })}
-                        >
-                          {description}
-                        </Truncate>
+                        <Can className="w-10 h-10 text-light" />
                       </div>
-                    )}
+                      <span className="flex items-center my-2 text-sm font-semibold">
+                        CAN
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-center flex-col">
+                      <div
+                        role="button"
+                        className={cn(
+                          'h-17 w-17 p-2 flex items-center justify-center border-2 rounded-full border-accent bg-accent cursor-pointer'
+                        )}
+                        >
+                        <Bottle className="w-10 h-10 text-light" />
+                      </div>
+                      <span className="flex items-center my-2 text-sm font-semibold">
+                        BOTTLE
+                      </span>
+                    </div>
+                  </div>
 
-                {hasVariations ? (
-                  <>
-                    <div className="flex items-center my-5 md:my-10">
-                      <VariationPrice
-                        selectedVariation={selectedVariation}
-                        minPrice={product.min_price}
-                        maxPrice={product.max_price}
-                      />
+                  {unit && !hasVariations && (
+                    <span className="block mt-2 text-sm font-normal text-body md:mt-3">
+                      {unit}
+                    </span>
+                  )}
+
+                  {description && (
+                    <div className="mt-3 text-sm leading-7 md:mt-4 text-body">
+                      <Truncate
+                        character={150}
+                        {...(!isModal && {
+                          onClick: () => scrollDetails(),
+                          compressText: 'common:text-see-more',
+                        })}
+                      >
+                        {description}
+                      </Truncate>
                     </div>
-                    <div>
-                      <VariationGroups variations={variations} />
-                    </div>
-                  </>
-                ) : (
-                  <span className="flex items-center my-5 md:my-10">
-                    <ins className="text-2xl font-semibold no-underline md:text-3xl text-accent">
-                      {price}
-                    </ins>
-                    {basePrice && (
-                      <del className="text-sm font-normal md:text-base text-muted ltr:ml-2 rtl:mr-2">
-                        {basePrice}
-                      </del>
-                    )}
-                  </span>
+                  )}
+
+                  {hasVariations ? (
+                    <>
+                      <div className="flex items-center my-5 md:my-10">
+                        <VariationPrice
+                          selectedVariation={selectedVariation}
+                          minPrice={product.min_price}
+                          maxPrice={product.max_price}
+                        />
+                      </div>
+                      <div>
+                        <VariationGroups variations={variations} />
+                      </div>
+                      <span className="block mt-6 text-xs font-semibold text-body md:mt-6" style={{ color: 'red' }}>
+                        Please pick a size before adding to cart
+                      </span>
+                    </>
+                  ) : (
+                    <span className="flex items-center my-5 md:my-10">
+                      <ins className="text-2xl font-semibold no-underline md:text-3xl text-accent">
+                        {price}
+                      </ins>
+                      {basePrice && (
+                        <del className="text-sm font-normal md:text-base text-muted ltr:ml-2 rtl:mr-2">
+                          {basePrice}
+                        </del>
+                      )}
+                    </span>
                 )}
 
-                <div className="flex flex-col items-center mt-4 md:mt-6 lg:flex-row">
+                <div className="flex flex-col items-center mt-2 md:mt-3 lg:flex-row">
                   <div className="mb-3 lg:mb-0 w-full lg:max-w-[400px]">
                     <AddToCartAlt
                       data={product}

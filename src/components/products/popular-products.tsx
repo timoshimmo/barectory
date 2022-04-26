@@ -12,6 +12,7 @@ import { useIsRTL } from '@/lib/locals';
 import { ArrowPrevIcon } from '@/components/icons/arrow-prev';
 import { ArrowNextIcon } from '@/components/icons/arrow-next';
 import { Swiper, SwiperSlide, Navigation, Autoplay } from '@/components/ui/slider';
+import Link from '@/components/ui/link';
 
 interface Props {
   className?: string;

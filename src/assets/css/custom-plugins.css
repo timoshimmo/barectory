@@ -718,3 +718,15 @@ body[dir='rtl'] .react-tel-input .country-list .flag {
     margin-top: 125px;
   }
 }
+
+@media screen and (min-width: 769px) {
+  .mobile-layout {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .desktop-layout {
+    display: none;
+  }
+}
