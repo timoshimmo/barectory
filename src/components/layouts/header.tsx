@@ -752,7 +752,7 @@ const Header = ({ layout }: { layout: string }) => {
                         <Menu.Item key={1}>
                           {({ active }) => (
                             <Link
-                              href='grocery/search?category=sparkling-wine'
+                              href='/about'
                               className={cn(
                                 'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                 active ? 'text-accent' : 'text-body-dark'

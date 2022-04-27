@@ -27,14 +27,14 @@ export default class CustomDocument extends Document {
             */}
           <script
           async
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}></script>
+          src="https://www.googletagmanager.com/gtag/js?id=G-QT8H01JMZV"></script>
           <script>
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
-            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+            gtag('config', 'G-QT8H01JMZV', {
                     page_path: window.location.pathname,
                     });
             `}

@@ -20,47 +20,37 @@ export const AboutPage = () => {
     <>
       <Seo title={'About'} url={'about'} />
       <div className="main-container w-full bg-gray-100 pt-6">
-        <div
-          className={cn('hidden lg:block relative', {
-            '!block': layout === 'minimal',
-          })}
-        >
-          <div
-            className={cn('relative w-full h-screen', {
-              'max-h-140': layout === 'standard',
-              'max-h-[320px] md:max-h-[680px]': layout === 'minimal',
-            })}
-          >
-            <Image
-              className="w-full h-full min-h-140"
-              src={banners![0]?.image?.original ?? productPlaceholder}
-              alt={banners![0]?.title ?? ''}
-              layout="fill"
-              objectFit="cover"
-            />
-            <div
-              className={cn(
-                'p-5 md:px-20 absolute inset-0 w-full flex flex-col items-center justify-center text-center lg:space-y-10',
-                {
-                  'space-y-5 md:!space-y-8': layout === 'minimal',
-                }
-              )}
-            >
-              <h1
-                className={cn(
-                  'text-2xl md:text-3xl lg:text-4xl xl:text-5xl tracking-tight text-heading font-bold',
-                  {
-                    '!text-accent': layout === 'minimal',
-                  }
-                )}
-              >
-                {banners![0]?.title}
-              </h1>
-              <p className="text-sm md:text-base xl:text-lg text-body">
-                {banners![0]?.description}
-              </p>
-            </div>
-          </div>
+        <div className="order-1 mb-8 w-100 bg-light p-8 mx-20">
+          <h1 className="mb-7 font-body text-xl font-bold text-heading md:text-2xl">
+            About Us
+          </h1>
+          <span className="text-sm text-body">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </span>
+          <h5 className="font-semibold text-heading mt-4">Our Misson</h5>
+          <span className="text-sm text-body">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </span>
+          <h5 className="font-semibold text-heading mt-4">Our Vison</h5>
+          <span className="text-sm text-body">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </span>
+        </div>
+        <div className="order-2 mb-8 mt-10 w-100 bg-accent p-8 mx-20">
+          <h1 className="mb-7 font-body text-xl font-bold text-heading md:text-2xl text-light">
+            Our History
+          </h1>
+          <span className="text-sm text-body text-light">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </span>
+        </div>
+        <div className="order-3 mb-8 w-100 mt-10 bg-light p-8 mx-20">
+          <h1 className="mb-7 font-body text-xl font-bold text-heading md:text-2xl">
+            Our Values
+          </h1>
+          <span className="text-sm text-body">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </span>
         </div>
       </div>
     </>
