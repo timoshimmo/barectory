@@ -25,7 +25,9 @@ export default class CustomDocument extends Document {
           {/*  Google Tag Manager
             src="https://www.googletagmanager.com/gtag/js?id=G-QT8H01JMZV"
             */}
-          <script async {`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}></script>
+          <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}></script>
           <script>
           {`
             window.dataLayer = window.dataLayer || [];
