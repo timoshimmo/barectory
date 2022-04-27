@@ -116,7 +116,7 @@ export const siteSettings = {
           },
           {
             name: 'text-returns',
-            href: '/',
+            href: '/refunds',
           },
           {
             name: 'text-contact-us',
@@ -132,7 +132,7 @@ export const siteSettings = {
         title: 'text-our-information',
         links: [
           {
-            name: 'text-privacy-update',
+            name: 'text-privacy-policy',
             href: ROUTES.PRIVACY,
           },
           {

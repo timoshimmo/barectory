@@ -16,6 +16,7 @@ export const ROUTES = {
   ORDER: '/order',
   PRIVACY: '/privacy',
   TERMS: '/terms',
+  ABOUT: '/about',
   CONTACT: '/contact',
   SHOPS: '/shops',
   DOWNLOADS: '/downloads',

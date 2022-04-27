@@ -78,7 +78,7 @@ const Footer = () => {
           <span className="mb-2 font-semibold text-heading text-center">
             {t('text-follow-us')}
           </span>
-          <div className="flex items-center justify-center">
+          <div className="flex items-center lg:justify-center">
             {settings?.contactDetails?.socials?.map(
               (item: any, index: number) => (
                 <a

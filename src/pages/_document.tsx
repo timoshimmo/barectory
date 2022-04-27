@@ -22,6 +22,22 @@ export default class CustomDocument extends Document {
     return (
       <Html>
         <Head>
+          {/*  Google Tag Manager
+            src="https://www.googletagmanager.com/gtag/js?id=G-QT8H01JMZV"
+            */}
+          <script async {`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}></script>
+          <script>
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+                    page_path: window.location.pathname,
+                    });
+            `}
+          </script>
+          {/*  End Google Tag Manage */}
           <link
             href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=optional"
             rel="stylesheet"
