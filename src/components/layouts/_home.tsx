@@ -15,7 +15,6 @@ import Footer from './footer';
 import { SearchIcon } from '@/components/icons/search-icon';
 import { displayMobileHeaderSearchAtom } from '@/store/display-mobile-header-search-atom';
 import Link from '@/components/ui/link';
-import { useMediaQuery } from 'react-responsive';
 
 
 export default function HomeLayout({
@@ -27,16 +26,11 @@ export default function HomeLayout({
     displayMobileHeaderSearchAtom
   );
 
-  const [mediaQuery, setIsMediaQuey] = useState(true);
-  const isDesktopOrLaptop = useMediaQuery({
-    query: '(min-width: 768px)'
-  })
-
   useEffect(() => {
-    if(!isDesktopOrLaptop) {
-      setIsMediaQuey(false);
-    }
-  }, [mediaQuery]);
+    if (window.Tawk_API) {
+     window.Tawk_API.hideWidget();
+   }
+  }, []);
 
 
   {/*

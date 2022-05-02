@@ -12,8 +12,9 @@ import { useRef, useState } from 'react';
 import { productPlaceholder } from '@/lib/placeholders';
 import { useIsRTL } from '@/lib/locals';
 import classNames from 'classnames';
-import Zoom from 'react-medium-image-zoom';
+import Zoom from 'react-img-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
+import ReactImageMagnify from "react-image-magnify";
 
 interface Props {
   gallery: any[];
@@ -48,6 +49,63 @@ export const ThumbsCarousel: React.FC<Props> = ({
   const { isRTL } = useIsRTL();
   const prevRef = useRef<HTMLDivElement>(null);
   const nextRef = useRef<HTMLDivElement>(null);
+  const sizes = [
+    "355",
+    "481",
+    "584",
+    "687",
+    "770",
+    "861",
+    "955",
+    "1033",
+    "1112",
+    "1192",
+    "1200"
+  ];
+  {/*
+
+    <li class="age-gate-form-section">
+    <label class="age-gate-label" for="age-gate-d">Day</label>
+<input type="text" name="age_gate[d]" id="age-gate-d" class="age-gate-input" value="" placeholder="DD" required="" minlength="1" maxlength="2" pattern="[0-9]*" inputmode="numeric" autocomplete="off">
+  </li>
+
+  https://res.cloudinary.com/westpaybankit/image/upload/c_scale,w_1090/v1649683403/barectory/pngkey.com-mountain-dew-png-199315.png
+
+  <Image
+    src={item?.original ?? productPlaceholder}
+    alt={`Product gallery ${item.id}`}
+    width={aspectRatio === 'square' ? 300 : 270}
+    height={aspectRatio === 'square' ? 360 : 480}
+    // layout="responsive"
+    className="ltr:ml-auto rtl:mr-auto"
+  />
+
+  <ReactImageMagnify
+        {...{
+          smallImage: {
+            alt: "Item Image",
+            isFluidWidth: true,
+            src: `${item?.original}`,
+            sizes:
+              "(min-width: 1000px) 33.5vw, (min-width: 415px) 50vw, 100vw"
+          },
+          largeImage: {
+            alt: "Item Image",
+            src: `${item?.original}`,
+            width: 1200,
+            height: 1800
+          },
+          isHintEnabled: true
+        }}
+      />
+
+  */}
+
+  const srcSet = () => {
+   sizes.forEach((i) => {
+     return `https://res.cloudinary.com/westpaybankit/image/upload/w_${i},c_scale/v1649683403/barectory/Medium_1600_PNG-IPX.png`;
+   });
+ };
   return (
     <div>
       <div className="relative">
@@ -66,16 +124,15 @@ export const ThumbsCarousel: React.FC<Props> = ({
               key={`product-gallery-${item.id}`}
               className="selection:bg-transparent flex justify-center items-center"
             >
-              <Zoom>
-                <Image
-                  src={item?.original ?? productPlaceholder}
-                  alt={`Product gallery ${item.id}`}
-                  width={aspectRatio === 'square' ? 300 : 270}
-                  height={aspectRatio === 'square' ? 360 : 480}
-                  // layout="responsive"
-                  className="ltr:ml-auto rtl:mr-auto"
-                />
-              </Zoom>
+              <Zoom
+                img={item?.original ?? productPlaceholder}
+                zoomScale={5}
+                width={aspectRatio === 'square' ? 300 : 270}
+                height={aspectRatio === 'square' ? 360 : 480}
+                // layout="responsive"
+                className="ltr:ml-auto rtl:mr-auto"
+              />
+
             </SwiperSlide>
           ))}
         </Swiper>

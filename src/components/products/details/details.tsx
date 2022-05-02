@@ -66,11 +66,16 @@ const Details: React.FC<Props> = ({
 
   const { attributes } = useAttributes();
   const [cityStatus, setCityStatus] = useState('');
+  const [currentVariation, setCurrentVariation] = useState({});
   useEffect(() => {
     if (typeof window !== "undefined") {
       setCityStatus(window.localStorage.getItem("cityStatus"));
       console.log(cityStatus);
     }
+    const obj = { cans: variations.cans };
+    console.log(JSON.stringify(variations));
+    console.log(JSON.stringify(variations.cans));
+    setCurrentVariation(obj);
   },[cityStatus]);
 
   const { price, basePrice, discount } = usePrice({
@@ -103,6 +108,16 @@ const Details: React.FC<Props> = ({
       smooth: true,
       offset: -80,
     });
+  };
+
+  const handleBottles = () => {
+    const obj = { bottles: variations.bottles };
+    setCurrentVariation(obj);
+  };
+
+  const handleCans = () => {
+    const obj = { cans: variations.cans };
+    setCurrentVariation(obj);
   };
 
   const onWaypointPositionChange = ({
@@ -171,6 +186,7 @@ const Details: React.FC<Props> = ({
                         className={cn(
                           'h-17 w-17 p-2 flex items-center justify-center border-2 rounded-full border-accent bg-accent cursor-pointer'
                         )}
+                        onClick={handleCans}
                       >
                         <Can className="w-10 h-10 text-light" />
                       </div>
@@ -184,6 +200,7 @@ const Details: React.FC<Props> = ({
                         className={cn(
                           'h-17 w-17 p-2 flex items-center justify-center border-2 rounded-full border-accent bg-accent cursor-pointer'
                         )}
+                        onClick={handleBottles}
                         >
                         <Bottle className="w-10 h-10 text-light" />
                       </div>
@@ -223,7 +240,7 @@ const Details: React.FC<Props> = ({
                         />
                       </div>
                       <div>
-                        <VariationGroups variations={variations} />
+                        <VariationGroups variations={currentVariation} />
                       </div>
                       <span className="block mt-6 text-xs font-semibold text-body md:mt-6" style={{ color: 'red' }}>
                         Please pick a size before adding to cart

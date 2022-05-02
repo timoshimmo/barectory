@@ -23,13 +23,14 @@ export default class CustomDocument extends Document {
       <Html>
         <Head>
           {/*  Google Tag Manager
-            src="https://www.googletagmanager.com/gtag/js?id=G-QT8H01JMZV"
+            src="https://www.googletagmanager.com/gtag/js?id=G-QT8H01JMZV"NEXT_PUBLIC_GOOGLE_ANALYTICS
             */}
           <script
           async
-          src="https://www.googletagmanager.com/gtag/js?id=G-QT8H01JMZV"></script>
-          <script>
-          {`
+          src="https://www.googletagmanager.com/gtag/js?id=G-QT8H01JMZV" />
+          <script
+          dangerouslySetInnerHTML={{
+             __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
@@ -37,8 +38,9 @@ export default class CustomDocument extends Document {
             gtag('config', 'G-QT8H01JMZV', {
                     page_path: window.location.pathname,
                     });
-            `}
-          </script>
+            `,
+          }}
+          />
           {/*  End Google Tag Manage */}
           <link
             href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=optional"

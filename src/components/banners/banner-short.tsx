@@ -16,10 +16,11 @@ const BannerShort: React.FC<BannerProps> = ({ banners }) => {
   const { isRTL } = useIsRTL();
 
   return (
-    <div className="relative">
-      <div className="overflow-hidden -z-1">
-        <div className="relative">
+    <div className="relative ">
+      <div className="z-1">
+        <div className="relative h-[300px] lg:h-[500px]">
           <Swiper
+            className="w-full h-full"
             id="banner"
             loop={true}
             modules={[Navigation, Autoplay]}
@@ -37,12 +38,12 @@ const BannerShort: React.FC<BannerProps> = ({ banners }) => {
           >
             {banners?.map((banner, idx) => (
               <SwiperSlide key={idx}>
-                <div className="relative w-full h-full max-h-[600px] md:max-h-[700px]">
+                <div className="relative w-full h-full max-h-[300px] md:max-h-[500px]">
                   <Image
                     className="w-full h-full"
                     src={banner.image?.original ?? productPlaceholder}
                     alt={banner.title ?? ''}
-                    layout="responsive"
+                    layout="fill"
                     width={1503}
                     height={580}
                   />

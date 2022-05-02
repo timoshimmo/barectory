@@ -22,10 +22,10 @@ export default function SubscribeToNewsletter({
   }
   return (
     <div className="flex flex-col">
-      <h3 className="mt-3 mb-7 text-xl font-semibold text-heading">
+      <h3 className="mt-3 mb-7 text-xl font-semibold text-heading text-light">
         {t(title)}
       </h3>
-      <p className="mb-7 text-sm text-heading">{t(description!)}</p>
+      <p className="mb-7 text-sm text-heading text-light">{t(description!)}</p>
       <SubscriptionForm
         onSubmit={onSubmit}
         loading={loading}

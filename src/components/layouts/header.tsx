@@ -272,7 +272,7 @@ const Header = ({ layout }: { layout: string }) => {
       <div className="px-5 flex w-full h-full justify-center items-center relative">
           <Menu
             as="div"
-            className="relative inline-block z-10 px-8"
+            className="relative inline-block px-8"
             onClick={handleBeer}
           >
             <>
@@ -299,7 +299,7 @@ const Header = ({ layout }: { layout: string }) => {
                   static
                   as="ul"
                   className={cn(
-                    'absolute py-2 z-100 w-40 h-auto bg-light rounded shadow-700 focus:outline-none overflow-hidden'
+                    'absolute py-2 z-10 w-40 h-auto bg-light rounded shadow-700 focus:outline-none overflow-hidden'
                   )}
                   onMouseEnter={onMouseEnterBeerButton}
                   onMouseLeave={onMouseLeaveBeerButton}
@@ -384,7 +384,7 @@ const Header = ({ layout }: { layout: string }) => {
                 <Menu.Items
                   as="ul"
                   className={cn(
-                    'absolute py-2 z-100 w-40 h-auto bg-light rounded shadow-700 focus:outline-none overflow-hidden'
+                    'absolute py-2 z-10 w-40 h-auto bg-light rounded shadow-700 focus:outline-none overflow-hidden'
                   )}
                   onMouseEnter={onMouseEnterSpiritsButton}
                   onMouseLeave={onMouseLeaveSpiritsButton}
@@ -508,7 +508,7 @@ const Header = ({ layout }: { layout: string }) => {
                 <Menu.Items
                   as="ul"
                   className={cn(
-                    'absolute py-2 z-100 w-40 h-auto bg-light rounded shadow-700 focus:outline-none overflow-hidden'
+                    'absolute py-2 z-10 w-40 h-auto bg-light rounded shadow-700 focus:outline-none overflow-hidden'
                   )}
                   onMouseEnter={onMouseEnterWinesButton}
                   onMouseLeave={onMouseLeaveWinesButton}
@@ -580,7 +580,7 @@ const Header = ({ layout }: { layout: string }) => {
                 <Menu.Items
                   as="ul"
                   className={cn(
-                    'absolute py-2 z-100 w-40 h-auto bg-light rounded shadow-700 focus:outline-none overflow-hidden'
+                    'absolute py-2 z-10 w-40 h-auto bg-light rounded shadow-700 focus:outline-none overflow-hidden'
                   )}
                   onMouseEnter={onMouseEnterRdyDrinkButton}
                   onMouseLeave={onMouseLeaveRdyDrinkButton}
@@ -652,7 +652,7 @@ const Header = ({ layout }: { layout: string }) => {
                 <Menu.Items
                   as="ul"
                   className={cn(
-                    'absolute py-2 z-100 w-40 h-auto bg-light rounded shadow-700 focus:outline-none overflow-hidden'
+                    'absolute py-2 z-10 w-40 h-auto bg-light rounded shadow-700 focus:outline-none overflow-hidden'
                   )}
                   onMouseEnter={onMouseEnterNonAlcoholicButton}
                   onMouseLeave={onMouseLeaveNonAlcoholicButton}
@@ -736,7 +736,7 @@ const Header = ({ layout }: { layout: string }) => {
                     static
                     as="ul"
                     className={cn(
-                      'absolute py-2 z-100 w-40 h-auto bg-light rounded shadow-700 focus:outline-none overflow-hidden'
+                      'absolute py-2 z-10 w-40 h-auto bg-light rounded shadow-700 focus:outline-none overflow-hidden'
                     )}
                     onMouseEnter={onMouseEnterMore}
                     onMouseLeave={onMouseLeaveMore}
@@ -765,7 +765,7 @@ const Header = ({ layout }: { layout: string }) => {
                         <Menu.Item key={2}>
                           {({ active }) => (
                             <Link
-                              href='grocery/search?category=sparkling-wine'
+                              href='/blogs'
                               className={cn(
                                 'flex space-x-4 items-center w-full px-5 py-2.5 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                 active ? 'text-accent' : 'text-body-dark'

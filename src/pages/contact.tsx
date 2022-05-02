@@ -1,4 +1,6 @@
 import { useTranslation } from 'next-i18next';
+import React, { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import ContactForm from '@/components/settings/contact-form';
 import { Image } from '@/components/ui/image';
 import contactIllustration from '@/assets/contact-illustration.svg';
@@ -11,10 +13,19 @@ import Seo from '@/components/seo/seo';
 import { useSettings } from '@/framework/settings';
 export { getStaticProps } from '@/framework/general.ssr';
 import Footer from '@/components/layouts/footer';
+//import TawkMessengerReact from '@tawk.to/tawk-messenger-react';
+const TawkMessengerReact = dynamic(() => import('@tawk.to/tawk-messenger-react'), {
+  ssr: false,
+});
 
 export const ContactPage = () => {
   const { t } = useTranslation('common');
   const { settings } = useSettings();
+  useEffect(() => {
+    if (window.Tawk_API) {
+     window.Tawk_API.showWidget();
+   }
+  }, []);
   return (
     <>
       <Seo title={'Contact'} url={'contact'} />
@@ -93,6 +104,7 @@ export const ContactPage = () => {
                       })}
                     </a>
                   )
+
                 )}
               </div>
             </div>
@@ -105,6 +117,9 @@ export const ContactPage = () => {
             <ContactForm />
           </div>
         </div>
+        <TawkMessengerReact
+                propertyId="626996d9b0d10b6f3e6faa4f"
+                widgetId="1g1m7ai06"/>
       </div>
     </>
   );

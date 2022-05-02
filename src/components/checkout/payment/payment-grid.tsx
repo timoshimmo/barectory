@@ -24,7 +24,7 @@ const AVAILABLE_PAYMENT_METHODS_MAP: Record<
   STRIPE: {
     name: 'Stripe',
     value: 'STRIPE',
-    icon: '/payment/stripe.png',
+    icon: '/payment/paystack.png',
     component: StripePayment,
   },
   CASH_ON_DELIVERY: {
@@ -61,7 +61,7 @@ const PaymentGrid: React.FC<{ className?: string; theme?: 'bw' }> = ({
           {t('text-choose-payment')}
         </RadioGroup.Label>
 
-        <div className="grid gap-4 grid-cols-2 md:grid-cols-3 mb-8">
+        <div className="grid gap-4 grid-cols-2 md:grid-cols-2 mb-8">
           {Object.values(AVAILABLE_PAYMENT_METHODS_MAP).map(
             ({ name, icon, value }) => (
               <RadioGroup.Option value={value} key={value}>
@@ -79,7 +79,7 @@ const PaymentGrid: React.FC<{ className?: string; theme?: 'bw' }> = ({
                     {icon ? (
                       <>
                         {/* eslint-disable */}
-                        <img src={icon} alt={name} className="h-[30px]" />
+                        <img src={icon} alt={name} className="h-[20px]" />
                       </>
                     ) : (
                       <span className="text-xs text-heading font-semibold">

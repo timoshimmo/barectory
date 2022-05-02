@@ -8,6 +8,8 @@ import { useEffect } from 'react';
 import { scroller } from 'react-scroll';
 import { getStaticPaths, getStaticProps } from '@/framework/home-pages.ssr';
 import { InferGetStaticPropsType } from 'next';
+import * as ga from '../lib/ga'
+
 export { getStaticPaths, getStaticProps };
 const CartCounterButton = dynamic(
   () => import('@/components/cart/cart-counter-button'),
@@ -31,6 +33,7 @@ const Home: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
 > = ({ variables, layout }) => {
   const { query } = useRouter();
+  const router = useRouter();
   const { width } = useWindowSize();
   // const { layout, page } = useLayout();
 
@@ -41,7 +44,19 @@ const Home: NextPageWithLayout<
         offset: -110,
       });
     }
-  }, [query.text, query.category]);
+    const handleRouteChange = (url) => {
+     ga.pageview(url)
+   }
+     //When the component is mounted, subscribe to router changes
+     //and log those page views
+     router.events.on('routeChangeComplete', handleRouteChange)
+
+     // If the component is unmounted, unsubscribe
+     // from the event with the `off` method
+     return () => {
+       router.events.off('routeChangeComplete', handleRouteChange)
+     }
+  }, [query.text, query.category, router.events]);
 
   const Component = MAP_LAYOUT_TO_GROUP[layout];
   return (
