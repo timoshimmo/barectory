@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useAtom } from 'jotai';
-import { customerContactAtom } from '@/store/checkout';
+import { customerEmailAtom } from '@/store/checkout';
 import { useModalAction } from '@/components/ui/modal/modal.context';
 import { PlusIcon } from '@/components/icons/plus-icon';
 import { useTranslation } from 'next-i18next';
@@ -22,7 +22,7 @@ const EmailGrid = ({
   className,
   gridClassName,
 }: EmailProps) => {
-  const [contactEmail, setContactEmail] = useAtom(customerContactAtom);
+  const [contactEmail, setContactEmail] = useAtom(customerEmailAtom);
   const { openModal } = useModalAction();
   const { t } = useTranslation('common');
 

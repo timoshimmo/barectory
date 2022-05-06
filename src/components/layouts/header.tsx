@@ -238,7 +238,7 @@ const Header = ({ layout }: { layout: string }) => {
                 <AuthorizedMenu minimal={true} />
                 :
                 <button
-                  className="hidden product-cart lg:flex relative"
+                  className="hidden product-cart lg:flex"
                   onClick={handleJoin}
                 >
                   <UserOutlinedIcon className="w-5 h-5 text-light" />
@@ -269,7 +269,7 @@ const Header = ({ layout }: { layout: string }) => {
           </ul>
         </div>
       </header>
-      <div className="px-5 flex w-full h-full justify-center items-center relative">
+      <div className="px-5 flex w-full h-full justify-center items-center">
           <Menu
             as="div"
             className="relative inline-block px-8"
@@ -710,7 +710,7 @@ const Header = ({ layout }: { layout: string }) => {
           </Link>
           <Menu
             as="div"
-            className="relative  inline-block ltr:text-left rtl:text-right z-10 px-8"
+            className="inline-block ltr:text-left rtl:text-right px-8"
             onMouseEnter={onMouseEnterMore}
             onMouseLeave={onMouseLeaveMore}
           >
@@ -736,7 +736,7 @@ const Header = ({ layout }: { layout: string }) => {
                     static
                     as="ul"
                     className={cn(
-                      'absolute py-2 z-10 w-40 h-auto bg-light rounded shadow-700 focus:outline-none overflow-hidden'
+                      'absolute py-2 w-40 h-auto bg-light rounded shadow-700 focus:outline-none overflow-hidden'
                     )}
                     onMouseEnter={onMouseEnterMore}
                     onMouseLeave={onMouseLeaveMore}

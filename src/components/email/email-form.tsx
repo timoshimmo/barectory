@@ -47,6 +47,7 @@ export default function EmailForm({
               render={({ field }) => (
                 <Input
                   inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base ltr:!border-r-0 rtl:!border-l-0 !rounded ltr:!rounded-r-none rtl:!rounded-l-none focus:!border-accent !h-12"
+                  {...field}
                 />
               )}
             />
@@ -55,14 +56,10 @@ export default function EmailForm({
               loading={isLoading}
               disabled={isLoading}
             >
-              {view === 'login' ? (
-                t('text-send-otp')
-              ) : (
                 <>
                   {Boolean(email) ? t('text-update') : t('text-add')}{' '}
-                  {t('nav-menu-contact')}
+                  Email
                 </>
-              )}
             </Button>
           </div>
           {errors.email?.message && (

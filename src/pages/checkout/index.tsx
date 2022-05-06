@@ -38,19 +38,21 @@ export default function CheckoutPage() {
               label={t('text-contact-number')}
               count={1}
             />
+            {/*
 
-            <AddressGrid
-              userId={id!}
-              className="p-5 bg-light shadow-700 md:p-8"
-              label={t('text-billing-address')}
-              count={2}
-              //@ts-ignore
-              addresses={address?.filter(
-                (item) => item?.type === AddressType.Billing
-              )}
-              atom={billingAddressAtom}
-              type={AddressType.Billing}
-            />
+              <AddressGrid
+                userId={id!}
+                className="p-5 bg-light shadow-700 md:p-8"
+                label={t('text-billing-address')}
+                count={2}
+                //@ts-ignore
+                addresses={address?.filter(
+                  (item) => item?.type === AddressType.Billing
+                )}
+                atom={billingAddressAtom}
+                type={AddressType.Billing}
+              />
+            */}
             <AddressGrid
               userId={me?.id!}
               className="p-5 bg-light shadow-700 md:p-8"

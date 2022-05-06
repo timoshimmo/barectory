@@ -15,6 +15,7 @@ export default function AddOrUpdateEmail() {
   const [contactEmail, setContactEmail] = useAtom(customerEmailAtom);
 
   function onSubmit({ email }: { email: string }) {
+    console.log("Email:" + email);
     setContactEmail(email);
     closeModal();
   }

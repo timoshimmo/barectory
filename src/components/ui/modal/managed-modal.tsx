@@ -27,6 +27,12 @@ const AddressDeleteView = dynamic(
 const AddOrUpdateCheckoutContact = dynamic(
   () => import('@/components/checkout/contact/add-or-update')
 );
+
+const AddOrUpdateCheckoutEmail = dynamic(
+  () => import('@/components/checkout/email/add-or-update')
+);
+
+
 const ProfileAddOrUpdateContact = dynamic(
   () => import('@/components/profile/profile-add-or-update-contact')
 );
@@ -51,6 +57,9 @@ const ManagedModal = () => {
       )}
       {view === 'ADD_OR_UPDATE_CHECKOUT_CONTACT' && (
         <AddOrUpdateCheckoutContact />
+      )}
+      {view === 'ADD_OR_UPDATE_CHECKOUT_EMAIL' && (
+        <AddOrUpdateCheckoutEmail />
       )}
       {view === 'ADD_OR_UPDATE_PROFILE_CONTACT' && (
         <ProfileAddOrUpdateContact />

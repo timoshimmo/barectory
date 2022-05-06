@@ -94,6 +94,8 @@ class Client {
         HttpClient.get<Product[]>(API_ENDPOINTS.PRODUCTS_SALES, params),
     get: (slug: string) =>
       HttpClient.get<Product>(`${API_ENDPOINTS.PRODUCTS}/${slug}`),
+    productCategory: (slug: string) =>
+      HttpClient.get<Product[]>(`${API_ENDPOINTS.PRODUCTS}/category/${slug}`),
   };
   categories = {
     all: ({ type, ...params }: Partial<CategoryQueryOptions>) =>

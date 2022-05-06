@@ -1,7 +1,9 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { useRouter } from 'next/router';
 import Banner from '@/components/banners/banner';
+import BannerMobile from '@/components/banners/banner-mobile';
 import Categories from '@/components/categories/categories';
+import CategoriesHome from '@/components/categories/categories-home';
 import { Element } from 'react-scroll';
 import ProductGridHome from '@/components/products/grids/home';
 import FilterBar from './filter-bar';
@@ -39,31 +41,15 @@ export default function Modern({ variables }: HomePageProps) {
         <div className="mt-5" style={{marginTop: 2.2 + 'em'}}>
           <SellingProductsGrid variables={variables.products} />
         </div>
-        <div className="mt-5 mb-20 w-full">
+        <div className="mt-5 mb-15 w-full">
           <Ads />
         </div>
-        <div className="mt-5" style={{marginTop: 2.2 + 'em'}}>
-          <BeerProductsGrid />
-        </div>
-        <div className="mt-5" style={{marginTop: 2.2 + 'em'}}>
-          <SpiritProductsGrid />
-        </div>
-        <div className="mt-5" style={{marginTop: 2.2 + 'em'}}>
-          <WineProductsGrid />
+        <div>
+          <CategoriesHome variables={variables.categories} />
         </div>
         <div className="mt-5 mb-20 w-full">
           <Ads />
         </div>
-        <div className="mt-5" style={{marginTop: 2.2 + 'em'}}>
-          <ReadyToDrinkProductsGrid />
-        </div>
-        <div className="mt-5" style={{marginTop: 2.2 + 'em'}}>
-          <NonAlcoholicProductsGrid />
-        </div>
-        <div className="mt-5 mb-20 w-full">
-          <Ads />
-        </div>
-        
         {/*
           <Element name="slider" className="px-4 xl:px-0">
           <ProductGridHome className="py-6" variables={variables.products} />

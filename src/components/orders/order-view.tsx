@@ -42,7 +42,7 @@ function OrderView({ order }: any) {
   const { price: discount } = usePrice({ amount: order?.discount ?? 0 });
 
   return (
-    <div className="p-4 sm:p-8">
+    <div className="p-4 sm:p-8 main-container">
       <div className="mx-auto w-full max-w-screen-lg rounded border bg-light p-6 shadow-sm sm:p-8 lg:p-12">
         <h2 className="mb-9 flex flex-col items-center justify-between text-base font-bold text-heading sm:mb-12 sm:flex-row">
           <span className="order-2 mt-5 ltr:mr-auto rtl:ml-auto sm:order-1 sm:mt-0">

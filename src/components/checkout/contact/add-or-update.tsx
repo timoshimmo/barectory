@@ -15,6 +15,7 @@ export default function AddOrUpdateContact() {
   const [contactNumber, setContactNumber] = useAtom(customerContactAtom);
 
   function onSubmit({ phone_number }: { phone_number: string }) {
+    console.log("Contact Number:" + phone_number);
     setContactNumber(phone_number);
     closeModal();
   }

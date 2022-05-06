@@ -4,7 +4,7 @@ import NotFound from '@/components/ui/not-found';
 import rangeMap from '@/lib/range-map';
 import ProductCard from '@/components/products/cards/card';
 import ErrorMessage from '@/components/ui/error-message';
-import { usePopularProducts, useCategoryProduct } from '@/framework/product';
+import { useCategoryProduct } from '@/framework/product';
 import SectionBlock from '@/components/ui/section-block';
 import { useTranslation } from 'next-i18next';
 import classNames from 'classnames';
@@ -16,21 +16,19 @@ import Link from '@/components/ui/link';
 import cn from 'classnames';
 
 interface Props {
-  className?: string;
+  slug?: string;
   limit?: number;
-  variables: any;
 }
 
-export default function BeerProductsGrid({
-  className,
-  limit = 30,
-  variables,
+export default function CategoryProductsGrid({
+  slug,
+  limit = 10
 }: Props) {
   const { t } = useTranslation('common');
-  const { products, isLoading, error } = usePopularProducts(variables);
-  const { catproducts, iscLoading, caterror } = useCategoryProduct({ slug: 'lager' });
+  //const { products, isLoading, error } = usePopularProducts(variables);
+  const { products, isLoading, error } = useCategoryProduct({ slug: slug });
 
-  console.log("Products: " + JSON.stringify(catproducts));
+  console.log("Products: " + JSON.stringify(products));
 
 
   const { isRTL } = useIsRTL();
@@ -76,23 +74,14 @@ export default function BeerProductsGrid({
   if (error) return <ErrorMessage message={error.message} />;
   if (!isLoading && !products.length) {
     return (
-      <SectionBlock title={t('Beer')}>
+      <SectionBlock>
         <NotFound text="text-not-found" className="mx-auto w-7/12" />
       </SectionBlock>
     );
   }
 
   return (
-    <SectionBlock>
-      <div className={classNames(className, 'w-full relative')}>
-        <Link
-          href='grocery/search?category=beer'
-          className={cn(
-            'flex space-x-4 items-center py-2.5 w-20 font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
-          )}
-        >
-          <span className="whitespace-nowrap text-3xl">Beer</span>
-        </Link>
+      <div className="w-full relative mt-5">
         <Swiper
           id="category-card-menu"
           modules={[Navigation, Autoplay]}
@@ -117,7 +106,7 @@ export default function BeerProductsGrid({
                     <ProductLoader key={i} uniqueKey={`product-${i}`} />
                   </SwiperSlide>
                 ))
-              : products.slice(19, 25).map((product, idx: number) => (
+              : products.slice(0, 6).map((product, idx: number) => (
                   <SwiperSlide key={idx}>
                     <ProductCard product={product} key={product?.id} />
                   </SwiperSlide>
@@ -139,6 +128,5 @@ export default function BeerProductsGrid({
           {isRTL ? <ArrowPrevIcon /> : <ArrowNextIcon />}
         </div>
       </div>
-    </SectionBlock>
   );
 }

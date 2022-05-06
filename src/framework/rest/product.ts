@@ -93,3 +93,15 @@ export function useProduct({ slug }: { slug: string }) {
     error,
   };
 }
+
+export function useCategoryProduct({ slug }: { slug: string }) {
+  const { data, isLoading, error } = useQuery<Product[], Error>(
+    [`${API_ENDPOINTS.PRODUCTS}/category`, slug],
+    () => client.products.productCategory(slug)
+  );
+  return {
+    products: data ?? [],
+    isLoading,
+    error,
+  };
+}
