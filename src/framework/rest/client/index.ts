@@ -4,6 +4,7 @@ import type {
   AuthorPaginator,
   AuthorQueryOptions,
   AuthResponse,
+  Category,
   CategoryPaginator,
   CategoryQueryOptions,
   ChangePasswordUserInput,
@@ -104,6 +105,8 @@ class Client {
         ...params,
         ...(type && { search: HttpClient.formatSearchParams({ type }) }),
       }),
+      get: (id: string) => 
+        HttpClient.get<Category>(`${API_ENDPOINTS.CATEGORIES}/${id}`),
   };
   tags = {
     all: (params: Partial<TagQueryOptions>) =>

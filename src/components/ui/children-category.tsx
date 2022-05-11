@@ -8,25 +8,24 @@ import { productPlaceholder } from '@/lib/placeholders';
 import { Image } from '@/components/ui/image';
 import Link from './link';
 import CategoryProductsGrid from './category-row-products';
-import { ROUTES } from '@/lib/routes';
 
 interface CategoryItemProps {
   item: any;
 }
 const CategoryItem: React.FC<CategoryItemProps> = ({ item }) => {
   return (
-    <div className="relative mt-[70px]">
-      <Link href={`${ROUTES.CATEGORIES}/${item.id}`}
+    <div className="relative mt-[40px]">
+      <Link href={`${item?.type?.slug}/search/?category=${item.slug}`}
           className="flex space-x-4 items-center py-2.5 w-20 font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none"
           >
-        <span className="whitespace-nowrap text-3xl">{item.name}</span>
+        <span className="whitespace-nowrap text-heading">{item.name}</span>
       </Link>
       <CategoryProductsGrid slug={item.slug}/>
     </div>
   );
 };
 
-function CategoryRow({ items }: any) {
+function CategoryChildren({ items }: any) {
   const { t } = useTranslation('common');
   const { isRTL } = useIsRTL();
 
@@ -40,4 +39,4 @@ function CategoryRow({ items }: any) {
   );
 }
 
-export default CategoryRow;
+export default CategoryChildren;

@@ -17,14 +17,14 @@ const CategoriesRow: React.FC<CategoriesRowProps> = ({
   if (loading) {
     return (
       <div className="hidden xl:block">
-        <div className="w-full h-52 flex justify-center mt-20 px-2">
+        <div className="w-full h-52 flex justify-center mt-[30px] px-2">
           <BakeryCategoryLoader />
         </div>
       </div>
     );
   }
   return (
-    <SectionBlock className="mt-20">
+    <SectionBlock>
       {!notFound ? (
         <CategoryRow items={categories} />
       ) : (

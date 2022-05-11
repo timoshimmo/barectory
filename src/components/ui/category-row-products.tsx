@@ -28,9 +28,6 @@ export default function CategoryProductsGrid({
   //const { products, isLoading, error } = usePopularProducts(variables);
   const { products, isLoading, error } = useCategoryProduct({ slug: slug });
 
-  console.log("Products: " + JSON.stringify(products));
-
-
   const { isRTL } = useIsRTL();
 
   const [prevEl, setPrevEl] = useState<HTMLElement | null>(null);

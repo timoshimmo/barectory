@@ -35,19 +35,19 @@ export default function Modern({ variables }: HomePageProps) {
         </div>
         {/* <FilterBar variables={variables.categories} />  */}
         <Categories layout="modern" variables={variables.categories} />
-        <div className="mt-5" style={{marginTop: 2.2 + 'em'}}>
+        <div className="mt-[30px]">
           <PopularProductsGrid variables={variables.popularProducts} />
         </div>
-        <div className="mt-5" style={{marginTop: 2.2 + 'em'}}>
+        <div className="mt-[30px]">
           <SellingProductsGrid variables={variables.products} />
         </div>
-        <div className="mt-5 mb-15 w-full">
+        <div className="mt-[30px] w-full">
           <Ads />
         </div>
         <div>
           <CategoriesHome variables={variables.categories} />
         </div>
-        <div className="mt-5 mb-20 w-full">
+        <div className="mt-[30px] mb-20 w-full">
           <Ads />
         </div>
         {/*

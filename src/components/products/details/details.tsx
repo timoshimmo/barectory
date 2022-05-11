@@ -48,7 +48,7 @@ const Details: React.FC<Props> = ({
 }) => {
   const {
     name,
-    image, //could only had image we need to think it also
+    image, 
     description,
     unit,
     categories,

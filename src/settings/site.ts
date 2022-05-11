@@ -159,10 +159,6 @@ export const siteSettings = {
         img: '/payment/paystack.png',
         url: '/',
       },
-      {
-        img: '/payment/flutterwave.png',
-        url: '/',
-      },
     ],
   },
 };

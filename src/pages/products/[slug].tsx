@@ -8,9 +8,6 @@ import dynamic from 'next/dynamic';
 export { getStaticPaths, getStaticProps } from '@/framework/product.ssr';
 //FIXME: typescript and layout
 const Details = dynamic(() => import('@/components/products/details/details'));
-const BookDetails = dynamic(
-  () => import('@/components/products/details/book-details')
-);
 const RelatedProducts = dynamic(
   () => import('@/components/products/details/related-products')
 );

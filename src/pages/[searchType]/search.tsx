@@ -36,7 +36,7 @@ export default function SearchPage() {
   });
   if (error) return <ErrorMessage message={error.message} />;
   return (
-    <div className="w-full main-container ">
+    <div className="w-full">
       <div className="mb-7 flex flex-col items-center justify-between md:flex-row">
         {/* //FIXME: */}
         <SearchCount
@@ -67,7 +67,7 @@ const GetLayout = (page: React.ReactElement) => {
   return (
     <GeneralLayout>
       <>
-        <div className="w-full bg-light">
+        <div className="w-full main-container bg-light">
           <div className="mx-auto flex min-h-screen w-full max-w-1920 px-5 py-10 rtl:space-x-reverse lg:space-x-10 xl:py-14 xl:px-16">
             <div className="hidden shrink-0 lg:block" style={{ width: '20%' }}>
               <StickyBox offsetTop={140} offsetBottom={30}>

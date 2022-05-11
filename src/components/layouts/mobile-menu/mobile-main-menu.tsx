@@ -7,7 +7,8 @@ import { drawerAtom } from '@/store/drawer-atom';
 
 const headerLinks = [
   { href: ROUTES.OFFERS, label: 'nav-menu-offer' },
-  { href: ROUTES.HELP, label: 'About' },
+  { href: ROUTES.ABOUT, label: 'About' },
+  { href: ROUTES.BLOGS, label: 'Blog' },
   { href: ROUTES.CONTACT, label: 'nav-menu-contact' },
 ];
 

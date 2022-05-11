@@ -153,6 +153,7 @@ export interface Category {
   slug: string;
   description: string;
   image: Attachment;
+  children: any;
 }
 
 interface Banner {

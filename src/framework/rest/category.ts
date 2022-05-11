@@ -1,4 +1,4 @@
-import type { CategoryPaginator, CategoryQueryOptions } from '@/types';
+import type { CategoryPaginator, CategoryQueryOptions, Category } from '@/types';
 import { useInfiniteQuery } from 'react-query';
 import client from './client';
 import { API_ENDPOINTS } from './client/api-endpoints';
@@ -37,5 +37,17 @@ export function useCategories(options?: Partial<CategoryQueryOptions>) {
     isLoadingMore: isFetchingNextPage,
     loadMore: handleLoadMore,
     hasMore: Boolean(hasNextPage),
+  };
+}
+
+export function useCategory({ id }: { id: string }) {
+  const { data, isLoading, error } = useQuery<Category, Error>(
+    [API_ENDPOINTS.CATEGORIES, id],
+    () => client.categories.get(id)
+  );
+  return {
+    category: data,
+    isLoading,
+    error,
   };
 }
