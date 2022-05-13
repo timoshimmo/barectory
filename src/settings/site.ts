@@ -82,61 +82,49 @@ export const siteSettings = {
       name: 'Barectory, Inc',
       href: 'https://redq.io/',
     },
-    address: '2429 River Drive, Suite 35 Cottonhall, CA 2296 United Kingdom',
-    email: 'dummy@dummy.com',
-    phone: '+1 256-698-0694',
+    address: '10 Agard Street, Sabo, Yaba, Lagos, Nigeria.',
+    email: 'barectorynigeria@gmail.com ',
+    phone: '+2348181513324',
     menus: [
       {
-        title: 'text-explore',
+        title: 'Explore',
         links: [
           {
-            name: 'text-about-us',
-            href: '/',
+            name: 'About Us',
+            href: '/about',
           },
           {
-            name: 'text-sitemap',
-            href: '/',
+            name: 'Blog',
+            href: '/blog',
           },
           {
-            name: 'Register',
-            href: '/',
-          },
-          {
-            name: 'Sign in',
+            name: 'Events',
             href: '/',
           },
         ],
       },
       {
-        title: 'text-customer-service',
+        title: 'Customer Service',
         links: [
           {
-            name: 'text-faq-help',
+            name: 'FAQ & Help',
             href: ROUTES.HELP,
           },
           {
-            name: 'text-returns',
-            href: '/refunds',
-          },
-          {
-            name: 'text-contact-us',
+            name: 'Contact Us',
             href: ROUTES.CONTACT,
-          },
-          {
-            name: 'text-store-pickup',
-            href: '/',
           },
         ],
       },
       {
-        title: 'text-our-information',
+        title: 'Our Information',
         links: [
           {
-            name: 'text-privacy-policy',
+            name: 'Privacy Policy',
             href: ROUTES.PRIVACY,
           },
           {
-            name: 'text-terms-condition',
+            name: 'Terms & Conditions',
             href: ROUTES.TERMS,
           },
           {

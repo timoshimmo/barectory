@@ -1,5 +1,5 @@
 import type { CategoryPaginator, CategoryQueryOptions, Category } from '@/types';
-import { useInfiniteQuery } from 'react-query';
+import { useInfiniteQuery, useQuery } from 'react-query';
 import client from './client';
 import { API_ENDPOINTS } from './client/api-endpoints';
 import { mapPaginatorData } from '@/framework/utils/data-mappers';
@@ -47,6 +47,18 @@ export function useCategory({ id }: { id: string }) {
   );
   return {
     category: data,
+    isLoading,
+    error,
+  };
+}
+
+export function useAllCategories() {
+  const { data, isLoading, error } = useQuery<Category[], Error>(
+    [`${API_ENDPOINTS.CATEGORIES}/all`],
+    () => client.categories.getAll()
+  );
+  return {
+    categories: data ?? [],
     isLoading,
     error,
   };

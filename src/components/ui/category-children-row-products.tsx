@@ -4,29 +4,33 @@ import NotFound from '@/components/ui/not-found';
 import rangeMap from '@/lib/range-map';
 import ProductCard from '@/components/products/cards/card';
 import ErrorMessage from '@/components/ui/error-message';
-import { usePopularProducts } from '@/framework/product';
+import { useCategoryProduct } from '@/framework/product';
 import SectionBlock from '@/components/ui/section-block';
 import { useTranslation } from 'next-i18next';
+import { Product } from '@/framework/types';
 import classNames from 'classnames';
 import { useIsRTL } from '@/lib/locals';
 import { ArrowPrevIcon } from '@/components/icons/arrow-prev';
 import { ArrowNextIcon } from '@/components/icons/arrow-next';
 import { Swiper, SwiperSlide, Navigation, Autoplay } from '@/components/ui/slider';
 import Link from '@/components/ui/link';
+import cn from 'classnames';
+import { ROUTES } from '@/lib/routes';
 
 interface Props {
-  className?: string;
+  slug?: string;
+  item?: any;
   limit?: number;
-  variables: any;
 }
 
-export default function PopularProductsGrid({
-  className,
-  limit = 10,
-  variables,
+export default function CategoryChildProductsGrid({
+  slug,
+  item,
+  limit = 10
 }: Props) {
   const { t } = useTranslation('common');
-  const { products, isLoading, error } = usePopularProducts(variables);
+  //const { products, isLoading, error } = usePopularProducts(variables);
+  const { products, isLoading, error } = useCategoryProduct({ slug: slug });
 
   const { isRTL } = useIsRTL();
 
@@ -58,12 +62,10 @@ export default function PopularProductsGrid({
       slidesPerView: 5,
       spaceBetween: 24,
     },
-
     1800: {
       slidesPerView: 5,
       spaceBetween: 30,
     },
-    
     2600: {
       slidesPerView: 6,
       spaceBetween: 40,
@@ -72,16 +74,17 @@ export default function PopularProductsGrid({
 
   if (error) return <ErrorMessage message={error.message} />;
   if (!isLoading && !products.length) {
-    return (
-      <SectionBlock title={t('text-popular-products')}>
-        <NotFound text="text-not-found" className="mx-auto w-7/12" />
-      </SectionBlock>
-    );
+    return null;
   }
 
   return (
-    <SectionBlock title={t('text-popular-products')}>
-      <div className={classNames(className, 'w-full relative')}>
+    <div className="w-full">
+      <Link href={`${ROUTES.HOME}/search?category=${item.slug}`}
+          className="flex space-x-4 items-center py-2.5 w-20 font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none"
+          >
+        <span className="whitespace-nowrap text-2xl font-semibold">{item.name}</span>
+      </Link>
+      <div className="w-full relative mt-5">
         <Swiper
           id="category-card-menu"
           modules={[Navigation, Autoplay]}
@@ -94,7 +97,7 @@ export default function PopularProductsGrid({
           breakpoints={breakpoints}
           slidesPerView={5}
           autoplay={{
-            delay: 4000,
+            delay: 5000,
             disableOnInteraction: false,
             pauseOnMouseEnter: true
           }}
@@ -106,7 +109,7 @@ export default function PopularProductsGrid({
                     <ProductLoader key={i} uniqueKey={`product-${i}`} />
                   </SwiperSlide>
                 ))
-              : products.map((product, idx: number) => (
+              : products.slice(0, 6).map((product, idx: number) => (
                   <SwiperSlide key={idx}>
                     <ProductCard product={product} key={product?.id} />
                   </SwiperSlide>
@@ -128,6 +131,6 @@ export default function PopularProductsGrid({
           {isRTL ? <ArrowPrevIcon /> : <ArrowNextIcon />}
         </div>
       </div>
-    </SectionBlock>
+    </div>
   );
 }

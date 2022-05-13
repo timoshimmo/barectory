@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useIsRTL } from '@/lib/locals';
 import { ArrowPrevIcon } from '@/components/icons/arrow-prev';
@@ -18,6 +18,7 @@ const CategoryItem: React.FC<CategoryItemProps> = ({ item }) => {
     <div className="relative mt-[70px]">
       <Link href={`${ROUTES.CATEGORIES}/${item.id}`}
           className="flex space-x-4 items-center py-2.5 w-20 font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none"
+          query
           >
         <span className="whitespace-nowrap text-3xl">{item.name}</span>
       </Link>

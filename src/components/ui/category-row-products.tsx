@@ -7,6 +7,7 @@ import ErrorMessage from '@/components/ui/error-message';
 import { useCategoryProduct } from '@/framework/product';
 import SectionBlock from '@/components/ui/section-block';
 import { useTranslation } from 'next-i18next';
+import { Product } from '@/framework/types';
 import classNames from 'classnames';
 import { useIsRTL } from '@/lib/locals';
 import { ArrowPrevIcon } from '@/components/icons/arrow-prev';
@@ -70,11 +71,7 @@ export default function CategoryProductsGrid({
 
   if (error) return <ErrorMessage message={error.message} />;
   if (!isLoading && !products.length) {
-    return (
-      <SectionBlock>
-        <NotFound text="text-not-found" className="mx-auto w-7/12" />
-      </SectionBlock>
-    );
+    return null;
   }
 
   return (

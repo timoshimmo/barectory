@@ -1,8 +1,9 @@
 import BakeryCategoryLoader from '@/components/ui/loaders/bakery-categories-loader';
 import NotFound from '@/components/ui/not-found';
 import SectionBlock from '@/components/ui/section-block';
-import CategoryRow from '@/components/ui/row-category';
+import CategoryChildren from '@/components/ui/children-category';
 import { Category } from '@/framework/types';
+import { useTranslation } from 'react-i18next';
 
 interface CategoriesRowProps {
   notFound: boolean;
@@ -10,15 +11,18 @@ interface CategoriesRowProps {
   categories: Category[];
 }
 
-const CategoriesRow: React.FC<CategoriesRowProps> = ({
+const ChildrenRow: React.FC<CategoriesRowProps> = ({
   notFound,
   categories,
   loading,
 }) => {
+
+  const { t } = useTranslation('common');
+
   if (loading) {
     return (
       <div className="hidden xl:block">
-        <div className="w-full h-52 flex justify-center mt-[30px] px-2">
+        <div className="w-full h-52 flex justify-center mt-[30px]">
           <BakeryCategoryLoader />
         </div>
       </div>
@@ -26,16 +30,16 @@ const CategoriesRow: React.FC<CategoriesRowProps> = ({
   }
 
   return (
-    <SectionBlock>
+    <div className="w-full">
       {!notFound ? (
-        <CategoryRow items={categories} />
+        <CategoryChildren items={categories} />
       ) : (
         <div className="min-h-full">
           <NotFound text="text-no-category" className="h-96" />
         </div>
       )}
-    </SectionBlock>
+    </div>
   );
 };
 
-export default CategoriesRow;
+export default ChildrenRow;

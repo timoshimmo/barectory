@@ -18,24 +18,21 @@ const SlidingCardCategories = dynamic(
   () => import('@/components/categories/sliding-card-category')
 );
 
-const CategoriesRow = dynamic(
-  () => import('@/components/categories/categories-row')
-);
-
 const MAP_CATEGORY_TO_GROUP: Record<string, any> = {
   classic: StickySidebarListCategories,
   modern: SlidingCardCategories,
   standard: StaticSidebarVerticalRectangleCategories,
   minimal: FilterCategoryGrid,
   compact: SlidingCardCategories,
-  default: StickySidebarListCategories,
-  row: CategoriesRow
+  default: StickySidebarListCategories
 };
+
 interface CategoriesProps {
   layout: string;
   variables: any;
   className?: string;
 }
+
 export default function Categories({
   layout,
   className,

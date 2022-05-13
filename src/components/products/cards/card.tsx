@@ -1,13 +1,13 @@
 import { Product } from '@/framework/types';
 import dynamic from 'next/dynamic';
 const Helium = dynamic(() => import('@/components/products/cards/helium'));
-const Neon = dynamic(() => import('@/components/products/cards/neon')); // grocery-two
-const Argon = dynamic(() => import('@/components/products/cards/argon')); // bakery
+const Neon = dynamic(() => import('@/components/products/cards/neon')); 
+const Argon = dynamic(() => import('@/components/products/cards/argon'));
 const Krypton = dynamic(
-  () => import('@/components/products/cards/krypton') // furniture extra price
+  () => import('@/components/products/cards/krypton')
 );
-const Xenon = dynamic(() => import('@/components/products/cards/xenon')); // furniture-two
-const Radon = dynamic(() => import('@/components/products/cards/radon')); // Book
+const Xenon = dynamic(() => import('@/components/products/cards/xenon'));
+const Radon = dynamic(() => import('@/components/products/cards/radon'));
 
 const MAP_PRODUCT_TO_CARD: Record<string, any> = {
   neon: Neon,
@@ -17,10 +17,12 @@ const MAP_PRODUCT_TO_CARD: Record<string, any> = {
   xenon: Xenon,
   radon: Radon,
 };
+
 interface ProductCardProps {
   product: Product;
   className?: string;
 }
+
 const ProductCard: React.FC<ProductCardProps> = ({
   product,
   className,

@@ -4,7 +4,7 @@ import Seo from '@/components/seo/seo';
 import { useWindowSize } from '@/lib/use-window-size';
 import isEmpty from 'lodash/isEmpty';
 import dynamic from 'next/dynamic';
-
+import { useTranslation } from 'next-i18next';
 export { getStaticPaths, getStaticProps } from '@/framework/product.ssr';
 //FIXME: typescript and layout
 const Details = dynamic(() => import('@/components/products/details/details'));
@@ -18,6 +18,7 @@ const CartCounterButton = dynamic(
 
 export default function ProductPage({ product }: any) {
   const { width } = useWindowSize();
+  const { t } = useTranslation('common');
 
   return (
     <>

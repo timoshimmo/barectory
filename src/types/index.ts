@@ -62,6 +62,12 @@ export interface Attachment {
   thumbnail: string;
 }
 
+export interface Children {
+  id: number;
+  name: string;
+  slug: string;
+}
+
 export interface ProductQueryOptions extends QueryOptions {
   shop_id: string;
   sortedBy: string;
@@ -153,7 +159,7 @@ export interface Category {
   slug: string;
   description: string;
   image: Attachment;
-  children: any;
+  children: Children[];
 }
 
 interface Banner {

@@ -7,20 +7,16 @@ import { Swiper, SwiperSlide, Navigation, Autoplay, SwiperWrapper } from '@/comp
 import { productPlaceholder } from '@/lib/placeholders';
 import { Image } from '@/components/ui/image';
 import Link from './link';
-import CategoryProductsGrid from './category-row-products';
+import CategoryChildProductsGrid from './category-children-row-products';
 
 interface CategoryItemProps {
   item: any;
 }
 const CategoryItem: React.FC<CategoryItemProps> = ({ item }) => {
+
   return (
     <div className="relative mt-[40px]">
-      <Link href={`${item?.type?.slug}/search/?category=${item.slug}`}
-          className="flex space-x-4 items-center py-2.5 w-20 font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none"
-          >
-        <span className="whitespace-nowrap text-heading">{item.name}</span>
-      </Link>
-      <CategoryProductsGrid slug={item.slug}/>
+      <CategoryChildProductsGrid slug={item.slug} item={item}/>
     </div>
   );
 };
