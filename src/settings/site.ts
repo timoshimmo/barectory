@@ -126,10 +126,6 @@ export const siteSettings = {
           {
             name: 'Terms & Conditions',
             href: ROUTES.TERMS,
-          },
-          {
-            name: 'text-return-policy',
-            href: '/',
           }
         ],
       },

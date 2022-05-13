@@ -27,7 +27,10 @@ export default function PrivacyPage() {
           </p>
         </header>
         {/* End of page header */}
-
+        <div className="pb-10"><span className="text-body-dark">This privacy policy will help you understand how Barectory® ("we") uses and protects
+        the data you provide to us when you visit and use our website.<br />We reserve the right to change this policy at any given time,
+        of which you will be promptly updated. If you want to make sure that you are up to date with the latest changes,
+        we advise you to frequently visit this page. <br /> <br />Our site is compliant with the NPDR terms and regulations.</span></div>
         <div className="flex flex-col md:flex-row">
           <nav className="mb-8 md:mb-0 md:w-72 xl:w-3/12">
             <ol className="sticky z-10 md:top-16 lg:top-22">
