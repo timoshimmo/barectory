@@ -24,11 +24,16 @@ export default function SubCategoriesPage({ cat }: any) {
   const { slug } = query;
 
   const { category, isLoading, error } = useCategory({ id: slug });
-  console.log("CATEGORYS PARAMS:" + cat);
 
-  useEffect(() => {
-    console.log("CATEGORYS PARAMS:" + cat);
-  },[]);
+
+{/*
+//console.log("CATEGORYS PARAMS:" + cat);
+
+useEffect(() => {
+  console.log("CATEGORYS PARAMS:" + cat);
+},[]);
+*/}
+
 
   return (
     <>
