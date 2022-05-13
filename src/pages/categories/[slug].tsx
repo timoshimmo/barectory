@@ -11,6 +11,7 @@ import { useTranslation } from 'next-i18next';
 
 import { useRouter } from 'next/router';
 
+
 const Subcategories = dynamic(() => import('@/components/categories/subcategories/subcategories'));
 
 
