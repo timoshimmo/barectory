@@ -28,8 +28,8 @@ export default function Modern({ variables }: HomePageProps) {
         <div className="border border-border-200 mb-5 z-0">
           <Banner layout="modern" variables={variables.types} />
         </div>
-        {/* <FilterBar variables={variables.categories} />  */}
-        <Categories layout="modern" variables={variables.categories} />
+          {/* <FilterBar variables={variables.categories} />  */}
+          <Categories layout="modern" variables={variables.categories} />
         <div className="mt-[30px]">
           <PopularProductsGrid variables={variables.popularProducts} />
         </div>
@@ -40,7 +40,7 @@ export default function Modern({ variables }: HomePageProps) {
           <Ads />
         </div>
         <div>
-          <CategoriesHome />
+          <CategoriesHome variables={variables.categories}/>
         </div>
         <div className="mt-[30px] mb-20 w-full">
           <Ads />

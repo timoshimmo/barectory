@@ -8,10 +8,7 @@ import dynamic from 'next/dynamic';
 export { getStaticPaths, getStaticProps } from '@/framework/category.ssr';
 import { useCategory } from '@/framework/category';
 import { useTranslation } from 'next-i18next';
-
 import { useRouter } from 'next/router';
-
-
 const Subcategories = dynamic(() => import('@/components/categories/subcategories/subcategories'));
 
 
@@ -23,13 +20,13 @@ export default function SubCategoriesPage({ cat }: any) {
   const query = router.query;
 
   const { slug } = query;
-  const { category, isLoading, error } = useCategory({ id: slug });
+  const { category, isLoading, error } = useCategory({ slug: slug });
 
   return (
     <>
       <Seo
         title={cat?.name}
-        url={cat?.id!}
+        url={cat?.slug!}
       />
         <div className="min-h-screen bg-light">
           <Subcategories category={cat} loading={isLoading} />

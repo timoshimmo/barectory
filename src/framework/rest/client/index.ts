@@ -106,8 +106,8 @@ class Client {
         ...params,
         ...(type && { search: HttpClient.formatSearchParams({ type }) }),
       }),
-      get: (id: string) =>
-        HttpClient.get<Category>(`${API_ENDPOINTS.CATEGORIES}/${id}`),
+      get: (slug: string) =>
+        HttpClient.get<Category>(`${API_ENDPOINTS.CATEGORIES}/${slug}`),
       getAll: () =>
         HttpClient.get<Category[]>(`${API_ENDPOINTS.CATEGORIES}/all`),
   };

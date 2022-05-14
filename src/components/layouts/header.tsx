@@ -154,23 +154,23 @@ const Header = ({ layout }: { layout: string }) => {
        }
 
        function handleBeer() {
-         router.push(`${ROUTES.CATEGORIES}/1`);
+         router.push(`${ROUTES.CATEGORIES}/beer`);
        }
 
        function handleSpirits() {
-         router.push(`${ROUTES.CATEGORIES}/2`);
+         router.push(`${ROUTES.CATEGORIES}/spirits`);
        }
 
        function handleWines() {
-         router.push(`${ROUTES.CATEGORIES}/3`);
+         router.push(`${ROUTES.CATEGORIES}/wines`);
        }
 
        function handleReadyToDrink() {
-         router.push(`${ROUTES.CATEGORIES}/4`);
+         router.push(`${ROUTES.CATEGORIES}/ready-todrink`);
        }
 
        function handleNonAlcoholic() {
-         router.push(`${ROUTES.CATEGORIES}/5`);
+         router.push(`${ROUTES.CATEGORIES}/non-alcoholic`);
        }
 
 {/*

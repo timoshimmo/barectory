@@ -9,7 +9,7 @@ import { QueryClient } from 'react-query';
 
 // This function gets called at build time
 type ParsedQueryParams = {
-  id: string;
+  slug: string;
 };
 export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async ({
   locales,
@@ -20,8 +20,8 @@ export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async ({
 //   locales.map((locale) => ({ params: { slug: category.id }, locale }))
 //  );
 
-  const paths = data.map(category => ({ params: { slug: category.id.toString() }}));
-  console.log(paths);
+  const paths = data.map(category => ({ params: { slug: category.slug }}));
+//  console.log(paths);
   //paths.then(data => console.log(data))
   //const paths = ["/categories/1", "/categories/2", "/categories/3", "/categories/4", "/categories/5"]
 

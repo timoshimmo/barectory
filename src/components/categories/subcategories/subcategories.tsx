@@ -32,6 +32,11 @@ const Subcategories: React.FC<Props> = ({
   const router = useRouter();
   const { attributes } = useAttributes();
 
+  useEffect(() => {
+    //localStorage.setItem("cityName", "Ikoyi");
+    console.log("CATEGORYS: " + category);
+}, []);
+
     return (
       <div className="main-container w-full flex flex-col min-h-screen transition-colors duration-150 bg-white">
       <Head>

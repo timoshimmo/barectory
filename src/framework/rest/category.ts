@@ -40,10 +40,10 @@ export function useCategories(options?: Partial<CategoryQueryOptions>) {
   };
 }
 
-export function useCategory({ id }: { id: string }) {
+export function useCategory({ slug }: { slug: string }) {
   const { data, isLoading, error } = useQuery<Category, Error>(
-    [API_ENDPOINTS.CATEGORIES, id],
-    () => client.categories.get(id)
+    [API_ENDPOINTS.CATEGORIES, slug],
+    () => client.categories.get(slug)
   );
   return {
     category: data,

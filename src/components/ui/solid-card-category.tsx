@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide, Navigation, Autoplay, SwiperWrapper } from '@/comp
 import { productPlaceholder } from '@/lib/placeholders';
 import { Image } from '@/components/ui/image';
 import Link from './link';
+import { ROUTES } from '@/lib/routes';
 
 interface CategoryItemProps {
   item: any;
@@ -14,7 +15,7 @@ interface CategoryItemProps {
 const CategoryItem: React.FC<CategoryItemProps> = ({ item }) => {
   return (
     <div className="relative overflow-hidden text-center cursor-pointer group">
-      <Link href={`${item?.type?.slug}/search/?category=${item.slug}`}>
+      <Link href={`${ROUTES.CATEGORIES}/${item.slug}`}>
         <img
           src={item?.image?.original! ?? productPlaceholder}
           alt={item?.name!}
