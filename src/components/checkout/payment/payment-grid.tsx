@@ -15,24 +15,28 @@ interface PaymentMethodInformation {
   component: React.FunctionComponent;
 }
 
-// Payment Methods Mapping Object
-
-const AVAILABLE_PAYMENT_METHODS_MAP: Record<
-  PaymentMethodName,
-  PaymentMethodInformation
-> = {
-  STRIPE: {
-    name: 'Stripe',
-    value: 'STRIPE',
-    icon: '/payment/paystack.png',
-    component: StripePayment,
-  },
+{/*
+  ,
   CASH_ON_DELIVERY: {
     name: 'Cash On Delivery',
     value: 'CASH_ON_DELIVERY',
     icon: '',
     component: CashOnDelivery,
   },
+*/}
+
+// Payment Methods Mapping Object
+
+const AVAILABLE_PAYMENT_METHODS_MAP: Record<
+  PaymentMethodName,
+  PaymentMethodInformation
+> = {
+  PAYSTACK: {
+    name: 'Paystack',
+    value: 'PAYSTACK',
+    icon: '/payment/paystack.png',
+    component: StripePayment,
+  }
 };
 
 const PaymentGrid: React.FC<{ className?: string; theme?: 'bw' }> = ({

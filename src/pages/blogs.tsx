@@ -59,7 +59,7 @@ export const BlogPage = () => {
     <>
       <Seo title={'Blogs'} url={'blogs'} />
       <div className="main-container w-full bg-gray-100">
-        <div className="order-1 mb-8 w-full carbonFibre p-20 overflow-hidden">
+        <div className="order-1 mb-8 w-full carbonFibre p-20 lg:h-[350px] overflow-hidden">
           <h1 className="mb-7 font-body text-2xl font-bold text-heading md:text-4xl text-light">
             Blogs
           </h1>

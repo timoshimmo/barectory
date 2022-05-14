@@ -57,6 +57,9 @@ export function useAllCategories() {
     [`${API_ENDPOINTS.CATEGORIES}/all`],
     () => client.categories.getAll()
   );
+
+  //console.log("CATEGORIES DATA:" + data.length + error);
+
   return {
     categories: data ?? [],
     isLoading,

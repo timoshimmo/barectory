@@ -5,7 +5,7 @@ import Seo from '@/components/seo/seo';
 import { useWindowSize } from '@/lib/use-window-size';
 import isEmpty from 'lodash/isEmpty';
 import dynamic from 'next/dynamic';
-//export { getStaticPaths, getStaticProps } from '@/framework/category.ssr';
+export { getStaticPaths, getStaticProps } from '@/framework/category.ssr';
 import { useCategory } from '@/framework/category';
 import { useTranslation } from 'next-i18next';
 
@@ -23,18 +23,7 @@ export default function SubCategoriesPage({ cat }: any) {
   const query = router.query;
 
   const { slug } = query;
-
   const { category, isLoading, error } = useCategory({ id: slug });
-
-
-{/*
-//console.log("CATEGORYS PARAMS:" + cat);
-
-useEffect(() => {
-  console.log("CATEGORYS PARAMS:" + cat);
-},[]);
-*/}
-
 
   return (
     <>
@@ -43,7 +32,7 @@ useEffect(() => {
         url={cat?.id!}
       />
         <div className="min-h-screen bg-light">
-          <Subcategories category={category} loading={isLoading} />
+          <Subcategories category={cat} loading={isLoading} />
         </div>
     </>
   );

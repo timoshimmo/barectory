@@ -16,9 +16,15 @@ export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async ({
 }) => {
   invariant(locales, 'locales is not defined');
   const { data } = await client.categories.all({ limit: 100 });
-  const paths = data?.flatMap((category) =>
-    locales.map((locale) => ({ params: { slug: category.id.toString() }, locale }))
-  );
+//  const paths = data?.flatMap((category) =>
+//   locales.map((locale) => ({ params: { slug: category.id }, locale }))
+//  );
+
+  const paths = data.map(category => ({ params: { slug: category.id.toString() }}));
+  console.log(paths);
+  //paths.then(data => console.log(data))
+  //const paths = ["/categories/1", "/categories/2", "/categories/3", "/categories/4", "/categories/5"]
+
   return {
     paths,
     fallback: 'blocking',
@@ -41,10 +47,10 @@ export const getStaticProps: GetStaticProps<
   );
 
   try {
-    const category = await client.categories.get(slug);
+    const cat = await client.categories.get(slug);
     return {
       props: {
-        category,
+        cat,
         ...(await serverSideTranslations(locale!, ['common'])),
         dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
       },

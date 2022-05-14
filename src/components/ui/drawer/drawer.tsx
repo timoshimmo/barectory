@@ -86,13 +86,13 @@ const Drawer: React.FC<DrawerProps> = ({
               />
               <div
                 className={cn(
-                  'absolute inset-y-0 flex max-w-80 outline-none',
+                  'absolute inset-y-0 flex max-w-[30rem] outline-none',
                   variant === 'right'
                     ? 'ltr:right-0 rtl:left-0'
                     : 'ltr:left-0 rtl:right-0'
                 )}
               >
-                <div className="h-full w-80 max-w-80">
+                <div className="h-full w-80 max-w-80 lg:w-[28rem] lg:max-w-[28rem]">
                   <div className="drawer flex h-full flex-col bg-light text-base shadow-xl">
                     <Scrollbar className="h-full w-full">{children}</Scrollbar>
                   </div>

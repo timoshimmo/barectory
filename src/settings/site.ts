@@ -80,7 +80,7 @@ export const siteSettings = {
   footer: {
     copyright: {
       name: 'Barectory, Inc',
-      href: 'https://redq.io/',
+      href: 'https://barectory.com',
     },
     address: '10 Agard Street, Sabo, Yaba, Lagos, Nigeria.',
     email: 'barectorynigeria@gmail.com ',
@@ -126,6 +126,10 @@ export const siteSettings = {
           {
             name: 'Terms & Conditions',
             href: ROUTES.TERMS,
+          },
+          {
+            name: 'Return Policy',
+            href: ROUTES.RETURN_POLICY,
           }
         ],
       },

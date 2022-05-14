@@ -48,7 +48,7 @@ const Details: React.FC<Props> = ({
 }) => {
   const {
     name,
-    image, 
+    image,
     description,
     unit,
     categories,
@@ -179,36 +179,6 @@ const Details: React.FC<Props> = ({
                 >
                   {name}
                 </h1>
-                <div className="flex">
-                  <div className="flex items-center justify-center flex-col mr-5 ">
-                    <div
-                        role="button"
-                        className={cn(
-                          'h-17 w-17 p-2 flex items-center justify-center border-2 rounded-full border-accent bg-accent cursor-pointer'
-                        )}
-                        onClick={handleCans}
-                      >
-                        <Can className="w-10 h-10 text-light" />
-                      </div>
-                      <span className="flex items-center my-2 text-sm font-semibold">
-                        CAN
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-center flex-col">
-                      <div
-                        role="button"
-                        className={cn(
-                          'h-17 w-17 p-2 flex items-center justify-center border-2 rounded-full border-accent bg-accent cursor-pointer'
-                        )}
-                        onClick={handleBottles}
-                        >
-                        <Bottle className="w-10 h-10 text-light" />
-                      </div>
-                      <span className="flex items-center my-2 text-sm font-semibold">
-                        BOTTLE
-                      </span>
-                    </div>
-                  </div>
 
                   {unit && !hasVariations && (
                     <span className="block mt-2 text-sm font-normal text-body md:mt-3">
@@ -232,6 +202,36 @@ const Details: React.FC<Props> = ({
 
                   {hasVariations ? (
                     <>
+                    <div className="flex mt-3">
+                      <div className="flex items-center justify-center flex-col mr-5 ">
+                        <div
+                            role="button"
+                            className={cn(
+                              'h-17 w-17 p-2 flex items-center justify-center border-2 rounded-full border-accent bg-accent cursor-pointer'
+                            )}
+                            onClick={handleCans}
+                          >
+                            <Can className="w-10 h-10 text-light" />
+                          </div>
+                          <span className="flex items-center my-2 text-sm font-semibold">
+                            CAN
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-center flex-col">
+                          <div
+                            role="button"
+                            className={cn(
+                              'h-17 w-17 p-2 flex items-center justify-center border-2 rounded-full border-accent bg-accent cursor-pointer'
+                            )}
+                            onClick={handleBottles}
+                            >
+                            <Bottle className="w-10 h-10 text-light" />
+                          </div>
+                          <span className="flex items-center my-2 text-sm font-semibold">
+                            BOTTLE
+                          </span>
+                        </div>
+                      </div>
                       <div className="flex items-center my-5 md:my-10">
                         <VariationPrice
                           selectedVariation={selectedVariation}

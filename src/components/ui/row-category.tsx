@@ -10,6 +10,11 @@ import Link from './link';
 import CategoryProductsGrid from './category-row-products';
 import { ROUTES } from '@/lib/routes';
 
+{/*
+href={`${ROUTES.HOME}/search?category=${item.slug}`}
+href={`${ROUTES.CATEGORIES}/${item.id}`}
+*/}
+
 interface CategoryItemProps {
   item: any;
 }

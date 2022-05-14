@@ -154,23 +154,23 @@ const Header = ({ layout }: { layout: string }) => {
        }
 
        function handleBeer() {
-         router.push('grocery/search?category=beer');
+         router.push(`${ROUTES.CATEGORIES}/1`);
        }
 
        function handleSpirits() {
-         router.push('grocery/search?category=spirits');
+         router.push(`${ROUTES.CATEGORIES}/2`);
        }
 
        function handleWines() {
-         router.push('grocery/search?category=wines');
+         router.push(`${ROUTES.CATEGORIES}/3`);
        }
 
        function handleReadyToDrink() {
-         router.push('grocery/search?category=ready-todrink');
+         router.push(`${ROUTES.CATEGORIES}/4`);
        }
 
        function handleNonAlcoholic() {
-         router.push('grocery/search?category=non-alcoholic');
+         router.push(`${ROUTES.CATEGORIES}/5`);
        }
 
 {/*
@@ -567,61 +567,63 @@ const Header = ({ layout }: { layout: string }) => {
               >
                 <span className="whitespace-nowrap text-sm text-body-dark font-bold text-heading hover:text-accent">READY TO DRINK</span>
               </Menu.Button>
-              <Transition
-                as={Fragment}
-                show={isShowingRDrink}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items
-                  as="ul"
-                  className={cn(
-                    'absolute py-2 z-10 w-40 h-auto bg-light rounded shadow-700 focus:outline-none overflow-hidden'
-                  )}
-                  onMouseEnter={onMouseEnterRdyDrinkButton}
-                  onMouseLeave={onMouseLeaveRdyDrinkButton}
+              {/*
+                <Transition
+                  as={Fragment}
+                  show={isShowingRDrink}
+                  enter="transition ease-out duration-100"
+                  enterFrom="transform opacity-0 scale-95"
+                  enterTo="transform opacity-100 scale-100"
+                  leave="transition ease-in duration-75"
+                  leaveFrom="transform opacity-100 scale-100"
+                  leaveTo="transform opacity-0 scale-95"
                 >
-                  <Scrollbar
-                    className="w-full h-full"
-                    options={{
-                      scrollbars: {
-                        autoHide: 'never',
-                      },
-                    }}
+                  <Menu.Items
+                    as="ul"
+                    className={cn(
+                      'absolute py-2 z-10 w-40 h-auto bg-light rounded shadow-700 focus:outline-none overflow-hidden'
+                    )}
+                    onMouseEnter={onMouseEnterRdyDrinkButton}
+                    onMouseLeave={onMouseLeaveRdyDrinkButton}
                   >
-                      <Menu.Item key={1}>
-                        {({ active }) => (
-                          <Link
-                            href='grocery/search?category=vermouth'
-                            className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
-                              active ? 'text-accent' : 'text-body-dark'
-                            )}
-                          >
-                            <span className="whitespace-nowrap text-sm">Smirnoff Ice</span>
-                          </Link>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item key={2}>
-                        {({ active }) => (
-                          <Link
-                            href='grocery/search?category=vermouth'
-                            className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
-                              active ? 'text-accent' : 'text-body-dark'
-                            )}
-                          >
-                            <span className="whitespace-nowrap text-sm">Origin</span>
-                          </Link>
-                        )}
-                      </Menu.Item>
-                  </Scrollbar>
-                </Menu.Items>
-              </Transition>
+                    <Scrollbar
+                      className="w-full h-full"
+                      options={{
+                        scrollbars: {
+                          autoHide: 'never',
+                        },
+                      }}
+                    >
+                        <Menu.Item key={1}>
+                          {({ active }) => (
+                            <Link
+                              href='grocery/search?category=vermouth'
+                              className={cn(
+                                'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                                active ? 'text-accent' : 'text-body-dark'
+                              )}
+                            >
+                              <span className="whitespace-nowrap text-sm">Smirnoff Ice</span>
+                            </Link>
+                          )}
+                        </Menu.Item>
+                        <Menu.Item key={2}>
+                          {({ active }) => (
+                            <Link
+                              href='grocery/search?category=vermouth'
+                              className={cn(
+                                'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                                active ? 'text-accent' : 'text-body-dark'
+                              )}
+                            >
+                              <span className="whitespace-nowrap text-sm">Origin</span>
+                            </Link>
+                          )}
+                        </Menu.Item>
+                    </Scrollbar>
+                  </Menu.Items>
+                </Transition>
+              */}
             </>
           </Menu>
           <Menu

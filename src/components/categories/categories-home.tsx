@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import ErrorMessage from '@/components/ui/error-message';
 import dynamic from 'next/dynamic';
 import { useAllCategories } from '@/framework/category';
@@ -10,10 +11,7 @@ interface CategoriesHomeProps {
   variables: any;
   className?: string;
 }
-export default function CategoriesHome({
-  className,
-  variables,
-}: CategoriesHomeProps) {
+export default function CategoriesHome() {
   const { categories, isLoading, error } = useAllCategories();
 
   if (error) return <ErrorMessage message={error.message} />;
@@ -24,8 +22,6 @@ export default function CategoriesHome({
       notFound={!Boolean(categories.length)}
       categories={categories}
       loading={isLoading}
-      className={className}
-      variables={variables}
     />
   );
 }

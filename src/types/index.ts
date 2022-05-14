@@ -104,6 +104,13 @@ export interface CategoryQueryOptions extends QueryOptions {
   type: string;
 }
 
+export interface CategoryAllQueryOptions extends QueryOptions {
+  id: string;
+  slug: string;
+  name: string;
+  children: any;
+}
+
 export interface TagQueryOptions extends QueryOptions {
   parent: string | null;
   type: string;

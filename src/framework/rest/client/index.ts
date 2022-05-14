@@ -7,6 +7,7 @@ import type {
   Category,
   CategoryPaginator,
   CategoryQueryOptions,
+  CategoryAllQueryOptions,
   ChangePasswordUserInput,
   CheckoutVerificationInput,
   CouponPaginator,

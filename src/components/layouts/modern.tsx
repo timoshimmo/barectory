@@ -40,7 +40,7 @@ export default function Modern({ variables }: HomePageProps) {
           <Ads />
         </div>
         <div>
-          <CategoriesHome variables={variables.categories} />
+          <CategoriesHome />
         </div>
         <div className="mt-[30px] mb-20 w-full">
           <Ads />

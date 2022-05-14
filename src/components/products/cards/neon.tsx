@@ -98,10 +98,12 @@ const Neon: React.FC<NeonProps> = ({ product, className }) => {
               <span className="text-sm md:text-base text-heading font-semibold">
                 {minPrice}
               </span>
+            {/*
               <span> - </span>
-              <span className="text-sm md:text-base text-heading font-semibold">
-                {maxPrice}
-              </span>
+                <span className="text-sm md:text-base text-heading font-semibold">
+                  {maxPrice}
+                </span>
+            */}
             </div>
           ) : (
             <div className="flex items-center mb-2">
