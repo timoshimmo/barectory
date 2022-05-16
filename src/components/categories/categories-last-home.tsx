@@ -12,7 +12,7 @@ interface CategoriesHomeProps {
   variables: any;
   className?: string;
 }
-export default function CategoriesHome({
+export default function CategoriesLastHome({
   className,
   variables,
 }: CategoriesHomeProps) {
@@ -27,7 +27,7 @@ export default function CategoriesHome({
   return (
     <CategoriesRow
       notFound={!Boolean(categories.length)}
-      categories={categories}
+      categories={categories.slice(4, categories.length)}
       loading={isLoading}
     />
   );

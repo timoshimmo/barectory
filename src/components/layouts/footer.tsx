@@ -19,7 +19,7 @@ const Footer = () => {
             <Logo />
           </div>
 
-          <address className="mb-7 text-sm not-italic text-heading text-light">
+          <address className="mb-7 text-sm not-italic text-heading text-light whitespace-pre">
             {t(siteSettings.footer.address)}
           </address>
           <span className="mb-1 text-sm text-heading text-light">

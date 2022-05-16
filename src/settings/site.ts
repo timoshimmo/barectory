@@ -82,7 +82,9 @@ export const siteSettings = {
       name: 'Barectory, Inc',
       href: 'https://barectory.com',
     },
-    address: '10 Agard Street, Sabo, Yaba, Lagos, Nigeria.',
+    address: `10 Agard Street, Sabo, Yaba,
+Lagos,
+Nigeria.`,
     email: 'barectorynigeria@gmail.com ',
     phone: '+2348181513324',
     menus: [

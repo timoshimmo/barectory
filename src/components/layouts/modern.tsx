@@ -3,7 +3,9 @@ import { useRouter } from 'next/router';
 import Banner from '@/components/banners/banner';
 import BannerMobile from '@/components/banners/banner-mobile';
 import Categories from '@/components/categories/categories';
-import CategoriesHome from '@/components/categories/categories-home';
+import CategoriesFirstHome from '@/components/categories/categories-first-home';
+import CategoriesMiddleHome from '@/components/categories/categories-middle-home';
+import CategoriesLastHome from '@/components/categories/categories-last-home';
 import { Element } from 'react-scroll';
 import ProductGridHome from '@/components/products/grids/home';
 import FilterBar from './filter-bar';
@@ -23,7 +25,7 @@ export default function Modern({ variables }: HomePageProps) {
       {/*<div className="sticky top-22 hidden h-full bg-gray-100 lg:w-[380px] xl:block">
         <Categories layout="modern" variables={variables.categories} />
       </div> */}
-      <main className="main-container block w-full xl:overflow-hidden ltr:xl:pl-0 ltr:xl:pr-0 rtl:xl:pr-0 rtl:xl:pl-0">
+      <main className="main-container block w-full mb-20 xl:overflow-hidden ltr:xl:pl-0 ltr:xl:pr-0 rtl:xl:pr-0 rtl:xl:pl-0">
         <SubscribePopup />
         <div className="border border-border-200 mb-5 z-0">
           <Banner layout="modern" variables={variables.types} />
@@ -40,11 +42,21 @@ export default function Modern({ variables }: HomePageProps) {
           <Ads />
         </div>
         <div>
-          <CategoriesHome variables={variables.categories}/>
+          <CategoriesFirstHome variables={variables.categories}/>
         </div>
-        <div className="mt-[30px] mb-20 w-full">
+        <div className="mt-[30px] w-full">
           <Ads />
         </div>
+        <div>
+          <CategoriesMiddleHome variables={variables.categories}/>
+        </div>
+        <div className="mt-[30px] w-full">
+          <Ads />
+        </div>
+        <div>
+          <CategoriesLastHome variables={variables.categories}/>
+        </div>
+
         {/*
           <Element name="slider" className="px-4 xl:px-0">
           <ProductGridHome className="py-6" variables={variables.products} />

@@ -1,5 +1,5 @@
 {
-  "name": "@pick-bazar/shop",
+  "name": "barectory",
   "version": "7.0.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,7 @@
     "codegen": "node -r dotenv/config $(yarn bin)/graphql-let",
     "dev:gql": "yarn codegen && next dev -p 3001",
     "build:gql": "yarn codegen && next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node server.js",
     "lint": "next lint",
     "postbuild:rest": "next-sitemap",
     "prepare": "husky install"
