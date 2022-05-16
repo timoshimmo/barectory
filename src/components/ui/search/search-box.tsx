@@ -35,7 +35,7 @@ const SearchBox: React.FC<Props> = ({
   return (
     <form onSubmit={onSubmit} className={cn('w-full', className)}>
       <div
-        className={cn('relative flex rounded md:rounded-lg', {
+        className={cn('relative flex rounded md:rounded-lg z-50', {
           'h-14 shadow-900': variant === 'normal',
           'h-9 lg:h-10': variant === 'minimal',
           'h-16 shadow-downfall': variant === 'with-shadow',

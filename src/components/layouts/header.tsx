@@ -272,7 +272,7 @@ const Header = ({ layout }: { layout: string }) => {
       <div className="px-5 flex w-full h-full justify-center items-center">
           <Menu
             as="div"
-            className="relative inline-block px-8"
+            className="inline-block px-8"
             onClick={handleBeer}
           >
             <>
@@ -358,7 +358,7 @@ const Header = ({ layout }: { layout: string }) => {
           </Menu>
           <Menu
             as="div"
-            className="relative  inline-block ltr:text-left rtl:text-right z-10 px-8"
+            className="inline-block ltr:text-left rtl:text-right px-8"
             onClick={handleSpirits}
           >
             <>
@@ -482,7 +482,7 @@ const Header = ({ layout }: { layout: string }) => {
           </Menu>
           <Menu
             as="div"
-            className="relative  inline-block ltr:text-left rtl:text-right z-10 px-8"
+            className="inline-block ltr:text-left rtl:text-right px-8"
             onClick={handleWines}
           >
             <>
@@ -554,7 +554,7 @@ const Header = ({ layout }: { layout: string }) => {
           </Menu>
           <Menu
             as="div"
-            className="relative  inline-block ltr:text-left rtl:text-right z-10 px-8"
+            className="inline-block ltr:text-left rtl:text-right px-8"
             onClick={handleReadyToDrink}
           >
             <>
@@ -628,7 +628,7 @@ const Header = ({ layout }: { layout: string }) => {
           </Menu>
           <Menu
             as="div"
-            className="relative  inline-block ltr:text-left rtl:text-right z-10 px-8"
+            className="inline-block ltr:text-left rtl:text-right px-8"
             onClick={handleNonAlcoholic}
           >
             <>
@@ -760,7 +760,7 @@ const Header = ({ layout }: { layout: string }) => {
                                 active ? 'text-accent' : 'text-body-dark'
                               )}
                             >
-                              <span className="whitespace-nowrap text-sm">About Us</span>
+                              <span className="whitespace-nowrap text-sm">About</span>
                             </Link>
                           )}
                         </Menu.Item>
