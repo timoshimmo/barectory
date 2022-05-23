@@ -34,7 +34,8 @@ const AdsShort: React.FC<AdsProps> = ({ ads }) => {
         </span>
         ))}
       </div>
-        <div className="relative mobile-layout">
+      {/*
+        <div className="relative w-full mobile-layout">
         {ads?.slice(2, 4).map((ad, idx) => (
           <span className="h-full w-full mx-1">
             <Image
@@ -47,6 +48,8 @@ const AdsShort: React.FC<AdsProps> = ({ ads }) => {
           </span>
           ))}
         </div>
+        */}
+
       </div>
     </div>
   );

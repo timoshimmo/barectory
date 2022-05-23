@@ -34,19 +34,22 @@ const AdsShortThird: React.FC<AdsProps> = ({ ads }) => {
         </span>
         ))}
       </div>
-        <div className="relative mobile-layout">
-        {ads?.slice(10, 12).map((ad, idx) => (
-          <span className="h-full w-full mx-1">
-            <Image
-              src={ad.original}
-              alt={'Ads Banner'}
-              objectFit="cover"
-              width={751}
-              height={480}
-            />
-          </span>
-          ))}
-        </div>
+      {/*
+        <div className="relative w-full mobile-layout">
+          {ads?.slice(10, 12).map((ad, idx) => (
+            <span className="h-full w-full mx-1">
+              <Image
+                src={ad.original}
+                alt={'Ads Banner'}
+                objectFit="cover"
+                width={751}
+                height={480}
+              />
+            </span>
+            ))}
+          </div>
+        */}
+
       </div>
     </div>
   );
