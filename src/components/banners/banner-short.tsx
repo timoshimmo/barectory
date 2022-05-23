@@ -105,7 +105,7 @@ const BannerShort: React.FC<BannerProps> = ({ banners }) => {
                 <div className="relative w-full h-[270px] pb-1">
                   <Image
                     className="w-full h-full"
-                    src={banner.image?.original ?? productPlaceholder}
+                    src={banner.image?.mobile ?? productPlaceholder}
                     alt={banner.title ?? ''}
                     layout="fill"
                     width={1503}

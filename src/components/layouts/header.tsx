@@ -567,7 +567,7 @@ const Header = ({ layout }: { layout: string }) => {
               >
                 <span className="whitespace-nowrap text-sm text-body-dark font-bold text-heading hover:text-accent">READY TO DRINK</span>
               </Menu.Button>
-              {/*
+
                 <Transition
                   as={Fragment}
                   show={isShowingRDrink}
@@ -597,33 +597,33 @@ const Header = ({ layout }: { layout: string }) => {
                         <Menu.Item key={1}>
                           {({ active }) => (
                             <Link
-                              href='grocery/search?category=vermouth'
+                              href='grocery/search?category=bitters'
                               className={cn(
                                 'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                 active ? 'text-accent' : 'text-body-dark'
                               )}
                             >
-                              <span className="whitespace-nowrap text-sm">Smirnoff Ice</span>
+                              <span className="whitespace-nowrap text-sm">Bitters</span>
                             </Link>
                           )}
                         </Menu.Item>
                         <Menu.Item key={2}>
                           {({ active }) => (
                             <Link
-                              href='grocery/search?category=vermouth'
+                              href='grocery/search?category=malt-beverage'
                               className={cn(
                                 'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                 active ? 'text-accent' : 'text-body-dark'
                               )}
                             >
-                              <span className="whitespace-nowrap text-sm">Origin</span>
+                              <span className="whitespace-nowrap text-sm">Malt Beverage</span>
                             </Link>
                           )}
                         </Menu.Item>
                     </Scrollbar>
                   </Menu.Items>
                 </Transition>
-              */}
+
             </>
           </Menu>
           <Menu

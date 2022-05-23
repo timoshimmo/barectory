@@ -1,7 +1,6 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { useRouter } from 'next/router';
 import Banner from '@/components/banners/banner';
-import BannerMobile from '@/components/banners/banner-mobile';
 import Categories from '@/components/categories/categories';
 import CategoriesFirstHome from '@/components/categories/categories-first-home';
 import CategoriesMiddleHome from '@/components/categories/categories-middle-home';
@@ -16,6 +15,9 @@ import SubscribePopup from '@/components/subscribe/popup';
 import { Image } from '@/components/ui/image';
 import { adsPlaceholder } from '@/lib/placeholders';
 import Ads from '@/components/ui/ads-image';
+import AdsFirst from '@/components/ads/ads-first';
+import AdsSecond from '@/components/ads/ads-second';
+import AdsThird from '@/components/ads/ads-third';
 
 
 export default function Modern({ variables }: HomePageProps) {
@@ -39,19 +41,19 @@ export default function Modern({ variables }: HomePageProps) {
           <SellingProductsGrid variables={variables.products} />
         </div>
         <div className="mt-[30px] w-full">
-          <Ads />
+          <AdsFirst layout="modern" variables={variables.types} />
         </div>
         <div>
           <CategoriesFirstHome variables={variables.categories}/>
         </div>
         <div className="mt-[30px] w-full">
-          <Ads />
+          <AdsSecond layout="modern" variables={variables.types} />
         </div>
         <div>
           <CategoriesMiddleHome variables={variables.categories}/>
         </div>
         <div className="mt-[30px] w-full">
-          <Ads />
+          <AdsThird layout="modern" variables={variables.types} />
         </div>
         <div>
           <CategoriesLastHome variables={variables.categories}/>
