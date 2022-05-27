@@ -96,7 +96,7 @@ Lagos, Nigeria.`,
           },
           {
             name: 'Blog',
-            href: '/blog',
+            href: '/blogs',
           },
           {
             name: 'Events',
