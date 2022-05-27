@@ -75,6 +75,7 @@ const CartPage = () => {
         <div className="flex flex-col items-center w-full max-w-5xl m-auto rtl:space-x-reverse lg:flex-row lg:items-start lg:space-x-8">
           <div className="w-full space-y-6">
             <section className="flex flex-col h-full relative">
+              <h1 className="mt-4 mb-3 pl-5 lg:text-4xl md:text-2xl font-semibold">Cart</h1>
               {/*
 
                 <header className="fixed max-w-md w-full top-0 z-10 bg-light py-4 px-6 flex items-center justify-between border-b border-border-200 border-opacity-75">

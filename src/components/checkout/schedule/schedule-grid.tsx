@@ -36,29 +36,38 @@ export const ScheduleGrid: React.FC<ScheduleProps> = ({
             </span>
           )}
           <p className="text-lg capitalize text-heading lg:text-xl">{label}</p>
+
         </div>
       </div>
 
+      <div>
+        <p>We currently only deliver between 8am - 9pm weekdays and on weekends, 10am - 7pm</p>
+      </div>
+
+    {/*
+
       {schedules && schedules?.length ? (
-        <RadioGroup value={selectedSchedule} onChange={setSchedule}>
-          <RadioGroup.Label className="sr-only">{label}</RadioGroup.Label>
+          <RadioGroup value={selectedSchedule} onChange={setSchedule}>
+            <RadioGroup.Label className="sr-only">{label}</RadioGroup.Label>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+              {schedules?.map((schedule: any, idx: number) => (
+                <RadioGroup.Option value={schedule} key={idx}>
+                  {({ checked }) => (
+                    <ScheduleCard checked={checked} schedule={schedule} />
+                  )}
+                </RadioGroup.Option>
+              ))}
+            </div>
+          </RadioGroup>
+        ) : (
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-            {schedules?.map((schedule: any, idx: number) => (
-              <RadioGroup.Option value={schedule} key={idx}>
-                {({ checked }) => (
-                  <ScheduleCard checked={checked} schedule={schedule} />
-                )}
-              </RadioGroup.Option>
-            ))}
+            <span className="relative rounded border border-border-200 bg-gray-100 px-5 py-6 text-center text-base">
+              {t('text-no-delivery-time-found')}
+            </span>
           </div>
-        </RadioGroup>
-      ) : (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-          <span className="relative rounded border border-border-200 bg-gray-100 px-5 py-6 text-center text-base">
-            {t('text-no-delivery-time-found')}
-          </span>
-        </div>
-      )}
+        )}
+
+    */}
     </div>
   );
 };

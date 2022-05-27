@@ -475,6 +475,19 @@ const Header = ({ layout }: { layout: string }) => {
                           </Link>
                         )}
                       </Menu.Item>
+                      <Menu.Item key={7}>
+                        {({ active }) => (
+                          <Link
+                            href='grocery/search?category=bitters'
+                            className={cn(
+                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                              active ? 'text-accent' : 'text-body-dark'
+                            )}
+                          >
+                            <span className="whitespace-nowrap text-sm">Bitters</span>
+                          </Link>
+                        )}
+                      </Menu.Item>
                   </Scrollbar>
                 </Menu.Items>
               </Transition>
@@ -595,19 +608,6 @@ const Header = ({ layout }: { layout: string }) => {
                       }}
                     >
                         <Menu.Item key={1}>
-                          {({ active }) => (
-                            <Link
-                              href='grocery/search?category=bitters'
-                              className={cn(
-                                'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
-                                active ? 'text-accent' : 'text-body-dark'
-                              )}
-                            >
-                              <span className="whitespace-nowrap text-sm">Bitters</span>
-                            </Link>
-                          )}
-                        </Menu.Item>
-                        <Menu.Item key={2}>
                           {({ active }) => (
                             <Link
                               href='grocery/search?category=malt-beverage'

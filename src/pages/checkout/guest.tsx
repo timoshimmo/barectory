@@ -50,18 +50,20 @@ export default function GuestCheckoutPage() {
             <ContactGrid
               className="bg-light p-5 shadow-700 md:p-8"
               contact={null}
-              label={t('text-contact-number')}
+              email={null}
+              name={null}
+              label={'Contact Details'}
               count={1}
             />
 
-            <EmailGrid
-              className="bg-light p-5 shadow-700 md:p-8"
-              email={null}
-              label='Email'
-              count={2}
-            />
-
             {/*
+              <EmailGrid
+                className="bg-light p-5 shadow-700 md:p-8"
+                email={null}
+                label='Email'
+                count={2}
+              />
+
               <GuestAddressGrid
                 className="bg-light p-5 shadow-700 md:p-8"
                 label={t('text-billing-address')}
@@ -76,7 +78,7 @@ export default function GuestCheckoutPage() {
             <GuestAddressGrid
               className="bg-light p-5 shadow-700 md:p-8"
               label={t('text-shipping-address')}
-              count={4}
+              count={2}
               addresses={shippingAddress ? [shippingAddress] : []}
               atom={shippingAddressAtom}
               type={AddressType.Shipping}
@@ -84,7 +86,7 @@ export default function GuestCheckoutPage() {
             <ScheduleGrid
               className="bg-light p-5 shadow-700 md:p-8"
               label={t('text-delivery-schedule')}
-              count={5}
+              count={3}
             />
           </div>
           <div className="mt-10 mb-10 w-full sm:mb-12 lg:mb-0 lg:w-96">

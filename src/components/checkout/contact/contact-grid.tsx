@@ -1,14 +1,16 @@
 import { useEffect } from 'react';
 import { useAtom } from 'jotai';
-import { customerContactAtom } from '@/store/checkout';
+import { customerContactAtom, customerEmailAtom, customerNameAtom } from '@/store/checkout';
 import { useModalAction } from '@/components/ui/modal/modal.context';
 import { PlusIcon } from '@/components/icons/plus-icon';
 import { useTranslation } from 'next-i18next';
 import classNames from 'classnames';
 import PhoneInput from '@/components/ui/forms/phone-input';
+import Input from '@/components/ui/forms/input';
 
 interface ContactProps {
   contact: string | undefined | null;
+  email: string | undefined | null;
   label: string;
   count?: number;
   className?: string;
@@ -17,12 +19,16 @@ interface ContactProps {
 
 const ContactGrid = ({
   contact,
+  email,
+  name,
   label,
   count,
   className,
   gridClassName,
 }: ContactProps) => {
   const [contactNumber, setContactNumber] = useAtom(customerContactAtom);
+  const [contactEmail, setContactEmail] = useAtom(customerEmailAtom);
+  const [contactName, setContactName] = useAtom(customerNameAtom);
   const { openModal } = useModalAction();
   const { t } = useTranslation('common');
 
@@ -31,8 +37,18 @@ const ContactGrid = ({
       setContactNumber(contact);
       return;
     }
+    if (email) {
+      setContactEmail(contact);
+      return;
+    }
+    if (name) {
+      setContactName(name);
+      return;
+    }
     setContactNumber('');
-  }, [contact, setContactNumber]);
+    setContactEmail('');
+    setContactName('');
+  }, [contact, setContactNumber, email, setContactEmail, name, setContactName]);
 
   function onAddOrChange() {
     openModal('ADD_OR_UPDATE_CHECKOUT_CONTACT');
@@ -53,20 +69,42 @@ const ContactGrid = ({
           <p className="text-lg capitalize text-heading lg:text-xl">{label}</p>
         </div>
 
-        <button
-          className="flex items-center text-sm font-semibold transition-colors duration-200 text-accent hover:text-accent-hover focus:text-accent-hover focus:outline-none"
-          onClick={onAddOrChange}
-        >
-          <PlusIcon className="h-4 w-4 stroke-2 ltr:mr-0.5 rtl:ml-0.5" />
-          {contactNumber ? t('text-update') : t('text-add')}
-        </button>
+        {/*
+
+          <button
+            className="flex items-center text-sm font-semibold transition-colors duration-200 text-accent hover:text-accent-hover focus:text-accent-hover focus:outline-none"
+            onClick={onAddOrChange}
+          >
+            <PlusIcon className="h-4 w-4 stroke-2 ltr:mr-0.5 rtl:ml-0.5" />
+            {contactNumber ? t('text-update') : t('text-add')}
+          </button>
+        */}
       </div>
 
       <div className={classNames('w-full', gridClassName)}>
+        <label>Name</label>
+        <Input
+          value={contactName}
+          disabled={false}
+          className="mb-5"
+          inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base !rounded focus:!border-accent !h-12"
+          dropdownClass="focus:!ring-0 !border !border-border-base !shadow-350"
+        />
+
+        <label>Phone number</label>
         <PhoneInput
           country="ng"
           value={contactNumber}
-          disabled={true}
+          disabled={false}
+          className="mb-5"
+          inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base !rounded focus:!border-accent !h-12"
+          dropdownClass="focus:!ring-0 !border !border-border-base !shadow-350"
+        />
+
+        <label>Email</label>
+        <Input
+          value={contactEmail}
+          disabled={false}
           inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base !rounded focus:!border-accent !h-12"
           dropdownClass="focus:!ring-0 !border !border-border-base !shadow-350"
         />

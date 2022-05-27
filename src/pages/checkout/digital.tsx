@@ -23,7 +23,10 @@ const CheckoutDigitalPage = () => {
           <ContactGrid
             className="bg-light p-5 shadow-700 md:p-8"
             contact={me?.profile?.contact}
-            label={t('text-contact-number')}
+            email={me?.email}
+            name={me?.name}
+            label={'Contact Details'}
+            count={1}
           />
           <div className="mt-3 w-full bg-white">
             <span className="mb-[1px] block w-full border-b border-gray-100 py-7 px-8 text-lg font-semibold capitalize text-gray-800 lg:text-2xl">

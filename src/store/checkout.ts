@@ -21,6 +21,7 @@ interface CheckoutState {
   delivery_time: DeliveryTime | null;
   customer_contact: string;
   customer_email: string;
+  customer_name: string;
   verified_response: VerifiedResponse | null;
   coupon: Coupon | null;
   payable_amount: number;
@@ -34,6 +35,7 @@ export const defaultCheckout: CheckoutState = {
   payment_gateway: 'PAYSTACK',
   customer_contact: '',
   customer_email: '',
+  customer_name: '',
   verified_response: null,
   coupon: null,
   payable_amount: 0,
@@ -95,6 +97,15 @@ export const customerEmailAtom = atom(
     return set(checkoutAtom, { ...prev, customer_email: data });
   }
 );
+
+export const customerNameAtom = atom(
+  (get) => get(checkoutAtom).customer_name,
+  (get, set, data: string) => {
+    const prev = get(checkoutAtom);
+    return set(checkoutAtom, { ...prev, customer_name: data });
+  }
+);
+
 export const verifiedResponseAtom = atom(
   (get) => get(checkoutAtom).verified_response,
   (get, set, data: VerifiedResponse | null) => {

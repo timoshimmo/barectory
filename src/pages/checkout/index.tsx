@@ -25,7 +25,7 @@ const RightSideView = dynamic(
 export default function CheckoutPage() {
   const { t } = useTranslation();
   const { me } = useUser();
-  const { id, address, profile } = me ?? {};
+  const { id, address, profile, email, name } = me ?? {};
   return (
     <>
       <Seo noindex={true} nofollow={true} />
@@ -35,7 +35,9 @@ export default function CheckoutPage() {
             <ContactGrid
               className="p-5 bg-light shadow-700 md:p-8"
               contact={profile?.contact}
-              label={t('text-contact-number')}
+              email={email}
+              name={name}
+              label={'Contact Details'}
               count={1}
             />
             {/*
@@ -57,7 +59,7 @@ export default function CheckoutPage() {
               userId={me?.id!}
               className="p-5 bg-light shadow-700 md:p-8"
               label={t('text-shipping-address')}
-              count={3}
+              count={2}
               //@ts-ignore
               addresses={address?.filter(
                 (item) => item?.type === AddressType.Shipping

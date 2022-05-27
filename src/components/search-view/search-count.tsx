@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import Link from '@/components/ui/link';
 import { ROUTES } from '@/lib/routes';
+import { useRouter } from 'next/router';
 
 interface Props {
   from: number;
@@ -21,7 +22,7 @@ const SearchCount = ({ from, to, total }: Props) => {
           Home
         </Link>
         <span className="text-sm text-heading ml-2 mr-2 font-semibold"> > </span>
-        <span className="text-sm text-heading font-semibold">Products</span>
+        <span className="text-sm text-heading font-semibold">Product</span>
       </div>
       <span className="text-sm font-semibold text-heading">{`${t(
         'text-showing'

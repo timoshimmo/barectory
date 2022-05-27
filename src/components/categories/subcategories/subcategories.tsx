@@ -38,12 +38,12 @@ const Subcategories: React.FC<Props> = ({
 }, []);
 
     return (
-      <div className="main-container w-full flex flex-col min-h-screen transition-colors duration-150 bg-white">
+      <div className="flex flex-col min-h-screen transition-colors duration-150 bg-white" style={{ width: '80%' }}>
       <Head>
          <title>Barectory</title>
        </Head>
        <div className="flex flex-col w-full md:flex-row">
-         <div className="p-6 pt-10 w-full lg:p-14 xl:p-16">
+         <div className="w-full">
           <div className="w-100">
             <div className="flex mb-2">
                 <Link

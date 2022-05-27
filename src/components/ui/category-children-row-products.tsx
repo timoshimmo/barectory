@@ -49,25 +49,25 @@ export default function CategoryChildProductsGrid({
     },
 
     820: {
-      slidesPerView: 5,
+      slidesPerView: 4,
       spaceBetween: 20,
     },
 
     1200: {
-      slidesPerView: 5,
+      slidesPerView: 4,
       spaceBetween: 20,
     },
 
     1280: {
-      slidesPerView: 5,
+      slidesPerView: 4,
       spaceBetween: 24,
     },
     1800: {
-      slidesPerView: 5,
+      slidesPerView: 4,
       spaceBetween: 30,
     },
     2600: {
-      slidesPerView: 6,
+      slidesPerView: 5,
       spaceBetween: 40,
     },
   };
@@ -95,7 +95,6 @@ export default function CategoryChildProductsGrid({
             hiddenClass: 'swiper-button-hidden',
           }}
           breakpoints={breakpoints}
-          slidesPerView={5}
           autoplay={{
             delay: 5000,
             disableOnInteraction: false,
