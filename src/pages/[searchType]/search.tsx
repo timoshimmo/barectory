@@ -15,6 +15,9 @@ import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import StickyBox from 'react-sticky-box';
 export { getServerSideProps } from '@/framework/search.ssr';
+import Link from '@/components/ui/link';
+import { ROUTES } from '@/lib/routes';
+import { useCategory } from '@/framework/category';
 
 export default function SearchPage() {
   const { query } = useRouter();
@@ -34,16 +37,49 @@ export default function SearchPage() {
     ...(searchType && { type: searchType }),
     ...restQuery,
   });
+
+  console.log("CATEGORIES: " + JSON.stringify(searchType) + " " + JSON.stringify(restQuery.category));
+  const arr = restQuery.category.split(",");
+
+  console.log("CATEGORIES ARR: " + JSON.stringify(arr));
+
+  //const { category, isLoading, error } = useCategory({ slug: slug });
+
+
   if (error) return <ErrorMessage message={error.message} />;
   return (
     <div className="w-full">
       <div className="mb-7 flex flex-col items-center justify-between md:flex-row">
+        <div>
+          <div className="flex mb-2">
+            <Link
+              className="text-sm text-heading"
+              href={`${ROUTES.HOME}`}
+            >
+              Home
+            </Link>
+
+            {arr.map((item, i) => (
+                <>
+                  <span className="text-sm text-heading ml-2 mr-2 font-semibold"> > </span>
+                  <Link
+                    className="text-sm text-heading capitalize font-semibold"
+                    href={`${ROUTES.HOME}/search?category=${item}`}
+                  >
+                    { item }
+                  </Link>
+                </>
+              ))
+            }
+          </div>
+          <SearchCount
+            from={paginatorInfo?.firstItem ?? 0}
+            to={paginatorInfo?.lastItem ?? 0}
+            total={paginatorInfo?.total ?? 0}
+          />
+        </div>
         {/* //FIXME: */}
-        <SearchCount
-          from={paginatorInfo?.firstItem ?? 0}
-          to={paginatorInfo?.lastItem ?? 0}
-          total={paginatorInfo?.total ?? 0}
-        />
+
         <div className="mt-4 max-w-xs md:mt-0">
           <Sorting variant="dropdown" />
         </div>

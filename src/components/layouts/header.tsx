@@ -272,7 +272,7 @@ SEARCH
       <div className="px-5 flex w-full h-full justify-center items-center">
           <div className="flex flex-col">
             <Link
-              href={`${ROUTES.SEARCH}/search?category=beer`}
+              href={`${ROUTES.HOME}/search?category=beer`}
               onMouseEnter={onMouseEnterBeerButton}
               onMouseLeave={onMouseLeaveBeerButton}
               className='flex text-gray-700  items-center px-8 py-3 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
@@ -314,7 +314,7 @@ SEARCH
                         <Menu.Item key={1}>
                           {({ active }) => (
                             <Link
-                              href='grocery/search?category=sparkling-wine'
+                              href={`${ROUTES.HOME}/search?category=ale`}
                               className={cn(
                                 'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold text-body-dark capitalize transition duration-200 hover:text-accent focus:outline-none',
                                 active ? 'text-accent' : 'text-body-dark'
@@ -327,7 +327,7 @@ SEARCH
                         <Menu.Item key={2}>
                           {({ active }) => (
                             <Link
-                              href='grocery/search?category=sparkling-wine'
+                              href={`${ROUTES.HOME}/search?category=lager`}
                               className={cn(
                                 'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                 active ? 'text-accent' : 'text-body-dark'
@@ -340,7 +340,7 @@ SEARCH
                         <Menu.Item key={3}>
                           {({ active }) => (
                             <Link
-                              href='grocery/search?category=sparkling-wine'
+                              href={`${ROUTES.HOME}/search?category=stout`}
                               className={cn(
                                 'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                 active ? 'text-accent' : 'text-body-dark'
@@ -358,7 +358,7 @@ SEARCH
           </div>
           <div className="flex flex-col">
               <Link
-                href={`${ROUTES.SEARCH}/search?category=spirits`}
+                href={`${ROUTES.HOME}/search?category=spirits`}
                 onMouseEnter={onMouseEnterSpiritsButton}
                 onMouseLeave={onMouseLeaveSpiritsButton}
                 className='flex text-gray-700  items-center px-8 py-3 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
@@ -399,7 +399,7 @@ SEARCH
                           <Menu.Item key={1}>
                             {({ active }) => (
                               <Link
-                                href='/grocery/search?category=vermouth'
+                                href={`${ROUTES.HOME}/search?category=vermouth`}
                                 className={cn(
                                   'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                   active ? 'text-accent' : 'text-body-dark'
@@ -412,7 +412,7 @@ SEARCH
                           <Menu.Item key={2}>
                             {({ active }) => (
                               <Link
-                                href='/grocery/search?category=whisky'
+                                href={`${ROUTES.HOME}/search?category=whisky`}
                                 className={cn(
                                   'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                   active ? 'text-accent' : 'text-body-dark'
@@ -425,7 +425,7 @@ SEARCH
                           <Menu.Item key={3}>
                             {({ active }) => (
                               <Link
-                                href='/grocery/search?category=vodka'
+                                href={`${ROUTES.HOME}/search?category=vodka`}
                                 className={cn(
                                   'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                   active ? 'text-accent' : 'text-body-dark'
@@ -438,7 +438,7 @@ SEARCH
                           <Menu.Item key={4}>
                             {({ active }) => (
                               <Link
-                                href='grocery/search?category=gin'
+                                href={`${ROUTES.HOME}/search?category=gin`}
                                 className={cn(
                                   'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                   active ? 'text-accent' : 'text-body-dark'
@@ -451,7 +451,7 @@ SEARCH
                           <Menu.Item key={5}>
                             {({ active }) => (
                               <Link
-                                href='grocery/search?category=rum'
+                                href={`${ROUTES.HOME}/search?category=rum`}
                                 className={cn(
                                   'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold text-body-dark capitalize transition duration-200 hover:text-accent focus:outline-none',
                                   active ? 'text-accent' : 'text-body-dark'
@@ -464,7 +464,7 @@ SEARCH
                           <Menu.Item key={6}>
                             {({ active }) => (
                               <Link
-                                href='grocery/search?category=tequila'
+                                href={`${ROUTES.HOME}/search?category=tequila`}
                                 className={cn(
                                   'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold text-body-dark capitalize transition duration-200 hover:text-accent focus:outline-none',
                                   active ? 'text-accent' : 'text-body-dark'
@@ -477,7 +477,7 @@ SEARCH
                           <Menu.Item key={7}>
                             {({ active }) => (
                               <Link
-                                href='grocery/search?category=bitters'
+                                href={`${ROUTES.HOME}/search?category=bitters`}
                                 className={cn(
                                   'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                   active ? 'text-accent' : 'text-body-dark'
@@ -495,7 +495,7 @@ SEARCH
           </div>
           <div className="flex flex-col">
               <Link
-                href={`${ROUTES.SEARCH}/search?category=wines`}
+                href={`${ROUTES.HOME}/search?category=wines`}
                 onMouseEnter={onMouseEnterWinesButton}
                 onMouseLeave={onMouseLeaveWinesButton}
                 className='flex text-gray-700  items-center px-8 py-3 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
@@ -536,7 +536,7 @@ SEARCH
                           <Menu.Item key={1}>
                             {({ active }) => (
                               <Link
-                                href='grocery/search?category=sparkling-wine'
+                                href={`${ROUTES.HOME}/search?category=sparkling-wine`}
                                 className={cn(
                                   'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                   active ? 'text-accent' : 'text-body-dark'
@@ -549,7 +549,7 @@ SEARCH
                           <Menu.Item key={2}>
                             {({ active }) => (
                               <Link
-                                href='grocery/search?category=sparkling-wine'
+                                href={`${ROUTES.HOME}/search?category=red-wine`}
                                 className={cn(
                                   'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                   active ? 'text-accent' : 'text-body-dark'
@@ -567,7 +567,7 @@ SEARCH
             </div>
             <div className="flex flex-col">
               <Link
-                href={`${ROUTES.SEARCH}/search?category=ready-todrink`}
+                href={`${ROUTES.HOME}/search?category=ready-todrink`}
                 onMouseEnter={onMouseEnterRdyDrinkButton}
                 onMouseLeave={onMouseLeaveRdyDrinkButton}
                 className='flex text-gray-700  items-center px-8 py-3 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
@@ -608,7 +608,7 @@ SEARCH
                             <Menu.Item key={1}>
                               {({ active }) => (
                                 <Link
-                                  href='grocery/search?category=malt-beverage'
+                                  href={`${ROUTES.HOME}/search?category=malt-beverage`}
                                   className={cn(
                                     'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                     active ? 'text-accent' : 'text-body-dark'
@@ -626,7 +626,7 @@ SEARCH
           </div>
           <div className="flex flex-col">
               <Link
-                href={`${ROUTES.SEARCH}/search?category=non-alcoholic`}
+                href={`${ROUTES.HOME}/search?category=non-alcoholic`}
                 onMouseEnter={onMouseEnterNonAlcoholicButton}
                 onMouseLeave={onMouseLeaveNonAlcoholicButton}
                 className='flex text-gray-700  items-center px-8 py-3 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
@@ -667,7 +667,7 @@ SEARCH
                           <Menu.Item key={1}>
                             {({ active }) => (
                               <Link
-                                href='grocery/search?category=sparkling-wine'
+                                href={`${ROUTES.HOME}/search?category=soft-drinks`}
                                 className={cn(
                                   'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                   active ? 'text-accent' : 'text-body-dark'
@@ -680,7 +680,7 @@ SEARCH
                           <Menu.Item key={2}>
                             {({ active }) => (
                               <Link
-                                href='grocery/search?category=sparkling-wine'
+                                href={`${ROUTES.HOME}/search?category=fruit-juice`}
                                 className={cn(
                                   'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                   active ? 'text-accent' : 'text-body-dark'
