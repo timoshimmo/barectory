@@ -174,7 +174,7 @@ const Header = ({ layout }: { layout: string }) => {
        }
 
 {/*
-
+SEARCH
   {isHomePage ? (
     <>
       {(displayHeaderSearch || layout === 'modern') && (
@@ -270,320 +270,23 @@ const Header = ({ layout }: { layout: string }) => {
         </div>
       </header>
       <div className="px-5 flex w-full h-full justify-center items-center">
-          <Menu
-            as="div"
-            className="inline-block px-8"
-            onClick={handleBeer}
-          >
-            <>
-              <Menu.Button
-                className={cn(
-                  'flex items-center shrink-0 text-sm md:text-base font-semibold h-11 focus:outline-none text-heading hover:text-accent'
-                )}
-                onMouseEnter={onMouseEnterBeerButton}
-                onMouseLeave={onMouseLeaveBeerButton}
-              >
-                <span className="whitespace-nowrap text-sm text-body-dark font-bold text-heading hover:text-accent">BEER</span>
-              </Menu.Button>
-              <Transition
-                as={Fragment}
-                show={isShowingBeer}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items
-                  static
-                  as="ul"
-                  className={cn(
-                    'absolute py-2 z-10 w-40 h-auto bg-light rounded shadow-700 focus:outline-none overflow-hidden'
-                  )}
-                  onMouseEnter={onMouseEnterBeerButton}
-                  onMouseLeave={onMouseLeaveBeerButton}
-                >
-                  <Scrollbar
-                    className="w-full h-full"
-                    options={{
-                      scrollbars: {
-                        autoHide: 'never',
-                      },
-                    }}
-                  >
-                      <Menu.Item key={1}>
-                        {({ active }) => (
-                          <Link
-                            href='grocery/search?category=sparkling-wine'
-                            className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold text-body-dark capitalize transition duration-200 hover:text-accent focus:outline-none',
-                              active ? 'text-accent' : 'text-body-dark'
-                            )}
-                          >
-                            <span className="whitespace-nowrap text-sm">Ale</span>
-                          </Link>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item key={2}>
-                        {({ active }) => (
-                          <Link
-                            href='grocery/search?category=sparkling-wine'
-                            className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
-                              active ? 'text-accent' : 'text-body-dark'
-                            )}
-                          >
-                            <span className="whitespace-nowrap text-sm">Lager</span>
-                          </Link>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item key={3}>
-                        {({ active }) => (
-                          <Link
-                            href='grocery/search?category=sparkling-wine'
-                            className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
-                              active ? 'text-accent' : 'text-body-dark'
-                            )}
-                          >
-                            <span className="whitespace-nowrap text-sm">Stout</span>
-                          </Link>
-                        )}
-                      </Menu.Item>
-                  </Scrollbar>
-                </Menu.Items>
-              </Transition>
-            </>
-          </Menu>
-          <Menu
-            as="div"
-            className="inline-block ltr:text-left rtl:text-right px-8"
-            onClick={handleSpirits}
-          >
-            <>
-              <Menu.Button
-                className={cn(
-                  'flex items-center shrink-0 text-sm md:text-base font-semibold h-11 focus:outline-none text-heading hover:text-accent'
-                )}
-                onMouseEnter={onMouseEnterSpiritsButton}
-                onMouseLeave={onMouseLeaveSpiritsButton}
-              >
-                <span className="whitespace-nowrap text-sm text-body-dark font-bold text-heading hover:text-accent">SPIRITS</span>
-              </Menu.Button>
-              <Transition
-                as={Fragment}
-                show={isShowingSpirits}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items
-                  as="ul"
-                  className={cn(
-                    'absolute py-2 z-10 w-40 h-auto bg-light rounded shadow-700 focus:outline-none overflow-hidden'
-                  )}
-                  onMouseEnter={onMouseEnterSpiritsButton}
-                  onMouseLeave={onMouseLeaveSpiritsButton}
-                >
-                  <Scrollbar
-                    className="w-full h-full"
-                    options={{
-                      scrollbars: {
-                        autoHide: 'never',
-                      },
-                    }}
-                  >
-                      <Menu.Item key={1}>
-                        {({ active }) => (
-                          <Link
-                            href='/grocery/search?category=vermouth'
-                            className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
-                              active ? 'text-accent' : 'text-body-dark'
-                            )}
-                          >
-                            <span className="whitespace-nowrap text-sm">Vermouth</span>
-                          </Link>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item key={2}>
-                        {({ active }) => (
-                          <Link
-                            href='/grocery/search?category=whisky'
-                            className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
-                              active ? 'text-accent' : 'text-body-dark'
-                            )}
-                          >
-                            <span className="whitespace-nowrap text-sm">Whisky</span>
-                          </Link>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item key={3}>
-                        {({ active }) => (
-                          <Link
-                            href='/grocery/search?category=vodka'
-                            className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
-                              active ? 'text-accent' : 'text-body-dark'
-                            )}
-                          >
-                            <span className="whitespace-nowrap text-sm">Vodka</span>
-                          </Link>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item key={4}>
-                        {({ active }) => (
-                          <Link
-                            href='grocery/search?category=gin'
-                            className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
-                              active ? 'text-accent' : 'text-body-dark'
-                            )}
-                          >
-                            <span className="whitespace-nowrap text-sm">Gin</span>
-                          </Link>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item key={5}>
-                        {({ active }) => (
-                          <Link
-                            href='grocery/search?category=rum'
-                            className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold text-body-dark capitalize transition duration-200 hover:text-accent focus:outline-none',
-                              active ? 'text-accent' : 'text-body-dark'
-                            )}
-                          >
-                            <span className="whitespace-nowrap text-sm">Rum</span>
-                          </Link>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item key={6}>
-                        {({ active }) => (
-                          <Link
-                            href='grocery/search?category=tequila'
-                            className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold text-body-dark capitalize transition duration-200 hover:text-accent focus:outline-none',
-                              active ? 'text-accent' : 'text-body-dark'
-                            )}
-                          >
-                            <span className="whitespace-nowrap text-sm">Tequila</span>
-                          </Link>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item key={7}>
-                        {({ active }) => (
-                          <Link
-                            href='grocery/search?category=bitters'
-                            className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
-                              active ? 'text-accent' : 'text-body-dark'
-                            )}
-                          >
-                            <span className="whitespace-nowrap text-sm">Bitters</span>
-                          </Link>
-                        )}
-                      </Menu.Item>
-                  </Scrollbar>
-                </Menu.Items>
-              </Transition>
-            </>
-          </Menu>
-          <Menu
-            as="div"
-            className="inline-block ltr:text-left rtl:text-right px-8"
-            onClick={handleWines}
-          >
-            <>
-              <Menu.Button
-                className={cn(
-                  'flex items-center shrink-0 text-sm md:text-base font-semibold h-11 focus:outline-none text-heading hover:text-accent'
-                )}
-                onMouseEnter={onMouseEnterWinesButton}
-                onMouseLeave={onMouseLeaveWinesButton}
-              >
-                <span className="whitespace-nowrap text-sm text-body-dark font-bold text-heading hover:text-accent">WINES</span>
-              </Menu.Button>
-              <Transition
-                as={Fragment}
-                show={isShowingWines}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items
-                  as="ul"
-                  className={cn(
-                    'absolute py-2 z-10 w-40 h-auto bg-light rounded shadow-700 focus:outline-none overflow-hidden'
-                  )}
-                  onMouseEnter={onMouseEnterWinesButton}
-                  onMouseLeave={onMouseLeaveWinesButton}
-                >
-                  <Scrollbar
-                    className="w-full h-full"
-                    options={{
-                      scrollbars: {
-                        autoHide: 'never',
-                      },
-                    }}
-                  >
-                      <Menu.Item key={1}>
-                        {({ active }) => (
-                          <Link
-                            href='grocery/search?category=sparkling-wine'
-                            className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
-                              active ? 'text-accent' : 'text-body-dark'
-                            )}
-                          >
-                            <span className="whitespace-nowrap text-sm">Sparkling Wine</span>
-                          </Link>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item key={2}>
-                        {({ active }) => (
-                          <Link
-                            href='grocery/search?category=sparkling-wine'
-                            className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
-                              active ? 'text-accent' : 'text-body-dark'
-                            )}
-                          >
-                            <span className="whitespace-nowrap text-sm">Red Wine</span>
-                          </Link>
-                        )}
-                      </Menu.Item>
-                  </Scrollbar>
-                </Menu.Items>
-              </Transition>
-            </>
-          </Menu>
-          <Menu
-            as="div"
-            className="inline-block ltr:text-left rtl:text-right px-8"
-            onClick={handleReadyToDrink}
-          >
-            <>
-              <Menu.Button
-                className={cn(
-                  'flex items-center shrink-0 text-sm md:text-base font-semibold h-11 focus:outline-none text-heading hover:text-accent'
-                )}
-                onMouseEnter={onMouseEnterRdyDrinkButton}
-                onMouseLeave={onMouseLeaveRdyDrinkButton}
-              >
-                <span className="whitespace-nowrap text-sm text-body-dark font-bold text-heading hover:text-accent">READY TO DRINK</span>
-              </Menu.Button>
-
+          <div className="flex flex-col">
+            <Link
+              href={`${ROUTES.SEARCH}/search?category=beer`}
+              onMouseEnter={onMouseEnterBeerButton}
+              onMouseLeave={onMouseLeaveBeerButton}
+              className='flex text-gray-700  items-center px-8 py-3 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
+            >
+              <span className="text-sm text-body-dark font-bold text-heading hover:text-accent">BEER</span>
+            </Link>
+            <Menu
+              as="div"
+              className="inline-block px-8"
+            >
+              <>
                 <Transition
                   as={Fragment}
-                  show={isShowingRDrink}
+                  show={isShowingBeer}
                   enter="transition ease-out duration-100"
                   enterFrom="transform opacity-0 scale-95"
                   enterTo="transform opacity-100 scale-100"
@@ -592,12 +295,13 @@ const Header = ({ layout }: { layout: string }) => {
                   leaveTo="transform opacity-0 scale-95"
                 >
                   <Menu.Items
+                    static
                     as="ul"
                     className={cn(
                       'absolute py-2 z-10 w-40 h-auto bg-light rounded shadow-700 focus:outline-none overflow-hidden'
                     )}
-                    onMouseEnter={onMouseEnterRdyDrinkButton}
-                    onMouseLeave={onMouseLeaveRdyDrinkButton}
+                    onMouseEnter={onMouseEnterBeerButton}
+                    onMouseLeave={onMouseLeaveBeerButton}
                   >
                     <Scrollbar
                       className="w-full h-full"
@@ -610,93 +314,388 @@ const Header = ({ layout }: { layout: string }) => {
                         <Menu.Item key={1}>
                           {({ active }) => (
                             <Link
-                              href='grocery/search?category=malt-beverage'
+                              href='grocery/search?category=sparkling-wine'
+                              className={cn(
+                                'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold text-body-dark capitalize transition duration-200 hover:text-accent focus:outline-none',
+                                active ? 'text-accent' : 'text-body-dark'
+                              )}
+                            >
+                              <span className="whitespace-nowrap text-sm">Ale</span>
+                            </Link>
+                          )}
+                        </Menu.Item>
+                        <Menu.Item key={2}>
+                          {({ active }) => (
+                            <Link
+                              href='grocery/search?category=sparkling-wine'
                               className={cn(
                                 'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                 active ? 'text-accent' : 'text-body-dark'
                               )}
                             >
-                              <span className="whitespace-nowrap text-sm">Malt Beverage</span>
+                              <span className="whitespace-nowrap text-sm">Lager</span>
+                            </Link>
+                          )}
+                        </Menu.Item>
+                        <Menu.Item key={3}>
+                          {({ active }) => (
+                            <Link
+                              href='grocery/search?category=sparkling-wine'
+                              className={cn(
+                                'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                                active ? 'text-accent' : 'text-body-dark'
+                              )}
+                            >
+                              <span className="whitespace-nowrap text-sm">Stout</span>
                             </Link>
                           )}
                         </Menu.Item>
                     </Scrollbar>
                   </Menu.Items>
                 </Transition>
-            </>
-          </Menu>
-          <Menu
-            as="div"
-            className="inline-block ltr:text-left rtl:text-right px-8"
-            onClick={handleNonAlcoholic}
-          >
-            <>
-              <Menu.Button
-                className={cn(
-                  'flex items-center shrink-0 text-sm md:text-base font-semibold h-11 focus:outline-none text-heading hover:text-accent'
-                )}
+              </>
+            </Menu>
+          </div>
+          <div className="flex flex-col">
+              <Link
+                href={`${ROUTES.SEARCH}/search?category=spirits`}
+                onMouseEnter={onMouseEnterSpiritsButton}
+                onMouseLeave={onMouseLeaveSpiritsButton}
+                className='flex text-gray-700  items-center px-8 py-3 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
+              >
+                <span className="text-sm text-body-dark font-bold text-heading hover:text-accent">SPIRITS</span>
+              </Link>
+              <Menu
+                as="div"
+                className="inline-block ltr:text-left rtl:text-right px-8"
+              >
+                <>
+                  <Transition
+                    as={Fragment}
+                    show={isShowingSpirits}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                  >
+                    <Menu.Items
+                      as="ul"
+                      className={cn(
+                        'absolute py-2 z-10 w-40 h-auto bg-light rounded shadow-700 focus:outline-none overflow-hidden'
+                      )}
+                      onMouseEnter={onMouseEnterSpiritsButton}
+                      onMouseLeave={onMouseLeaveSpiritsButton}
+                    >
+                      <Scrollbar
+                        className="w-full h-full"
+                        options={{
+                          scrollbars: {
+                            autoHide: 'never',
+                          },
+                        }}
+                      >
+                          <Menu.Item key={1}>
+                            {({ active }) => (
+                              <Link
+                                href='/grocery/search?category=vermouth'
+                                className={cn(
+                                  'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                                  active ? 'text-accent' : 'text-body-dark'
+                                )}
+                              >
+                                <span className="whitespace-nowrap text-sm">Vermouth</span>
+                              </Link>
+                            )}
+                          </Menu.Item>
+                          <Menu.Item key={2}>
+                            {({ active }) => (
+                              <Link
+                                href='/grocery/search?category=whisky'
+                                className={cn(
+                                  'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                                  active ? 'text-accent' : 'text-body-dark'
+                                )}
+                              >
+                                <span className="whitespace-nowrap text-sm">Whisky</span>
+                              </Link>
+                            )}
+                          </Menu.Item>
+                          <Menu.Item key={3}>
+                            {({ active }) => (
+                              <Link
+                                href='/grocery/search?category=vodka'
+                                className={cn(
+                                  'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                                  active ? 'text-accent' : 'text-body-dark'
+                                )}
+                              >
+                                <span className="whitespace-nowrap text-sm">Vodka</span>
+                              </Link>
+                            )}
+                          </Menu.Item>
+                          <Menu.Item key={4}>
+                            {({ active }) => (
+                              <Link
+                                href='grocery/search?category=gin'
+                                className={cn(
+                                  'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                                  active ? 'text-accent' : 'text-body-dark'
+                                )}
+                              >
+                                <span className="whitespace-nowrap text-sm">Gin</span>
+                              </Link>
+                            )}
+                          </Menu.Item>
+                          <Menu.Item key={5}>
+                            {({ active }) => (
+                              <Link
+                                href='grocery/search?category=rum'
+                                className={cn(
+                                  'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold text-body-dark capitalize transition duration-200 hover:text-accent focus:outline-none',
+                                  active ? 'text-accent' : 'text-body-dark'
+                                )}
+                              >
+                                <span className="whitespace-nowrap text-sm">Rum</span>
+                              </Link>
+                            )}
+                          </Menu.Item>
+                          <Menu.Item key={6}>
+                            {({ active }) => (
+                              <Link
+                                href='grocery/search?category=tequila'
+                                className={cn(
+                                  'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold text-body-dark capitalize transition duration-200 hover:text-accent focus:outline-none',
+                                  active ? 'text-accent' : 'text-body-dark'
+                                )}
+                              >
+                                <span className="whitespace-nowrap text-sm">Tequila</span>
+                              </Link>
+                            )}
+                          </Menu.Item>
+                          <Menu.Item key={7}>
+                            {({ active }) => (
+                              <Link
+                                href='grocery/search?category=bitters'
+                                className={cn(
+                                  'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                                  active ? 'text-accent' : 'text-body-dark'
+                                )}
+                              >
+                                <span className="whitespace-nowrap text-sm">Bitters</span>
+                              </Link>
+                            )}
+                          </Menu.Item>
+                      </Scrollbar>
+                    </Menu.Items>
+                  </Transition>
+                </>
+              </Menu>
+          </div>
+          <div className="flex flex-col">
+              <Link
+                href={`${ROUTES.SEARCH}/search?category=wines`}
+                onMouseEnter={onMouseEnterWinesButton}
+                onMouseLeave={onMouseLeaveWinesButton}
+                className='flex text-gray-700  items-center px-8 py-3 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
+              >
+                <span className="text-sm text-body-dark font-bold text-heading hover:text-accent">WINES</span>
+              </Link>
+              <Menu
+                as="div"
+                className="inline-block ltr:text-left rtl:text-right px-8"
+              >
+                <>
+                  <Transition
+                    as={Fragment}
+                    show={isShowingWines}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                  >
+                    <Menu.Items
+                      as="ul"
+                      className={cn(
+                        'absolute py-2 z-10 w-40 h-auto bg-light rounded shadow-700 focus:outline-none overflow-hidden'
+                      )}
+                      onMouseEnter={onMouseEnterWinesButton}
+                      onMouseLeave={onMouseLeaveWinesButton}
+                    >
+                      <Scrollbar
+                        className="w-full h-full"
+                        options={{
+                          scrollbars: {
+                            autoHide: 'never',
+                          },
+                        }}
+                      >
+                          <Menu.Item key={1}>
+                            {({ active }) => (
+                              <Link
+                                href='grocery/search?category=sparkling-wine'
+                                className={cn(
+                                  'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                                  active ? 'text-accent' : 'text-body-dark'
+                                )}
+                              >
+                                <span className="whitespace-nowrap text-sm">Sparkling Wine</span>
+                              </Link>
+                            )}
+                          </Menu.Item>
+                          <Menu.Item key={2}>
+                            {({ active }) => (
+                              <Link
+                                href='grocery/search?category=sparkling-wine'
+                                className={cn(
+                                  'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                                  active ? 'text-accent' : 'text-body-dark'
+                                )}
+                              >
+                                <span className="whitespace-nowrap text-sm">Red Wine</span>
+                              </Link>
+                            )}
+                          </Menu.Item>
+                      </Scrollbar>
+                    </Menu.Items>
+                  </Transition>
+                </>
+              </Menu>
+            </div>
+            <div className="flex flex-col">
+              <Link
+                href={`${ROUTES.SEARCH}/search?category=ready-todrink`}
+                onMouseEnter={onMouseEnterRdyDrinkButton}
+                onMouseLeave={onMouseLeaveRdyDrinkButton}
+                className='flex text-gray-700  items-center px-8 py-3 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
+              >
+                <span className="text-sm text-body-dark font-bold text-heading hover:text-accent">READY TO DRINK</span>
+              </Link>
+              <Menu
+                as="div"
+                className="inline-block ltr:text-left rtl:text-right px-8"
+              >
+                <>
+                    <Transition
+                      as={Fragment}
+                      show={isShowingRDrink}
+                      enter="transition ease-out duration-100"
+                      enterFrom="transform opacity-0 scale-95"
+                      enterTo="transform opacity-100 scale-100"
+                      leave="transition ease-in duration-75"
+                      leaveFrom="transform opacity-100 scale-100"
+                      leaveTo="transform opacity-0 scale-95"
+                    >
+                      <Menu.Items
+                        as="ul"
+                        className={cn(
+                          'absolute py-2 z-10 w-40 h-auto bg-light rounded shadow-700 focus:outline-none overflow-hidden'
+                        )}
+                        onMouseEnter={onMouseEnterRdyDrinkButton}
+                        onMouseLeave={onMouseLeaveRdyDrinkButton}
+                      >
+                        <Scrollbar
+                          className="w-full h-full"
+                          options={{
+                            scrollbars: {
+                              autoHide: 'never',
+                            },
+                          }}
+                        >
+                            <Menu.Item key={1}>
+                              {({ active }) => (
+                                <Link
+                                  href='grocery/search?category=malt-beverage'
+                                  className={cn(
+                                    'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                                    active ? 'text-accent' : 'text-body-dark'
+                                  )}
+                                >
+                                  <span className="whitespace-nowrap text-sm">Malt Beverage</span>
+                                </Link>
+                              )}
+                            </Menu.Item>
+                        </Scrollbar>
+                      </Menu.Items>
+                    </Transition>
+                </>
+              </Menu>
+          </div>
+          <div className="flex flex-col">
+              <Link
+                href={`${ROUTES.SEARCH}/search?category=non-alcoholic`}
                 onMouseEnter={onMouseEnterNonAlcoholicButton}
                 onMouseLeave={onMouseLeaveNonAlcoholicButton}
+                className='flex text-gray-700  items-center px-8 py-3 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
               >
-                <span className="whitespace-nowrap text-sm text-body-dark font-bold text-heading hover:text-accent">NON-ALCOHOLIC</span>
-              </Menu.Button>
-              <Transition
-                as={Fragment}
-                show={isShowingNonAlcohol}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
+                <span className="text-sm text-body-dark font-bold text-heading hover:text-accent">NON-ALCOHOLIC</span>
+              </Link>
+              <Menu
+                as="div"
+                className="inline-block ltr:text-left rtl:text-right px-8"
               >
-                <Menu.Items
-                  as="ul"
-                  className={cn(
-                    'absolute py-2 z-10 w-40 h-auto bg-light rounded shadow-700 focus:outline-none overflow-hidden'
-                  )}
-                  onMouseEnter={onMouseEnterNonAlcoholicButton}
-                  onMouseLeave={onMouseLeaveNonAlcoholicButton}
-                >
-                  <Scrollbar
-                    className="w-full h-full"
-                    options={{
-                      scrollbars: {
-                        autoHide: 'never',
-                      },
-                    }}
+                <>
+                  <Transition
+                    as={Fragment}
+                    show={isShowingNonAlcohol}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
                   >
-                      <Menu.Item key={1}>
-                        {({ active }) => (
-                          <Link
-                            href='grocery/search?category=sparkling-wine'
-                            className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
-                              active ? 'text-accent' : 'text-body-dark'
+                    <Menu.Items
+                      as="ul"
+                      className={cn(
+                        'absolute py-2 z-10 w-40 h-auto bg-light rounded shadow-700 focus:outline-none overflow-hidden'
+                      )}
+                      onMouseEnter={onMouseEnterNonAlcoholicButton}
+                      onMouseLeave={onMouseLeaveNonAlcoholicButton}
+                    >
+                      <Scrollbar
+                        className="w-full h-full"
+                        options={{
+                          scrollbars: {
+                            autoHide: 'never',
+                          },
+                        }}
+                      >
+                          <Menu.Item key={1}>
+                            {({ active }) => (
+                              <Link
+                                href='grocery/search?category=sparkling-wine'
+                                className={cn(
+                                  'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                                  active ? 'text-accent' : 'text-body-dark'
+                                )}
+                              >
+                                <span className="whitespace-nowrap text-sm">Soft Drinks</span>
+                              </Link>
                             )}
-                          >
-                            <span className="whitespace-nowrap text-sm">Soft Drinks</span>
-                          </Link>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item key={2}>
-                        {({ active }) => (
-                          <Link
-                            href='grocery/search?category=sparkling-wine'
-                            className={cn(
-                              'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
-                              active ? 'text-accent' : 'text-body-dark'
+                          </Menu.Item>
+                          <Menu.Item key={2}>
+                            {({ active }) => (
+                              <Link
+                                href='grocery/search?category=sparkling-wine'
+                                className={cn(
+                                  'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
+                                  active ? 'text-accent' : 'text-body-dark'
+                                )}
+                              >
+                                <span className="whitespace-nowrap text-sm">Fruit Juice</span>
+                              </Link>
                             )}
-                          >
-                            <span className="whitespace-nowrap text-sm">Fruit Juice</span>
-                          </Link>
-                        )}
-                      </Menu.Item>
-                  </Scrollbar>
-                </Menu.Items>
-              </Transition>
-            </>
-          </Menu>
+                          </Menu.Item>
+                      </Scrollbar>
+                    </Menu.Items>
+                  </Transition>
+                </>
+              </Menu>
+          </div>
           <Link
             href='/offers'
             className='flex items-center  px-8 mr-0 py-2.5 text-gray-700 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
