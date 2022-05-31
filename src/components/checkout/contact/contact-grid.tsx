@@ -82,19 +82,30 @@ const ContactGrid = ({
       </div>
 
       <div className={classNames('w-full', gridClassName)}>
-        <label>Name</label>
-        <Input
-          value={contactName}
-          disabled={false}
-          className="mb-5"
-          inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base !rounded focus:!border-accent !h-12"
-          dropdownClass="focus:!ring-0 !border !border-border-base !shadow-350"
-        />
+        <div className="flex w-full">
+          <div className="w-[50%] pr-2">
+            <label>First name</label>
+            <Input
+              disabled={false}
+              className="mb-5"
+              inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base !rounded focus:!border-accent !h-12"
+              dropdownClass="focus:!ring-0 !border !border-border-base !shadow-350"
+            />
+          </div>
+          <div className="w-[50%] pl-2">
+            <label>Last name</label>
+            <Input
+              disabled={false}
+              className="mb-5"
+              inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base !rounded focus:!border-accent !h-12"
+              dropdownClass="focus:!ring-0 !border !border-border-base !shadow-350"
+            />
+          </div>
+        </div>
 
         <label>Phone number</label>
         <PhoneInput
           country="ng"
-          value={contactNumber}
           disabled={false}
           className="mb-5"
           inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base !rounded focus:!border-accent !h-12"
@@ -103,7 +114,6 @@ const ContactGrid = ({
 
         <label>Email</label>
         <Input
-          value={contactEmail}
           disabled={false}
           inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base !rounded focus:!border-accent !h-12"
           dropdownClass="focus:!ring-0 !border !border-border-base !shadow-350"

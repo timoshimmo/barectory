@@ -18,7 +18,7 @@ const CheckoutDigitalPage = () => {
   return (
     <>
       <Seo noindex={true} nofollow={true} />
-      <div className="bg-gray-100 px-4 py-8 lg:py-10 lg:px-8 xl:py-14 xl:px-16 2xl:px-20">
+      <div className="main-container bg-gray-100 px-4 py-8 lg:py-10 lg:px-8 xl:py-14 xl:px-16 2xl:px-20">
         <div className="m-auto flex w-full max-w-xl flex-col">
           <ContactGrid
             className="bg-light p-5 shadow-700 md:p-8"

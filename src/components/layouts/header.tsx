@@ -623,7 +623,6 @@ const Header = ({ layout }: { layout: string }) => {
                     </Scrollbar>
                   </Menu.Items>
                 </Transition>
-
             </>
           </Menu>
           <Menu

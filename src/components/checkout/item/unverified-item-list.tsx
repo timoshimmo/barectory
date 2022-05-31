@@ -5,7 +5,6 @@ import EmptyCartIcon from '@/components/icons/empty-cart';
 import usePrice from '@/lib/use-price';
 import { ItemInfoRow } from './item-info-row';
 import { CheckAvailabilityAction } from '@/components/checkout/check-availability-action';
-import { usePaystackPayment } from 'react-paystack';
 
 const UnverifiedItemList = ({ hideTitle = false }: { hideTitle?: boolean }) => {
   const { t } = useTranslation('common');
@@ -16,38 +15,6 @@ const UnverifiedItemList = ({ hideTitle = false }: { hideTitle?: boolean }) => {
       amount: total,
     }
   );
-
-  const config = {
-      reference: (new Date()).getTime().toString(),
-      email: "user@example.com",
-      amount: total,
-      publicKey: 'pk_test_67801597b3230b96562d8443af365f39c98c173b',
-  };
-
-  // you can call this function anything
-  const onSuccess = (reference) => {
-    // Implementation for whatever you want to do with reference and after success call.
-    console.log(reference);
-  };
-
-  // you can call this function anything
-  const onClose = () => {
-    // implementation for  whatever you want to do when the Paystack dialog closed.
-    console.log('closed')
-  }
-
-  const PaystackHookExample = () => {
-     const initializePayment = usePaystackPayment(config);
-     return (
-       <div>
-           <button
-           className="w-full mt-5 bg-accent text-light px-5 py-0 h-12 border border-transparent hover:bg-accent-hover inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-none focus:shadow focus:ring-1 focus:ring-accent-700"
-           onClick={() => {
-               initializePayment(onSuccess, onClose)
-           }}>Pay</button>
-       </div>
-     );
- };
 
   return (
     <div className="w-full">
@@ -81,7 +48,9 @@ const UnverifiedItemList = ({ hideTitle = false }: { hideTitle?: boolean }) => {
           value={t('text-calculated-checkout')}
         />
       </div>
-      <PaystackHookExample />
+      <CheckAvailabilityAction>
+        {t('text-check-availability')}
+      </CheckAvailabilityAction>
 
     {/*
 

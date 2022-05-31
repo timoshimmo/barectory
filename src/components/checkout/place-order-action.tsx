@@ -12,6 +12,7 @@ import {
   calculatePaidTotal,
   calculateTotal,
 } from '@/store/quick-cart/cart.utils';
+import { usePaystackPayment } from 'react-paystack';
 
 export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -45,6 +46,7 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
   );
 
   const subtotal = calculateTotal(available_items);
+
   const total = calculatePaidTotal(
     {
       totalAmount: subtotal,
@@ -54,7 +56,7 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
     Number(discount)
   );
   const handlePlaceOrder = () => {
-    if (!customer_contact) {
+  /*  if (!customer_contact) {
       setErrorMessage('Contact Number Is Required');
       return;
     }
@@ -65,7 +67,7 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
     if (!use_wallet_points && payment_gateway === 'PAYSTACK' && !token) {
       setErrorMessage('Please Pay First');
       return;
-    }
+    }*/
     let input = {
       //@ts-ignore
       products: available_items?.map((item) => formatOrderedProduct(item)),
@@ -85,15 +87,50 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
         ...(shipping_address?.address && shipping_address.address),
       },
     };
-    if (payment_gateway === 'PAYSTACK') {
+  /*  if (payment_gateway === 'PAYSTACK') {
       //@ts-ignore
       input.token = token;
-    }
+    }*/
 
     delete input.shipping_address.__typename;
     //@ts-ignore
     createOrder(input);
   };
+
+  const config = {
+      reference: (new Date()).getTime().toString(),
+      email: "user@example.com",
+      amount: total * 100,
+      publicKey: 'pk_test_67801597b3230b96562d8443af365f39c98c173b',
+  };
+
+
+  // you can call this function anything
+  const onSuccess = (reference) => {
+    // Implementation for whatever you want to do with reference and after success call.
+    console.log(reference);
+    handlePlaceOrder();
+  };
+
+  // you can call this function anything
+  const onClose = () => {
+    // implementation for  whatever you want to do when the Paystack dialog closed.
+    console.log('closed')
+  }
+
+  const PaystackHookExample = () => {
+     const initializePayment = usePaystackPayment(config);
+     return (
+       <div>
+           <button
+           className="w-full mt-5 bg-accent text-light px-5 py-0 h-12 border border-transparent hover:bg-accent-hover inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-none focus:shadow focus:ring-1 focus:ring-accent-700"
+           onClick={() => {
+               initializePayment(onSuccess, onClose)
+           }}>Pay</button>
+       </div>
+     );
+ };
+
   const isDigitalCheckout = available_items.find((item) =>
     Boolean(item.is_digital)
   );
@@ -112,13 +149,16 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
   );
   return (
     <>
-      <Button
-        loading={isLoading}
-        className={classNames('mt-5 w-full', props.className)}
-        onClick={handlePlaceOrder}
-        disabled={!isAllRequiredFieldSelected}
-        {...props}
-      />
+      {/*
+        <Button
+          loading={isLoading}
+          className={classNames('mt-5 w-full', props.className)}
+          onClick={handlePlaceOrder}
+          disabled={!isAllRequiredFieldSelected}
+          {...props}
+        />
+      */}
+      <PaystackHookExample />
       {errorMessage && (
         <div className="mt-3">
           <ValidationError message={errorMessage} />

@@ -103,24 +103,26 @@ const VerifiedItemList: React.FC<Props> = ({ className }) => {
         <ItemInfoRow title={t('text-sub-total')} value={sub_total} />
         <ItemInfoRow title={t('text-tax')} value={tax} />
         <ItemInfoRow title={t('text-shipping')} value={shipping} />
+      {/*
         {discount && coupon ? (
-          <div className="flex justify-between">
-            <p className="text-sm text-body ltr:mr-4 rtl:ml-4">
-              {t('text-discount')}
-            </p>
-            <span className="flex items-center text-xs font-semibold text-red-500 ltr:mr-auto rtl:ml-auto">
-              ({coupon?.code})
-              <button onClick={() => setCoupon(null)}>
-                <CloseIcon className="w-3 h-3 ltr:ml-2 rtl:mr-2" />
-              </button>
-            </span>
-            <span className="text-sm text-body">{discountPrice}</span>
-          </div>
-        ) : (
-          <div className="flex justify-between mt-5 !mb-4">
-            <Coupon />
-          </div>
-        )}
+            <div className="flex justify-between">
+              <p className="text-sm text-body ltr:mr-4 rtl:ml-4">
+                {t('text-discount')}
+              </p>
+              <span className="flex items-center text-xs font-semibold text-red-500 ltr:mr-auto rtl:ml-auto">
+                ({coupon?.code})
+                <button onClick={() => setCoupon(null)}>
+                  <CloseIcon className="w-3 h-3 ltr:ml-2 rtl:mr-2" />
+                </button>
+              </span>
+              <span className="text-sm text-body">{discountPrice}</span>
+            </div>
+          ) : (
+            <div className="flex justify-between mt-5 !mb-4">
+              <Coupon />
+            </div>
+          )}
+      */}
         <div className="flex justify-between pt-3 border-t-4 border-double border-border-200">
           <p className="text-base font-semibold text-heading">
             {t('text-total')}
@@ -128,6 +130,7 @@ const VerifiedItemList: React.FC<Props> = ({ className }) => {
           <span className="text-base font-semibold text-heading">{total}</span>
         </div>
       </div>
+    {/*
       {verifiedResponse && (
         <Wallet
           totalPrice={totalPrice}
@@ -135,9 +138,11 @@ const VerifiedItemList: React.FC<Props> = ({ className }) => {
           walletCurrency={verifiedResponse.wallet_currency}
         />
       )}
+
       {use_wallet && !Boolean(payableAmount) ? null : (
-        <PaymentGrid className="p-5 mt-10 border border-gray-200 bg-light" />
-      )}
+          <PaymentGrid className="p-5 mt-10 border border-gray-200 bg-light" />
+        )}
+    */}
       <PlaceOrderAction>{t('text-place-order')}</PlaceOrderAction>
     </div>
   );

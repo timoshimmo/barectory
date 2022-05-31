@@ -12,14 +12,21 @@ import ErrorMessage from '@/components/ui/error-message';
 import CouponCard from '@/components/ui/cards/coupon';
 export { getStaticProps } from '@/framework/coupon.ssr';
 import Footer from '@/components/layouts/footer';
+import { Grid } from '@/components/products/grid';
+import { useSalesProducts } from '@/framework/product';
+import ProductLoader from '@/components/ui/loaders/product-loader';
+import { ROUTES } from '@/lib/routes';
+import Link from '@/components/ui/link';
 
 const OffersPage: NextPageWithLayout = () => {
   const limit = 20;
   const { t } = useTranslation('common');
-  const { isLoading, isLoadingMore, hasMore, coupons, error, loadMore } =
-    useCoupons();
+//  const { isLoading, isLoadingMore, hasMore, coupons, error, loadMore } =
+//    useCoupons();
+
+  const { products, isLoading, error } = useSalesProducts({ range: 30 });
   if (error) return <ErrorMessage message={error.message} />;
-  if (!isLoading && !coupons.length) {
+  if (!isLoading && !products.length) {
     return (
       <div className="min-h-full px-4 pt-6 pb-8 bg-gray-100 lg:p-8">
         <NotFound text="text-no-coupon" />
@@ -30,24 +37,36 @@ const OffersPage: NextPageWithLayout = () => {
   return (
     <>
       <Seo title="Offers" url="offers" />
-      <div className="w-full px-4 py-8 mx-auto bg-gray-100 max-w-1920 lg:py-10 lg:px-8 xl:py-14 xl:px-16 2xl:px-20">
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 xl:gap-8">
-          {isLoading && !coupons.length
-            ? rangeMap(limit, (i) => (
-                <CouponLoader key={i} uniqueKey={`coupon-${i}`} />
-              ))
-            : coupons.map((item) => <CouponCard key={item.id} coupon={item} />)}
+      <div className="main-container w-full px-4 py-8 mx-auto bg-gray-100 max-w-1920 lg:py-10 lg:px-8 xl:py-14 xl:px-16 2xl:px-20">
+        <h1 className="mt-4 lg:text-4xl md:text-2xl font-semibold">Offers</h1>
+        <div className="flex mb-5 mt-5">
+          <Link
+            className="text-sm text-heading"
+            href={`${ROUTES.HOME}`}
+          >
+            Home
+          </Link>
+          <span className="text-sm text-heading ml-2 mr-2 font-semibold"> > </span>
+          <span className="text-sm text-heading font-semibold">Offers</span>
         </div>
-        {hasMore && (
-          <div className="flex items-center justify-center mt-8 lg:mt-12">
-            <Button onClick={loadMore} loading={isLoadingMore}>
-              {t('text-load-more')}
-            </Button>
-          </div>
-        )}
-        <Footer />
+        <div className="w-full pt-5">
+          {isLoading && !products.length
+            ? rangeMap(limit, (i) => (
+                <ProductLoader key={i} uniqueKey={`product-${i}`} />
+              ))
+            :
+            <Grid
+              products={products}
+              loadMore={false}
+              isLoading={isLoading}
+              isLoadingMore={false}
+              hasMore={false}
+              error={error}
+              column="five"
+            />
+          }
+        </div>
       </div>
-      <CartCounterButton />
     </>
   );
 };
