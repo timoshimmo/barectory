@@ -11,7 +11,7 @@ import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 const Subcategories = dynamic(() => import('@/components/categories/subcategories/subcategories'));
 import StickyBox from 'react-sticky-box';
-import SidebarFilter from '@/components/search-view/sidebar-filter';
+import SuperSidebarFilter from '@/components/search-view/super-sidebar-filter';
 
 
 export default function SubCategoriesPage({ cat }: any) {
@@ -22,7 +22,7 @@ export default function SubCategoriesPage({ cat }: any) {
   const query = router.query;
 
   const { slug } = query;
-  const { category, isLoading, error } = useCategory({ slug: slug });
+  const { category, iscLoading, cerror } = useCategory({ slug: slug });
 
   return (
     <>
@@ -34,10 +34,10 @@ export default function SubCategoriesPage({ cat }: any) {
           <div className="mx-auto flex min-h-screen w-full max-w-1920 px-5 py-10 rtl:space-x-reverse lg:space-x-10 xl:py-14 xl:px-16">
             <div className="hidden shrink-0 lg:block" style={{ width: '20%' }}>
               <StickyBox offsetTop={140} offsetBottom={30}>
-                <SidebarFilter />
+                <SuperSidebarFilter slug={slug}/>
               </StickyBox>
             </div>
-            <Subcategories category={cat} loading={isLoading} />
+            <Subcategories category={cat} loading={iscLoading} />
           </div>
         </div>
     </>

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useAtom } from 'jotai';
-import { customerContactAtom, customerEmailAtom, customerNameAtom } from '@/store/checkout';
+import { customerContactAtom, customerEmailAtom, customerFirstNameAtom, customerLastNameAtom } from '@/store/checkout';
 import { useModalAction } from '@/components/ui/modal/modal.context';
 import { PlusIcon } from '@/components/icons/plus-icon';
 import { useTranslation } from 'next-i18next';
@@ -11,6 +11,8 @@ import Input from '@/components/ui/forms/input';
 interface ContactProps {
   contact: string | undefined | null;
   email: string | undefined | null;
+  firstName: string | undefined | null;
+  lastName: string | undefined | null;
   label: string;
   count?: number;
   className?: string;
@@ -20,7 +22,8 @@ interface ContactProps {
 const ContactGrid = ({
   contact,
   email,
-  name,
+  firstName,
+  lastName,
   label,
   count,
   className,
@@ -28,7 +31,8 @@ const ContactGrid = ({
 }: ContactProps) => {
   const [contactNumber, setContactNumber] = useAtom(customerContactAtom);
   const [contactEmail, setContactEmail] = useAtom(customerEmailAtom);
-  const [contactName, setContactName] = useAtom(customerNameAtom);
+  const [contactFirstName, setContactFirstName] = useAtom(customerFirstNameAtom);
+  const [contactLastName, setContactLastName] = useAtom(customerLastNameAtom);
   const { openModal } = useModalAction();
   const { t } = useTranslation('common');
 
@@ -41,14 +45,24 @@ const ContactGrid = ({
       setContactEmail(contact);
       return;
     }
-    if (name) {
-      setContactName(name);
+    if (firstName) {
+      setContactFirstName(firstName);
+      return;
+    }
+    if (lastName) {
+      setContactLastName(lastName);
       return;
     }
     setContactNumber('');
     setContactEmail('');
-    setContactName('');
-  }, [contact, setContactNumber, email, setContactEmail, name, setContactName]);
+    setContactFirstName('');
+    setContactLastName('');
+  }, [contact, setContactNumber, email, setContactEmail, contactFirstName, setContactFirstName, contactLastName, setContactLastName]);
+
+  function onContactChange({ phone_number }: { phone_number: string }) {
+    setContactNumber(phone_number);
+    closeModal();
+  }
 
   function onAddOrChange() {
     openModal('ADD_OR_UPDATE_CHECKOUT_CONTACT');
@@ -89,7 +103,7 @@ const ContactGrid = ({
               disabled={false}
               className="mb-5"
               inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base !rounded focus:!border-accent !h-12"
-              dropdownClass="focus:!ring-0 !border !border-border-base !shadow-350"
+              dropdownclass="focus:!ring-0 !border !border-border-base !shadow-350"
             />
           </div>
           <div className="w-[50%] pl-2">
@@ -98,7 +112,7 @@ const ContactGrid = ({
               disabled={false}
               className="mb-5"
               inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base !rounded focus:!border-accent !h-12"
-              dropdownClass="focus:!ring-0 !border !border-border-base !shadow-350"
+              dropdownclass="focus:!ring-0 !border !border-border-base !shadow-350"
             />
           </div>
         </div>

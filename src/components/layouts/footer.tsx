@@ -13,7 +13,7 @@ const Footer = () => {
   return (
     <div className="flex w-full flex-col border-gray-800 bg-accent px-5 md:px-10 lg:border-b-8 lg:px-[50px] xl:px-16">
       {/* Top */}
-      <div className="grid w-full grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-6 pt-16 md:grid-cols-3 lg:pt-24 lg:pb-16 xl:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] xl:gap-8 2xl:grid-cols-5">
+      <div className="grid w-full grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-6 pt-10 md:grid-cols-3 lg:pt-10 lg:pb-10 xl:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] xl:gap-8 2xl:grid-cols-5">
         <div className="flex flex-col">
           <div className="mb-[2px] flex h-16 items-start">
             <Logo />
@@ -51,7 +51,7 @@ const Footer = () => {
           </div>
         ))}
 
-        <div className="col-span-full md:col-span-2 lg:col-auto">
+        <div className="col-span-full md:col-span-2 lg:col-span-2">
             <SubscriptionWidget
               title="text-subscribe-now"
               description="text-subscribe-details"

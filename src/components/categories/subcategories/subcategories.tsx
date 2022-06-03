@@ -32,10 +32,11 @@ const Subcategories: React.FC<Props> = ({
   const router = useRouter();
   const { attributes } = useAttributes();
 
+/*
   useEffect(() => {
     //localStorage.setItem("cityName", "Ikoyi");
     console.log("CATEGORYS: " + category);
-}, []);
+}, []); */
 
     return (
       <div className="flex flex-col min-h-screen transition-colors duration-150 bg-white" style={{ width: '80%' }}>
@@ -53,9 +54,9 @@ const Subcategories: React.FC<Props> = ({
                   Home
                 </Link>
                 <span className="text-sm ml-2 mr-2 font-semibold"> > </span>
-                <span className="text-sm font-semibold">{name}</span>
+                <span className="text-sm font-semibold capitalize">{name.replaceAll("-", " ")}</span>
               </div>
-              <h4 className="text-heading lg:text-3xl font-bold mt-10 lg:mt-[40px]">{name}</h4>
+              <h4 className="text-heading lg:text-3xl font-bold mt-10 lg:mt-[40px]">{name.replaceAll("-", " ")}</h4>
               <div className="w-full mt-20 lg:mt-[60px]">
                 <ChildrenRow
                   notFound={!Boolean(children.length)}

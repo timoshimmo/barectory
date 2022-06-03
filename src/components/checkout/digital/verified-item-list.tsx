@@ -39,18 +39,24 @@ const VerifiedItemList: React.FC<Props> = ({ className }) => {
   );
 
   const { price: tax } = usePrice(
-    verifiedResponse && {
-      amount: verifiedResponse.total_tax ?? 0,
+    {
+      amount: 0,
     }
   );
 
   const { price: shipping } = usePrice(
-    verifiedResponse && {
-      amount: verifiedResponse.shipping_charge ?? 0,
+    {
+      amount: 0,
     }
   );
 
   const base_amount = calculateTotal(available_items);
+  const { price: subtotal } = usePrice(
+    items && {
+      amount: total,
+    }
+  );
+
   const { price: sub_total } = usePrice(
     verifiedResponse && {
       amount: base_amount,
@@ -73,8 +79,10 @@ const VerifiedItemList: React.FC<Props> = ({ className }) => {
         Number(discount)
       )
     : 0;
-  const { price: total } = usePrice(
-    verifiedResponse && {
+
+
+  const { price: avgtotal } = usePrice(
+     {
       amount: totalPrice,
     }
   );
@@ -100,7 +108,7 @@ const VerifiedItemList: React.FC<Props> = ({ className }) => {
       </div>
 
       <div className="mt-4 space-y-3">
-        <ItemInfoRow title={t('text-sub-total')} value={sub_total} />
+        <ItemInfoRow title={t('text-sub-total')} value={subtotal} />
         <ItemInfoRow title={t('text-tax')} value={tax} />
         <ItemInfoRow title={t('text-shipping')} value={shipping} />
         {discount && coupon ? (
@@ -130,19 +138,21 @@ const VerifiedItemList: React.FC<Props> = ({ className }) => {
           <span className="text-base font-semibold text-heading">{total}</span>
         </div>
       </div>
-      {verifiedResponse && (
-        <Wallet
-          totalPrice={totalPrice}
-          walletAmount={verifiedResponse.wallet_amount}
-          walletCurrency={verifiedResponse.wallet_currency}
-        />
-      )}
-      {use_wallet && !Boolean(payableAmount) ? null : (
-        <PaymentGrid
-          theme="bw"
-          className="p-5 mt-10 border border-gray-200 bg-light"
-        />
-      )}
+      {/*
+        {verifiedResponse && (
+          <Wallet
+            totalPrice={totalPrice}
+            walletAmount={verifiedResponse.wallet_amount}
+            walletCurrency={verifiedResponse.wallet_currency}
+          />
+        )}
+        {use_wallet && !Boolean(payableAmount) ? null : (
+          <PaymentGrid
+            theme="bw"
+            className="p-5 mt-10 border border-gray-200 bg-light"
+          />
+        )}
+      */}
       <PlaceOrderAction className="w-full mt-8 font-normal h-[50px] !bg-gray-800 transition-colors hover:!bg-gray-900">
         {t('text-place-order')}
       </PlaceOrderAction>

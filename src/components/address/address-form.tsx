@@ -12,27 +12,20 @@ import { useUpdateUser } from '@/framework/user';
 
 type FormValues = {
   title: string;
-  type: AddressType;
   address: {
     country: string;
     city: string;
     state: string;
-    zip: string;
     street_address: string;
   };
 };
 
 const addressSchema = yup.object().shape({
-  type: yup
-    .string()
-    .oneOf([AddressType.Billing, AddressType.Shipping])
-    .required('error-type-required'),
   title: yup.string().required('error-title-required'),
   address: yup.object().shape({
     country: yup.string().required('error-country-required'),
     city: yup.string().required('error-city-required'),
     state: yup.string().required('error-state-required'),
-    zip: yup.string().required('error-zip-required'),
     street_address: yup.string().required('error-street-required'),
   }),
 });
@@ -58,26 +51,28 @@ export const AddressForm: React.FC<any> = ({
     >
       {({ register, formState: { errors } }) => (
         <>
+        {/*
           <div>
-            <Label>{t('text-type')}</Label>
-            <div className="flex items-center space-x-4 rtl:space-x-reverse">
-              <Radio
-                id="billing"
-                {...register('type')}
-                type="radio"
-                value={AddressType.Billing}
-                label={t('text-billing')}
-              />
-              <Radio
-                id="shipping"
-                {...register('type')}
-                type="radio"
-                value={AddressType.Shipping}
-                label={t('text-shipping')}
-              />
+              <Label>{t('text-type')}</Label>
+              <div className="flex items-center space-x-4 rtl:space-x-reverse">
+                <Radio
+                  id="billing"
+                  {...register('type')}
+                  type="radio"
+                  value={AddressType.Billing}
+                  label={t('text-billing')}
+                />
+                <Radio
+                  id="shipping"
+                  {...register('type')}
+                  type="radio"
+                  value={AddressType.Shipping}
+                  label={t('text-shipping')}
+                />
+              </div>
             </div>
-          </div>
 
+        */}
           <Input
             label={t('text-title')}
             {...register('title')}
@@ -107,13 +102,6 @@ export const AddressForm: React.FC<any> = ({
             variant="outline"
           />
 
-          <Input
-            label={t('text-zip')}
-            {...register('address.zip')}
-            error={t(errors.address?.zip?.message!)}
-            variant="outline"
-          />
-
           <TextArea
             label={t('text-street-address')}
             {...register('address.street_address')}
@@ -139,9 +127,9 @@ export const AddressForm: React.FC<any> = ({
 export default function CreateOrUpdateAddressForm() {
   const { t } = useTranslation('common');
   const {
-    data: { customerId, address, type },
+    data: { customerId, address },
   } = useModalState();
-  console.log(customerId, address, type, 'customerId, address, type');
+  console.log(customerId, address, 'customerId, address');
   const { mutate: updateProfile } = useUpdateUser();
 
   function onSubmit(values: FormValues) {
@@ -150,7 +138,7 @@ export default function CreateOrUpdateAddressForm() {
       id: address?.id,
       // customer_id: customerId,
       title: values.title,
-      type: values.type,
+      type: AddressType.Shipping,
       address: {
         ...values.address,
       },
@@ -169,7 +157,7 @@ export default function CreateOrUpdateAddressForm() {
         onSubmit={onSubmit}
         defaultValues={{
           title: address?.title ?? '',
-          type: address?.type ?? type,
+          type: AddressType.Shipping ?? '',
           address: {
             ...address?.address,
           },

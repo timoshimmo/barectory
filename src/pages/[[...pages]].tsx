@@ -63,9 +63,11 @@ const Home: NextPageWithLayout<
     <>
       {/* <Seo title={page?.name} url={page?.slug} images={page?.banners} /> */}
       <Component variables={variables} />
+    {/*
       {!['compact', 'minimal'].includes(layout) && width > 1023 && (
-        <CartCounterButton />
-      )}
+          <CartCounterButton />
+        )}
+    */}
     </>
   );
 };

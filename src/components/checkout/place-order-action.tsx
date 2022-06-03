@@ -2,27 +2,30 @@ import { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
 import isEmpty from 'lodash/isEmpty';
 import classNames from 'classnames';
-import { useCreateOrder, useOrderStatuses } from '@/framework/order';
+import { useCreateOrder, useOrderStatuses, useVerifyOrder } from '@/framework/order';
+import { shippingAddressAtom } from '@/store/checkout';
 import ValidationError from '@/components/ui/validation-error';
 import Button from '@/components/ui/button';
 import { formatOrderedProduct } from '@/lib/format-ordered-product';
 import { useCart } from '@/store/quick-cart/cart.context';
-import { checkoutAtom, discountAtom, walletAtom } from '@/store/checkout';
+import { checkoutAtom, discountAtom } from '@/store/checkout';
 import {
   calculatePaidTotal,
   calculateTotal,
 } from '@/store/quick-cart/cart.utils';
 import { usePaystackPayment } from 'react-paystack';
+import omit from 'lodash/omit';
 
 export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const { createOrder, isLoading } = useCreateOrder();
+  const { mutate: verifyCheckout } = useVerifyOrder();
 
   const { orderStatuses } = useOrderStatuses({
     limit: 1,
   });
 
-  const { items } = useCart();
+  const { items, total } = useCart();
   const [
     {
       shipping_address,
@@ -30,16 +33,14 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
       coupon,
       verified_response,
       customer_contact,
-      payment_gateway,
       token,
     },
   ] = useAtom(checkoutAtom);
   const [discount] = useAtom(discountAtom);
-  const [use_wallet_points] = useAtom(walletAtom);
 
   useEffect(() => {
     setErrorMessage(null);
-  }, [payment_gateway]);
+  }, []);
 
   const available_items = items?.filter(
     (item) => !verified_response?.unavailable_products?.includes(item.id)
@@ -47,7 +48,7 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
 
   const subtotal = calculateTotal(available_items);
 
-  const total = calculatePaidTotal(
+  const overall_total = calculatePaidTotal(
     {
       totalAmount: subtotal,
       tax: verified_response?.total_tax!,
@@ -56,18 +57,12 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
     Number(discount)
   );
   const handlePlaceOrder = () => {
-  /*  if (!customer_contact) {
+    {/*
+      if (!customer_contact) {
       setErrorMessage('Contact Number Is Required');
       return;
-    }
-    if (!use_wallet_points && !payment_gateway) {
-      setErrorMessage('Gateway Is Required');
-      return;
-    }
-    if (!use_wallet_points && payment_gateway === 'PAYSTACK' && !token) {
-      setErrorMessage('Please Pay First');
-      return;
-    }*/
+
+    }*/}
     let input = {
       //@ts-ignore
       products: available_items?.map((item) => formatOrderedProduct(item)),
@@ -75,14 +70,13 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
       amount: subtotal,
       coupon_id: Number(coupon?.id),
       discount: discount ?? 0,
-      paid_total: total,
+      paid_total: overall_total,
       sales_tax: verified_response?.total_tax,
       delivery_fee: verified_response?.shipping_charge,
-      total,
+      total: overall_total,
       delivery_time: delivery_time?.title,
       customer_contact,
-      payment_gateway,
-      use_wallet_points,
+      payment_gateway: "Paystack",
       shipping_address: {
         ...(shipping_address?.address && shipping_address.address),
       },
@@ -136,10 +130,9 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
   );
 
   const formatRequiredFields = isDigitalCheckout
-    ? [customer_contact, payment_gateway, available_items]
+    ? [customer_contact, available_items]
     : [
         customer_contact,
-        payment_gateway,
         shipping_address,
         delivery_time,
         available_items,

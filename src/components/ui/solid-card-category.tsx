@@ -13,9 +13,14 @@ interface CategoryItemProps {
   item: any;
 }
 const CategoryItem: React.FC<CategoryItemProps> = ({ item }) => {
+  const handleParent = (slug) => {
+    //router.push(`${ROUTES.CATEGORIES}/beer`);
+     localStorage.setItem("parentCategory", slug);
+  }
   return (
     <div className="relative overflow-hidden text-center cursor-pointer group">
-      <Link href={`${ROUTES.CATEGORIES}/${item.slug}`}>
+      <Link href={`${ROUTES.CATEGORIES}/${item.slug}`}
+      onClick={()=>handleParent(item.slug)}>
         <img
           src={item?.image?.original! ?? productPlaceholder}
           alt={item?.name!}

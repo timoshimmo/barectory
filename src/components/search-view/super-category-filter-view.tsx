@@ -13,7 +13,7 @@ interface Props {
   categories: any[];
 }
 
-const CategoryFilterView = ({ categories }: Props) => {
+const SuperCategoryFilterView = ({ categories }: Props) => {
   const { t } = useTranslation('common');
 
   const router = useRouter();
@@ -44,7 +44,7 @@ const CategoryFilterView = ({ categories }: Props) => {
         <span className="sr-only">{t('text-categories')}</span>
         <div className="grid grid-cols-1 gap-4">
           <CheckboxGroup values={state} onChange={handleChange}>
-            {categories.map((plan) => (
+            {categories.children.map((plan) => (
               <Checkbox
                 key={plan.id}
                 label={plan.name}
@@ -60,23 +60,23 @@ const CategoryFilterView = ({ categories }: Props) => {
   );
 };
 
-const CategoryFilter: React.FC<{ type?: string }> = ({ type }) => {
+const SuperCategoryFilter: React.FC<{ slug?: string }> = ({ slug }) => {
   const { query } = useRouter();
-  const { categories, isLoading, error } = useCategories({
+/*  const { categories, isLoading, error } = useCategories({
     ...(type ? { type } : { type: query.searchType }),
     limit: 1000
-  });
+  });*/
 
-//  const { category, iscLoading, cerror } = useCategory({ slug: slug });
+  const { category, iscLoading, cerror } = useCategory({ slug: slug });
 
-  if (error) return <ErrorMessage message={cerror.message} />;
-  if (isLoading)
+  if (cerror) return <ErrorMessage message={cerror.message} />;
+  if (iscLoading)
     return (
       <div className="flex w-full items-center justify-center py-5">
         <Spinner className="h-6 w-6" simple={true} />
       </div>
     );
-  return <CategoryFilterView categories={categories} />;
+  return <SuperCategoryFilterView categories={category} />;
 };
 
-export default CategoryFilter;
+export default SuperCategoryFilter;

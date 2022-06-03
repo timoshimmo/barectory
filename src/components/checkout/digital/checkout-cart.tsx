@@ -15,9 +15,11 @@ export const CheckoutCart = ({
   hideTitle?: boolean;
 }) => {
   const [verifiedResponse] = useAtom(verifiedResponseAtom);
-  if (isEmpty(verifiedResponse)) {
-    return <UnverifiedItemList hideTitle={hideTitle} />;
-  }
+  {/*
+    if (isEmpty(verifiedResponse)) {
+      return <UnverifiedItemList hideTitle={hideTitle} />;
+    }
+  */}
   return <VerifiedItemList />;
 };
 

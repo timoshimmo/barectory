@@ -21,11 +21,20 @@ export default function SubscribeToNewsletter({
     subscribe({ email });
   }
   return (
-    <div className="flex flex-col">
-      <h3 className="mt-3 mb-7 text-xl font-semibold text-heading text-light">
-        {t(title)}
-      </h3>
-      <p className="mb-7 text-sm text-heading text-light">{t(description!)}</p>
+    <div className="flex flex-col lg:flex-row lg:items-center">
+      <div>
+        <h3 className="mt-3 mb-3 text-xl font-semibold text-heading text-light">
+          {t(title)}
+        </h3>
+        <p className="text-sm text-heading text-light mb-2 md:mb-0 lg:mb-0 lg:mr-2">Subscribe now for our newsletters and featured news</p>
+      </div>
+
+      {/*
+        <h3 className="mt-3 mb-7 text-xl font-semibold text-heading text-light">
+          {t(title)}
+        </h3>
+      */}
+
       <SubscriptionForm
         onSubmit={onSubmit}
         loading={loading}

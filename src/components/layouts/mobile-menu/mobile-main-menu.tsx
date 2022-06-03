@@ -42,7 +42,7 @@ export default function MobileMainMenu() {
           </li>
           <li>
             <button
-              onClick={() => handleClick('grocery/search?category=beer')}
+              onClick={() => handleClick(`${ROUTES.CATEGORIES}/beer`)}
               className="flex items-center py-3 px-5 md:px-8 text-sm font-semibold capitalize text-heading transition duration-200 hover:text-accent cursor-pointer"
             >
               Beer
@@ -50,7 +50,7 @@ export default function MobileMainMenu() {
           </li>
           <li>
             <button
-              onClick={() => handleClick('grocery/search?category=spirits')}
+              onClick={() => handleClick(`${ROUTES.CATEGORIES}/spirits`)}
               className="flex items-center py-3 px-5 md:px-8 text-sm font-semibold capitalize text-heading transition duration-200 hover:text-accent cursor-pointer"
             >
               Spirits

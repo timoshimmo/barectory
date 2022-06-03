@@ -29,6 +29,7 @@ export default function CategoryChildProductsGrid({
   limit = 10
 }: Props) {
   const { t } = useTranslation('common');
+
   //const { products, isLoading, error } = usePopularProducts(variables);
   const { products, isLoading, error } = useCategoryProduct({ slug: slug });
 
@@ -72,6 +73,7 @@ export default function CategoryChildProductsGrid({
     },
   };
 
+
   if (error) return <ErrorMessage message={error.message} />;
   if (!isLoading && !products.length) {
     return null;
@@ -79,7 +81,8 @@ export default function CategoryChildProductsGrid({
 
   return (
     <div className="w-full">
-      <Link href={`${ROUTES.HOME}/search?category=${item.slug}`}
+      <Link
+          href={`${ROUTES.HOME}/search?category=${item.slug}`}
           className="flex space-x-4 items-center py-2.5 w-20 font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none"
           >
         <span className="whitespace-nowrap text-2xl font-semibold">{item.name}</span>

@@ -153,24 +153,29 @@ const Header = ({ layout }: { layout: string }) => {
          }
        }
 
-       function handleBeer() {
-         router.push(`${ROUTES.CATEGORIES}/beer`);
+       const handleBeer = () => {
+         //router.push(`${ROUTES.CATEGORIES}/beer`);
+          localStorage.setItem("parentCategory", "beer");
        }
 
-       function handleSpirits() {
-         router.push(`${ROUTES.CATEGORIES}/spirits`);
+       const handleSpirits = () => {
+         //router.push(`${ROUTES.CATEGORIES}/spirits`);
+         localStorage.setItem("parentCategory", "spirits");
        }
 
-       function handleWines() {
-         router.push(`${ROUTES.CATEGORIES}/wines`);
+       const handleWines = () => {
+         //router.push(`${ROUTES.CATEGORIES}/wines`);
+         localStorage.setItem("parentCategory", "wines");
        }
 
-       function handleReadyToDrink() {
-         router.push(`${ROUTES.CATEGORIES}/ready-todrink`);
+       const handleReadyToDrink = () => {
+        // router.push(`${ROUTES.CATEGORIES}/ready-todrink`);
+        localStorage.setItem("parentCategory", "ready-to-drink");
        }
 
-       function handleNonAlcoholic() {
-         router.push(`${ROUTES.CATEGORIES}/non-alcoholic`);
+       const handleNonAlcoholic = () => {
+         //router.push(`${ROUTES.CATEGORIES}/non-alcoholic`);
+         localStorage.setItem("parentCategory", "non-alcoholic");
        }
 
 {/*
@@ -272,9 +277,10 @@ SEARCH
       <div className="px-5 flex w-full h-full justify-center items-center">
           <div className="flex flex-col">
             <Link
-              href={`${ROUTES.HOME}/search?category=beer`}
+              href={`${ROUTES.CATEGORIES}/beer`}
               onMouseEnter={onMouseEnterBeerButton}
               onMouseLeave={onMouseLeaveBeerButton}
+              onClick={handleBeer}
               className='flex text-gray-700  items-center px-8 py-3 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
             >
               <span className="text-sm text-body-dark font-bold text-heading hover:text-accent">BEER</span>
@@ -358,9 +364,10 @@ SEARCH
           </div>
           <div className="flex flex-col">
               <Link
-                href={`${ROUTES.HOME}/search?category=spirits`}
+                href={`${ROUTES.CATEGORIES}/spirits`}
                 onMouseEnter={onMouseEnterSpiritsButton}
                 onMouseLeave={onMouseLeaveSpiritsButton}
+                onClick={handleSpirits}
                 className='flex text-gray-700  items-center px-8 py-3 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
               >
                 <span className="text-sm text-body-dark font-bold text-heading hover:text-accent">SPIRITS</span>
@@ -495,9 +502,10 @@ SEARCH
           </div>
           <div className="flex flex-col">
               <Link
-                href={`${ROUTES.HOME}/search?category=wines`}
+                href={`${ROUTES.CATEGORIES}/wines`}
                 onMouseEnter={onMouseEnterWinesButton}
                 onMouseLeave={onMouseLeaveWinesButton}
+                onClick={handleWines}
                 className='flex text-gray-700  items-center px-8 py-3 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
               >
                 <span className="text-sm text-body-dark font-bold text-heading hover:text-accent">WINES</span>
@@ -567,9 +575,10 @@ SEARCH
             </div>
             <div className="flex flex-col">
               <Link
-                href={`${ROUTES.HOME}/search?category=ready-todrink`}
+                href={`${ROUTES.CATEGORIES}/ready-to-drink`}
                 onMouseEnter={onMouseEnterRdyDrinkButton}
                 onMouseLeave={onMouseLeaveRdyDrinkButton}
+                onClick={handleReadyToDrink}
                 className='flex text-gray-700  items-center px-8 py-3 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
               >
                 <span className="text-sm text-body-dark font-bold text-heading hover:text-accent">READY TO DRINK</span>
@@ -626,9 +635,10 @@ SEARCH
           </div>
           <div className="flex flex-col">
               <Link
-                href={`${ROUTES.HOME}/search?category=non-alcoholic`}
+                href={`${ROUTES.CATEGORIES}/non-alcoholic`}
                 onMouseEnter={onMouseEnterNonAlcoholicButton}
                 onMouseLeave={onMouseLeaveNonAlcoholicButton}
+                onClick={handleNonAlcoholic}
                 className='flex text-gray-700  items-center px-8 py-3 text-sm font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none'
               >
                 <span className="text-sm text-body-dark font-bold text-heading hover:text-accent">NON-ALCOHOLIC</span>

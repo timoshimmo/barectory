@@ -47,8 +47,8 @@ export function useCategory({ slug }: { slug: string }) {
   );
   return {
     category: data,
-    isLoading,
-    error,
+    iscLoading: isLoading,
+    cerror: error,
   };
 }
 

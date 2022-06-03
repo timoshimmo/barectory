@@ -98,11 +98,19 @@ export const customerEmailAtom = atom(
   }
 );
 
-export const customerNameAtom = atom(
-  (get) => get(checkoutAtom).customer_name,
+export const customerFirstNameAtom = atom(
+  (get) => get(checkoutAtom).customer_first_name,
   (get, set, data: string) => {
     const prev = get(checkoutAtom);
-    return set(checkoutAtom, { ...prev, customer_name: data });
+    return set(checkoutAtom, { ...prev, customer_first_name: data });
+  }
+);
+
+export const customerLastNameAtom = atom(
+  (get) => get(checkoutAtom).customer_last_name,
+  (get, set, data: string) => {
+    const prev = get(checkoutAtom);
+    return set(checkoutAtom, { ...prev, customer_last_name: data });
   }
 );
 

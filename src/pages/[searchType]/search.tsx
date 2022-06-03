@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { FilterIcon } from '@/components/icons/filter-icon';
 import MobileNavigation from '@/components/layouts/mobile-navigation';
 import GeneralLayout from '@/components/layouts/_general';
@@ -6,6 +7,8 @@ import SearchCount from '@/components/search-view/search-count';
 import SidebarFilter from '@/components/search-view/sidebar-filter';
 import Sorting from '@/components/search-view/sorting';
 import ErrorMessage from '@/components/ui/error-message';
+//export { getStaticPaths, getStaticProps } from '@/framework/category.ssr';
+import dynamic from 'next/dynamic';
 import { PRODUCTS_PER_PAGE } from '@/framework/client/variables';
 import { useProducts } from '@/framework/product';
 import { drawerAtom } from '@/store/drawer-atom';
@@ -38,17 +41,12 @@ export default function SearchPage() {
     ...restQuery,
   });
 
-  console.log("CATEGORIES: " + JSON.stringify(searchType) + " " + JSON.stringify(restQuery.category));
   const arr = restQuery.category.split(",");
-
-  console.log("CATEGORIES ARR: " + JSON.stringify(arr));
-
-  //const { category, isLoading, error } = useCategory({ slug: slug });
-
+  //const { category, iscLoading, cerror } = useCategory({ slug: 'beer' });
 
   if (error) return <ErrorMessage message={error.message} />;
   return (
-    <div className="w-full">
+    <div className="w-full" style={{ width: '80%' }}>
       <div className="mb-7 flex flex-col items-center justify-between md:flex-row">
         <div>
           <div className="flex mb-2">
@@ -58,13 +56,19 @@ export default function SearchPage() {
             >
               Home
             </Link>
-
+            <span className="text-sm text-heading ml-2 mr-2 font-semibold"> > </span>
+            <Link
+              className="text-sm text-heading capitalize text-heading"
+              href={`${ROUTES.CATEGORIES}/${window.localStorage.getItem("parentCategory")}`}
+            >
+              { window.localStorage.getItem("parentCategory").replaceAll("-", " ") }
+            </Link>
             {arr.map((item, i) => (
                 <>
                   <span className="text-sm text-heading ml-2 mr-2 font-semibold"> > </span>
                   <Link
                     className="text-sm text-heading capitalize font-semibold"
-                    href={`${ROUTES.HOME}/search?category=${item}`}
+                    href={`${ROUTES.HOME}/search?category=${item.replaceAll("-", " ")}`}
                   >
                     { item }
                   </Link>
@@ -79,7 +83,6 @@ export default function SearchPage() {
           />
         </div>
         {/* //FIXME: */}
-
         <div className="mt-4 max-w-xs md:mt-0">
           <Sorting variant="dropdown" />
         </div>

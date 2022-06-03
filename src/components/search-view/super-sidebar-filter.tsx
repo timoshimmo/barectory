@@ -4,7 +4,7 @@ import Search from '@/components/ui/search/search';
 import { useRouter } from 'next/router';
 import Sorting from './sorting';
 import PriceFilter from '@/components/search-view/price-filter';
-import CategoryFilter from '@/components/search-view/category-filter-view';
+import SuperCategoryFilter from '@/components/search-view/super-category-filter-view';
 import TagFilter from '@/components/search-view/tag-filter-view';
 import ManufacturerFilter from '@/components/search-view/manufacturer-filter-view';
 import classNames from 'classnames';
@@ -52,7 +52,7 @@ function ClearFiltersButton() {
     </button>
   );
 }
-const SidebarFilter: React.FC<{
+const SuperSidebarFilter: React.FC<{
   slug?: string;
   showManufacturers?: boolean;
   className?: string;
@@ -113,7 +113,7 @@ const SidebarFilter: React.FC<{
          */}
 
        <FieldWrapper title="text-categories">
-        <CategoryFilter />
+        <SuperCategoryFilter slug={slug}/>
        </FieldWrapper>
 
         <FieldWrapper title="text-sort-by-price">
@@ -146,4 +146,4 @@ const SidebarFilter: React.FC<{
   );
 };
 
-export default SidebarFilter;
+export default SuperSidebarFilter;

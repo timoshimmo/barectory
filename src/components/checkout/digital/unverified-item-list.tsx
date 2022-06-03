@@ -5,6 +5,7 @@ import EmptyCartIcon from '@/components/icons/empty-cart';
 import usePrice from '@/lib/use-price';
 import { ItemInfoRow } from '@/components/checkout/digital/item-info-row';
 import { CheckAvailabilityAction } from '@/components/checkout/check-availability-action';
+import { PlaceOrderAction } from '@/components/checkout/place-order-action';
 
 const UnverifiedItemList = ({ hideTitle = false }: { hideTitle?: boolean }) => {
   const { t } = useTranslation('common');
@@ -39,9 +40,9 @@ const UnverifiedItemList = ({ hideTitle = false }: { hideTitle?: boolean }) => {
           value={t('text-calculated-checkout')}
         />
       </div>
-      <CheckAvailabilityAction className="w-full mt-8 font-normal h-[50px] !bg-gray-800 transition-colors hover:!bg-gray-900">
-        {t('text-check-availability')}
-      </CheckAvailabilityAction>
+      <PlaceOrderAction className="w-full mt-8 font-normal h-[50px] !bg-gray-800 transition-colors hover:!bg-gray-900">
+        {t('text-place-order')}
+      </PlaceOrderAction>
     </div>
   );
 };
