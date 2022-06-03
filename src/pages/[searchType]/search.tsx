@@ -46,7 +46,7 @@ export default function SearchPage() {
 
   if (error) return <ErrorMessage message={error.message} />;
   return (
-    <div className="w-full" style={{ width: '80%' }}>
+    <div className="w-full lg:w-[80%]">
       <div className="mb-7 flex flex-col items-center justify-between md:flex-row">
         <div>
           <div className="flex mb-2">
@@ -108,7 +108,7 @@ const GetLayout = (page: React.ReactElement) => {
       <>
         <div className="w-full main-container bg-light">
           <div className="mx-auto flex min-h-screen w-full max-w-1920 px-5 py-10 rtl:space-x-reverse lg:space-x-10 xl:py-14 xl:px-16">
-            <div className="hidden shrink-0 lg:block" style={{ width: '20%' }}>
+            <div className="hidden shrink-0 lg:block w-full lg:w-[20%]">
               <StickyBox offsetTop={140} offsetBottom={30}>
                 <SidebarFilter />
               </StickyBox>

@@ -58,7 +58,7 @@ export default function MobileMainMenu() {
           </li>
           <li>
             <button
-              onClick={() => handleClick('grocery/search?category=wines')}
+              onClick={() => handleClick(`${ROUTES.CATEGORIES}/wines`)}
               className="flex items-center py-3 px-5 md:px-8 text-sm font-semibold capitalize text-heading transition duration-200 hover:text-accent cursor-pointer"
             >
               Wines
@@ -66,7 +66,7 @@ export default function MobileMainMenu() {
           </li>
           <li>
             <button
-              onClick={() => handleClick('grocery/search?category=ready-todrink')}
+              onClick={() => handleClick(`${ROUTES.CATEGORIES}/ready-to-drink`)}
               className="flex items-center py-3 px-5 md:px-8 text-sm font-semibold capitalize text-heading transition duration-200 hover:text-accent cursor-pointer"
             >
               Ready to Drink
@@ -74,7 +74,7 @@ export default function MobileMainMenu() {
           </li>
           <li>
             <button
-              onClick={() => handleClick('grocery/search?category=non-alcoholic')}
+              onClick={() => handleClick(`${ROUTES.CATEGORIES}/non-alcoholic`)}
               className="flex items-center py-3 px-5 md:px-8 text-sm font-semibold capitalize text-heading transition duration-200 hover:text-accent cursor-pointer"
             >
               Non-Alcoholic

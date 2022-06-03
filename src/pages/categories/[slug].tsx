@@ -32,7 +32,7 @@ export default function SubCategoriesPage({ cat }: any) {
       />
         <div className="min-h-screen w-full main-container bg-light">
           <div className="mx-auto flex min-h-screen w-full max-w-1920 px-5 py-10 rtl:space-x-reverse lg:space-x-10 xl:py-14 xl:px-16">
-            <div className="hidden shrink-0 lg:block" style={{ width: '20%' }}>
+            <div className="hidden w-full shrink-0 lg:block lg:w-[20%]">
               <StickyBox offsetTop={140} offsetBottom={30}>
                 <SuperSidebarFilter slug={slug}/>
               </StickyBox>

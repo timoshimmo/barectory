@@ -39,14 +39,14 @@ const Subcategories: React.FC<Props> = ({
 }, []); */
 
     return (
-      <div className="flex flex-col min-h-screen transition-colors duration-150 bg-white" style={{ width: '80%' }}>
+      <div className="flex flex-col min-h-screen transition-colors duration-150 bg-white w-full lg:w-[80%]">
       <Head>
          <title>Barectory</title>
        </Head>
        <div className="flex flex-col w-full md:flex-row">
          <div className="w-full">
           <div className="w-100">
-            <div className="flex mb-2">
+            <div className="flex mb-2 justify-center lg:justify-start">
                 <Link
                   className="text-sm text-heading"
                   href={`${ROUTES.HOME}`}
@@ -56,8 +56,8 @@ const Subcategories: React.FC<Props> = ({
                 <span className="text-sm ml-2 mr-2 font-semibold"> > </span>
                 <span className="text-sm font-semibold capitalize">{name.replaceAll("-", " ")}</span>
               </div>
-              <h4 className="text-heading lg:text-3xl font-bold mt-10 lg:mt-[40px]">{name.replaceAll("-", " ")}</h4>
-              <div className="w-full mt-20 lg:mt-[60px]">
+              <h4 className="text-2xl lg:text-3xl font-bold mt-5 lg:mt-[40px] text-center lg:text-left">{name.replaceAll("-", " ")}</h4>
+              <div className="w-full mt-10 lg:mt-[60px]">
                 <ChildrenRow
                   notFound={!Boolean(children.length)}
                   categories={children}

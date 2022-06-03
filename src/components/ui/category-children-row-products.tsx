@@ -85,7 +85,7 @@ export default function CategoryChildProductsGrid({
           href={`${ROUTES.HOME}/search?category=${item.slug}`}
           className="flex space-x-4 items-center py-2.5 w-20 font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none"
           >
-        <span className="whitespace-nowrap text-2xl font-semibold">{item.name}</span>
+        <span className="whitespace-nowrap lg:text-2xl text-1xl font-semibold">{item.name}</span>
       </Link>
       <div className="w-full relative mt-5">
         <Swiper
