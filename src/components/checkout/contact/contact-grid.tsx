@@ -59,9 +59,21 @@ const ContactGrid = ({
     setContactLastName('');
   }, [contact, setContactNumber, email, setContactEmail, contactFirstName, setContactFirstName, contactLastName, setContactLastName]);
 
-  function onContactChange({ phone_number }: { phone_number: string }) {
-    setContactNumber(phone_number);
-    closeModal();
+  function onFirstNameChange(event) {
+    setContactFirstName(event.target.value);
+    //closeModal();
+  }
+
+  function onLastNameChange(event) {
+    //console.log("CONTACT: " + event.target.value);
+    setContactLastName(event.target.value);
+    //closeModal();
+  }
+
+  function onEmailChange(event) {
+    //console.log("CONTACT: " + event.target.value);
+    setContactEmail(event.target.value);
+    //closeModal();
   }
 
   function onAddOrChange() {
@@ -101,6 +113,7 @@ const ContactGrid = ({
             <label>First name</label>
             <Input
               disabled={false}
+              onChange={onFirstNameChange}
               className="mb-5"
               inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base !rounded focus:!border-accent !h-12"
               dropdownclass="focus:!ring-0 !border !border-border-base !shadow-350"
@@ -110,6 +123,7 @@ const ContactGrid = ({
             <label>Last name</label>
             <Input
               disabled={false}
+              onChange={onLastNameChange}
               className="mb-5"
               inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base !rounded focus:!border-accent !h-12"
               dropdownclass="focus:!ring-0 !border !border-border-base !shadow-350"
@@ -129,6 +143,7 @@ const ContactGrid = ({
         <label>Email</label>
         <Input
           disabled={false}
+          onChange={onEmailChange}
           inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base !rounded focus:!border-accent !h-12"
           dropdownClass="focus:!ring-0 !border !border-border-base !shadow-350"
         />

@@ -321,6 +321,7 @@ SEARCH
                           {({ active }) => (
                             <Link
                               href={`${ROUTES.HOME}/search?category=ale`}
+                              onClick={handleBeer}
                               className={cn(
                                 'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold text-body-dark capitalize transition duration-200 hover:text-accent focus:outline-none',
                                 active ? 'text-accent' : 'text-body-dark'
@@ -334,6 +335,7 @@ SEARCH
                           {({ active }) => (
                             <Link
                               href={`${ROUTES.HOME}/search?category=lager`}
+                              onClick={handleBeer}
                               className={cn(
                                 'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                 active ? 'text-accent' : 'text-body-dark'
@@ -347,6 +349,7 @@ SEARCH
                           {({ active }) => (
                             <Link
                               href={`${ROUTES.HOME}/search?category=stout`}
+                              onClick={handleBeer}
                               className={cn(
                                 'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                 active ? 'text-accent' : 'text-body-dark'
@@ -407,6 +410,7 @@ SEARCH
                             {({ active }) => (
                               <Link
                                 href={`${ROUTES.HOME}/search?category=vermouth`}
+                                onClick={handleSpirits}
                                 className={cn(
                                   'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                   active ? 'text-accent' : 'text-body-dark'
@@ -420,6 +424,7 @@ SEARCH
                             {({ active }) => (
                               <Link
                                 href={`${ROUTES.HOME}/search?category=whisky`}
+                                onClick={handleSpirits}
                                 className={cn(
                                   'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                   active ? 'text-accent' : 'text-body-dark'
@@ -433,6 +438,7 @@ SEARCH
                             {({ active }) => (
                               <Link
                                 href={`${ROUTES.HOME}/search?category=vodka`}
+                                onClick={handleSpirits}
                                 className={cn(
                                   'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                   active ? 'text-accent' : 'text-body-dark'
@@ -446,6 +452,7 @@ SEARCH
                             {({ active }) => (
                               <Link
                                 href={`${ROUTES.HOME}/search?category=gin`}
+                                onClick={handleSpirits}
                                 className={cn(
                                   'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                   active ? 'text-accent' : 'text-body-dark'
@@ -459,6 +466,7 @@ SEARCH
                             {({ active }) => (
                               <Link
                                 href={`${ROUTES.HOME}/search?category=rum`}
+                                onClick={handleSpirits}
                                 className={cn(
                                   'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold text-body-dark capitalize transition duration-200 hover:text-accent focus:outline-none',
                                   active ? 'text-accent' : 'text-body-dark'
@@ -472,6 +480,7 @@ SEARCH
                             {({ active }) => (
                               <Link
                                 href={`${ROUTES.HOME}/search?category=tequila`}
+                                onClick={handleSpirits}
                                 className={cn(
                                   'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm font-semibold text-body-dark capitalize transition duration-200 hover:text-accent focus:outline-none',
                                   active ? 'text-accent' : 'text-body-dark'
@@ -485,6 +494,7 @@ SEARCH
                             {({ active }) => (
                               <Link
                                 href={`${ROUTES.HOME}/search?category=bitters`}
+                                onClick={handleSpirits}
                                 className={cn(
                                   'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                   active ? 'text-accent' : 'text-body-dark'
@@ -545,6 +555,7 @@ SEARCH
                             {({ active }) => (
                               <Link
                                 href={`${ROUTES.HOME}/search?category=sparkling-wine`}
+                                onClick={handleWines}
                                 className={cn(
                                   'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                   active ? 'text-accent' : 'text-body-dark'
@@ -558,6 +569,7 @@ SEARCH
                             {({ active }) => (
                               <Link
                                 href={`${ROUTES.HOME}/search?category=red-wine`}
+                                onClick={handleWines}
                                 className={cn(
                                   'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                   active ? 'text-accent' : 'text-body-dark'
@@ -618,6 +630,7 @@ SEARCH
                               {({ active }) => (
                                 <Link
                                   href={`${ROUTES.HOME}/search?category=malt-beverage`}
+                                  onClick={handleReadyToDrink}
                                   className={cn(
                                     'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                     active ? 'text-accent' : 'text-body-dark'
@@ -678,6 +691,7 @@ SEARCH
                             {({ active }) => (
                               <Link
                                 href={`${ROUTES.HOME}/search?category=soft-drinks`}
+                                onClick={handleNonAlcoholic}
                                 className={cn(
                                   'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                   active ? 'text-accent' : 'text-body-dark'
@@ -691,6 +705,7 @@ SEARCH
                             {({ active }) => (
                               <Link
                                 href={`${ROUTES.HOME}/search?category=fruit-juice`}
+                                onClick={handleNonAlcoholic}
                                 className={cn(
                                   'flex space-x-4 rtl:space-x-reverse items-center w-full px-5 py-2.5 text-sm text-body-dark font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none',
                                   active ? 'text-accent' : 'text-body-dark'

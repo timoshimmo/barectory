@@ -42,7 +42,13 @@ export default function SearchPage() {
   });
 
   const arr = restQuery.category.split(",");
+  const [parent, setParent] = useState('');
   //const { category, iscLoading, cerror } = useCategory({ slug: 'beer' });
+
+  useEffect(() => {
+  // Perform localStorage action
+  setParent(localStorage.getItem("parentCategory"));
+}, [])
 
   if (error) return <ErrorMessage message={error.message} />;
   return (
@@ -59,9 +65,9 @@ export default function SearchPage() {
             <span className="text-sm text-heading ml-2 mr-2 font-semibold"> > </span>
             <Link
               className="text-sm text-heading capitalize text-heading"
-              href={`${ROUTES.CATEGORIES}/${window.localStorage.getItem("parentCategory")}`}
+              href={`${ROUTES.CATEGORIES}/${parent}`}
             >
-              { window.localStorage.getItem("parentCategory").replaceAll("-", " ") }
+              { parent.replaceAll("-", " ") }
             </Link>
             {arr.map((item, i) => (
                 <>

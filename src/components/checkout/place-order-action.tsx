@@ -33,6 +33,9 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
       coupon,
       verified_response,
       customer_contact,
+      customer_email,
+      customer_first_name,
+      customer_last_name,
       token,
     },
   ] = useAtom(checkoutAtom);
@@ -112,34 +115,34 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
     console.log('closed')
   }
 
-  const PaystackHookExample = () => {
-     const initializePayment = usePaystackPayment(config);
-     return (
-       <div>
-           <button
-           className="w-full mt-5 bg-accent text-light px-5 py-0 h-12 border border-transparent hover:bg-accent-hover inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-none focus:shadow focus:ring-1 focus:ring-accent-700"
-           onClick={() => {
-               initializePayment(onSuccess, onClose)
-           }}>Pay</button>
-       </div>
-     );
- };
-
   const isDigitalCheckout = available_items.find((item) =>
     Boolean(item.is_digital)
   );
 
   const formatRequiredFields = isDigitalCheckout
-    ? [customer_contact, available_items]
+    ? [customer_email]
     : [
-        customer_contact,
-        shipping_address,
-        delivery_time,
-        available_items,
+      customer_email,
+      customer_first_name,
+      customer_last_name,
       ];
   const isAllRequiredFieldSelected = formatRequiredFields.every(
     (item) => !isEmpty(item)
   );
+
+  const PaystackHookExample = () => {
+     const initializePayment = usePaystackPayment(config);
+     return (
+       <div>
+           <Button
+           className="w-full mt-5 bg-accent text-light px-5 py-0 h-12 border border-transparent hover:bg-accent-hover inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-none focus:shadow focus:ring-1 focus:ring-accent-700"
+           disabled={!isAllRequiredFieldSelected}
+           onClick={() => {
+               initializePayment(onSuccess, onClose)
+           }}>Pay</Button>
+       </div>
+     );
+ };
   return (
     <>
       {/*
