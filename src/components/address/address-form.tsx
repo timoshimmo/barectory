@@ -51,26 +51,22 @@ export const AddressForm: React.FC<any> = ({
     >
       {({ register, formState: { errors } }) => (
         <>
+
         {/*
           <div>
-              <Label>{t('text-type')}</Label>
-              <div className="flex items-center space-x-4 rtl:space-x-reverse">
-                <Radio
-                  id="billing"
-                  {...register('type')}
-                  type="radio"
-                  value={AddressType.Billing}
-                  label={t('text-billing')}
-                />
-                <Radio
-                  id="shipping"
-                  {...register('type')}
-                  type="radio"
-                  value={AddressType.Shipping}
-                  label={t('text-shipping')}
-                />
+                <Label>{t('text-type')}</Label>
+                <div className="flex items-center space-x-4 rtl:space-x-reverse">
+                  <Radio
+                    id="shipping"
+                    {...register('type')}
+                    type="radio"
+                    checked={true}
+                    disabled={true}
+                    value={AddressType.Shipping}
+                    label={t('text-shipping')}
+                  />
+                </div>
               </div>
-            </div>
 
         */}
           <Input
@@ -129,16 +125,16 @@ export default function CreateOrUpdateAddressForm() {
   const {
     data: { customerId, address },
   } = useModalState();
-  console.log(customerId, address, 'customerId, address');
+  //console.log(customerId, address, 'customerId, address');
   const { mutate: updateProfile } = useUpdateUser();
 
   function onSubmit(values: FormValues) {
-    console.log(values, 'values');
+  //  console.log('values:' + values);
     const formattedInput = {
       id: address?.id,
       // customer_id: customerId,
       title: values.title,
-      type: AddressType.Shipping,
+      type: 'shipping',
       address: {
         ...values.address,
       },
@@ -157,7 +153,7 @@ export default function CreateOrUpdateAddressForm() {
         onSubmit={onSubmit}
         defaultValues={{
           title: address?.title ?? '',
-          type: AddressType.Shipping ?? '',
+          type: 'shipping' ?? '',
           address: {
             ...address?.address,
           },

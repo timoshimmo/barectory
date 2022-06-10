@@ -21,6 +21,23 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
   const { createOrder, isLoading } = useCreateOrder();
   const { mutate: verifyCheckout } = useVerifyOrder();
 
+  /*const [shipping_address] = useAtom(shippingAddressAtom);
+  const { items, total, isEmpty } = useCart();
+
+  const { mutate: verifyCheckout, isLoading: loading } = useVerifyOrder();
+
+  function handleVerifyCheckout() {
+    verifyCheckout({
+      amount: total,
+      products: items?.map((item) => formatOrderedProduct(item)),
+      shipping_address: {
+        ...(shipping_address?.address &&
+          omit(shipping_address.address, ['__typename'])),
+      }
+    });
+  }*/
+
+
   const { orderStatuses } = useOrderStatuses({
     limit: 1,
   });
@@ -132,11 +149,13 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
 
   const PaystackHookExample = () => {
      const initializePayment = usePaystackPayment(config);
+     //Object.keys(shipping_address).length
+     //console.log("SHIPPING: " , customer_email.length);
      return (
        <div>
            <Button
            className="w-full mt-5 bg-accent text-light px-5 py-0 h-12 border border-transparent hover:bg-accent-hover inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-none focus:shadow focus:ring-1 focus:ring-accent-700"
-           disabled={!isAllRequiredFieldSelected}
+           disabled={shipping_address === null || customer_email.length < 4}
            onClick={() => {
                initializePayment(onSuccess, onClose)
            }}>Pay</Button>
