@@ -5,6 +5,7 @@ import GeneralLayout from '@/components/layouts/_general';
 import { Grid } from '@/components/products/grid';
 import SearchCount from '@/components/search-view/search-count';
 import SidebarFilter from '@/components/search-view/sidebar-filter';
+import BreadCrumb from '@/components/breadcrumb/breadcrumb';
 import Sorting from '@/components/search-view/sorting';
 import ErrorMessage from '@/components/ui/error-message';
 //export { getStaticPaths, getStaticProps } from '@/framework/category.ssr';
@@ -42,46 +43,14 @@ export default function SearchPage() {
   });
 
   const arr = restQuery.category.split(",");
-  const [parent, setParent] = useState('');
   //const { category, iscLoading, cerror } = useCategory({ slug: 'beer' });
-
-  useEffect(() => {
-  // Perform localStorage action
-  setParent(localStorage.getItem("parentCategory"));
-}, [])
 
   if (error) return <ErrorMessage message={error.message} />;
   return (
     <div className="w-full lg:w-[80%]">
       <div className="mb-7 flex flex-col items-center justify-between md:flex-row">
         <div>
-          <div className="flex mb-2">
-            <Link
-              className="text-sm text-heading"
-              href={`${ROUTES.HOME}`}
-            >
-              Home
-            </Link>
-            <span className="text-sm text-heading ml-2 mr-2 font-semibold"> > </span>
-            <Link
-              className="text-sm text-heading capitalize text-heading"
-              href={`${ROUTES.CATEGORIES}/${parent}`}
-            >
-              { parent.replaceAll("-", " ") }
-            </Link>
-            {arr.map((item, i) => (
-                <>
-                  <span className="text-sm text-heading ml-2 mr-2 font-semibold"> > </span>
-                  <Link
-                    className="text-sm text-heading capitalize font-semibold"
-                    href={`${ROUTES.HOME}/search?category=${item.replaceAll("-", " ")}`}
-                  >
-                    { item }
-                  </Link>
-                </>
-              ))
-            }
-          </div>
+          <BreadCrumb category={arr}/>
           <SearchCount
             from={paginatorInfo?.firstItem ?? 0}
             to={paginatorInfo?.lastItem ?? 0}

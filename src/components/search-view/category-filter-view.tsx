@@ -25,7 +25,6 @@ const CategoryFilterView = ({ categories }: Props) => {
   const [state, setState] = useState<string[]>(() => selectedValues);
   useEffect(() => {
     setState(selectedValues);
-    console.log("CATEGORIES: " + JSON.stringify(categories));
   }, [selectedValues]);
 
   function handleChange(values: string[]) {
