@@ -118,9 +118,10 @@ export const ContactPage = () => {
           </div>
         </div>
         <TawkMessengerReact
-                propertyId="626996d9b0d10b6f3e6faa4f"
-                widgetId="1g1m7ai06"/>
+                propertyId="62b192bab0d10b6f3e7886ef"
+                widgetId="1g62qaai4"/>
       </div>
+      //https://embed.tawk.to/62b192ba7b967b117995b476/1g62qaai4';
     </>
   );
 };
