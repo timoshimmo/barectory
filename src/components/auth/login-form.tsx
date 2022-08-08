@@ -8,13 +8,20 @@ import { useTranslation } from 'next-i18next';
 import * as yup from 'yup';
 import { GoogleIcon } from '@/components/icons/google';
 import { useModalAction } from '@/components/ui/modal/modal.context';
+import { useState } from 'react';
 import { MobileIcon } from '@/components/icons/mobile-icon';
 import { Form } from '@/components/ui/forms/form';
 import { useLogin } from '@/framework/user';
+import { useAtom } from 'jotai';
 import type { LoginUserInput } from '@/types';
 import { AnonymousIcon } from '@/components/icons/anonymous-icon';
 import { useRouter } from 'next/router';
+import { useToken } from '@/lib/hooks/use-token';
+import { authorizationAtom } from '@/store/authorization-atom';
 import { ROUTES } from '@/lib/routes';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import DB from '@/lib/firebaseinit';
 
 const loginFormSchema = yup.object().shape({
   email: yup
@@ -26,15 +33,64 @@ const loginFormSchema = yup.object().shape({
 function LoginForm() {
   const { t } = useTranslation('common');
   const router = useRouter();
-  const { openModal } = useModalAction();
+  const { openModal, closeModal } = useModalAction();
   const isCheckout = router.pathname.includes('checkout');
-  const { mutate: login, isLoading, serverError, setServerError } = useLogin();
+  let [serverError, setServerError] = useState<string | null>(null);
+//  const { mutate: login, isLoading, serverError, setServerError } = useLogin();
+  const [loginLoading, setLoginLoading] = useState(false);
+  const [_, setAuthorized] = useAtom(authorizationAtom);
+
+  /*
+  login({
+    email,
+    password,
+  });
+
+  */
 
   function onSubmit({ email, password }: LoginUserInput) {
-    login({
-      email,
-      password,
-    });
+    
+
+    if(!loginLoading) {
+        const { setToken } = useToken();
+
+        setLoginLoading(true);
+
+        firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+
+          const user = userCredential.user;
+          let permission = [];
+
+          DB.collection("customer").doc(user.uid).get().then((doc) => {
+              if (doc.exists) {
+
+                const token = "jwt token";
+
+                localStorage.setItem('customer', JSON.stringify({ name: doc.data().name, userid: doc.data().uid, email: doc.data().email }));
+
+                setLoginLoading(false);
+                setToken(token);
+                setAuthorized(true);
+                closeModal();
+              }
+
+              else {
+                setLoginLoading(false);
+                setErrorMsg("User doesn't exist");
+              }
+
+          });
+
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setLoginLoading(false);
+          setServerError('Invalid email or password');
+        });
+
+    }
   }
 
   return (
@@ -71,8 +127,8 @@ function LoginForm() {
             <div className="mt-8">
               <Button
                 className="h-11 w-full sm:h-12"
-                loading={isLoading}
-                disabled={isLoading}
+                loading={loginLoading}
+                disabled={loginLoading}
               >
                 {t('text-login')}
               </Button>
@@ -81,13 +137,13 @@ function LoginForm() {
         )}
       </Form>
       {/* //===============// */}
-      <div className="relative mt-8 mb-6 flex flex-col items-center justify-center text-sm text-heading sm:mt-11 sm:mb-8">
+    {/*   <div className="relative mt-8 mb-6 flex flex-col items-center justify-center text-sm text-heading sm:mt-11 sm:mb-8">
         <hr className="w-full" />
         <span className="absolute -top-2.5 bg-light px-2 ltr:left-2/4 ltr:-ml-4 rtl:right-2/4 rtl:-mr-4">
           {t('text-or')}
         </span>
       </div>
-      <div className="mt-2 grid grid-cols-1 gap-4">
+     <div className="mt-2 grid grid-cols-1 gap-4">
         <Button
           className="!bg-social-google !text-light hover:!bg-social-google-hover"
           disabled={isLoading}
@@ -99,16 +155,17 @@ function LoginForm() {
           {t('text-login-google')}
         </Button>
 
-        <Button
-          className="h-11 w-full !bg-gray-500 !text-light hover:!bg-gray-600 sm:h-12"
-          disabled={isLoading}
-          onClick={() => openModal('OTP_LOGIN')}
-        >
-          <MobileIcon className="h-5 text-light ltr:mr-2 rtl:ml-2" />
-          {t('text-login-mobile')}
-        </Button>
 
-        {/* isCheckout && (
+          <Button
+            className="h-11 w-full !bg-gray-500 !text-light hover:!bg-gray-600 sm:h-12"
+            disabled={isLoading}
+            onClick={() => openModal('OTP_LOGIN')}
+          >
+            <MobileIcon className="h-5 text-light ltr:mr-2 rtl:ml-2" />
+            {t('text-login-mobile')}
+          </Button>
+
+          isCheckout && (
           <Button
             className="h-11 w-full !bg-pink-700 !text-light hover:!bg-pink-800 sm:h-12"
             disabled={isLoading}
@@ -117,8 +174,9 @@ function LoginForm() {
             <AnonymousIcon className="h-6 text-light ltr:mr-2 rtl:ml-2" />
             {t('text-guest-checkout')}
           </Button>
-        ) */}
+        )
       </div>
+      */}
       <div className="relative mt-8 mb-6 flex flex-col items-center justify-center text-sm text-heading sm:mt-11 sm:mb-8">
         <hr className="w-full" />
       </div>

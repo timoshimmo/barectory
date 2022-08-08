@@ -73,8 +73,6 @@ const Home: NextPageWithLayout<
 };
 
 Home.getLayout = function getLayout(page) {
-  console.log("Current Layout:" + page.props.layout);
-  //console.log("Current Page:" + JSON.stringify(page));
   return <HomeLayout layout={page.props.layout}>{page}</HomeLayout>;
 };
 

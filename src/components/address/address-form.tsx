@@ -9,6 +9,7 @@ import { useModalState } from '@/components/ui/modal/modal.context';
 import { Form } from '@/components/ui/forms/form';
 import { AddressType } from '@/framework/utils/constants';
 import { useUpdateUser } from '@/framework/user';
+import AutocompleteAddress from "react-google-autocomplete";
 
 type FormValues = {
   title: string;
@@ -68,6 +69,8 @@ export const AddressForm: React.FC<any> = ({
                 </div>
               </div>
 
+              setPlace(place);
+
         */}
           <Input
             label={t('text-title')}
@@ -77,17 +80,37 @@ export const AddressForm: React.FC<any> = ({
             className="col-span-2"
           />
 
+          <AutocompleteAddress
+            apiKey={'AIzaSyDs_8LnDD8HGjgkPO5hLk08MTFOk6FJus8'}
+            id="shippingAddress-input"
+            className="col-span-2 border border-border-400 text-sm px-3 py-3 rounded hover:border-accent focus:border-accent"
+            placeholder="Enter street address"
+            variant="outline"
+            onPlaceSelected={(place) => {
+              console.log("PLACE: " + place);
+            }}
+            options={{
+              types: ["address"],
+              componentRestrictions: { country: "ng" }
+            }}
+          />
+
+          {/*
+            <TextArea
+              label={t('text-street-address')}
+              {...register('address.street_address')}
+              error={t(errors.address?.street_address?.message!)}
+              variant="outline"
+              className="col-span-2"
+            />
+          */}
+
+
+
           <Input
             label={t('text-country')}
             {...register('address.country')}
             error={t(errors.address?.country?.message!)}
-            variant="outline"
-          />
-
-          <Input
-            label={t('text-city')}
-            {...register('address.city')}
-            error={t(errors.address?.city?.message!)}
             variant="outline"
           />
 
@@ -98,12 +121,11 @@ export const AddressForm: React.FC<any> = ({
             variant="outline"
           />
 
-          <TextArea
-            label={t('text-street-address')}
-            {...register('address.street_address')}
-            error={t(errors.address?.street_address?.message!)}
+          <Input
+            label={t('text-city')}
+            {...register('address.city')}
+            error={t(errors.address?.city?.message!)}
             variant="outline"
-            className="col-span-2"
           />
 
           <Button

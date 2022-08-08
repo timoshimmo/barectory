@@ -4,6 +4,7 @@ import EmptyCartIcon from '@/components/icons/empty-cart';
 import { CloseIcon } from '@/components/icons/close-icon';
 import { useTranslation } from 'next-i18next';
 import { useCart } from '@/store/quick-cart/cart.context';
+import { authorizationAtom } from '@/store/authorization-atom';
 import {
   calculatePaidTotal,
   calculateTotal,
@@ -27,14 +28,15 @@ interface Props {
 }
 const VerifiedItemList: React.FC<Props> = ({ className }) => {
   const { t } = useTranslation('common');
-  const { items, isEmpty: isEmptyCart, total } = useCart();
+  const { items, isEmpty: isEmptyCart } = useCart();
   const [verifiedResponse] = useAtom(verifiedResponseAtom);
   const [coupon, setCoupon] = useAtom(couponAtom);
   const [discount] = useAtom(discountAtom);
   const [payableAmount] = useAtom(payableAmountAtom);
   const [use_wallet] = useAtom(walletAtom);
+  const [isAuthorize] = useAtom(authorizationAtom);
 
-  const available_items = items?.filter(
+/*  const available_items = items?.filter(
     (item) => !verifiedResponse?.unavailable_products?.includes(item.id)
   );
 
@@ -86,6 +88,54 @@ const VerifiedItemList: React.FC<Props> = ({ className }) => {
       amount: totalPrice,
     }
   );
+
+  */
+
+  const available_items = items?.filter(
+  (item) => !verifiedResponse?.unavailable_products?.includes(item.id)
+);
+
+const { price: tax } = usePrice(
+  verifiedResponse && {
+    amount: verifiedResponse.total_tax ?? 0,
+  }
+);
+
+const { price: shipping } = usePrice(
+  verifiedResponse && {
+    amount: verifiedResponse.shipping_charge ?? 0,
+  }
+);
+
+const base_amount = calculateTotal(available_items);
+const { price: sub_total } = usePrice(
+  verifiedResponse && {
+    amount: base_amount,
+  }
+);
+
+const { price: discountPrice } = usePrice(
+  //@ts-ignore
+  discount && {
+    amount: Number(discount),
+  }
+);
+const totalPrice = verifiedResponse
+  ? calculatePaidTotal(
+      {
+        totalAmount: base_amount,
+        tax: verifiedResponse?.total_tax,
+        shipping_charge: verifiedResponse?.shipping_charge,
+      },
+      Number(discount)
+    )
+  : 0;
+const { price: total } = usePrice(
+  verifiedResponse && {
+    amount: totalPrice,
+  }
+);
+
   return (
     <div className={className}>
       <div className="flex flex-col pb-2 border-b border-border-200">
@@ -108,10 +158,10 @@ const VerifiedItemList: React.FC<Props> = ({ className }) => {
       </div>
 
       <div className="mt-4 space-y-2">
-        <ItemInfoRow title={t('text-sub-total')} value={subtotal} />
+        <ItemInfoRow title={t('text-sub-total')} value={sub_total} />
         <ItemInfoRow title={t('text-tax')} value={tax} />
         <ItemInfoRow title={t('text-shipping')} value={shipping} />
-      {/*
+
         {discount && coupon ? (
             <div className="flex justify-between">
               <p className="text-sm text-body ltr:mr-4 rtl:ml-4">
@@ -130,7 +180,6 @@ const VerifiedItemList: React.FC<Props> = ({ className }) => {
               <Coupon />
             </div>
           )}
-      */}
         <div className="flex justify-between pt-3 border-t-4 border-double border-border-200">
           <p className="text-base font-semibold text-heading">
             {t('text-total')}
@@ -138,19 +187,19 @@ const VerifiedItemList: React.FC<Props> = ({ className }) => {
           <span className="text-base font-semibold text-heading">{total}</span>
         </div>
       </div>
-    {/*
-      {verifiedResponse && (
+
+      {verifiedResponse && !isAuthorize ? null : (
         <Wallet
           totalPrice={totalPrice}
           walletAmount={verifiedResponse.wallet_amount}
           walletCurrency={verifiedResponse.wallet_currency}
         />
       )}
-
-      {use_wallet && !Boolean(payableAmount) ? null : (
-          <PaymentGrid className="p-5 mt-10 border border-gray-200 bg-light" />
-        )}
-    */}
+      {/*
+        {use_wallet && !Boolean(payableAmount) ? null : (
+            <PaymentGrid className="p-5 mt-10 border border-gray-200 bg-light" />
+          )}
+      */}
       <PlaceOrderAction>{t('text-place-order')}</PlaceOrderAction>
     </div>
   );

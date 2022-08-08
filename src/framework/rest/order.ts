@@ -206,8 +206,10 @@ export function useCreateOrder() {
 
   const { mutate: createOrder, isLoading } = useMutation(client.orders.create, {
     onSuccess: (data) => {
+      console.log("DATA: " + JSON.stringify(data));
       if (data?.tracking_number) {
         router.push(`${ROUTES.ORDERS}/${data?.tracking_number}`);
+        console.log("TRACKING NUMBER: " + JSON.stringify(data?.tracking_number));
       }
     },
     onError: (error) => {

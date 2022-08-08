@@ -52,26 +52,28 @@ const Wallet = ({ totalPrice, walletAmount, walletCurrency }: Props) => {
         {/* <p>Wallet</p> */}
         <div className="flex justify-between text-sm text-body">
           <span>
-            {t('text-wallet')}{' '}
-            <span className="lowercase">{t('text-points')}</span>
+            Loyalty {' '}
+            <span className="lowercase">points</span>
           </span>
           <span>{walletAmount}</span>
         </div>
+      {/*
         <div className="flex justify-between text-sm text-body">
-          <span>
-            {t('text-wallet')} {t('text-currency')}
-          </span>
-          <span>{currentWalletCurrency}</span>
-        </div>
+            <span>
+              {t('text-wallet')} {t('text-currency')}
+            </span>
+            <span>{currentWalletCurrency}</span>
+          </div>
+
+      */}
       </div>
 
       <Checkbox
         name="use_wallet"
-        label={t('text-wallet-use')}
+        label={'Do you want to use Loyalty Points?'}
         className="mt-3"
         onChange={setUseWallet}
         checked={use_wallet}
-        disabled={!walletAmount}
       />
 
       {use_wallet && (

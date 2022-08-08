@@ -13,10 +13,15 @@ import { useAtom } from 'jotai';
 import { useToken } from '@/lib/hooks/use-token';
 import { API_ENDPOINTS } from './client/api-endpoints';
 import { useState } from 'react';
+import { useRouter } from "next/router";
+import { ROUTES } from "@/lib/routes";
+
 import {
   RegisterUserInput,
   ChangePasswordUserInput,
   OtpLoginInputType,
+  User,
+  Customer
 } from '@/types';
 import { initialOtpState, optAtom } from '@/components/otp/atom';
 import { useStateMachine } from 'little-state-machine';
@@ -28,15 +33,21 @@ import { clearCheckoutAtom } from '@/store/checkout';
 
 export function useUser() {
   const [isAuthorized] = useAtom(authorizationAtom);
-  const { data, isLoading, error } = useQuery(
-    [API_ENDPOINTS.USERS_ME],
-    client.users.me,
-    {
-      enabled: isAuthorized,
-      onError: (err) => {
-        console.log(err);
-      },
-    }
+
+  let userData = {};
+  if (typeof localStorage !== 'undefined') {
+      const user = localStorage.getItem('customer');
+      if(user !== null) {
+        const data = JSON.parse(user);
+        userData = data;
+      }
+  }
+
+  const uid = userData.userid;
+
+  const { data, isLoading, error } = useQuery<Customer, Error>(
+    [API_ENDPOINTS.USERS_CUSTOMER, uid],
+    () => client.users.customer(uid)
   );
   //TODO: do some improvement here
   return { me: data, isLoading, error, isAuthorized };
@@ -70,6 +81,16 @@ export const useUpdateUser = () => {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const { closeModal } = useModalAction();
+  let userData = {};
+  if (typeof localStorage !== 'undefined') {
+      const user = localStorage.getItem('customer');
+      if(user !== null) {
+        const data = JSON.parse(user);
+        userData = data;
+      }
+  }
+
+  const uid = userData.userid;
   return useMutation(client.users.update, {
     onSuccess: (data) => {
       if (data?.id) {
@@ -286,6 +307,7 @@ export function useLogout() {
   const { setToken } = useToken();
   const [_, setAuthorized] = useAtom(authorizationAtom);
   const [_r, resetCheckout] = useAtom(clearCheckoutAtom);
+  const router = useRouter();
 
   return useMutation(client.users.logout, {
     onSuccess: (data) => {
@@ -293,6 +315,8 @@ export function useLogout() {
         setToken('');
         setAuthorized(false);
         resetCheckout();
+        localStorage.removeItem('customer');
+        router.replace(ROUTES.HOME)
       }
     },
     onSettled: () => {

@@ -100,7 +100,7 @@ export default function CategoryProductsGrid({
                     <ProductLoader key={i} uniqueKey={`product-${i}`} />
                   </SwiperSlide>
                 ))
-              : products.slice(0, 6).map((product, idx: number) => (
+              : products.slice(0, 5).map((product, idx: number) => (
                   <SwiperSlide key={idx}>
                     <ProductCard product={product} key={product?.id} />
                   </SwiperSlide>

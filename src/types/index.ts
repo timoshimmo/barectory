@@ -283,6 +283,7 @@ export interface Refund {
   updated_at: string;
 }
 
+/*
 export interface Address {
   id: string;
   title: string;
@@ -297,8 +298,30 @@ export interface Address {
   };
 }
 
+*/
+
+export interface Address {
+  id: string;
+  title: string;
+  type: any;
+  address: any;
+}
+
 export interface User {
   id: string;
+  name: string;
+  email: string;
+  profile: {
+    id?: string;
+    contact?: string;
+    bio?: string;
+    avatar?: Attachment;
+  };
+  address: Address[];
+}
+
+export interface Customer {
+  uid: string;
   name: string;
   email: string;
   profile: {

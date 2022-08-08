@@ -1,5 +1,6 @@
 import DashboardSidebar from '@/components/dashboard/sidebar';
 import GeneralLayout from '@/components/layouts/_general';
+import Head from 'next/head';
 import classNames from 'classnames';
 
 type Props = {
@@ -14,6 +15,9 @@ export default function DashboardLayout({
 }: React.PropsWithChildren<Props>) {
   return (
     <GeneralLayout layout="general">
+      <Head>
+       <title>Barectory</title>
+     </Head>
       <div
         className={classNames(
           '_dashboard main-container mx-auto flex w-full max-w-1920 flex-col items-start bg-gray-100 px-5 py-10 lg:flex-row xl:py-14 xl:px-8 2xl:px-14',

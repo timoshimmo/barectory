@@ -44,7 +44,7 @@ export default function Modern({ variables }: HomePageProps) {
           <AdsFirst layout="modern" variables={variables.types} />
         </div>
         <div>
-          <CategoriesFirstHome variables={variables.categories}/>
+            <CategoriesFirstHome variables={variables.categories}/>
         </div>
         <div className="mt-[30px] w-full">
           <AdsSecond layout="modern" variables={variables.types} />

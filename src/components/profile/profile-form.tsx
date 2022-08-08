@@ -7,19 +7,21 @@ import { useTranslation } from 'next-i18next';
 import pick from 'lodash/pick';
 import { Form } from '@/components/ui/forms/form';
 import { useUpdateUser } from '@/framework/user';
-import type { UpdateUserInput, User } from '@/types';
+import type { UpdateUserInput, User, Customer } from '@/types';
 
-const ProfileForm = ({ user }: { user: User }) => {
+const ProfileForm = ({ user }: { user: Customer }) => {
   const { t } = useTranslation('common');
   const { mutate: updateProfile, isLoading } = useUpdateUser();
 
+  //console.log("USER: " + JSON.stringify(user));
+
   function onSubmit(values: UpdateUserInput) {
-    console.log(values, 'values');
+    console.log("USER: " + JSON.stringify(user));
     if (!user) {
       return false;
     }
     updateProfile({
-      id: user.id,
+      id: user.uid,
       name: values.name,
       profile: {
         id: user?.profile?.id,

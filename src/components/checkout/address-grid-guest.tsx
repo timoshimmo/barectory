@@ -1,10 +1,14 @@
+import { useEffect } from 'react';
 import type { Address } from '@/types';
 import { useModalAction } from '@/components/ui/modal/modal.context';
+import { shippingAddressAtom } from '@/store/checkout';
 import { RadioGroup } from '@headlessui/react';
 import { useAtom, WritableAtom } from 'jotai';
+import { useState } from 'react';
 import AddressCard from '@/components/address/address-card';
 import { AddressHeader } from '@/components/address/address-header';
 import { useTranslation } from 'next-i18next';
+import AutocompleteAddress from "react-google-autocomplete";
 
 interface AddressesProps {
   addresses: Address[] | undefined;
@@ -24,8 +28,17 @@ export const GuestAddressGrid: React.FC<AddressesProps> = ({
   type,
 }) => {
   const { t } = useTranslation('common');
-  const [selectedAddress, setAddress] = useAtom(atom);
+  const [selectedAddress, setAddress] = useAtom(shippingAddressAtom);
+//  const [selectedAddress, setAddress] = useAtom(atom);
+  const [selectedAddressTitle, setAddressTitle] = useState('');
   const { openModal } = useModalAction();
+
+  useEffect(() => {
+    if (selectedAddress) {
+      setAddress(selectedAddress);
+      return;
+    }
+  }, [selectedAddress, setAddress]);
 
   function onAdd() {
     openModal('ADD_OR_UPDATE_GUEST_ADDRESS', { type, atom });
@@ -35,10 +48,62 @@ export const GuestAddressGrid: React.FC<AddressesProps> = ({
     openModal('ADD_OR_UPDATE_GUEST_ADDRESS', { type, atom, address });
   }
 
+  function onClearAddress() {
+    setAddress('');
+  }
+
+  function onHandleAddress(address) {
+    console.log("ADDRESS: " + JSON.stringify(address));
+    const formattedInput = {
+      id: "1",
+      // customer_id: customerId,
+      title: "home",
+      type: 'shipping',
+      address: address,
+    };
+    setAddress(formattedInput);
+    //closeModal();
+  }
+
   return (
     <div className={className}>
-      <AddressHeader onAdd={onAdd} count={count} label={label} />
-      {addresses && addresses?.length ? (
+      <AddressHeader count={count} label={label} />
+      {/*
+<AddressHeader onAdd={onAdd} count={count} label={label} />
+         */}
+      <div className="grid grid-cols-1">
+        {!selectedAddress &&
+          <AutocompleteAddress
+            apiKey={'AIzaSyDs_8LnDD8HGjgkPO5hLk08MTFOk6FJus8'}
+            id="shippingAddress-input"
+            className="w-100 border border-border-400 text-sm px-3 py-3 rounded hover:border-accent focus:border-accent"
+            placeholder="Enter street address"
+            variant="outline"
+            onPlaceSelected={(place) => {
+              onHandleAddress(place)
+            }}
+            options={{
+              types: ["address"],
+              componentRestrictions: { country: "ng" }
+            }}
+          />
+        }
+      </div>
+      <div className="grid grid-cols-3">
+        {selectedAddress &&
+          (
+            <AddressCard
+              checked={false}
+              address={selectedAddress.address.formatted_address}
+              onEdit={() => onClearAddress()}
+            />
+          )
+        }
+      </div>
+
+      {/*
+
+        addresses && addresses?.length ? (
         <RadioGroup as="span" value={selectedAddress} onChange={setAddress}>
           <RadioGroup.Label className="sr-only">{label}</RadioGroup.Label>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
@@ -61,7 +126,7 @@ export const GuestAddressGrid: React.FC<AddressesProps> = ({
             {t('text-no-address')}
           </span>
         </div>
-      )}
+      ) */}
     </div>
   );
 };

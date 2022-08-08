@@ -50,6 +50,7 @@ import type {
   TypeQueryOptions,
   UpdateUserInput,
   User,
+  Customer,
   VerifiedCheckoutData,
   VerifyCouponInputType,
   VerifyCouponResponse,
@@ -187,8 +188,9 @@ class Client {
   };
   users = {
     me: () => HttpClient.get<User>(API_ENDPOINTS.USERS_ME),
+    customer: (id: string) => HttpClient.get<Customer>(`${API_ENDPOINTS.USERS_CUSTOMER}/${id}`),
     update: (user: UpdateUserInput) =>
-      HttpClient.put<User>(`${API_ENDPOINTS.USERS}/${user.id}`, user),
+      HttpClient.put<Customer>(`${API_ENDPOINTS.USERS}${API_ENDPOINTS.UPDATE_CUSTOMER}/${user.id}`, user),
     login: (input: LoginUserInput) =>
       HttpClient.post<AuthResponse>(API_ENDPOINTS.USERS_LOGIN, input),
     socialLogin: (input: SocialLoginInputType) =>
@@ -200,7 +202,7 @@ class Client {
     OtpLogin: (input: OtpLoginInputType) =>
       HttpClient.post<AuthResponse>(API_ENDPOINTS.OTP_LOGIN, input),
     register: (input: RegisterUserInput) =>
-      HttpClient.post<AuthResponse>(API_ENDPOINTS.USERS_REGISTER, input),
+      HttpClient.post<AuthResponse>(API_ENDPOINTS.USERS_CREATE, input),
     forgotPassword: (input: ForgotPasswordUserInput) =>
       HttpClient.post<PasswordChangeResponse>(
         API_ENDPOINTS.USERS_FORGOT_PASSWORD,

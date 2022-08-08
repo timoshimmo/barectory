@@ -23,7 +23,7 @@ export const AddressHeader: React.FC<AddressHeaderProps> = ({
         )}
         <p className="text-lg lg:text-xl text-heading capitalize">{label}</p>
       </div>
-      {onAdd && (
+      {/*onAdd && (
         <button
           className="flex items-center text-sm font-semibold text-accent transition-colors duration-200 focus:outline-none focus:text-accent-hover hover:text-accent-hover"
           onClick={onAdd}
@@ -31,7 +31,7 @@ export const AddressHeader: React.FC<AddressHeaderProps> = ({
           <PlusIcon className="w-4 h-4 stroke-2 ltr:mr-0.5 rtl:ml-0.5" />
           {t('text-add')}
         </button>
-      )}
+      ) */}
     </div>
   );
 };

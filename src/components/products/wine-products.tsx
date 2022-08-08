@@ -4,7 +4,7 @@ import NotFound from '@/components/ui/not-found';
 import rangeMap from '@/lib/range-map';
 import ProductCard from '@/components/products/cards/card';
 import ErrorMessage from '@/components/ui/error-message';
-import { usePopularProducts } from '@/framework/product';
+import { usePopularProducts, useCategoryProduct } from '@/framework/product';
 import SectionBlock from '@/components/ui/section-block';
 import { useTranslation } from 'next-i18next';
 import classNames from 'classnames';
@@ -27,7 +27,7 @@ export default function WineProductsGrid({
   variables,
 }: Props) {
   const { t } = useTranslation('common');
-  const { products, isLoading, error } = usePopularProducts(variables);
+  const { products, isLoading, error } = useCategoryProduct({ slug: 'wines' });
 
   const { isRTL } = useIsRTL();
 
@@ -113,7 +113,7 @@ export default function WineProductsGrid({
                     <ProductLoader key={i} uniqueKey={`product-${i}`} />
                   </SwiperSlide>
                 ))
-              : products.slice(26, 34).map((product, idx: number) => (
+              : products.slice(0, 6).map((product, idx: number) => (
                   <SwiperSlide key={idx}>
                     <ProductCard product={product} key={product?.id} />
                   </SwiperSlide>

@@ -3,12 +3,11 @@ import { useAtom } from 'jotai';
 import isEmpty from 'lodash/isEmpty';
 import classNames from 'classnames';
 import { useCreateOrder, useOrderStatuses, useVerifyOrder } from '@/framework/order';
-import { shippingAddressAtom } from '@/store/checkout';
 import ValidationError from '@/components/ui/validation-error';
 import Button from '@/components/ui/button';
 import { formatOrderedProduct } from '@/lib/format-ordered-product';
 import { useCart } from '@/store/quick-cart/cart.context';
-import { checkoutAtom, discountAtom } from '@/store/checkout';
+import { checkoutAtom, discountAtom, walletAtom, shippingAddressAtom } from '@/store/checkout';
 import {
   calculatePaidTotal,
   calculateTotal,
@@ -19,9 +18,19 @@ import omit from 'lodash/omit';
 export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const { createOrder, isLoading } = useCreateOrder();
-  const { mutate: verifyCheckout } = useVerifyOrder();
 
-  /*const [shipping_address] = useAtom(shippingAddressAtom);
+  let userData = {};
+  if (typeof localStorage !== 'undefined') {
+      const user = localStorage.getItem('customer');
+      if(user !== null) {
+        const data = JSON.parse(user);
+        userData = data;
+      }
+  }
+  const userId = userData.userid ?? null;
+  /*const { mutate: verifyCheckout } = useVerifyOrder();
+
+  const [shipping_address] = useAtom(shippingAddressAtom);
   const { items, total, isEmpty } = useCart();
 
   const { mutate: verifyCheckout, isLoading: loading } = useVerifyOrder();
@@ -35,14 +44,14 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
           omit(shipping_address.address, ['__typename'])),
       }
     });
-  }*/
-
+  }
+*/
 
   const { orderStatuses } = useOrderStatuses({
     limit: 1,
   });
 
-  const { items, total } = useCart();
+  const { items } = useCart();
   const [
     {
       shipping_address,
@@ -53,14 +62,16 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
       customer_email,
       customer_first_name,
       customer_last_name,
+      payment_gateway,
       token,
     },
   ] = useAtom(checkoutAtom);
   const [discount] = useAtom(discountAtom);
+  const [use_wallet_points] = useAtom(walletAtom);
 
   useEffect(() => {
     setErrorMessage(null);
-  }, []);
+  }, [payment_gateway]);
 
   const available_items = items?.filter(
     (item) => !verified_response?.unavailable_products?.includes(item.id)
@@ -68,7 +79,13 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
 
   const subtotal = calculateTotal(available_items);
 
-  const overall_total = calculatePaidTotal(
+  /*
+  shipping_address: {
+    ...(shipping_address?.address && shipping_address.address),
+  },
+  */
+
+  const total = calculatePaidTotal(
     {
       totalAmount: subtotal,
       tax: verified_response?.total_tax!,
@@ -90,23 +107,25 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
       amount: subtotal,
       coupon_id: Number(coupon?.id),
       discount: discount ?? 0,
-      paid_total: overall_total,
+      paid_total: total,
       sales_tax: verified_response?.total_tax,
       delivery_fee: verified_response?.shipping_charge,
-      total: overall_total,
+      total,
       delivery_time: delivery_time?.title,
+      customer: { id: userId, name: `${customer_first_name} ${customer_last_name}`, email: customer_email},
       customer_contact,
+      use_wallet_points,
       payment_gateway: "Paystack",
-      shipping_address: {
-        ...(shipping_address?.address && shipping_address.address),
-      },
+      shipping_address: shipping_address,
     };
   /*  if (payment_gateway === 'PAYSTACK') {
       //@ts-ignore
       input.token = token;
     }*/
 
-    delete input.shipping_address.__typename;
+    //console.log("ORDER INPUTS:" + JSON.stringify(input));
+
+    //delete input.shipping_address.__typename;
     //@ts-ignore
     createOrder(input);
   };
@@ -137,11 +156,12 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
   );
 
   const formatRequiredFields = isDigitalCheckout
-    ? [customer_email]
+    ? [customer_email, available_items]
     : [
       customer_email,
       customer_first_name,
       customer_last_name,
+      shipping_address,
       ];
   const isAllRequiredFieldSelected = formatRequiredFields.every(
     (item) => !isEmpty(item)
@@ -151,14 +171,31 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
      const initializePayment = usePaystackPayment(config);
      //Object.keys(shipping_address).length
      //console.log("SHIPPING: " , customer_email.length);
+
+     //initializePayment(onSuccess, onClose)
      return (
        <div>
-           <Button
+       {!use_wallet_points ?
+          ( <Button
            className="w-full mt-5 bg-accent text-light px-5 py-0 h-12 border border-transparent hover:bg-accent-hover inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-none focus:shadow focus:ring-1 focus:ring-accent-700"
            disabled={shipping_address === null || customer_email.length < 4}
+
            onClick={() => {
-               initializePayment(onSuccess, onClose)
+              initializePayment(onSuccess, onClose)
            }}>Pay</Button>
+         )
+         :
+         (
+           <Button
+            className="w-full mt-5 bg-accent text-light px-5 py-0 h-12 border border-transparent hover:bg-accent-hover inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-none focus:shadow focus:ring-1 focus:ring-accent-700"
+            disabled={shipping_address === null || customer_email.length < 4}
+
+            onClick={() => {
+                handlePlaceOrder()
+            }}>Pay</Button>
+         )
+       }
+
        </div>
      );
  };

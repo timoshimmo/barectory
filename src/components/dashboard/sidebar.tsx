@@ -21,22 +21,24 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ className }) => {
     <aside className={className}>
       <div className="px-10 py-8 mb-5 overflow-hidden border rounded border-border-200 bg-light">
         <h3 className="pb-4 mb-4 text-base font-semibold border-b border-dashed border-border-200 text-heading">
-          {t('text-wallet-points')}
+          Loyalty Points
         </h3>
 
         <div className="grid grid-cols-3">
-          <div className="mb-2 flex flex-col items-center justify-center space-y-1 border-r border-dashed border-gray-200 py-2 px-2 text-[13px] font-semibold capitalize text-heading">
-            <span>{me?.wallet?.total_points ?? 0}</span>
-            <span>{t('text-total')}</span>
+          <div className="mb-2 flex flex-col justify-center space-y-1 px-2 text-[21px] font-semibold capitalize text-heading">
+            <span>{me?.loyaltyPoints ?? 0}</span>
+            {/* <span>{t('text-total')}</span> */}
           </div>
-          <div className="mb-2 flex flex-col items-center justify-center space-y-1 border-r border-dashed border-gray-200 py-2 px-2 text-[13px] font-semibold capitalize text-heading">
-            <span>{me?.wallet?.points_used ?? 0}</span>
-            <span>{t('text-used')}</span>
-          </div>
-          <div className="mb-2 flex flex-col items-center justify-center space-y-1 py-2 px-2 text-[13px] font-semibold capitalize text-heading">
-            <span>{me?.wallet?.available_points ?? 0}</span>
-            <span>{t('text-available')}</span>
-          </div>
+          {/*
+            <div className="mb-2 flex flex-col items-center justify-center space-y-1 border-r border-dashed border-gray-200 py-2 px-2 text-[13px] font-semibold capitalize text-heading">
+              <span>{me?.wallet?.points_used ?? 0}</span>
+              <span>{t('text-used')}</span>
+            </div>
+            <div className="mb-2 flex flex-col items-center justify-center space-y-1 py-2 px-2 text-[13px] font-semibold capitalize text-heading">
+              <span>{me?.wallet?.available_points ?? 0}</span>
+              <span>{t('text-available')}</span>
+            </div>
+          */}
         </div>
       </div>
 

@@ -42,7 +42,7 @@ const ContactGrid = ({
       return;
     }
     if (email) {
-      setContactEmail(contact);
+      setContactEmail(email);
       return;
     }
     if (firstName) {
@@ -53,19 +53,20 @@ const ContactGrid = ({
       setContactLastName(lastName);
       return;
     }
-    setContactNumber('');
-    setContactEmail('');
-    setContactFirstName('');
-    setContactLastName('');
+//    setContactNumber('');
+  //  setContactEmail('');
+  //  setContactFirstName('');
+  //  setContactLastName('');
   }, [contact, setContactNumber, email, setContactEmail, contactFirstName, setContactFirstName, contactLastName, setContactLastName]);
 
   function onFirstNameChange(event) {
+  //  console.log("FIRST NAME: " + contactFirstName);
     setContactFirstName(event.target.value);
     //closeModal();
   }
 
   function onLastNameChange(event) {
-    //console.log("CONTACT: " + event.target.value);
+  //  console.log("LAST NAME: " + contactLastName);
     setContactLastName(event.target.value);
     //closeModal();
   }
@@ -73,6 +74,12 @@ const ContactGrid = ({
   function onEmailChange(event) {
     //console.log("CONTACT: " + event.target.value);
     setContactEmail(event.target.value);
+    //closeModal();
+  }
+
+  function onContactNumberChange(phoneNo) {
+    //console.log("CONTACT: " + phoneNo.phone);
+    setContactNumber(phoneNo.phone);
     //closeModal();
   }
 
@@ -136,6 +143,7 @@ const ContactGrid = ({
           country="ng"
           disabled={false}
           className="mb-5"
+          onChange={phone => onContactNumberChange({ phone })}
           inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base !rounded focus:!border-accent !h-12"
           dropdownClass="focus:!ring-0 !border !border-border-base !shadow-350"
         />

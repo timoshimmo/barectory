@@ -49,7 +49,7 @@ const UnverifiedItemList = ({ hideTitle = false }: { hideTitle?: boolean }) => {
         />
       </div>
       <CheckAvailabilityAction>
-        {t('text-check-availability')}
+        Confirm Order
       </CheckAvailabilityAction>
 
     {/*

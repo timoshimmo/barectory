@@ -50,14 +50,6 @@ export const siteSettings = {
       label: 'profile-sidebar-orders',
     },
     {
-      href: ROUTES.DOWNLOADS,
-      label: 'profile-sidebar-downloads',
-    },
-    {
-      href: ROUTES.REFUNDS,
-      label: 'text-my-refunds',
-    },
-    {
       href: ROUTES.HELP,
       label: 'profile-sidebar-help',
     },
@@ -151,3 +143,15 @@ Lagos, Nigeria.`,
     ],
   },
 };
+
+/*
+
+{
+  href: ROUTES.DOWNLOADS,
+  label: 'profile-sidebar-downloads',
+},
+{
+  href: ROUTES.REFUNDS,
+  label: 'text-my-refunds',
+},
+*/

@@ -10,29 +10,33 @@ export { getStaticProps } from '@/framework/general.ssr';
 
 const ProfilePage = () => {
   const { t } = useTranslation('common');
+
   const { me } = useUser();
   console.log('me:', me);
+
   if (!me) return null;
   return (
     <>
       <Seo noindex={true} nofollow={true} />
-      <div className="main-container w-full px-1 pb-1 overflow-hidden">
+      <div className="w-full px-1 pb-1 overflow-hidden">
         <div className="mb-8">
-          <ProfileForm user={me} />
+          <ProfileForm user={me}/>
           <ProfileContact
-            userId={me.id}
+            userId={me.uid}
             profileId={me.profile?.id}
             contact={me.profile?.contact}
           />
         </div>
 
         <Card className="w-full">
+
           <ProfileAddressGrid
-            userId={me.id}
+            userId={me.uid}
             //@ts-ignore
             addresses={me.address}
             label={t('text-addresses')}
           />
+
         </Card>
       </div>
     </>
