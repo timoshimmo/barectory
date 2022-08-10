@@ -9,7 +9,7 @@
     "codegen": "node -r dotenv/config $(yarn bin)/graphql-let",
     "dev:gql": "yarn codegen && next dev -p 3001",
     "build:gql": "yarn codegen && next build",
-    "start": "NODE_ENV=production node server.js",
+    "start": "next start",
     "lint": "next lint",
     "postbuild:rest": "next-sitemap",
     "prepare": "husky install"
