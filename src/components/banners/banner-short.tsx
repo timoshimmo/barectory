@@ -44,14 +44,15 @@ const BannerShort: React.FC<BannerProps> = ({ banners }) => {
                     src={banner.image?.original ?? productPlaceholder}
                     alt={banner.title ?? ''}
                     layout="fill"
-                    width={1503}
-                    height={580}
                   />
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
         {/*
+
+          width={1503}
+          height={580}
           <div
               className="prev cursor-pointer absolute top-2/4 ltr:left-4 rtl:right-4 ltr:md:left-5 rtl:md:right-5 z-10 -mt-4 md:-mt-5 w-8 h-8 rounded-full bg-light shadow-200 border border-border-200 border-opacity-70 flex items-center justify-center text-heading transition-all duration-200"
               role="button"
