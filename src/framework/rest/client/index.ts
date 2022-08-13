@@ -159,8 +159,8 @@ class Client {
   orders = {
     all: (params: Partial<OrderQueryOptions>) =>
       HttpClient.get<OrderPaginator>(API_ENDPOINTS.ORDERS, params),
-    get: (tracking_number: string) =>
-      HttpClient.get<Order>(`${API_ENDPOINTS.ORDERS}/${tracking_number}`),
+    get: (tracking_id: string) =>
+      HttpClient.get<Order>(`${API_ENDPOINTS.ORDERS}/tracking_number/${tracking_id}`),
     create: (input: CreateOrderInput) =>
       HttpClient.post<Order>(API_ENDPOINTS.ORDERS, input),
     statuses: (params: Pick<QueryOptions, 'limit'>) =>

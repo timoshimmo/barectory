@@ -138,6 +138,7 @@ const { price: total } = usePrice(
 
   return (
     <div className={className}>
+    {!verifiedResponse &&
       <div className="flex flex-col pb-2 border-b border-border-200">
         {!isEmptyCart ? (
           items?.map((item) => {
@@ -156,6 +157,8 @@ const { price: total } = usePrice(
           <EmptyCartIcon />
         )}
       </div>
+    }
+
 
       <div className="mt-4 space-y-2">
         <ItemInfoRow title={t('text-sub-total')} value={sub_total} />

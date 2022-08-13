@@ -123,7 +123,7 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
       input.token = token;
     }*/
 
-    //console.log("ORDER INPUTS:" + JSON.stringify(input));
+    console.log("ORDER INPUTS:" + JSON.stringify(input));
 
     //delete input.shipping_address.__typename;
     //@ts-ignore
@@ -181,7 +181,7 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
            disabled={shipping_address === null || customer_email.length < 4}
 
            onClick={() => {
-              initializePayment(onSuccess, onClose)
+              handlePlaceOrder()
            }}>Pay</Button>
          )
          :

@@ -24,6 +24,7 @@ export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async ({
     fallback: 'blocking',
   };
 };
+
 type PageProps = {
   product: Product;
 };

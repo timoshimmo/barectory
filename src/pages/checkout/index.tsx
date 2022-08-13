@@ -6,6 +6,10 @@ import { AddressType } from '@/framework/utils/constants';
 import Seo from '@/components/seo/seo';
 import { useUser } from '@/framework/user';
 export { getStaticProps } from '@/framework/general.ssr';
+import { useCart } from '@/store/quick-cart/cart.context';
+import CartItem from '@/components/cart/cart-item';
+import { useAtom } from 'jotai';
+import { checkoutAtom } from '@/store/checkout';
 
 const ScheduleGrid = dynamic(
   () => import('@/components/checkout/schedule/schedule-grid')
@@ -26,6 +30,22 @@ export default function CheckoutPage() {
   const { t } = useTranslation();
   const { me } = useUser();
   const { id, address, profile, email, name } = me ?? {};
+  const { items } = useCart();
+  const [
+    {
+      shipping_address,
+      delivery_time,
+      coupon,
+      verified_response,
+      customer_contact,
+      customer_email,
+      customer_first_name,
+      customer_last_name,
+      payment_gateway,
+      token,
+    },
+  ] = useAtom(checkoutAtom);
+
   return (
     <>
       <Seo noindex={true} nofollow={true} />

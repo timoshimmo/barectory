@@ -39,12 +39,13 @@ const CartPage = () => {
   }
 
   function handleCheckoutUser() {
-    const isRegularCheckout = items.find((item) => !Boolean(item.is_digital));
+      router.push(ROUTES.CHECKOUT);
+  /*  const isRegularCheckout = items.find((item) => !Boolean(item.is_digital));
     if (isRegularCheckout) {
       router.push(ROUTES.CHECKOUT);
     } else {
       router.push(ROUTES.CHECKOUT_DIGITAL);
-    }
+    } */
 
   }
 

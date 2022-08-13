@@ -7,5 +7,8 @@ export function formatOrderedProduct(product: any) {
     order_quantity: product.quantity,
     unit_price: product.price,
     subtotal: product.itemTotal,
+    image: product.image,
+    name: product.name,
+    slug: product.slug
   };
 }

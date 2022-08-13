@@ -489,6 +489,9 @@ export interface ConnectProductOrderPivot {
   order_quantity: number;
   unit_price: number;
   subtotal: number;
+  image: any,
+  name: string,
+  slug: string
 }
 
 export interface CheckoutVerificationInput {
