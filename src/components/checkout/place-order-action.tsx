@@ -191,6 +191,7 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
             disabled={shipping_address === null || customer_email.length < 4}
 
             onClick={() => {
+              
                 initializePayment(onSuccess, onClose)
             }}>Pay</Button>
          )
