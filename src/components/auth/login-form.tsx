@@ -49,7 +49,7 @@ function LoginForm() {
   */
 
   function onSubmit({ email, password }: LoginUserInput) {
-    
+
 
     if(!loginLoading) {
         const { setToken } = useToken();
@@ -109,7 +109,7 @@ function LoginForm() {
         {({ register, formState: { errors } }) => (
           <>
             <Input
-              label={t('text-email')}
+              label="Email"
               {...register('email')}
               type="email"
               variant="outline"
@@ -117,7 +117,7 @@ function LoginForm() {
               error={t(errors.email?.message!)}
             />
             <PasswordInput
-              label={t('text-password')}
+              label="Password"
               {...register('password')}
               error={t(errors.password?.message!)}
               variant="outline"
@@ -130,7 +130,7 @@ function LoginForm() {
                 loading={loginLoading}
                 disabled={loginLoading}
               >
-                {t('text-login')}
+                Login
               </Button>
             </div>
           </>
@@ -176,17 +176,19 @@ function LoginForm() {
           </Button>
         )
       </div>
-      */}
+
       <div className="relative mt-8 mb-6 flex flex-col items-center justify-center text-sm text-heading sm:mt-11 sm:mb-8">
         <hr className="w-full" />
       </div>
-      <div className="text-center text-sm text-body sm:text-base">
-        {t('text-no-account')}{' '}
+      */}
+
+      <div className="text-center text-sm text-body mt-8 sm:text-base">
+        Don't have an account {' '}
         <button
           onClick={() => openModal('REGISTER')}
           className="font-semibold text-accent underline transition-colors duration-200 hover:text-accent-hover hover:no-underline focus:text-accent-hover focus:no-underline focus:outline-none ltr:ml-1 rtl:mr-1"
         >
-          {t('text-register')}
+          Register
         </button>
       </div>
     </>
@@ -201,7 +203,7 @@ export default function LoginView() {
         <Logo />
       </div>
       <p className="mt-4 mb-8 text-center text-sm text-body sm:mt-5 sm:mb-10 md:text-base">
-        {t('login-helper')}
+        Login in with your email & password
       </p>
       <LoginForm />
     </div>

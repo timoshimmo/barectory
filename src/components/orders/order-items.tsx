@@ -21,7 +21,7 @@ const OrderItemList = (_: any, record: any) => {
     <div className="flex items-center">
       <div className="w-16 h-16 flex shrink-0 rounded overflow-hidden relative">
         <Image
-          src={record.image?.thumbnail ?? productPlaceholder}
+          src={record?.image ?? productPlaceholder}
           alt={name}
           className="w-full h-full object-cover"
           layout="fill"
@@ -44,6 +44,7 @@ const OrderItemList = (_: any, record: any) => {
     </div>
   );
 };
+
 export const OrderItems = ({ products }: { products: any }) => {
   const { t } = useTranslation('common');
   const { alignLeft, alignRight } = useIsRTL();

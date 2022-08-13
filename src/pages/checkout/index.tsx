@@ -101,5 +101,6 @@ export default function CheckoutPage() {
     </>
   );
 }
+
 CheckoutPage.authenticationRequired = true;
 CheckoutPage.getLayout = getLayout;

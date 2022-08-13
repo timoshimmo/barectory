@@ -72,7 +72,7 @@ function OrderView({ order }: any) {
               {t('text-date')}
             </h3>
             <p className="text-sm text-body-dark">
-              {dayjs(order?.created_at).format('MMMM D, YYYY')}
+              {dayjs(order?.created_at.seconds).format('MMMM D, YYYY')}
             </p>
           </div>
           <div className="rounded border border-border-200 py-4 px-5 shadow-sm">
@@ -196,11 +196,11 @@ function OrderView({ order }: any) {
                   </strong>
                   :
                   <span className="w-8/12 text-sm ltr:pl-4 rtl:pr-4 ">
-                    {formatAddress(order?.shipping_address!)}
+                    {order?.shipping_address.address.formatted_address}
                   </span>
                 </p>
               )}
-              {!isEmpty(order?.billing_address) && (
+              {/*!isEmpty(order?.billing_address) && (
                 <p className="mt-5 flex text-body-dark">
                   <strong className="w-4/12 text-sm font-semibold text-heading">
                     {t('text-billing-address')}
@@ -210,7 +210,7 @@ function OrderView({ order }: any) {
                     {formatAddress(order?.billing_address!)}
                   </span>
                 </p>
-              )}
+              )*/}
             </div>
           </div>
           {/* end of order details */}
