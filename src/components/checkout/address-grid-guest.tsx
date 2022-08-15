@@ -53,7 +53,7 @@ export const GuestAddressGrid: React.FC<AddressesProps> = ({
   }
 
   function onHandleAddress(address) {
-    console.log("ADDRESS: " + JSON.stringify(address));
+  //  console.log("ADDRESS: " + JSON.stringify(address));
     const formattedInput = {
       id: "1",
       // customer_id: customerId,

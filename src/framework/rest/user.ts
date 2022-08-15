@@ -81,17 +81,29 @@ export const useUpdateUser = () => {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const { closeModal } = useModalAction();
-  let userData = {};
-  if (typeof localStorage !== 'undefined') {
-      const user = localStorage.getItem('customer');
-      if(user !== null) {
-        const data = JSON.parse(user);
-        userData = data;
-      }
-  }
 
-  const uid = userData.userid;
   return useMutation(client.users.update, {
+    onSuccess: (data) => {
+      if (data?.id) {
+        toast.success(t('profile-update-successful'));
+        closeModal();
+      }
+    },
+    onError: (error) => {
+      toast.error(t('error-something-wrong'));
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries('/me');
+    },
+  });
+};
+
+export const useUpdateAddress = () => {
+  const { t } = useTranslation();
+  const queryClient = useQueryClient();
+  const { closeModal } = useModalAction();
+
+  return useMutation(client.users.updateAddress, {
     onSuccess: (data) => {
       if (data?.id) {
         toast.success(t('profile-update-successful'));

@@ -7,9 +7,10 @@ import Seo from '@/components/seo/seo';
 import { useUser } from '@/framework/user';
 export { getStaticProps } from '@/framework/general.ssr';
 import { useCart } from '@/store/quick-cart/cart.context';
-import CartItem from '@/components/cart/cart-item';
+import CartItem from '@/components/cart/checkout-cart-item';
 import { useAtom } from 'jotai';
 import { checkoutAtom } from '@/store/checkout';
+import { useEffect, useState } from 'react';
 
 const ScheduleGrid = dynamic(
   () => import('@/components/checkout/schedule/schedule-grid')
@@ -29,7 +30,12 @@ const RightSideView = dynamic(
 export default function CheckoutPage() {
   const { t } = useTranslation();
   const { me } = useUser();
-  const { id, address, profile, email, name } = me ?? {};
+  const { uid, address, profile, email, name } = me ?? {};
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [emailAddress, setEmailAddress] = useState('');
+  const [contact, setContact] = useState('');
+  const [uID, setUID] = useState('');
   const { items } = useCart();
   const [
     {
@@ -46,53 +52,120 @@ export default function CheckoutPage() {
     },
   ] = useAtom(checkoutAtom);
 
+
+  useEffect(() => {
+      if(typeof me !== "undefined") {
+        console.log("ME:" + JSON.stringify(me));
+      //  setUID()
+        const nameArr = me?.name.split(" ");
+        setEmailAddress(me?.email);
+        if(typeof nameArr !== "undefined") {
+          console.log("NAME ARR:" + JSON.stringify(nameArr))
+          setFirstName(nameArr[0]);
+          setLastName(nameArr[1]);
+        }
+      }
+  }, [setFirstName, setLastName, setEmailAddress, setContact, me]);
+
+
+
+
   return (
     <>
       <Seo noindex={true} nofollow={true} />
       <div className="main-container px-4 py-8 bg-gray-100 lg:py-10 lg:px-8 xl:py-14 xl:px-16 2xl:px-20">
         <div className="flex flex-col items-center w-full max-w-5xl m-auto rtl:space-x-reverse lg:flex-row lg:items-start lg:space-x-8">
-          <div className="w-full space-y-6 lg:max-w-2xl">
-            <ContactGrid
-              className="p-5 bg-light shadow-700 md:p-8"
-              contact={profile?.contact}
-              email={email}
-              name={name}
-              label={'Contact Details'}
-              count={1}
-            />
-            {/*
-
-              <AddressGrid
-                userId={id!}
+        {!verified_response &&
+          (
+            <div className="w-full space-y-6 lg:max-w-2xl">
+              <ContactGrid
                 className="p-5 bg-light shadow-700 md:p-8"
-                label={t('text-billing-address')}
+                contact={profile?.contact}
+                email={emailAddress}
+                firstName={firstName}
+                lastName={lastName}
+                label={'Contact Details'}
+                count={1}
+              />
+              {/*
+
+                <AddressGrid
+                  userId={id!}
+                  className="p-5 bg-light shadow-700 md:p-8"
+                  label={t('text-billing-address')}
+                  count={2}
+                  //@ts-ignore
+                  addresses={address?.filter(
+                    (item) => item?.type === AddressType.Billing
+                  )}
+                  atom={billingAddressAtom}
+                  type={AddressType.Billing}
+                />
+              */}
+              <AddressGrid
+                userId={me?.uid!}
+                className="p-5 bg-light shadow-700 md:p-8"
+                label={t('text-shipping-address')}
                 count={2}
                 //@ts-ignore
-                addresses={address?.filter(
-                  (item) => item?.type === AddressType.Billing
-                )}
-                atom={billingAddressAtom}
-                type={AddressType.Billing}
+                addresses={me?.address}
+                atom={shippingAddressAtom}
+                type={AddressType.Shipping}
               />
-            */}
-            <AddressGrid
-              userId={me?.id!}
-              className="p-5 bg-light shadow-700 md:p-8"
-              label={t('text-shipping-address')}
-              count={2}
-              //@ts-ignore
-              addresses={address?.filter(
-                (item) => item?.type === AddressType.Shipping
-              )}
-              atom={shippingAddressAtom}
-              type={AddressType.Shipping}
-            />
-            <ScheduleGrid
-              className="p-5 bg-light shadow-700 md:p-8"
-              label={t('text-delivery-schedule')}
-              count={3}
-            />
-          </div>
+              <ScheduleGrid
+                className="p-5 bg-light shadow-700 md:p-8"
+                label={t('text-delivery-schedule')}
+                count={3}
+              />
+            </div>
+          )
+        }
+        {verified_response &&
+          (
+            <div className="w-full space-y-6 lg:max-w-2xl">
+              <p className="text-lg capitalize text-heading lg:text-xl mb-5 text-dark font-bold">Order Details</p>
+              <div className="bg-light p-5 shadow-700 md:p-8">
+                  <p className="text-lg capitalize text-heading mb-5 text-dark font-semibold">Contact Details</p>
+                  <div className="flex w-full mb-3">
+                    <div className="w-[50%] pr-2">
+                      <label className="text-sm uppercase text-heading font-bold">First name</label>
+                      <p className="text-sm capitalize text-heading">Timothy</p>
+                    </div>
+                    <div className="w-[50%] pl-2">
+                      <label className="text-sm uppercase text-heading font-bold">Last name</label>
+                      <p className="text-sm capitalize text-heading">Wang</p>
+                    </div>
+                  </div>
+                  <div className="flex w-full mb-3">
+                    <div className="w-[50%] pr-2">
+                      <label className="text-sm uppercase text-heading font-bold">Phone number</label>
+                      <p className="text-sm capitalize text-heading">+2348057527307</p>
+                    </div>
+                    <div className="w-[50%] pl-2">
+                      <label className="text-sm uppercase text-heading font-bold mt-3">Email</label>
+                      <p className="text-sm capitalize text-heading">tokmangwang@gmal.com</p>
+                    </div>
+                  </div>
+                  <div className="w-full mb-3">
+                    <label className="text-sm uppercase text-heading font-bold mt-3">Address</label>
+                    <p className="text-sm capitalize text-heading">No 5 Ikoyi Road, Lagos</p>
+                  </div>
+              </div>
+
+              <div className="bg-light p-5 shadow-700 md:p-8">
+                  <p className="text-lg capitalize text-heading mb-5 text-dark font-semibold">Products</p>
+                  <div className="w-full mb-3">
+                    {items.length && (
+                      items?.map((item) => <CartItem item={item} key={item.id} />)
+                    )
+                  }
+                  </div>
+              </div>
+            </div>
+          )
+
+        }
+
           <div className="w-full mt-10 mb-10 sm:mb-12 lg:mb-0 lg:w-96">
             <RightSideView />
           </div>

@@ -13,7 +13,7 @@ import { useEffect } from 'react';
 import { useUser } from '@/framework/user';
 export { getStaticProps } from '@/framework/general.ssr';
 import { useCart } from '@/store/quick-cart/cart.context';
-import CartItem from '@/components/cart/cart-item';
+import CartItem from '@/components/cart/checkout-cart-item';
 
 const ScheduleGrid = dynamic(
   () => import('@/components/checkout/schedule/schedule-grid')
@@ -42,9 +42,9 @@ export default function GuestCheckoutPage() {
   const [billingAddress] = useAtom(billingAddressAtom);
   const { items, totalUniqueItems, total, isEmpty } = useCart();
   const [shippingAddress] = useAtom(shippingAddressAtom);
-  useEffect(() => {
+/*  useEffect(() => {
     resetCheckout();
-  }, [resetCheckout]);
+  }, [resetCheckout]);*/
 
   const [
     {

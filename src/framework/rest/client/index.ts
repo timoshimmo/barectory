@@ -191,6 +191,8 @@ class Client {
     customer: (id: string) => HttpClient.get<Customer>(`${API_ENDPOINTS.USERS_CUSTOMER}/${id}`),
     update: (user: UpdateUserInput) =>
       HttpClient.put<Customer>(`${API_ENDPOINTS.USERS}${API_ENDPOINTS.UPDATE_CUSTOMER}/${user.id}`, user),
+    updateAddress: (user: UpdateUserInput) =>
+        HttpClient.put<Customer>(`${API_ENDPOINTS.USERS}${API_ENDPOINTS.UPDATE_CUSTOMER_ADDRESS}/${user.id}`, user),
     login: (input: LoginUserInput) =>
       HttpClient.post<AuthResponse>(API_ENDPOINTS.USERS_LOGIN, input),
     socialLogin: (input: SocialLoginInputType) =>

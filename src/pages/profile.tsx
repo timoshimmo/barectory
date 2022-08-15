@@ -12,7 +12,7 @@ const ProfilePage = () => {
   const { t } = useTranslation('common');
 
   const { me } = useUser();
-  console.log('me:', me);
+  //console.log('me:', me);
 
   if (!me) return null;
   return (

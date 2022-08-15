@@ -7,6 +7,7 @@ import { useTranslation } from 'next-i18next';
 import classNames from 'classnames';
 import PhoneInput from '@/components/ui/forms/phone-input';
 import Input from '@/components/ui/forms/input';
+import { useForm, useWatch } from "react-hook-form";
 
 interface ContactProps {
   contact: string | undefined | null;
@@ -29,6 +30,16 @@ const ContactGrid = ({
   className,
   gridClassName,
 }: ContactProps) => {
+
+  const {
+  register,
+  setValue,
+  reset,
+  formState: { isDirty },
+  watch,
+  getValues,
+} = useForm();
+
   const [contactNumber, setContactNumber] = useAtom(customerContactAtom);
   const [contactEmail, setContactEmail] = useAtom(customerEmailAtom);
   const [contactFirstName, setContactFirstName] = useAtom(customerFirstNameAtom);
@@ -37,30 +48,59 @@ const ContactGrid = ({
   const { t } = useTranslation('common');
 
   useEffect(() => {
+
+    let defaultValues = {};
     if (contact) {
       setContactNumber(contact);
-      return;
-    }
-    if (email) {
-      setContactEmail(email);
-      return;
     }
     if (firstName) {
       setContactFirstName(firstName);
-      return;
+      //setValue("first_name", firstName);
+      defaultValues.first_name = firstName;
+    }
+    if (email) {
+      setContactEmail(email);
+      //setValue("emailAddress", email);
+      defaultValues.emailAddress = email;
     }
     if (lastName) {
       setContactLastName(lastName);
-      return;
+      //setValue("last_name", lastName);
+      defaultValues.last_name = lastName;
     }
+
+    reset({ ...defaultValues });
 //    setContactNumber('');
   //  setContactEmail('');
   //  setContactFirstName('');
   //  setContactLastName('');
-  }, [contact, setContactNumber, email, setContactEmail, contactFirstName, setContactFirstName, contactLastName, setContactLastName]);
+}, [contact, setContactNumber, email, setContactEmail, contactFirstName, setContactFirstName, contactLastName, setContactLastName]);
 
-  function onFirstNameChange(event) {
-  //  console.log("FIRST NAME: " + contactFirstName);
+/*useEffect(() => {
+
+  const wchFirstname = watch("first_name");
+  const wchLastname = watch("last_name");
+  const wchEmail = watch("emailAddress");
+  console.log("Edited Firstname: " + wchFirstname);
+
+  setContactFirstName(watch("first_name"));
+  setContactLastName(wchLastname);
+  setContactEmail(wchEmail);
+
+},[contactFirstName, setContactFirstName]); */
+
+/*
+  const wchFirstname = watch("first_name");
+  const getFirstName = getValues("first_name");
+  console.log("Edited Firstname: " + wchFirstname);
+  console.log("Get Firstname: " + getFirstName);
+
+  */
+
+
+/*  function onFirstNameChange(event) {
+  //  defaultValues.first_name
+    //console.log("FIRST NAME: " + contactFirstName);
     setContactFirstName(event.target.value);
     //closeModal();
   }
@@ -75,7 +115,7 @@ const ContactGrid = ({
     //console.log("CONTACT: " + event.target.value);
     setContactEmail(event.target.value);
     //closeModal();
-  }
+  } */
 
   function onContactNumberChange(phoneNo) {
     //console.log("CONTACT: " + phoneNo.phone);
@@ -120,7 +160,7 @@ const ContactGrid = ({
             <label>First name</label>
             <Input
               disabled={false}
-              onChange={onFirstNameChange}
+              {...register("first_name")}
               className="mb-5"
               inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base !rounded focus:!border-accent !h-12"
               dropdownclass="focus:!ring-0 !border !border-border-base !shadow-350"
@@ -130,7 +170,7 @@ const ContactGrid = ({
             <label>Last name</label>
             <Input
               disabled={false}
-              onChange={onLastNameChange}
+              {...register("last_name")}
               className="mb-5"
               inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base !rounded focus:!border-accent !h-12"
               dropdownclass="focus:!ring-0 !border !border-border-base !shadow-350"
@@ -143,6 +183,7 @@ const ContactGrid = ({
           country="ng"
           disabled={false}
           className="mb-5"
+          defaultValue={contactNumber}
           onChange={phone => onContactNumberChange({ phone })}
           inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base !rounded focus:!border-accent !h-12"
           dropdownClass="focus:!ring-0 !border !border-border-base !shadow-350"
@@ -151,7 +192,7 @@ const ContactGrid = ({
         <label>Email</label>
         <Input
           disabled={false}
-          onChange={onEmailChange}
+          {...register("emailAddress")}
           inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base !rounded focus:!border-accent !h-12"
           dropdownClass="focus:!ring-0 !border !border-border-base !shadow-350"
         />

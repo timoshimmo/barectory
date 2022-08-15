@@ -21,6 +21,7 @@ export const API_ENDPOINTS = {
   GENERATE_DOWNLOADABLE_PRODUCT_LINK: '/downloads/digital_file',
   USERS: '/users',
   UPDATE_CUSTOMER: '/update-customer',
+  UPDATE_CUSTOMER_ADDRESS: '/update-customer-address',
   USERS_ADDRESS: '/address',
   USERS_ME: '/me',
   USERS_CUSTOMER: '/customer',
