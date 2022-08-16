@@ -5,7 +5,7 @@ import { shippingAddressAtom } from '@/store/checkout';
 import { RadioGroup } from '@headlessui/react';
 import { useAtom, WritableAtom } from 'jotai';
 import { useState } from 'react';
-import AddressCard from '@/components/address/address-card';
+import AddressCard from '@/components/address/address-card-guest';
 import { AddressHeader } from '@/components/address/address-header';
 import { useTranslation } from 'next-i18next';
 import AutocompleteAddress from "react-google-autocomplete";
