@@ -129,26 +129,26 @@ export default function CheckoutPage() {
                   <div className="flex w-full mb-3">
                     <div className="w-[50%] pr-2">
                       <label className="text-sm uppercase text-heading font-bold">First name</label>
-                      <p className="text-sm capitalize text-heading">Timothy</p>
+                      <p className="text-sm capitalize text-heading">{customer_first_name}</p>
                     </div>
                     <div className="w-[50%] pl-2">
                       <label className="text-sm uppercase text-heading font-bold">Last name</label>
-                      <p className="text-sm capitalize text-heading">Wang</p>
+                      <p className="text-sm capitalize text-heading">{customer_last_name}</p>
                     </div>
                   </div>
                   <div className="flex w-full mb-3">
                     <div className="w-[50%] pr-2">
                       <label className="text-sm uppercase text-heading font-bold">Phone number</label>
-                      <p className="text-sm capitalize text-heading">+2348057527307</p>
+                      <p className="text-sm capitalize text-heading">{customer_contact}</p>
                     </div>
                     <div className="w-[50%] pl-2">
                       <label className="text-sm uppercase text-heading font-bold mt-3">Email</label>
-                      <p className="text-sm capitalize text-heading">tokmangwang@gmal.com</p>
+                      <p className="text-sm text-heading">{customer_email}</p>
                     </div>
                   </div>
                   <div className="w-full mb-3">
                     <label className="text-sm uppercase text-heading font-bold mt-3">Address</label>
-                    <p className="text-sm capitalize text-heading">No 5 Ikoyi Road, Lagos</p>
+                    <p className="text-sm capitalize text-heading">{shipping_address.address.formatted_address}</p>
                   </div>
               </div>
 

@@ -98,9 +98,9 @@ const ContactGrid = ({
   */
 
 
-/*  function onFirstNameChange(event) {
+  function onFirstNameChange(event) {
   //  defaultValues.first_name
-    //console.log("FIRST NAME: " + contactFirstName);
+    console.log("FIRST NAME: " + contactFirstName);
     setContactFirstName(event.target.value);
     //closeModal();
   }
@@ -115,7 +115,7 @@ const ContactGrid = ({
     //console.log("CONTACT: " + event.target.value);
     setContactEmail(event.target.value);
     //closeModal();
-  } */
+  }
 
   function onContactNumberChange(phoneNo) {
     //console.log("CONTACT: " + phoneNo.phone);
@@ -161,6 +161,10 @@ const ContactGrid = ({
             <Input
               disabled={false}
               {...register("first_name")}
+              onChange={e => {
+                register("first_name").onChange(e);
+                onFirstNameChange(e);
+              }}
               className="mb-5"
               inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base !rounded focus:!border-accent !h-12"
               dropdownclass="focus:!ring-0 !border !border-border-base !shadow-350"
@@ -171,6 +175,10 @@ const ContactGrid = ({
             <Input
               disabled={false}
               {...register("last_name")}
+              onChange={e => {
+                register("last_name").onChange(e);
+                onLastNameChange(e);
+              }}
               className="mb-5"
               inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base !rounded focus:!border-accent !h-12"
               dropdownclass="focus:!ring-0 !border !border-border-base !shadow-350"
@@ -193,6 +201,10 @@ const ContactGrid = ({
         <Input
           disabled={false}
           {...register("emailAddress")}
+          onChange={e => {
+            register("emailAddress").onChange(e);
+            onEmailChange(e);
+          }}
           inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base !rounded focus:!border-accent !h-12"
           dropdownClass="focus:!ring-0 !border !border-border-base !shadow-350"
         />

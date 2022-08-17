@@ -123,7 +123,7 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
       input.token = token;
     }*/
 
-    console.log("ORDER INPUTS:" + JSON.stringify(input));
+    //console.log("ORDER INPUTS:" + JSON.stringify(input));
 
     //delete input.shipping_address.__typename;
     //@ts-ignore
@@ -178,7 +178,7 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
        {!use_wallet_points ?
           ( <Button
            className="w-full mt-5 bg-accent text-light px-5 py-0 h-12 border border-transparent hover:bg-accent-hover inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-none focus:shadow focus:ring-1 focus:ring-accent-700"
-           disabled={shipping_address === null || customer_email.length < 4}
+           disabled={shipping_address.length < 1 || customer_email === ''}
 
            onClick={() => {
               initializePayment(onSuccess, onClose)
@@ -188,7 +188,7 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
          (
            <Button
             className="w-full mt-5 bg-accent text-light px-5 py-0 h-12 border border-transparent hover:bg-accent-hover inline-flex items-center justify-center shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-none focus:shadow focus:ring-1 focus:ring-accent-700"
-            disabled={shipping_address === null || customer_email.length < 4}
+            disabled={shipping_address.length < 1 || customer_email === null}
 
             onClick={() => {
               handlePlaceOrder()

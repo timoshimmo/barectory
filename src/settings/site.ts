@@ -72,7 +72,7 @@ export const siteSettings = {
   footer: {
     copyright: {
       name: 'Barectory, Inc',
-      href: 'https://barectory.com',
+      href: 'https://www.barectory.com',
     },
     address: `10 Agard Street, Sabo, Yaba,
 Lagos, Nigeria.`,
