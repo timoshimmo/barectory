@@ -93,9 +93,7 @@ const SidebarFilter: React.FC<{
       </div>
 
       <div className="flex-1 px-5">
-        <FieldWrapper title="text-search">
-          <Search variant="minimal" label="search" />
-       </FieldWrapper>
+
       {/*
 
          */}
@@ -112,16 +110,23 @@ const SidebarFilter: React.FC<{
 
          */}
 
-       <FieldWrapper title="text-categories">
-        <CategoryFilter />
-       </FieldWrapper>
+         <FieldWrapper title="text-sort-by-price">
+           <PriceFilter />
+         </FieldWrapper>
 
-        <FieldWrapper title="text-sort-by-price">
-          <PriceFilter />
+         <FieldWrapper title="text-search">
+           <Search variant="minimal" label="search" />
         </FieldWrapper>
 
+        <FieldWrapper title="Brands">
+          <ManufacturerFilter />
+        </FieldWrapper>
 
       { /*
+
+        <FieldWrapper title="text-categories">
+         <CategoryFilter />
+        </FieldWrapper>
 
         <FieldWrapper title="text-tags">
           <TagFilter />

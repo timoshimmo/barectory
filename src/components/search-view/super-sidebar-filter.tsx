@@ -93,9 +93,7 @@ const SuperSidebarFilter: React.FC<{
       </div>
 
       <div className="flex-1 px-5">
-        <FieldWrapper title="text-search">
-          <Search variant="minimal" label="search" />
-       </FieldWrapper>
+
       {/*
 
          */}
@@ -112,13 +110,18 @@ const SuperSidebarFilter: React.FC<{
 
          */}
 
-       <FieldWrapper title="text-categories">
-        <SuperCategoryFilter slug={slug}/>
-       </FieldWrapper>
-
         <FieldWrapper title="text-sort-by-price">
           <PriceFilter />
         </FieldWrapper>
+
+        <FieldWrapper title="text-search">
+          <Search variant="minimal" label="search" />
+       </FieldWrapper>
+
+        <FieldWrapper title="Brands">
+          <ManufacturerFilter />
+        </FieldWrapper>
+
 
 
       { /*
@@ -127,11 +130,11 @@ const SuperSidebarFilter: React.FC<{
           <TagFilter />
         </FieldWrapper>
 
-        {showManufacturers && (
-        <FieldWrapper title="text-manufacturers">
-          <ManufacturerFilter />
+        <FieldWrapper title="text-categories">
+         <SuperCategoryFilter slug={slug}/>
         </FieldWrapper>
-       )}
+
+
          */}
       </div>
       <div className="p-5 bg-white sticky bottom-0 z-10 border-t border-gray-200 mt-auto lg:hidden">

@@ -10,9 +10,10 @@ import Spinner from '@/components/ui/loaders/spinner/spinner';
 
 interface Props {
   manufacturers: any[];
+  categories: any[];
 }
 
-const ManufacturerFilterView = ({ manufacturers }: Props) => {
+const ManufacturerFilterView = ({ manufacturers, categories }: Props) => {
   const { t } = useTranslation('common');
 
   const router = useRouter();

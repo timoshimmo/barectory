@@ -21,7 +21,7 @@ import StickyBox from 'react-sticky-box';
 export { getServerSideProps } from '@/framework/search.ssr';
 import Link from '@/components/ui/link';
 import { ROUTES } from '@/lib/routes';
-import { useCategory } from '@/framework/category';
+//import { useCategory } from '@/framework/category';
 
 export default function SearchPage() {
   const { query } = useRouter();
@@ -41,6 +41,8 @@ export default function SearchPage() {
     ...(searchType && { type: searchType }),
     ...restQuery,
   });
+
+  //const categoriesData = restQuery.category;
 
   const arr = restQuery.category.split(",");
   //const { category, iscLoading, cerror } = useCategory({ slug: 'beer' });

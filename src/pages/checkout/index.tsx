@@ -1,5 +1,5 @@
 import { useTranslation } from 'next-i18next';
-import { billingAddressAtom, shippingAddressAtom } from '@/store/checkout';
+import { billingAddressAtom, shippingAddressAtom, clearCheckoutAtom } from '@/store/checkout';
 import dynamic from 'next/dynamic';
 import { getLayout } from '@/components/layouts/layout';
 import { AddressType } from '@/framework/utils/constants';
@@ -35,6 +35,7 @@ export default function CheckoutPage() {
   const [lastName, setLastName] = useState('');
   const [emailAddress, setEmailAddress] = useState('');
   const [contact, setContact] = useState('');
+  const [, resetCheckout] = useAtom(clearCheckoutAtom);
   const [uID, setUID] = useState('');
   const { items } = useCart();
   const [
@@ -60,15 +61,12 @@ export default function CheckoutPage() {
         const nameArr = me?.name.split(" ");
         setEmailAddress(me?.email);
         if(typeof nameArr !== "undefined") {
-          console.log("NAME ARR:" + JSON.stringify(nameArr))
+        //  console.log("NAME ARR:" + JSON.stringify(nameArr))
           setFirstName(nameArr[0]);
           setLastName(nameArr[1]);
         }
       }
   }, [setFirstName, setLastName, setEmailAddress, setContact, me]);
-
-
-
 
   return (
     <>
@@ -123,7 +121,11 @@ export default function CheckoutPage() {
         {verified_response &&
           (
             <div className="w-full space-y-6 lg:max-w-2xl">
-              <p className="text-lg capitalize text-heading lg:text-xl mb-5 text-dark font-bold">Order Details</p>
+              <div className="w-full flex space-between">
+                <p className="text-lg capitalize text-heading lg:text-xl mb-5 text-dark font-bold">Order Details</p>
+
+              </div>
+
               <div className="bg-light p-5 shadow-700 md:p-8">
                   <p className="text-lg capitalize text-heading mb-5 text-dark font-semibold">Contact Details</p>
                   <div className="flex w-full mb-3">
