@@ -14,6 +14,7 @@ import { useUser } from '@/framework/user';
 export { getStaticProps } from '@/framework/general.ssr';
 import { useCart } from '@/store/quick-cart/cart.context';
 import CartItem from '@/components/cart/checkout-cart-item';
+import { CloseIcon } from '@/components/icons/close-icon';
 
 const ScheduleGrid = dynamic(
   () => import('@/components/checkout/schedule/schedule-grid')
@@ -42,6 +43,7 @@ export default function GuestCheckoutPage() {
   const [billingAddress] = useAtom(billingAddressAtom);
   const { items, totalUniqueItems, total, isEmpty } = useCart();
   const [shippingAddress] = useAtom(shippingAddressAtom);
+//  const [isClosed, setIsClosed] = useState(false);
 /*  useEffect(() => {
     resetCheckout();
   }, [resetCheckout]);*/
@@ -60,6 +62,13 @@ export default function GuestCheckoutPage() {
       token,
     },
   ] = useAtom(checkoutAtom);
+
+/*  function handleClearCheckout() {
+    if(verified_response) {
+      setIsClosed(true);
+    }
+
+  } */
 
   //!verified_response &&
 
@@ -124,7 +133,17 @@ export default function GuestCheckoutPage() {
         {verified_response &&
             (
               <div className="w-full space-y-6 lg:max-w-2xl">
+              <div className="flex w-full justify-between items-center">
                 <p className="text-lg capitalize text-heading lg:text-xl mb-5 text-dark font-bold">Order Details</p>
+                <button
+                  className="w-7 h-7 ltr:ml-3 rtl:mr-3 ltr:-mr-2 rtl:-ml-2 flex items-center justify-center shrink-0 rounded-full text-muted transition-all duration-200 focus:outline-none hover:bg-gray-100 focus:bg-gray-100 hover:text-red-600 focus:text-red-600"
+                  onClick={() => handleClearCheckout}
+                >
+                  <span className="sr-only">Close</span>
+                  <CloseIcon className="w-3 h-3" />
+                </button>
+              </div>
+
                 <div className="bg-light p-5 shadow-700 md:p-8">
                     <p className="text-lg capitalize text-heading mb-5 text-dark font-semibold">Contact Details</p>
                     <div className="flex w-full mb-3">
