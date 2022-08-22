@@ -41,7 +41,7 @@ function LoginForm() {
   const [_, setAuthorized] = useAtom(authorizationAtom);
 
 
-  console.log("CHECKOUT: " + isCheckout);
+  //console.log("CHECKOUT: " + isCheckout);
 
   /*
   login({
@@ -180,10 +180,6 @@ function LoginForm() {
               </Button>
             )
           }
-      </div>
-
-      <div className="relative mt-8 mb-6 flex flex-col items-center justify-center text-sm text-heading sm:mt-11 sm:mb-8">
-        <hr className="w-full" />
       </div>
 
       <div className="text-center text-sm text-body mt-8 sm:text-base">

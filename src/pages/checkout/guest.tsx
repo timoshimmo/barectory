@@ -3,6 +3,7 @@ import {
   billingAddressAtom,
   clearCheckoutAtom,
   shippingAddressAtom,
+  verifiedResponseAtom,
 } from '@/store/checkout';
 import dynamic from 'next/dynamic';
 import { getLayout } from '@/components/layouts/layout';
@@ -43,10 +44,12 @@ export default function GuestCheckoutPage() {
   const [billingAddress] = useAtom(billingAddressAtom);
   const { items, totalUniqueItems, total, isEmpty } = useCart();
   const [shippingAddress] = useAtom(shippingAddressAtom);
+  const [, emptyVerifiedResponse] = useAtom(verifiedResponseAtom);
 //  const [isClosed, setIsClosed] = useState(false);
-/*  useEffect(() => {
-    resetCheckout();
-  }, [resetCheckout]);*/
+  useEffect(() => {
+  //  resetCheckout();
+    emptyVerifiedResponse(null);
+  }, [emptyVerifiedResponse]);
 
   const [
     {
@@ -63,12 +66,11 @@ export default function GuestCheckoutPage() {
     },
   ] = useAtom(checkoutAtom);
 
-/*  function handleClearCheckout() {
-    if(verified_response) {
-      setIsClosed(true);
-    }
-
-  } */
+  function handleClearCheckout() {
+  //  console.log("VERIFIED:" + verified_response);
+    emptyVerifiedResponse(null);
+  //  console.log("FIRST NAME:" + customer_first_name);
+  }
 
   //!verified_response &&
 
@@ -103,9 +105,10 @@ export default function GuestCheckoutPage() {
             <div className="w-full space-y-6 lg:max-w-2xl">
               <ContactGrid
                 className="bg-light p-5 shadow-700 md:p-8"
-                contact={null}
-                email={null}
-                name={null}
+                email={customer_email}
+                firstName={customer_first_name}
+                lastName={customer_last_name}
+                contact={customer_contact}
                 label={'Contact Details'}
                 count={1}
               />
@@ -133,16 +136,15 @@ export default function GuestCheckoutPage() {
         {verified_response &&
             (
               <div className="w-full space-y-6 lg:max-w-2xl">
-              <div className="flex w-full justify-between items-center">
-                <p className="text-lg capitalize text-heading lg:text-xl mb-5 text-dark font-bold">Order Details</p>
-                <button
-                  className="w-7 h-7 ltr:ml-3 rtl:mr-3 ltr:-mr-2 rtl:-ml-2 flex items-center justify-center shrink-0 rounded-full text-muted transition-all duration-200 focus:outline-none hover:bg-gray-100 focus:bg-gray-100 hover:text-red-600 focus:text-red-600"
-                  onClick={() => handleClearCheckout}
-                >
-                  <span className="sr-only">Close</span>
-                  <CloseIcon className="w-3 h-3" />
-                </button>
-              </div>
+                <div className="flex w-full justify-between items-center mb-5">
+                  <p className="text-lg capitalize text-heading lg:text-xl text-dark font-bold">Order Details</p>
+                  <button
+                    className="flex items-center justify-center shrink-0 rounded text-muted font-semibold transition-all duration-200 focus:outline-none text-accent hover:text-accent focus:text-accent"
+                    onClick={() => handleClearCheckout()}
+                  >
+                    Update
+                  </button>
+                </div>
 
                 <div className="bg-light p-5 shadow-700 md:p-8">
                     <p className="text-lg capitalize text-heading mb-5 text-dark font-semibold">Contact Details</p>

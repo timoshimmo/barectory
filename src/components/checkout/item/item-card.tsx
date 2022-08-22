@@ -71,7 +71,7 @@ const ItemCard = ({ item, notAvailable }: Props) => {
           {!notAvailable ? price : t('text-unavailable')}
         </span>
       </div>
-      <div className="flex-shrink-0">
+      <div className="flex-shrink-0 mt-1">
         <Counter
           value={item.quantity}
           onDecrement={handleRemoveClick}

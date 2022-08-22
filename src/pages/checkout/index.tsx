@@ -1,5 +1,5 @@
 import { useTranslation } from 'next-i18next';
-import { billingAddressAtom, shippingAddressAtom, clearCheckoutAtom } from '@/store/checkout';
+import { billingAddressAtom, shippingAddressAtom, clearCheckoutAtom, verifiedResponseAtom } from '@/store/checkout';
 import dynamic from 'next/dynamic';
 import { getLayout } from '@/components/layouts/layout';
 import { AddressType } from '@/framework/utils/constants';
@@ -36,6 +36,7 @@ export default function CheckoutPage() {
   const [emailAddress, setEmailAddress] = useState('');
   const [contact, setContact] = useState('');
   const [, resetCheckout] = useAtom(clearCheckoutAtom);
+  const [, emptyVerifiedResponse] = useAtom(verifiedResponseAtom);
   const [uID, setUID] = useState('');
   const { items } = useCart();
   const [
@@ -53,20 +54,28 @@ export default function CheckoutPage() {
     },
   ] = useAtom(checkoutAtom);
 
+  //console.log("HERE!");
+
 
   useEffect(() => {
       if(typeof me !== "undefined") {
-        console.log("ME:" + JSON.stringify(me));
+    //    console.log("ME:" + JSON.stringify(me));
       //  setUID()
         const nameArr = me?.name.split(" ");
         setEmailAddress(me?.email);
         if(typeof nameArr !== "undefined") {
-        //  console.log("NAME ARR:" + JSON.stringify(nameArr))
+      //    console.log("NAME ARR:" + JSON.stringify(nameArr))
           setFirstName(nameArr[0]);
           setLastName(nameArr[1]);
         }
       }
   }, [setFirstName, setLastName, setEmailAddress, setContact, me]);
+
+  function handleClearCheckout() {
+  //  console.log("VERIFIED:" + verified_response);
+    emptyVerifiedResponse(null);
+  //  console.log("FIRST NAME:" + customer_first_name);
+  }
 
   return (
     <>
@@ -121,9 +130,14 @@ export default function CheckoutPage() {
         {verified_response &&
           (
             <div className="w-full space-y-6 lg:max-w-2xl">
-              <div className="w-full flex space-between">
-                <p className="text-lg capitalize text-heading lg:text-xl mb-5 text-dark font-bold">Order Details</p>
-
+              <div className="flex w-full justify-between items-center mb-5">
+                <p className="text-lg capitalize text-heading lg:text-xl text-dark font-bold">Order Details</p>
+                <button
+                  className="flex items-center justify-center shrink-0 rounded text-muted transition-all duration-200 focus:outline-none text-accent hover:text-accent focus:text-accent"
+                  onClick={() => handleClearCheckout()}
+                >
+                  Update
+                </button>
               </div>
 
               <div className="bg-light p-5 shadow-700 md:p-8">

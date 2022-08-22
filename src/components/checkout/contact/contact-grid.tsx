@@ -100,7 +100,7 @@ const ContactGrid = ({
 
   function onFirstNameChange(event) {
   //  defaultValues.first_name
-    console.log("FIRST NAME: " + contactFirstName);
+//    console.log("FIRST NAME: " + contactFirstName);
     setContactFirstName(event.target.value);
     //closeModal();
   }
@@ -191,7 +191,7 @@ const ContactGrid = ({
           country="ng"
           disabled={false}
           className="mb-5"
-          defaultValue={contactNumber}
+          value={contactNumber}
           onChange={phone => onContactNumberChange({ phone })}
           inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base !rounded focus:!border-accent !h-12"
           dropdownClass="focus:!ring-0 !border !border-border-base !shadow-350"
