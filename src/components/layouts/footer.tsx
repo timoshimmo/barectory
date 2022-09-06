@@ -51,14 +51,12 @@ const Footer = () => {
           </div>
         ))}
 
-        <div className="col-span-full md:col-span-2 lg:col-span-2">
+        <div className="col-span-full md:col-span-1 lg:col-span-2">
             <SubscriptionWidget
               title="text-subscribe-now"
               description="text-subscribe-details"
             />
           </div>
-
-
       </div>
 
       {/* Bottom */}
