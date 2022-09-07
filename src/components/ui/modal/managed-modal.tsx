@@ -9,6 +9,11 @@ const Register = dynamic(() => import('@/components/auth/register-form'));
 const ForgotPassword = dynamic(
   () => import('@/components/auth/forgot-password')
 );
+
+const SuccessfulReg = dynamic(
+  () => import('@/components/auth/successful-registration')
+);
+
 const ProductDetailsModalView = dynamic(
   () => import('@/components/products/details/popup'),
   { ssr: false }
@@ -75,6 +80,7 @@ const ManagedModal = () => {
           className="!flex !h-screen !w-screen max-w-screen-sm flex-col"
         />
       )}
+      {view === 'SUCCESSFUL_REGISTRATION' && <SuccessfulReg />}
     </Modal>
   );
 };

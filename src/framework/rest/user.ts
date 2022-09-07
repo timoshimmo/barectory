@@ -285,7 +285,7 @@ export function useRegister() {
   const { t } = useTranslation('common');
   const { setToken } = useToken();
   const [_, setAuthorized] = useAtom(authorizationAtom);
-  const { closeModal } = useModalAction();
+  const { openModal, closeModal } = useModalAction();
   let [formError, setFormError] = useState<Partial<RegisterUserInput> | null>(
     null
   );
@@ -294,8 +294,9 @@ export function useRegister() {
     onSuccess: (data) => {
       if (data?.token && data?.permissions?.length) {
         setToken(data?.token);
-        setAuthorized(true);
-        closeModal();
+        //setAuthorized(true);
+        openModal('SUCCESSFUL_REGISTRATION');
+        //closeModal();
         return;
       }
       if (!data.token) {

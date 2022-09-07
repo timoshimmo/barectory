@@ -15,8 +15,11 @@ import Footer from '@/components/layouts/footer';
 import cn from 'classnames';
 
 
-export const BlogPage = () => {
+export const BlogDetailsPage = ({ id }: any) => {
   const { t } = useTranslation('common');
+  
+  console.log("ID BLOG:" + id);
+
   const { settings } = useSettings();
   useEffect(() => {
     if (window.Tawk_API) {
@@ -25,34 +28,44 @@ export const BlogPage = () => {
   }, []);
   const blogList = [
     {
+      id: 1,
       img: "https://res.cloudinary.com/westpaybankit/image/upload/v1651246878/barectory/anthony-delanoix-vmrCxMRdq58-unsplash.jpg",
       subject: "Tips",
       topic: "Healthy Wine",
-      date: "15 March 2022"
+      date: "15 March 2022",
+      content: "This is the data of the blog 1"
     },
     {
+      id: 2,
       img: "https://res.cloudinary.com/westpaybankit/image/upload/v1651246878/barectory/dave-lastovskiy-RygIdTavhkQ-unsplash.jpg",
       subject: "Tips",
       topic: "Healthy Wine",
-      date: "21 March 2022"
+      date: "21 March 2022",
+      content: "This is the data of the blog 2"
     },
     {
+      id: 3,
       img: "https://res.cloudinary.com/westpaybankit/image/upload/v1651246878/barectory/eeshan-garg-KYuANAfgTWA-unsplash.jpg",
       subject: "Lifestyle",
       topic: "Brewed Beer",
-      date: "21 March 2022"
+      date: "21 March 2022",
+      content: "This is the data of the blog 3"
     },
     {
+      id: 4,
       img: "https://res.cloudinary.com/westpaybankit/image/upload/v1651501816/barectory/Sachet-Alcohol-696x387.jpg",
       subject: "News",
       topic: "NAFADAC bans Alcohol in Satchets and bottles below 200ml",
-      date: "24 March 2022"
+      date: "24 March 2022",
+      content: "This is the data of the blog 4"
     },
     {
+      id: 5,
       img: "https://res.cloudinary.com/westpaybankit/image/upload/v1651501816/barectory/29-lens-nightlife-embed-blog480.jpg",
       subject: "News",
       topic: "Rising night life & the alcohol industry",
-      date: "26 March 2022"
+      date: "26 March 2022",
+      content: "This is the data of the blog 5"
     }
   ];
   return (
@@ -68,45 +81,13 @@ export const BlogPage = () => {
           </span>
         </div>
         <div>
-        <div className=" p-10 grid grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-6 gap-y-10 lg:grid-cols-[repeat(auto-fill,minmax(320px,1fr))] xl:grid-cols-[repeat(auto-fill,minmax(320px,1fr))] xl:gap-8 xl:gap-y-12 2xl:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] 3xl:grid-cols-[repeat(auto-fill,minmax(360px,1fr))]">
-          {blogList.map((item, idx: number) => (
-            <article
-              className={cn(
-                'product-card cart-type-helium rounded border border-border-200 h-full bg-light overflow-hidden transition-shadow duration-200 hover:shadow-md'
-              )}
-            >
-              <div
-                className="relative flex flex-col w-full"
-              >
-                <div className="relative w-full h-48" role="button">
-                  <Image
-                    src={item.img}
-                    alt={item.topic}
-                    layout="fill"
-                    height={120}
-                    objectFit="cover"
-                    className="product-image"
-                  />
-                </div>
+        <div className=" p-10">
 
-                <div className="p-3 md:pt-4 md:p-5 relative h-full">
-                  <h3
-                    className="text-heading text-sm font-semibold truncate uppercase"
-                  >
-                    {item.subject}
-                  </h3>
-                  <p className="text-2xl truncate" role="button">{item.topic}</p>
-
-                  <p className="text-muted text-xs mt-8">{item.date}</p>
-                </div>
-              </div>
-            </article>
-          ))}
-          </div>
+        </div>
         </div>
       </div>
     </>
   );
 };
-BlogPage.getLayout = getLayout;
-export default BlogPage;
+BlogDetailsPage.getLayout = getLayout;
+export default BlogDetailsPage;
