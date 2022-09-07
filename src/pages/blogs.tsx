@@ -13,14 +13,14 @@ import { useSettings } from '@/framework/settings';
 export { getStaticProps } from '@/framework/general.ssr';
 import Footer from '@/components/layouts/footer';
 import cn from 'classnames';
+import { ROUTES } from '@/lib/routes';
+import { useRouter } from 'next/router';
 
 
-export const BlogDetailsPage = ({ id }: any) => {
+export const BlogPage = () => {
   const { t } = useTranslation('common');
-  
-  console.log("ID BLOG:" + id);
-
   const { settings } = useSettings();
+  const router = useRouter();
   useEffect(() => {
     if (window.Tawk_API) {
      window.Tawk_API.hideWidget();
@@ -68,6 +68,10 @@ export const BlogDetailsPage = ({ id }: any) => {
       content: "This is the data of the blog 5"
     }
   ];
+
+  /* const handleBlogClick = () => {
+     router.push(`${ROUTES.BLOGS}/1`);
+   }*/
   return (
     <>
       <Seo title={'Blogs'} url={'blogs'} />
@@ -81,13 +85,45 @@ export const BlogDetailsPage = ({ id }: any) => {
           </span>
         </div>
         <div>
-        <div className=" p-10">
+        <div className=" p-10 grid grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-6 gap-y-10 lg:grid-cols-[repeat(auto-fill,minmax(320px,1fr))] xl:grid-cols-[repeat(auto-fill,minmax(320px,1fr))] xl:gap-8 xl:gap-y-12 2xl:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] 3xl:grid-cols-[repeat(auto-fill,minmax(360px,1fr))]">
+          {blogList.map((item, idx: number) => (
+            <article
+              className={cn(
+                'product-card cart-type-helium rounded border border-border-200 h-full bg-light overflow-hidden transition-shadow duration-200 hover:shadow-md'
+              )}
+            >
+              <div
+                className="relative flex flex-col w-full"
+              >
+                <div className="relative w-full h-48" role="button">
+                  <Image
+                    src={item.img}
+                    alt={item.topic}
+                    layout="fill"
+                    height={120}
+                    objectFit="cover"
+                    className="product-image"
+                  />
+                </div>
 
-        </div>
+                <div className="p-3 md:pt-4 md:p-5 relative h-full">
+                  <h3
+                    className="text-heading text-sm font-semibold truncate uppercase"
+                  >
+                    {item.subject}
+                  </h3>
+                  <p className="text-2xl truncate" role="button">{item.topic}</p>
+
+                  <p className="text-muted text-xs mt-8">{item.date}</p>
+                </div>
+              </div>
+            </article>
+          ))}
+          </div>
         </div>
       </div>
     </>
   );
 };
-BlogDetailsPage.getLayout = getLayout;
-export default BlogDetailsPage;
+BlogPage.getLayout = getLayout;
+export default BlogPage;
