@@ -24,6 +24,7 @@ export default function SuccessfulRegView() {
         Your account has been successfully created and a link has been sent to your email.<br/>
         Click on that link to verify your account and complete your registration
       </p>
+      <p className="mt-1 mb-7 px-2 text-center text-xs text-gray-500">NOTE: If you do not see the mail in your inbox. Please check your spam mail.</p>
     {/*
       <div className="text-center text-sm text-body sm:text-base">
          <button

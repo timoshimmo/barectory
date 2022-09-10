@@ -5,7 +5,7 @@ export const siteSettings = {
   logo: {
     url: '/logo.svg',
     alt: 'Barectory',
-    href: '/grocery',
+    href: '/drinks',
     width: 135,
     height: 50,
   },
@@ -20,6 +20,7 @@ export const siteSettings = {
       makeup: 'Neon',
       book: 'Xenon',
       medicine: 'Helium',
+      drinks: 'Neon',
       default: 'Argon',
     },
   },

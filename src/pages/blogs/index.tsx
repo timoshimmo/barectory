@@ -15,17 +15,20 @@ import Footer from '@/components/layouts/footer';
 import cn from 'classnames';
 import { ROUTES } from '@/lib/routes';
 import { useRouter } from 'next/router';
+import { useBlogs } from '@/framework/blogs';
 
 
 export const BlogPage = () => {
   const { t } = useTranslation('common');
   const { settings } = useSettings();
   const router = useRouter();
+  const { blogs, isLoading, error } = useBlogs();
+
   useEffect(() => {
     if (window.Tawk_API) {
      window.Tawk_API.hideWidget();
    }
-  }, []);
+  }, [blogs]);
   const blogList = [
     {
       id: 1,
@@ -69,9 +72,10 @@ export const BlogPage = () => {
     }
   ];
 
-  /* const handleBlogClick = () => {
-     router.push(`${ROUTES.BLOGS}/1`);
-   }*/
+   const handleBlogClick = (id) => {
+     router.push(`${ROUTES.BLOGS}/${id}`);
+   }
+
   return (
     <>
       <Seo title={'Blogs'} url={'blogs'} />
@@ -86,7 +90,7 @@ export const BlogPage = () => {
         </div>
         <div>
         <div className=" p-10 grid grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-6 gap-y-10 lg:grid-cols-[repeat(auto-fill,minmax(320px,1fr))] xl:grid-cols-[repeat(auto-fill,minmax(320px,1fr))] xl:gap-8 xl:gap-y-12 2xl:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] 3xl:grid-cols-[repeat(auto-fill,minmax(360px,1fr))]">
-          {blogList.map((item, idx: number) => (
+          {blogs.map((item, idx: number) => (
             <article
               className={cn(
                 'product-card cart-type-helium rounded border border-border-200 h-full bg-light overflow-hidden transition-shadow duration-200 hover:shadow-md'
@@ -95,7 +99,7 @@ export const BlogPage = () => {
               <div
                 className="relative flex flex-col w-full"
               >
-                <div className="relative w-full h-48" role="button">
+                <div className="relative w-full h-48" role="button" onClick={()=>handleBlogClick(item.id)}>
                   <Image
                     src={item.img}
                     alt={item.topic}

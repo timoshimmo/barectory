@@ -48,9 +48,11 @@ import type {
   TagQueryOptions,
   Type,
   TypeQueryOptions,
+  BlogsQueryOptions,
   UpdateUserInput,
   User,
   Customer,
+  Blogs,
   VerifiedCheckoutData,
   VerifyCouponInputType,
   VerifyCouponResponse,
@@ -100,6 +102,13 @@ class Client {
     productCategory: (slug: string) =>
       HttpClient.get<Product[]>(`${API_ENDPOINTS.PRODUCTS}/category/${slug}`),
   };
+  blogs = {
+    all: (params: Partial<BlogsQueryOptions>) =>
+      HttpClient.get<Blogs[]>(API_ENDPOINTS.BLOGS, params),
+    get: (id: string) =>
+        HttpClient.get<Blogs>(`${API_ENDPOINTS.BLOGS}/${id}`),
+  };
+
   categories = {
     all: ({ type, ...params }: Partial<CategoryQueryOptions>) =>
       HttpClient.get<CategoryPaginator>(API_ENDPOINTS.CATEGORIES, {

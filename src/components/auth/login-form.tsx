@@ -68,19 +68,24 @@ function LoginForm() {
           DB.collection("customer").doc(user.uid).get().then((doc) => {
               if (doc.exists) {
 
-                const token = "jwt token";
+                if(!firebase.auth().currentUser.emailVerified) {
+                  setLoginLoading(false);
+                  setServerError("Email not verified. Click verification link in your email to verify account");
+                }
+                else {
+                  const token = "jwt token";
 
-                localStorage.setItem('customer', JSON.stringify({ name: doc.data().name, userid: doc.data().uid, email: doc.data().email }));
+                  localStorage.setItem('customer', JSON.stringify({ name: doc.data().name, userid: doc.data().uid, email: doc.data().email }));
 
-                setLoginLoading(false);
-                setToken(token);
-                setAuthorized(true);
-                closeModal();
+                  setLoginLoading(false);
+                  setToken(token);
+                  setAuthorized(true);
+                  closeModal();
+                }
               }
-
               else {
                 setLoginLoading(false);
-                setErrorMsg("User doesn't exist");
+                setServerError("User doesn't exist");
               }
 
           });

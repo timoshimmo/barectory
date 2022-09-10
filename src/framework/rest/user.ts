@@ -329,7 +329,7 @@ export function useLogout() {
         setAuthorized(false);
         resetCheckout();
         localStorage.removeItem('customer');
-        router.replace(ROUTES.HOME)
+        router.replace(ROUTES.HOME);
       }
     },
     onSettled: () => {

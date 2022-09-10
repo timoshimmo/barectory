@@ -333,6 +333,21 @@ export interface Customer {
   address: Address[];
 }
 
+export interface Blogs {
+  id: string;
+  img: string;
+  topic: string;
+  subject: string;
+  content: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface BlogsQueryOptions extends QueryOptions {
+  with: string;
+  range: number;
+}
+
 export interface UpdateUserInput extends Partial<User> {
   id: string;
 }
