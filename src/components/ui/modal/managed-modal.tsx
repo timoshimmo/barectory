@@ -14,6 +14,10 @@ const SuccessfulReg = dynamic(
   () => import('@/components/auth/successful-registration')
 );
 
+const SentResetLink = dynamic(
+  () => import('@/components/auth/successful-reset-link')
+);
+
 const ProductDetailsModalView = dynamic(
   () => import('@/components/products/details/popup'),
   { ssr: false }
@@ -81,6 +85,7 @@ const ManagedModal = () => {
         />
       )}
       {view === 'SUCCESSFUL_REGISTRATION' && <SuccessfulReg />}
+      {view === 'RESET_LINK_SENT' && <SentResetLink />}
     </Modal>
   );
 };

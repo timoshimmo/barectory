@@ -15,6 +15,9 @@ import { API_ENDPOINTS } from './client/api-endpoints';
 import { useState } from 'react';
 import { useRouter } from "next/router";
 import { ROUTES } from "@/lib/routes";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import DB from '@/lib/firebaseinit';
 
 import {
   RegisterUserInput,
@@ -369,9 +372,12 @@ export function useForgotPassword() {
   let [message, setMessage] = useState<string | null>(null);
   let [formError, setFormError] = useState<any>(null);
   const { t } = useTranslation();
+  const { openModal } = useModalAction();
+  //const [isLoading, setIsLoading] = useState(false);
 
   const { mutate, isLoading } = useMutation(client.users.forgotPassword, {
     onSuccess: (data, variables) => {
+      console.log("RESPONSE RESET:" + JSON.stringify(data))
       if (!data.success) {
         setFormError({
           email: data?.message ?? '',
@@ -380,9 +386,14 @@ export function useForgotPassword() {
       }
       setMessage(data?.message!);
       actions.updateFormState({
+          ...initialState,
+        });
+      openModal('RESET_LINK_SENT');
+      //Reset
+    /*  actions.updateFormState({
         email: variables.email,
         step: 'Token',
-      });
+      }); */
     },
   });
 
@@ -392,15 +403,15 @@ export function useForgotPassword() {
 export function useResetPassword() {
   const queryClient = useQueryClient();
   const { openModal } = useModalAction();
-  const { actions } = useStateMachine({ updateFormState });
+//  const { actions } = useStateMachine({ updateFormState });
 
   return useMutation(client.users.resetPassword, {
     onSuccess: (data) => {
       if (data?.success) {
         toast.success('Successfully Reset Password!');
-        actions.updateFormState({
+      /*  actions.updateFormState({
           ...initialState,
-        });
+        });*/
         openModal('LOGIN_VIEW');
         return;
       }
