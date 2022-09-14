@@ -296,21 +296,21 @@ export function useRegister() {
   const { mutate, isLoading } = useMutation(client.users.register, {
     onSuccess: (data) => {
       if (data?.token && data?.permissions?.length) {
-        setToken(data?.token);
+        //setToken(data?.token);
         //setAuthorized(true);
         openModal('SUCCESSFUL_REGISTRATION');
         //closeModal();
         return;
       }
       if (!data.token) {
-        toast.error(t('error-credential-wrong'));
+        toast.error(data.error);
       }
     },
     onError: (error) => {
       const {
         response: { data },
       }: any = error ?? {};
-
+      console.log("Error Register" + error + " " + JSON.stringify(data));
       setFormError(data);
     },
   });

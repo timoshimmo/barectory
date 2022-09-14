@@ -16,13 +16,8 @@ export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async ({
 }) => {
   invariant(locales, 'locales is not defined');
   const data = await client.blogs.all();
-  console.log("BLOGS PATHS: " + JSON.stringify(data));
 
   const paths = data.map(blog => ({ params: { id: blog.id }}));
-  /*const paths = data?.flatMap((blog) =>
-    locales.map((locale) => ({ params: { id: blog.id }, locale }))
-  );
-*/
 
   return {
     paths,

@@ -74,7 +74,7 @@ export const GuestAddressGrid: React.FC<AddressesProps> = ({
       <div className="grid grid-cols-1">
         {!selectedAddress &&
           <AutocompleteAddress
-            apiKey={'AIzaSyDs_8LnDD8HGjgkPO5hLk08MTFOk6FJus8'}
+            apiKey={'AIzaSyC8KiDaCQhg1hk8wcLbbZLtu9ejUeaQsz8'}
             id="shippingAddress-input"
             className="w-100 border border-border-400 text-sm px-3 py-3 rounded hover:border-accent focus:border-accent"
             placeholder="Enter street address"
