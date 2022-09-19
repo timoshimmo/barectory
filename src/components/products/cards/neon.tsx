@@ -68,6 +68,8 @@ const Neon: React.FC<NeonProps> = ({ product, className }) => {
               src={image?.original ?? productPlaceholder}
               alt={name}
               layout="fill"
+              width={45}
+              height={45}
               objectFit="contain"
               className="product-image p-3"
             />
@@ -106,21 +108,22 @@ const Neon: React.FC<NeonProps> = ({ product, className }) => {
             */}
             </div>
           ) : (
-            <div className="flex items-center mb-2">
-              <span className="text-sm md:text-base text-heading font-semibold">
+            <div className="mb-2 max-w-[100%]">
+              <p className="text-sm md:text-base text-heading font-semibold">
                 {price}
-              </span>
+              </p>
               {basePrice && (
-                <del className="text-xs md:text-sm text-muted ltr:ml-2 rtl:mr-2">
+                <del className="text-xs md:text-sm text-muted">
                   {basePrice}
                 </del>
+
               )}
             </div>
           )}
           {/* End of product price */}
 
           <h3
-            className="text-xs md:text-sm text-body truncate mb-4 cursor-pointer"
+            className="text-xs md:text-xs text-body font-semibold mb-4 cursor-pointer"
           >
             {name}
           </h3>

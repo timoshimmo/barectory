@@ -75,7 +75,7 @@ export default function CategoryProductsGrid({
   }
 
   return (
-      <div className="w-full relative mt-5">
+      <div className="w-full relative mt-1">
         <Swiper
           id="category-card-menu"
           modules={[Navigation, Autoplay]}

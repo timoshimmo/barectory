@@ -37,22 +37,22 @@ export default function Modern({ variables }: HomePageProps) {
         <div className="mt-[30px]">
           <PopularProductsGrid variables={variables.popularProducts} />
         </div>
-        <div className="mt-[30px]">
+        <div className="mt-[10px]">
           <SellingProductsGrid variables={variables.products} />
         </div>
-        <div className="mt-[30px] w-full">
+        <div className="mt-[20px] w-full">
           <AdsFirst layout="modern" variables={variables.types} />
         </div>
         <div>
             <CategoriesFirstHome variables={variables.categories}/>
         </div>
-        <div className="mt-[30px] w-full">
+        <div className="mt-[20px] w-full">
           <AdsSecond layout="modern" variables={variables.types} />
         </div>
         <div>
           <CategoriesMiddleHome variables={variables.categories}/>
         </div>
-        <div className="mt-[30px] w-full">
+        <div className="mt-[20px] w-full">
           <AdsThird layout="modern" variables={variables.types} />
         </div>
         <div>

@@ -26,11 +26,11 @@ const CategoryItem: React.FC<CategoryItemProps> = ({ item }) => {
   }
 
   return (
-    <div className="relative mt-[70px]">
+    <div className="relative mt-[20px]">
       <Link
           href={`${ROUTES.CATEGORIES}/${item.slug}`}
           onClick={()=>handleParent(item.slug)}
-          className="flex space-x-4 items-center py-2.5 w-20 font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none"
+          className="flex space-x-4 items-center py-1 w-20 font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none"
           query
           >
         <span className="whitespace-nowrap text-3xl">{item.name}</span>
