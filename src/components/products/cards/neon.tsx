@@ -55,13 +55,13 @@ const Neon: React.FC<NeonProps> = ({ product, className }) => {
   return (
       <article
         className={cn(
-          'product-card cart-type-neon pt-2 border border-border-200 rounded h-full bg-light overflow-hidden shadow-sm transition-all duration-200 hover:shadow transform hover:-translate-y-0.5',
+          'product-card relative cart-type-neon border border-border-200 rounded h-[315px] lg:h-[400px] bg-light overflow-hidden shadow-sm transition-all duration-200 hover:shadow transform hover:-translate-y-0.5',
           className
         )}
       >
         <Link href={`${ROUTES.PRODUCT}/${slug}`}>
           <div
-            className="relative flex items-center justify-center w-auto h-48 sm:h-64"
+            className="relative flex items-center justify-center w-auto h-40 mt-2 lg:h-64"
           >
             <span className="sr-only">{t('text-product-image')}</span>
             <Image
@@ -71,10 +71,10 @@ const Neon: React.FC<NeonProps> = ({ product, className }) => {
               width={45}
               height={45}
               objectFit="contain"
-              className="product-image p-3"
+              className="product-image"
             />
             {discount && (
-              <div className="absolute flex w-full justify-between items-start top-3 md:top-1 py-1 font-semibold px-1.5">
+              <div className="absolute flex w-full justify-between items-start top-1 lg:top-3 py-1 font-semibold px-1.5">
                 <div className="rounded text-xs leading-6 font-semibold ml-2 mt-2 px-1.5 sm:px-2 md:px-2.5 bg-accent text-light">
                   {discount}
                 </div>
@@ -94,7 +94,7 @@ const Neon: React.FC<NeonProps> = ({ product, className }) => {
         </Link>
         {/* End of product image */}
 
-        <header className="p-3 md:p-6">
+        <header className="px-3 md:px-4 pb-2 md:pb-3">
           {product_type.toLowerCase() === 'variable' ? (
             <div className="mb-2">
               <span className="text-sm md:text-base text-heading font-semibold">
@@ -108,7 +108,7 @@ const Neon: React.FC<NeonProps> = ({ product, className }) => {
             */}
             </div>
           ) : (
-            <div className="mb-2 max-w-[100%]">
+            <div className="mb-1 max-w-[100%]">
               <p className="text-sm md:text-base text-heading font-semibold">
                 {price}
               </p>
@@ -123,14 +123,14 @@ const Neon: React.FC<NeonProps> = ({ product, className }) => {
           {/* End of product price */}
 
           <h3
-            className="text-xs md:text-xs text-body font-semibold mb-4 cursor-pointer"
+            className="text-xs md:text-xs text-body font-semibold mb-2 cursor-pointer"
           >
             {name}
           </h3>
           {/* End of product title */}
 
           <Button
-            className="h-14 w-full flex-shrink max-w-sm text-sm"
+            className="h-14 flex-shrink max-w-sm text-sm absolute bottom-3 left-2 right-2"
             onClick={handleProductQuickView}
             size="small"
             disabled={cityStatus !== "FOUND" || Number(quantity) <= 0}

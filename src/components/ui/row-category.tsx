@@ -33,7 +33,7 @@ const CategoryItem: React.FC<CategoryItemProps> = ({ item }) => {
           className="flex space-x-4 items-center py-1 w-20 font-semibold capitalize transition duration-200 hover:text-accent focus:outline-none"
           query
           >
-        <span className="whitespace-nowrap text-3xl">{item.name}</span>
+        <span className="whitespace-nowrap text-3xl lg:text-3xl">{item.name}</span>
       </Link>
       <CategoryProductsGrid slug={item.slug}/>
     </div>

@@ -5,7 +5,6 @@ import rangeMap from '@/lib/range-map';
 import ProductCard from '@/components/products/cards/card';
 import ErrorMessage from '@/components/ui/error-message';
 import { useCategoryProduct } from '@/framework/product';
-import SectionBlock from '@/components/ui/section-block';
 import { useTranslation } from 'next-i18next';
 import { Product } from '@/framework/types';
 import classNames from 'classnames';
@@ -36,13 +35,13 @@ export default function CategoryProductsGrid({
 
   const breakpoints = {
     320: {
-      slidesPerView: 2.5,
-      spaceBetween: 13,
+      slidesPerView: 1.3,
+      spaceBetween: 10,
     },
 
     540: {
-      slidesPerView: 3,
-      spaceBetween: 20,
+      slidesPerView: 2.2,
+      spaceBetween: 17,
     },
 
     820: {
@@ -75,7 +74,8 @@ export default function CategoryProductsGrid({
   }
 
   return (
-      <div className="w-full relative mt-1">
+    <>
+      <div className="w-full relative desktop-layout">
         <Swiper
           id="category-card-menu"
           modules={[Navigation, Autoplay]}
@@ -122,5 +122,42 @@ export default function CategoryProductsGrid({
           {isRTL ? <ArrowPrevIcon /> : <ArrowNextIcon />}
         </div>
       </div>
+
+      <div className="w-full relative mobile-layout">
+        <Swiper
+          id="category-card-menu"
+          modules={[Navigation, Autoplay]}
+          loop={true}
+          centeredSlides={true}
+          navigation={{
+            prevEl,
+            nextEl,
+            disabledClass: 'swiper-button-disabled',
+            hiddenClass: 'swiper-button-hidden',
+          }}
+          breakpoints={breakpoints}
+          slidesPerView={5}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true
+          }}
+        >
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-6 gap-y-10 lg:grid-cols-[repeat(auto-fill,minmax(200px,1fr))] xl:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] xl:gap-8 xl:gap-y-12 2xl:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] 3xl:grid-cols-[repeat(auto-fill,minmax(360px,1fr))]">
+            {isLoading && !products.length
+              ? rangeMap(limit, (i) => (
+                  <SwiperSlide key={i}>
+                    <ProductLoader key={i} uniqueKey={`product-${i}`} />
+                  </SwiperSlide>
+                ))
+              : products.slice(0, 5).map((product, idx: number) => (
+                  <SwiperSlide key={idx}>
+                    <ProductCard product={product} key={product?.id} />
+                  </SwiperSlide>
+                ))}
+          </div>
+        </Swiper>
+      </div>
+    </>
   );
 }

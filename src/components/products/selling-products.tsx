@@ -6,6 +6,7 @@ import ProductSalesCard from '@/components/products/cards/sales-card';
 import ErrorMessage from '@/components/ui/error-message';
 import { useSalesProducts } from '@/framework/product';
 import SectionBlock from '@/components/ui/section-block';
+import SectionProductsBlock from '@/components/ui/section-products-block';
 import { useTranslation } from 'next-i18next';
 import { Image } from '@/components/ui/image';
 import { siteSettings } from '@/settings/site';
@@ -38,8 +39,8 @@ export default function SellingProductsGrid({ className, limit = 6 }: Props) {
 
   const breakpoints = {
     320: {
-      slidesPerView: 2.5,
-      spaceBetween: 13,
+      slidesPerView: 1.3,
+      spaceBetween: 10,
     },
 
     540: {
@@ -81,8 +82,8 @@ export default function SellingProductsGrid({ className, limit = 6 }: Props) {
 
 
   return (
-    <SectionBlock title={t('Hot Deals')}>
-      <div className={classNames(className, 'w-full relative')}>
+    <SectionProductsBlock title={t('Hot Deals')}>
+      <div className={classNames(className, 'w-full relative desktop-layout')}>
 
         <Swiper
           id="category-card-menu"
@@ -94,7 +95,6 @@ export default function SellingProductsGrid({ className, limit = 6 }: Props) {
             hiddenClass: 'swiper-button-hidden',
           }}
           breakpoints={breakpoints}
-          slidesPerView={5}
           autoplay={{
             delay: 3400,
             disableOnInteraction: false,
@@ -131,6 +131,42 @@ export default function SellingProductsGrid({ className, limit = 6 }: Props) {
           {isRTL ? <ArrowPrevIcon /> : <ArrowNextIcon />}
         </div>
       </div>
-    </SectionBlock>
+      <div className={classNames(className, 'w-full relative mobile-layout')}>
+
+        <Swiper
+          id="category-card-menu"
+          modules={[Navigation, Autoplay]}
+          loop={true}
+          centeredSlides={true}
+          navigation={{
+            prevEl,
+            nextEl,
+            disabledClass: 'swiper-button-disabled',
+            hiddenClass: 'swiper-button-hidden',
+          }}
+          breakpoints={breakpoints}
+          autoplay={{
+            delay: 3400,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true
+          }}
+        >
+        <div className="col-span-3 grid gap-6 xl:gap-8 grid-cols-[repeat(auto-fill,minmax(260px,1fr))] xl:grid-cols-[repeat(auto-fill,minmax(250px,1fr))] 2xl:grid-cols-3 3xl:grid-cols-[repeat(auto-fill,minmax(360px,1fr))]">
+          {isLoading && !products.length
+            ? rangeMap(limit, (i) => (
+                <SwiperSlide key={i}>
+                  <ProductLoader key={i} uniqueKey={`product-${i}`} />
+                </SwiperSlide>
+              ))
+            : products.slice(0, 6).map((product, idx: number) => (
+                <SwiperSlide key={idx}>
+                  <ProductSalesCard product={product} key={product.id} />
+                </SwiperSlide>
+              ))}
+        </div>
+
+        </Swiper>
+      </div>
+    </SectionProductsBlock>
   );
 }

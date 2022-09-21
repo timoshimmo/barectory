@@ -1,6 +1,7 @@
 import BakeryCategoryLoader from '@/components/ui/loaders/bakery-categories-loader';
 import NotFound from '@/components/ui/not-found';
 import SectionBlock from '@/components/ui/section-block';
+import SectionProductsBlock from '@/components/ui/section-products-block';
 import CategoryRow from '@/components/ui/row-category';
 import { Category } from '@/framework/types';
 
@@ -26,7 +27,7 @@ const CategoriesRow: React.FC<CategoriesRowProps> = ({
   }
 
   return (
-    <SectionBlock>
+    <SectionProductsBlock>
       {!notFound ? (
         <CategoryRow items={categories} />
       ) : (
@@ -34,7 +35,7 @@ const CategoriesRow: React.FC<CategoriesRowProps> = ({
           <NotFound text="text-no-category" className="h-96" />
         </div>
       )}
-    </SectionBlock>
+    </SectionProductsBlock>
   );
 };
 

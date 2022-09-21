@@ -15,7 +15,7 @@ type SectionProps = {
  * @param {string} href - The href of the external page for this section
  */
 
-const SectionBlock: React.FC<SectionProps> = ({
+const SectionProductsBlock: React.FC<SectionProps> = ({
   className,
   title,
   href,
@@ -25,7 +25,7 @@ const SectionBlock: React.FC<SectionProps> = ({
   return (
     <div
       className={cn(
-        'w-full flex pb-[10px] xl:pb-[10px] 3xl:pb-[15px] px-5 lg:px-14 xl:px-16 flex-col',
+        'w-full flex pb-[10px] xl:pb-[10px] 3xl:pb-[15px] px-3 md:px-5 lg:px-14 xl:px-16 flex-col',
         className
       )}
     >
@@ -52,4 +52,4 @@ const SectionBlock: React.FC<SectionProps> = ({
   );
 };
 
-export default SectionBlock;
+export default SectionProductsBlock;
