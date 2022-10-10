@@ -4,6 +4,7 @@ interface SeoProps extends NextSeoProps {
   images?: any[] | null;
 }
 const Seo = ({ title, description, images, url, ...props }: SeoProps) => {
+  console.log("SEO Images:" + JSON.stringify(images));
   return (
     <NextSeo
       title={title}
@@ -15,8 +16,8 @@ const Seo = ({ title, description, images, url, ...props }: SeoProps) => {
         description,
         ...(Boolean(images) && {
           images: images?.map((item) => ({
-            url: item?.image?.original,
-            alt: item?.title,
+            url: item?.original,
+            alt: title,
           })),
         }),
       }}
