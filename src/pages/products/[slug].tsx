@@ -25,6 +25,7 @@ export default function ProductPage({ product }: any) {
       <Seo
         title={product?.name}
         url={product?.slug!}
+        description={product?.description}
         images={!isEmpty(product?.image) ? [product.image] : []}
       />
       <AttributesProvider>

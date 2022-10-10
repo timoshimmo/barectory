@@ -44,8 +44,8 @@ const DefaultSeo = () => {
         site_name: settings?.siteTitle,
         images: [
           {
-            url: settings?.seo?.ogImage?.original,
-            width: 800,
+            url: settings?.seo?.ogImage,
+            width: 600,
             height: 600,
             alt: settings?.seo?.ogTitle,
           },
