@@ -52,7 +52,7 @@ export const GuestAddressGrid: React.FC<AddressesProps> = ({
     setAddress('');
   }
 
-  function onHandleAddress(address) {
+  function onHandleAddress(address: any) {
   //  console.log("ADDRESS: " + JSON.stringify(address));
     const formattedInput = {
       id: "1",
@@ -67,18 +67,17 @@ export const GuestAddressGrid: React.FC<AddressesProps> = ({
 
   return (
     <div className={className}>
-      <AddressHeader count={count} label={label} />
+      <AddressHeader onAdd={onAdd} count={count} label={label} />
       {/*
 <AddressHeader onAdd={onAdd} count={count} label={label} />
          */}
       <div className="grid grid-cols-1">
         {!selectedAddress &&
           <AutocompleteAddress
-            apiKey={'AIzaSyC8KiDaCQhg1hk8wcLbbZLtu9ejUeaQsz8'}
+            apiKey={process.env.GOOGLE_API_KEY}
             id="shippingAddress-input"
             className="w-100 border border-border-400 text-sm px-3 py-3 rounded hover:border-accent focus:border-accent"
             placeholder="Enter street address"
-            variant="outline"
             onPlaceSelected={(place) => {
               onHandleAddress(place)
             }}
