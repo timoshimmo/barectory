@@ -1,7 +1,7 @@
 {
   "env": {
     "FRAMEWORK_PROVIDER": "rest",
-    "NEXT_PUBLIC_REST_API_ENDPOINT": "https://barectory-api.vercel.app/api",
+    "NEXT_PUBLIC_REST_API_ENDPOINT": "https://web-production-c072.up.railway.app/api",
     "NEXT_PUBLIC_GRAPHQL_API_ENDPOINT": "",
     "NEXT_PUBLIC_SITE_URL": "",
     "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "",
@@ -15,7 +15,7 @@
   "build": {
     "env": {
       "FRAMEWORK_PROVIDER": "rest",
-      "NEXT_PUBLIC_REST_API_ENDPOINT": "https://barectory-api.vercel.app/api",
+      "NEXT_PUBLIC_REST_API_ENDPOINT": "https://web-production-c072.up.railway.app/api",
       "NEXT_PUBLIC_GRAPHQL_API_ENDPOINT": "",
       "NEXT_PUBLIC_SITE_URL": "",
       "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "",
